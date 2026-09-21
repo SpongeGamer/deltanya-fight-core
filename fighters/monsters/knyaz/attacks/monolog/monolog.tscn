@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://7mw4x3w4l7as"]
+
+[ext_resource type="Script" uid="uid://mk7e6it2rier" path="res://fighters/monsters/knyaz/attacks/monolog/letter_bullet.gd" id="1_lb"]
+[ext_resource type="Script" uid="uid://baks1rsvxtkla" path="res://fighters/monsters/knyaz/attacks/monolog/monolog.gd" id="2_mon"]
+
+[sub_resource type="RectangleShape2D" id="Shape_letter"]
+size = Vector2(10, 16)
+
+[node name="Monolog" type="Node2D"]
+z_index = 5
+script = ExtResource("2_mon")
+
+[node name="BaseLetter" type="Area2D" parent="."]
+visible = false
+z_index = 5
+position = Vector2(0, -400)
+collision_layer = 2
+script = ExtResource("1_lb")
+damage = 15
+graze_points = 2
+time_points = 0.01
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BaseLetter"]
+shape = SubResource("Shape_letter")
+
+[connection signal="body_entered" from="BaseLetter" to="BaseLetter" method="_on_body_entered"]

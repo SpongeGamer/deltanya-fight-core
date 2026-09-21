@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=3 uid="uid://dmx1iqawpm42c"]
+
+[ext_resource type="Script" uid="uid://c1fps78mt4kvr" path="res://ui/battle/floating_text/floating_text.gd" id="1_dka6m"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3ky0i"]
+font_size = 32
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_nmj1o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_dka6m"]
+resource_name = "stretch"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.433333, 1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 2), Vector2(1, 1), Vector2(1, 1), Vector2(0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nmj1o"]
+_data = {
+&"RESET": SubResource("Animation_nmj1o"),
+&"stretch": SubResource("Animation_dka6m")
+}
+
+[node name="FloatingText" type="Label"]
+top_level = true
+z_index = 4000
+y_sort_enabled = true
+custom_minimum_size = Vector2(320, 320)
+offset_left = -160.0
+offset_top = -160.0
+offset_right = 160.0
+offset_bottom = 160.0
+pivot_offset = Vector2(160, 160)
+text = "300"
+label_settings = SubResource("LabelSettings_3ky0i")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_dka6m")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_nmj1o")
+}

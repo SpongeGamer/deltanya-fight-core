@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://cbuggbug5olof"]
+
+[ext_resource type="Texture2D" uid="uid://b0mx4qepjjvn" path="res://globals/global/res/heart.png" id="1_e71i2"]
+[ext_resource type="Script" uid="uid://lcbxarr5x4i3" path="res://ui/battle/char_select/char_panel/char_panel.gd" id="1_ey76b"]
+[ext_resource type="FontFile" uid="uid://q4tuyk42idmk" path="res://fonts/8bitoperator Cyrillic Extension.otf" id="2_d7b3e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ey76b"]
+bg_color = Color(0.501961, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d7b3e"]
+bg_color = Color(0, 1, 0, 1)
+
+[node name="CharPanel" type="Control"]
+custom_minimum_size = Vector2(640, 30)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 640.0
+offset_bottom = 30.0
+script = ExtResource("1_ey76b")
+heart_path = NodePath("Heart")
+title_path = NodePath("Title")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 80.0
+offset_top = -1.0
+offset_right = 415.0
+offset_bottom = 31.0
+theme_override_fonts/font = ExtResource("2_d7b3e")
+vertical_alignment = 2
+clip_text = true
+
+[node name="Heart" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(63, 17)
+texture = ExtResource("1_e71i2")
+
+[node name="HPBG" type="Panel" parent="."]
+custom_minimum_size = Vector2(81, 16)
+layout_mode = 0
+offset_left = 420.0
+offset_top = 4.0
+offset_right = 501.0
+offset_bottom = 20.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ey76b")
+
+[node name="HPFG" type="Panel" parent="."]
+custom_minimum_size = Vector2(81, 16)
+layout_mode = 0
+offset_left = 420.0
+offset_top = 4.0
+offset_right = 501.0
+offset_bottom = 20.0
+pivot_offset = Vector2(0, 8)
+theme_override_styles/panel = SubResource("StyleBoxFlat_d7b3e")

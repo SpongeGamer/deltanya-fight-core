@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://lqc1vdtq4l3r"]
+
+[ext_resource type="Texture2D" uid="uid://bvdwodqduimay" path="res://assets/VFX/flower.png" id="1_jmxd0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uax4e"]
+atlas = ExtResource("1_jmxd0")
+region = Rect2(0, 0, 19, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fo82a"]
+atlas = ExtResource("1_jmxd0")
+region = Rect2(19, 0, 19, 28)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iucnd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uax4e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fo82a")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jmxd0"]
+
+[node name="EchoFlower" type="AnimatedSprite2D"]
+z_index = 50
+z_as_relative = false
+sprite_frames = SubResource("SpriteFrames_iucnd")
+autoplay = "default"
+frame_progress = 0.9019258
+
+[node name="Area2D" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, 3)
+shape = SubResource("RectangleShape2D_jmxd0")

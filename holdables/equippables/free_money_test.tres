@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://c855qa7u2ncbo"]
+
+[ext_resource type="Script" uid="uid://drff552q4x8m8" path="res://holdables/item.gd" id="1_8sjbw"]
+
+[resource]
+script = ExtResource("1_8sjbw")
+name = "Домашние деньги"
+short_description = "Звони: 8-800-555-35-35!"
+long_description = "Проще позвонить, чем у кого-то занимать!"
+price = 1
+sell_price = 9999
+metadata/_custom_type_script = "uid://drff552q4x8m8"

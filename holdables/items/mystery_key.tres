@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://cxqxlh5r3vmhu"]
+
+[ext_resource type="Script" uid="uid://drff552q4x8m8" path="res://holdables/item.gd" id="1_582rk"]
+[ext_resource type="Script" uid="uid://b1gd0hsmdy5md" path="res://holdables/use_type/item_use_predicate.gd" id="2_wmjqs"]
+
+[sub_resource type="Resource" id="Resource_e8eeq"]
+script = ExtResource("2_wmjqs")
+metadata/_custom_type_script = "uid://b1gd0hsmdy5md"
+
+[resource]
+script = ExtResource("1_582rk")
+name = "Странный ключ"
+short_description = "Для чего он нужен?"
+long_description = "Потертый ключ. Непонятно от чего."
+inventory_tab = 1
+usePredicate = SubResource("Resource_e8eeq")
+is_key_item = true
+metadata/_custom_type_script = "uid://drff552q4x8m8"

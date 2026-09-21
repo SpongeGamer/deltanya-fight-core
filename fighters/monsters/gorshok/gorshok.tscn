@@ -1,0 +1,113 @@
+[gd_scene load_steps=10 format=3 uid="uid://bulm200hsnh7c"]
+
+[ext_resource type="Script" uid="uid://c40gn7labdksb" path="res://fighters/monsters/gorshok/gorshok.gd" id="1_gd"]
+[ext_resource type="Texture2D" uid="uid://b3supwanlo87x" path="res://fighters/monsters/nikita/res/боевая стойка.png" id="2_13bgn"]
+[ext_resource type="AudioStream" uid="uid://yme6o3bjwdor" path="res://globals/sounds/voices/gorshok_voice.ogg" id="2_fkhus"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fkhus"]
+atlas = ExtResource("2_13bgn")
+region = Rect2(0, 0, 440, 780)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1wrqm"]
+atlas = ExtResource("2_13bgn")
+region = Rect2(440, 0, 440, 780)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p6wec"]
+atlas = ExtResource("2_13bgn")
+region = Rect2(880, 0, 440, 780)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bks4n"]
+atlas = ExtResource("2_13bgn")
+region = Rect2(1320, 0, 440, 780)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_placeholder"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fkhus")
+}],
+"loop": true,
+"name": &"attack_cotyol",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fkhus")
+}],
+"loop": true,
+"name": &"attack_dead_anarchist",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fkhus")
+}],
+"loop": true,
+"name": &"attack_ricochet",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fkhus")
+}],
+"loop": false,
+"name": &"die",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fkhus")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fkhus")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1wrqm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p6wec")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bks4n")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 3.0
+}]
+
+[sub_resource type="RectangleShape2D" id="Shape_body"]
+size = Vector2(48, 109)
+
+[node name="Gorshok" type="CharacterBody2D"]
+script = ExtResource("1_gd")
+voice_sound = ExtResource("2_fkhus")
+voice_pitch_min = 1.0
+voice_pitch_max = 1.0
+description = "Горшок"
+xp_bled = 80
+money_dropped = 40
+battle_music = "gorshok"
+opening_line_singular = "* Горшок разминает пальцы."
+opening_line_plural = "* Несколько Горшков разминают пальцы."
+title = "Горшок"
+base_fighter_stats = Dictionary[int, int]({
+0: 500,
+1: 6,
+2: 6,
+3: 2
+})
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_placeholder")
+animation = &"attack_cotyol"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4.5)
+shape = SubResource("Shape_body")

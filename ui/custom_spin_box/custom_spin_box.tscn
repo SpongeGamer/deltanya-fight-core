@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://b268fklbbaj1q"]
+
+[ext_resource type="Script" uid="uid://nh20raclnnlr" path="res://ui/custom_spin_box/custom_spin_box.gd" id="1_5q3qq"]
+[ext_resource type="Texture2D" uid="uid://1sls7i7grxgn" path="res://ui/custom_spin_box/res/arrow.png" id="1_rn15t"]
+
+[node name="CustomSpinBox" type="CenterContainer"]
+focus_mode = 2
+script = ExtResource("1_5q3qq")
+
+[node name="HBox" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="LeftArrow" type="TextureRect" parent="HBox"]
+layout_mode = 2
+texture = ExtResource("1_rn15t")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+text = "NONE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RightArrow" type="TextureRect" parent="HBox"]
+layout_mode = 2
+texture = ExtResource("1_rn15t")
+expand_mode = 2
+flip_h = true

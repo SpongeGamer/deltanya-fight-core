@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="ShopTalkTopic" load_steps=7 format=3 uid="uid://b2v2d7v8biuw1"]
+
+[ext_resource type="Script" uid="uid://buho0degfd14w" path="res://resources/DialogueExportResource.gd" id="1_upakw"]
+[ext_resource type="Script" uid="uid://8orgtokfu828" path="res://resources/shop/ShopTalkTopic.gd" id="2_1v6xn"]
+[ext_resource type="Script" uid="uid://dpl3myc5lbyaq" path="res://scripts/DialogueTextResource.gd" id="2_nk64v"]
+[ext_resource type="AudioStream" uid="uid://bdpj3kgajclrp" path="res://globals/sounds/voices/max_voice.ogg" id="4_rkgtm"]
+
+[sub_resource type="Resource" id="Resource_4qmmw"]
+script = ExtResource("2_nk64v")
+text = "Бас-гитара? Нет. Такое не продаю. "
+text_speed = 16.0
+text_sound = ExtResource("4_rkgtm")
+text_volume_pitch_min = 0.8
+text_volume_pitch_max = 0.8
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="Resource" id="Resource_rkgtm"]
+script = ExtResource("2_nk64v")
+text = "И не пытайтесь даже. Не найдете."
+text_speed = 16.0
+text_sound = ExtResource("4_rkgtm")
+text_volume_pitch_min = 0.8
+text_volume_pitch_max = 0.8
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[resource]
+script = ExtResource("2_1v6xn")
+label = "Бас-гитары"
+dialogue = Array[ExtResource("1_upakw")]([SubResource("Resource_4qmmw"), SubResource("Resource_rkgtm")])

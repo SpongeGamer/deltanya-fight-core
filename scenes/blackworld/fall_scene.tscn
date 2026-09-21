@@ -1,0 +1,179 @@
+[gd_scene load_steps=29 format=3 uid="uid://g6gskvktslhc"]
+
+[ext_resource type="Script" uid="uid://3y03aex0fnmq" path="res://scenes/blackworld/fall_scene.gd" id="1_efn1y"]
+[ext_resource type="Texture2D" uid="uid://ccjv3kjoeuupl" path="res://assets/main_characters/light_egor_down.png" id="2_2sme0"]
+[ext_resource type="Texture2D" uid="uid://c2jyowbj8r46g" path="res://assets/main_characters/light_egor_left.png" id="3_nydgi"]
+[ext_resource type="Texture2D" uid="uid://d0m5vsx4idtgu" path="res://assets/main_characters/light_egor_up.png" id="4_7l0mp"]
+[ext_resource type="Texture2D" uid="uid://cqx30umd8s5t6" path="res://assets/main_characters/light_egor_right.png" id="5_bnr48"]
+[ext_resource type="Texture2D" uid="uid://clu6f47n224ny" path="res://assets/main_characters/light_kate_down.png" id="6_auig5"]
+[ext_resource type="Texture2D" uid="uid://oy7pgpfl0iwj" path="res://assets/main_characters/light_kate_right.png" id="7_v0418"]
+[ext_resource type="Texture2D" uid="uid://c41mgl47jul2r" path="res://assets/main_characters/light_kate_up.png" id="8_30624"]
+[ext_resource type="Texture2D" uid="uid://d2rjo00g8iwmv" path="res://assets/main_characters/light_kate_left.png" id="9_i51nv"]
+[ext_resource type="Texture2D" uid="uid://b8sy7lhg27iva" path="res://assets/main_characters/light_anne_down.png" id="10_fg2d0"]
+[ext_resource type="Texture2D" uid="uid://i0k0htyoqu2w" path="res://assets/main_characters/light_anne_right.png" id="11_warxj"]
+[ext_resource type="Texture2D" uid="uid://bdcychhv3wdah" path="res://assets/main_characters/light_anne_up.png" id="12_ogcts"]
+[ext_resource type="Texture2D" uid="uid://bjjdpgrcbc5wf" path="res://assets/main_characters/light_anne_left.png" id="13_wfc28"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xd8dw"]
+atlas = ExtResource("2_2sme0")
+region = Rect2(0, 0, 440, 760)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wf0vq"]
+atlas = ExtResource("3_nydgi")
+region = Rect2(0, 0, 400, 740)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ic4g"]
+atlas = ExtResource("4_7l0mp")
+region = Rect2(0, 0, 440, 780)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i4j10"]
+atlas = ExtResource("5_bnr48")
+region = Rect2(1200, 0, 400, 740)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b66aj"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xd8dw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wf0vq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ic4g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i4j10")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 6.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ub6a1"]
+atlas = ExtResource("6_auig5")
+region = Rect2(0, 0, 340, 660)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8do7y"]
+atlas = ExtResource("7_v0418")
+region = Rect2(420, 0, 420, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yeuqk"]
+atlas = ExtResource("8_30624")
+region = Rect2(0, 0, 340, 660)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b5qkm"]
+atlas = ExtResource("9_i51nv")
+region = Rect2(0, 0, 420, 640)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hehor"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ub6a1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8do7y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yeuqk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b5qkm")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 6.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6utyy"]
+atlas = ExtResource("10_fg2d0")
+region = Rect2(0, 0, 540, 660)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gfe38"]
+atlas = ExtResource("11_warxj")
+region = Rect2(920, 0, 460, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8bjpp"]
+atlas = ExtResource("12_ogcts")
+region = Rect2(1620, 0, 540, 660)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a40v0"]
+atlas = ExtResource("13_wfc28")
+region = Rect2(460, 0, 460, 640)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2he3w"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6utyy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gfe38")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8bjpp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a40v0")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 6.0
+}]
+
+[node name="FallScene" type="Node2D"]
+script = ExtResource("1_efn1y")
+
+[node name="DarkRect" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+z_index = 20
+offset_left = -30.0
+offset_top = -32.0
+offset_right = 661.0
+offset_bottom = 561.0
+color = Color(0, 0, 0, 1)
+
+[node name="Characters" type="Node2D" parent="."]
+z_index = 21
+
+[node name="Egor" type="AnimatedSprite2D" parent="Characters"]
+position = Vector2(461, 266)
+rotation = 3.0952325
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_b66aj")
+animation = &"fall"
+frame_progress = 0.81423974
+
+[node name="Kate" type="AnimatedSprite2D" parent="Characters"]
+position = Vector2(187, 279.00003)
+rotation = -1.8741586
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_hehor")
+animation = &"fall"
+frame = 2
+frame_progress = 0.8053706
+
+[node name="Anne" type="AnimatedSprite2D" parent="Characters"]
+position = Vector2(320.99997, 271.99997)
+rotation = 0.47130853
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_2he3w")
+animation = &"fall"
+frame = 3
+frame_progress = 0.2125525

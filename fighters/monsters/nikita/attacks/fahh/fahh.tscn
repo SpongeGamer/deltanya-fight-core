@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bd6gr05b1cd5n"]
+
+[ext_resource type="Script" uid="uid://b35iddmkncrx5" path="res://fighters/monsters/nikita/attacks/fahh/fahh.gd" id="1_script"]
+[ext_resource type="PackedScene" uid="uid://ck17amkk4fxn5" path="res://pellets/generic_pellet/generic_pellet.tscn" id="2_pellet"]
+
+[node name="FAHH" type="Node2D"]
+script = ExtResource("1_script")
+
+[node name="BasePellet" parent="." instance=ExtResource("2_pellet")]
+visible = false
+position = Vector2(0, -400)
+damage = 7
+graze_points = 1
+time_points = 0.1
+
+[connection signal="body_entered" from="BasePellet" to="BasePellet" method="_on_body_entered"]

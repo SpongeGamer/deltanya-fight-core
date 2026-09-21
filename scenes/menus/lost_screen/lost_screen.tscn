@@ -1,0 +1,76 @@
+[gd_scene load_steps=5 format=3 uid="uid://gvvlu8b17lwv"]
+
+[ext_resource type="Texture2D" uid="uid://b0mx4qepjjvn" path="res://globals/global/res/heart.png" id="1_qeco5"]
+[ext_resource type="Script" uid="uid://cmx566l7n4rnj" path="res://scenes/menus/lost_screen/lost_screen.gd" id="1_yigqx"]
+[ext_resource type="FontFile" uid="uid://q4tuyk42idmk" path="res://fonts/8bitoperator Cyrillic Extension.otf" id="2_font"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_btn"]
+
+[node name="LostScreen" type="Node2D"]
+script = ExtResource("1_yigqx")
+
+[node name="BG" type="ColorRect" parent="."]
+offset_right = 640.0
+offset_bottom = 480.0
+color = Color(0, 0, 0, 1)
+
+[node name="Lost" type="Label" parent="."]
+custom_minimum_size = Vector2(640, 0)
+offset_top = 60.0
+offset_right = 640.0
+offset_bottom = 220.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 96
+text = "ПОРАЖЕНИЕ"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Continue" type="Button" parent="."]
+custom_minimum_size = Vector2(200, 48)
+offset_left = 80.0
+offset_top = 360.0
+offset_right = 300.0
+offset_bottom = 408.0
+focus_neighbor_left = NodePath("../Surrender")
+focus_neighbor_top = NodePath("../Surrender")
+focus_neighbor_right = NodePath("../Surrender")
+focus_neighbor_bottom = NodePath("../Surrender")
+mouse_filter = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_btn")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_btn")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_btn")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_btn")
+text = "ПРОДОЛЖИТЬ"
+
+[node name="Surrender" type="Button" parent="."]
+custom_minimum_size = Vector2(180, 48)
+offset_left = 360.0
+offset_top = 360.0
+offset_right = 560.0
+offset_bottom = 408.0
+focus_neighbor_left = NodePath("../Continue")
+focus_neighbor_top = NodePath("../Continue")
+focus_neighbor_right = NodePath("../Continue")
+focus_neighbor_bottom = NodePath("../Continue")
+mouse_filter = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_btn")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_btn")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_btn")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_btn")
+text = "СДАТЬСЯ"
+
+[node name="Heart" type="Sprite2D" parent="."]
+modulate = Color(0.8, 0, 0, 1)
+position = Vector2(71, 375)
+scale = Vector2(2, 2)
+texture = ExtResource("1_qeco5")
+
+[connection signal="focus_entered" from="Continue" to="." method="_on_continue_focus_entered"]
+[connection signal="pressed" from="Continue" to="." method="_on_continue_pressed"]
+[connection signal="focus_entered" from="Surrender" to="." method="_on_surrender_focus_entered"]
+[connection signal="pressed" from="Surrender" to="." method="_on_surrender_pressed"]

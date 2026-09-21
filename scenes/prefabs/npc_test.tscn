@@ -1,0 +1,37 @@
+[gd_scene load_steps=8 format=3 uid="uid://cipya1gvpd164"]
+
+[ext_resource type="Texture2D" uid="uid://bel3hveych64a" path="res://assets/NPC/NPC_Knyaz.png" id="1_lltpj"]
+[ext_resource type="PackedScene" uid="uid://ogidicqqkcwp" path="res://scenes/prefabs/dialogue_area_2d.tscn" id="2_b22vk"]
+[ext_resource type="Script" uid="uid://buho0degfd14w" path="res://resources/DialogueExportResource.gd" id="3_pbkqu"]
+[ext_resource type="Script" uid="uid://dpl3myc5lbyaq" path="res://scripts/DialogueTextResource.gd" id="4_yiajy"]
+[ext_resource type="AudioStream" uid="uid://bn35rwn1wiphe" path="res://globals/sounds/voices/knyaz_voice.ogg" id="5_2m34x"]
+
+[sub_resource type="Resource" id="Resource_vjl50"]
+script = ExtResource("4_yiajy")
+speaker_name = "Князь"
+speaker_img = ExtResource("1_lltpj")
+text = "Это должен был быть тестовый диалог, но увы, Князь пока нейросетевой."
+text_speed = 12.0
+text_sound = ExtResource("5_2m34x")
+text_volume_db = 8
+text_volume_pitch_min = 1.0
+text_volume_pitch_max = 1.0
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5f24i"]
+size = Vector2(288.88867, 666.6665)
+
+[node name="NPC_Knyaz" type="Sprite2D"]
+z_index = -350
+z_as_relative = false
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_lltpj")
+offset = Vector2(0, -350)
+
+[node name="DialogueArea2D" parent="." instance=ExtResource("2_b22vk")]
+dialogue = Array[ExtResource("3_pbkqu")]([SubResource("Resource_vjl50")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DialogueArea2D"]
+position = Vector2(5.55542, 101.11119)
+scale = Vector2(1.0000001, 1.0000001)
+shape = SubResource("RectangleShape2D_5f24i")

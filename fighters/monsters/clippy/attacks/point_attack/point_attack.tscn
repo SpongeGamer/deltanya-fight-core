@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://cf7gbfhm1obs4"]
+
+[ext_resource type="Script" uid="uid://dpfgn14kdwetv" path="res://fighters/monsters/clippy/attacks/point_attack/point_attack.gd" id="1_ptk"]
+[ext_resource type="Script" uid="uid://brkg4c3icmxh3" path="res://fighters/monsters/clippy/attacks/point_attack/homing_cursor.gd" id="2_ptk"]
+[ext_resource type="Texture2D" uid="uid://djfmdrptmkt5k" path="res://fighters/monsters/clippy/attacks/point_attack/point.png" id="3_03qfe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qeb76"]
+size = Vector2(26.666668, 10.666687)
+
+[node name="PointAttack" type="Node2D"]
+script = ExtResource("1_ptk")
+
+[node name="BaseBullet" type="Area2D" parent="."]
+visible = false
+position = Vector2(0, -400)
+scale = Vector2(1.5, 1.5)
+collision_layer = 2
+script = ExtResource("2_ptk")
+damage = 8
+
+[node name="Sprite" type="Sprite2D" parent="BaseBullet"]
+texture = ExtResource("3_03qfe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BaseBullet"]
+position = Vector2(2.6666667, 7.3333435)
+shape = SubResource("RectangleShape2D_qeb76")
+
+[connection signal="body_entered" from="BaseBullet" to="BaseBullet" method="_on_body_entered"]

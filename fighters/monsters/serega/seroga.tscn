@@ -1,0 +1,190 @@
+[gd_scene load_steps=13 format=3 uid="uid://rcicm8hgt06c"]
+
+[ext_resource type="Script" uid="uid://eovhr2bw6agt" path="res://fighters/monsters/serega/seroga.gd" id="1_seroga"]
+[ext_resource type="AudioStream" uid="uid://36tlhn4vghr2" path="res://globals/sounds/voices/serega_voice.ogg" id="2_7wtle"]
+[ext_resource type="Script" uid="uid://bwvvm6kvpsqi1" path="res://fighters/characters/acts/act.gd" id="2_act"]
+[ext_resource type="Texture2D" uid="uid://cnh1hqmroc84h" path="res://assets/main_characters/dark_serega.png" id="3_innmn"]
+
+[sub_resource type="Resource" id="Resource_act1"]
+script = ExtResource("2_act")
+title = "Слушать"
+text = "  * Ты прислушиваешься к музыке Сереги.
+  * Под диссонансом слышна усталость."
+spare_percent = 5
+metadata/_custom_type_script = "uid://bwvvm6kvpsqi1"
+
+[sub_resource type="Resource" id="Resource_act2"]
+script = ExtResource("2_act")
+title = "Вспомнить"
+text = "  * Ты напоминаешь ему о настоящем Сереге.
+  * Темный Серега на секунду замолкает."
+spare_percent = 15
+metadata/_custom_type_script = "uid://bwvvm6kvpsqi1"
+
+[sub_resource type="Resource" id="Resource_act3"]
+script = ExtResource("2_act")
+title = "Отдохнуть"
+text = "  * Ты говоришь ему: хватит.
+  * Можно просто остановиться.
+  * Он смотрит на тебя долго."
+spare_percent = 20
+metadata/_custom_type_script = "uid://bwvvm6kvpsqi1"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7wtle"]
+atlas = ExtResource("3_innmn")
+region = Rect2(0, 0, 420, 920)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_su6qt"]
+atlas = ExtResource("3_innmn")
+region = Rect2(420, 0, 420, 920)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cx3cw"]
+atlas = ExtResource("3_innmn")
+region = Rect2(840, 0, 420, 920)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1wn3f"]
+atlas = ExtResource("3_innmn")
+region = Rect2(1260, 0, 420, 920)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_seroga"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7wtle")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_su6qt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cx3cw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1wn3f")
+}],
+"loop": true,
+"name": &"attack_disonans",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7wtle")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_su6qt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cx3cw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1wn3f")
+}],
+"loop": true,
+"name": &"attack_krescendo",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7wtle")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_su6qt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cx3cw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1wn3f")
+}],
+"loop": true,
+"name": &"attack_noktyurn",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7wtle")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_su6qt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cx3cw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1wn3f")
+}],
+"loop": true,
+"name": &"attack_tishina",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7wtle")
+}],
+"loop": false,
+"name": &"damaged",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7wtle")
+}],
+"loop": false,
+"name": &"faint",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7wtle")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_su6qt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cx3cw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1wn3f")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 4.0
+}]
+
+[node name="seroga" type="Node2D"]
+script = ExtResource("1_seroga")
+voice_sound = ExtResource("2_7wtle")
+voice_pitch_min = 0.7
+voice_pitch_max = 0.7
+pre_attack_lines = ["Ты думал, я устал?
+Я просто менял тональность.", "Эта мелодия...
+Она никогда не заканчивается.", "Слышишь тишину?
+Вот моя любимая нота.", "Каждая фальшивая нота -
+это маленькая смерть.", "Музыка - это боль.
+А боль - это я.", "Сыграй со мной.
+Ты все равно проиграешь.", "Я написал эту песню
+пока ты спал.", "Финальный аккорд
+будет твоим.", "Устал?
+Я только начинаю.", "Тишина - это тоже музыка.
+Самая громкая."]
+description = "  * Темный Серега смотрит в никуда.
+  * Его музыка звучит откуда-то изнутри."
+acts = Array[ExtResource("2_act")]([SubResource("Resource_act1"), SubResource("Resource_act2"), SubResource("Resource_act3")])
+xp_bled = 0
+money_dropped = 0
+battle_music = "serega"
+idle_lines = PackedStringArray("Он тихо напевает что-то под нос.", "Его пальцы отбивают ритм в воздухе.", "Он смотрит сквозь тебя.", "Где-то далеко играет музыка.", "Он устал. Но не останавливается.")
+opening_line_singular = "Из темноты появляется Темный Серега."
+title = "Темный Серега"
+base_fighter_stats = Dictionary[int, int]({
+0: 1200,
+1: 10,
+2: 4,
+4: 1
+})
+main_sprite = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_seroga")
+animation = &"attack_disonans"
+autoplay = "idle"

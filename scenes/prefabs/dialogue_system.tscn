@@ -1,0 +1,122 @@
+[gd_scene load_steps=9 format=3 uid="uid://crg48krpo7tr8"]
+
+[ext_resource type="Script" uid="uid://bpt3se1ugr10w" path="res://scripts/overworld/dialogue_system.gd" id="1_fpx3l"]
+[ext_resource type="FontFile" uid="uid://dq2x4liarn6x5" path="res://fonts/8bitoperator Cyrillic Extension.ttf" id="2_j5o2y"]
+[ext_resource type="FontFile" uid="uid://q4tuyk42idmk" path="res://fonts/8bitoperator Cyrillic Extension.otf" id="3_wghag"]
+[ext_resource type="Script" uid="uid://b36w5jo70aynn" path="res://resources/calming_shake.gd" id="4_4yb4y"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g08ud"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_j5o2y"]
+font = ExtResource("2_j5o2y")
+outline_size = 1
+outline_color = Color(0.083, 0.068, 0.016, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wghag"]
+content_margin_top = 10.0
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_ixn7c"]
+script = ExtResource("4_4yb4y")
+metadata/_custom_type_script = "uid://b36w5jo70aynn"
+
+[node name="DialogueSystem" type="Control"]
+z_index = 4096
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fpx3l")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.7
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 1.0
+offset_right = -2.0
+offset_bottom = -3.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_g08ud")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.7
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 9.0
+offset_right = -8.0
+offset_bottom = -7.0
+
+[node name="SpeakerParent" type="Control" parent="HBoxContainer"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+
+[node name="Portrait" type="TextureRect" parent="HBoxContainer/SpeakerParent"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.0
+offset_top = -65.0
+offset_right = 54.0
+offset_bottom = 63.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="SpeakerName" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/line_spacing = 4
+theme_override_fonts/font = ExtResource("2_j5o2y")
+theme_override_font_sizes/font_size = 20
+label_settings = SubResource("LabelSettings_j5o2y")
+vertical_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/VBoxContainer"]
+z_index = 10
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/line_separation = 4
+theme_override_constants/paragraph_separation = 8
+theme_override_fonts/normal_font = ExtResource("3_wghag")
+theme_override_fonts/bold_font = ExtResource("2_j5o2y")
+theme_override_font_sizes/normal_font_size = 22
+theme_override_font_sizes/bold_font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxEmpty_wghag")
+bbcode_enabled = true
+scroll_active = false
+custom_effects = [SubResource("RichTextEffect_ixn7c")]
+visible_characters_behavior = 1
+text_direction = 1
+
+[node name="button_container" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+max_polyphony = 1000
+bus = &"SFX"

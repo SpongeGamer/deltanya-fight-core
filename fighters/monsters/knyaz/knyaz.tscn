@@ -1,0 +1,274 @@
+[gd_scene load_steps=32 format=3 uid="uid://lyd6dnvn1y2y"]
+
+[ext_resource type="Script" uid="uid://40850r3vs44d" path="res://fighters/monsters/knyaz/knez.gd" id="1_knez"]
+[ext_resource type="AudioStream" uid="uid://bn35rwn1wiphe" path="res://globals/sounds/voices/knyaz_voice.ogg" id="2_a75cr"]
+[ext_resource type="Script" uid="uid://bwvvm6kvpsqi1" path="res://fighters/characters/acts/act.gd" id="2_act"]
+[ext_resource type="Texture2D" uid="uid://b07afp1go2obx" path="res://fighters/monsters/knyaz/res/idle.png" id="4_a75cr"]
+[ext_resource type="Texture2D" uid="uid://bp6ecgkkt56jp" path="res://fighters/monsters/knyaz/res/атака 1.png" id="4_s2v3d"]
+[ext_resource type="Texture2D" uid="uid://wltrw4onxbia" path="res://fighters/monsters/knyaz/res/атака 2.png" id="5_u3mm8"]
+[ext_resource type="Texture2D" uid="uid://dmw3h7ajeec7e" path="res://fighters/monsters/knyaz/res/атака 3.png" id="7_dsw8o"]
+
+[sub_resource type="Resource" id="Resource_act1"]
+script = ExtResource("2_act")
+title = "Похвалить"
+text = "  * Ты хлопаешь в ладоши.
+  * Князь делает реверанс."
+spare_percent = 100
+metadata/_custom_type_script = "uid://bwvvm6kvpsqi1"
+
+[sub_resource type="Resource" id="Resource_act2"]
+script = ExtResource("2_act")
+title = "Освистать"
+text = "  * Ты освистываешь Князя.
+  * Он явно оскорблен."
+metadata/_custom_type_script = "uid://bwvvm6kvpsqi1"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rctm5"]
+atlas = ExtResource("4_s2v3d")
+region = Rect2(0, 0, 520, 660)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ywndv"]
+atlas = ExtResource("4_s2v3d")
+region = Rect2(520, 0, 520, 660)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sjk47"]
+atlas = ExtResource("4_s2v3d")
+region = Rect2(1040, 0, 520, 660)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eatqw"]
+atlas = ExtResource("4_s2v3d")
+region = Rect2(1560, 0, 520, 660)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yup5d"]
+atlas = ExtResource("5_u3mm8")
+region = Rect2(0, 0, 520, 660)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k5ane"]
+atlas = ExtResource("5_u3mm8")
+region = Rect2(520, 0, 520, 660)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eauna"]
+atlas = ExtResource("5_u3mm8")
+region = Rect2(1040, 0, 520, 660)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_48lsb"]
+atlas = ExtResource("5_u3mm8")
+region = Rect2(1560, 0, 520, 660)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sga7y"]
+atlas = ExtResource("5_u3mm8")
+region = Rect2(2080, 0, 520, 660)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nja31"]
+atlas = ExtResource("5_u3mm8")
+region = Rect2(2600, 0, 520, 660)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xw2fb"]
+atlas = ExtResource("5_u3mm8")
+region = Rect2(3120, 0, 520, 660)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxush"]
+atlas = ExtResource("5_u3mm8")
+region = Rect2(3640, 0, 520, 660)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7hc8a"]
+atlas = ExtResource("5_u3mm8")
+region = Rect2(4160, 0, 520, 660)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ex338"]
+atlas = ExtResource("5_u3mm8")
+region = Rect2(4680, 0, 520, 660)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aiyqy"]
+atlas = ExtResource("4_a75cr")
+region = Rect2(0, 0, 320, 660)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_daec1"]
+atlas = ExtResource("7_dsw8o")
+region = Rect2(0, 0, 320, 660)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c6i6x"]
+atlas = ExtResource("4_s2v3d")
+region = Rect2(0, 0, 520, 660)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mkq7l"]
+atlas = ExtResource("4_s2v3d")
+region = Rect2(520, 0, 520, 660)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tefdm"]
+atlas = ExtResource("4_s2v3d")
+region = Rect2(1040, 0, 520, 660)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fqe3g"]
+atlas = ExtResource("4_s2v3d")
+region = Rect2(1560, 0, 520, 660)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jr34e"]
+atlas = ExtResource("4_a75cr")
+region = Rect2(320, 0, 320, 660)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_utpx1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rctm5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ywndv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sjk47")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eatqw")
+}],
+"loop": true,
+"name": &"attack_ballada",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yup5d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k5ane")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eauna")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_48lsb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sga7y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nja31")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xw2fb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vxush")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7hc8a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ex338")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sga7y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nja31")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xw2fb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vxush")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7hc8a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ex338")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_48lsb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eauna")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k5ane")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yup5d")
+}],
+"loop": true,
+"name": &"attack_marionette",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aiyqy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_daec1")
+}],
+"loop": true,
+"name": &"attack_monolog",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c6i6x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mkq7l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tefdm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fqe3g")
+}],
+"loop": true,
+"name": &"attack_plyaska",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aiyqy")
+}],
+"loop": false,
+"name": &"damaged",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aiyqy")
+}],
+"loop": false,
+"name": &"faint",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aiyqy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jr34e")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}]
+
+[node name="knyaz" type="Node2D"]
+script = ExtResource("1_knez")
+voice_sound = ExtResource("2_a75cr")
+description = "  * Князь смотрит на тебя с презрением."
+acts = Array[ExtResource("2_act")]([SubResource("Resource_act1"), SubResource("Resource_act2")])
+money_dropped = 300
+battle_music = "knyaz"
+idle_lines = PackedStringArray("Он раскланивается.", "Он смотрит на тебя как на зрителя.", "Он шепчет что-то под нос.", "Он думает о новой песне.")
+opening_line_singular = "Князь выходит на сцену."
+opening_line_plural = ""
+title = "Князь"
+base_fighter_stats = Dictionary[int, int]({
+0: 500,
+1: 7,
+2: 3,
+4: 1
+})
+main_sprite = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_utpx1")
+animation = &"attack_monolog"
+autoplay = "idle"
+frame_progress = 0.5410454

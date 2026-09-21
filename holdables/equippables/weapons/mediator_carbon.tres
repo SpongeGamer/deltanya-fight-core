@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Equippable" load_steps=3 format=3 uid="uid://bybjoffdnw2e8"]
+
+[ext_resource type="Script" uid="uid://cp643of2mfab3" path="res://holdables/equippables/equippable_attribute.gd" id="1_skib3"]
+[ext_resource type="Script" uid="uid://cbtfclefu13k7" path="res://holdables/equippables/equippable.gd" id="2_2blyv"]
+
+[resource]
+script = ExtResource("2_2blyv")
+category = 2
+fighter_stat_modifiers = Dictionary[int, int]({
+2: 15,
+3: 3
+})
+name = "Карбоновый медиатор"
+short_description = "Легкий как перо, острый как нож."
+long_description = "Сделан из углеродного волокна. 
+АТК +15  МАГ +3"
+price = 500
+sell_price = 250
+inventory_tab = 3

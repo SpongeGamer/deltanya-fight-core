@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Equippable" load_steps=3 format=3 uid="uid://bolxy6u8jm6pu"]
+
+[ext_resource type="Script" uid="uid://cp643of2mfab3" path="res://holdables/equippables/equippable_attribute.gd" id="1_kalbc"]
+[ext_resource type="Script" uid="uid://cbtfclefu13k7" path="res://holdables/equippables/equippable.gd" id="2_o7dda"]
+
+[resource]
+script = ExtResource("2_o7dda")
+category = 3
+fighter_stat_modifiers = Dictionary[int, int]({
+0: 20,
+1: 10,
+3: 3
+})
+name = "Темная куртка"
+short_description = "Найдена в темном Волгограде. Чуть светится."
+long_description = "Легкая, но плотная. 
+ЗЩТ +10 ХП +20 МАГ +3"
+price = 550
+sell_price = 275
+inventory_tab = 2
+metadata/_custom_type_script = "uid://cbtfclefu13k7"

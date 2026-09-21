@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Equippable" load_steps=3 format=3 uid="uid://dfqiricj0xq48"]
+
+[ext_resource type="Script" uid="uid://cp643of2mfab3" path="res://holdables/equippables/equippable_attribute.gd" id="1_skib3"]
+[ext_resource type="Script" uid="uid://cbtfclefu13k7" path="res://holdables/equippables/equippable.gd" id="2_2blyv"]
+
+[resource]
+script = ExtResource("2_2blyv")
+category = 2
+fighter_stat_modifiers = Dictionary[int, int]({
+2: 3
+})
+name = "Медиатор"
+short_description = "Ого, медиатор!"
+long_description = "Помогает найти идиотов в комментариях Тик-тока!
+АТК +3"
+price = 10
+sell_price = 8
+inventory_tab = 3
+metadata/_custom_type_script = "uid://cbtfclefu13k7"

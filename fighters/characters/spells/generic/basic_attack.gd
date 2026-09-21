@@ -1,0 +1,45 @@
+@tool
+extends Spell
+class_name BasicAttack
+
+enum ProjectileType { NONE, CAT, STICK }
+
+@export var damage_amount := 90:
+	set(p_damage_amount):
+		damage_amount = maxi(0, p_damage_amount)
+
+@export var animation_code := Character.Animations.ACT
+
+## Какой проджектайл использовать. NONE = просто урон, CAT = кот (special_cat), STICK = палка (act)
+@export var projectile_type := ProjectileType.NONE
+
+func _init() -> void:
+	if Engine.is_editor_hint():
+		title = "Магия"
+		text = "  * %s использовал магию для атаки %s."
+		description = "Магическая атака."
+		target = 1
+
+func do_spell(p_from: Character, p_to: Node2D) -> void:
+	if !(p_to is Monster):
+		p_from.spell_finished.emit()
+		return
+	var to := p_to as Monster
+
+	var total_damage := damage_amount + p_from.get_magic()
+
+	match projectile_type:
+		ProjectileType.CAT:
+			await p_from.do_cat_attack(to, total_damage)
+		ProjectileType.STICK:
+			await p_from.do_stick_attack(to, total_damage)
+		ProjectileType.NONE:
+			to.take_damage(p_from, total_damage)
+			to.damage_or_die_animation()
+			Sounds.play("snd_laz_c")
+			p_from.do_animation(animation_code)
+
+	Global.display_text.emit(text % [p_from.title, to.title], true)
+	await Global.text_finished
+	await Global.wait_time(0.01)
+	p_from.spell_finished.emit()

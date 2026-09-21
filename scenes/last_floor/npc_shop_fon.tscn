@@ -1,0 +1,67 @@
+[gd_scene load_steps=13 format=3 uid="uid://crx17hxde6l15"]
+
+[ext_resource type="Texture2D" uid="uid://lrwda3okn3pw" path="res://assets/NPC/SHOP_NPC_Cap'n.png" id="1_51cq1"]
+[ext_resource type="Script" uid="uid://cd547rsa4e5yh" path="res://scenes/prefabs/test_sell.gd" id="2_2rwrs"]
+[ext_resource type="PackedScene" uid="uid://ogidicqqkcwp" path="res://scenes/prefabs/dialogue_area_2d.tscn" id="3_xeurj"]
+[ext_resource type="Script" uid="uid://buho0degfd14w" path="res://resources/DialogueExportResource.gd" id="4_kiddp"]
+[ext_resource type="Resource" uid="uid://bwfnnxmoj0g42" path="res://scenes/last_floor/shop_fon_zone.tres" id="5_w2c6s"]
+[ext_resource type="Script" uid="uid://dxhsmijrodh41" path="res://resources/DialogueFunctionResource.gd" id="6_k5vfk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kx0uh"]
+atlas = ExtResource("1_51cq1")
+region = Rect2(0, 0, 43, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gh6t8"]
+atlas = ExtResource("1_51cq1")
+region = Rect2(44, 0, 43, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5eqfm"]
+atlas = ExtResource("1_51cq1")
+region = Rect2(88, 0, 43, 46)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kac6g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kx0uh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gh6t8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5eqfm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="Resource" id="Resource_7b4gm"]
+script = ExtResource("6_k5vfk")
+target_path = NodePath("..")
+function_name = "open_shop"
+function_arguments = [ExtResource("5_w2c6s")]
+hide_dialogue_box = true
+metadata/_custom_type_script = "uid://dxhsmijrodh41"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vcetr"]
+size = Vector2(470, 1151)
+
+[node name="NPC_ShopFon" type="AnimatedSprite2D"]
+z_index = -350
+z_as_relative = false
+scale = Vector2(1.4, 1.4)
+sprite_frames = SubResource("SpriteFrames_kac6g")
+autoplay = "default"
+frame_progress = 0.4088249
+script = ExtResource("2_2rwrs")
+
+[node name="ShopZone" parent="." instance=ExtResource("3_xeurj")]
+position = Vector2(1.4285736, 37.857178)
+scale = Vector2(0.07142857, 0.07142857)
+dialogue = Array[ExtResource("4_kiddp")]([SubResource("Resource_7b4gm")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShopZone"]
+position = Vector2(-42, -262.49963)
+scale = Vector2(0.9999997, 0.9999997)
+shape = SubResource("RectangleShape2D_vcetr")

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="BasicAttack" load_steps=2 format=3 uid="uid://bohw4so2qvi1"]
+
+[ext_resource type="Script" uid="uid://c74hytev4kjc7" path="res://fighters/characters/spells/generic/basic_attack.gd" id="1_mtlwt"]
+
+[resource]
+script = ExtResource("1_mtlwt")
+damage_amount = 100
+title = "Соло на басу"
+text = "  * %s исполнила лютое соло на басу %s."
+description = "Ультимативная атака."
+tp_percent_cost = 100
+target = 1
+metadata/_custom_type_script = "uid://c74hytev4kjc7"

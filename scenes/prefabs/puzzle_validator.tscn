@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://jeftxwkkqfbv"]
+
+[ext_resource type="Script" uid="uid://cbjng4nqa1wwk" path="res://scenes/prefabs/puzzle_validator.gd" id="1_3f4j0"]
+[ext_resource type="Texture2D" uid="uid://biw7wuamae1kc" path="res://assets/VFX/confirm_puzzle_tile.png" id="2_i6ynm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m3h02"]
+size = Vector2(33, 33)
+
+[node name="puzzle_validator" type="Area2D"]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_3f4j0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_m3h02")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -20)
+texture = ExtResource("2_i6ynm")
+hframes = 2

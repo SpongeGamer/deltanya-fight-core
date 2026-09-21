@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=3 uid="uid://siv76bpw5pri"]
+
+[ext_resource type="Script" uid="uid://tmlkmdc1rica" path="res://ui/battle/tp_bar/tp_bar.gd" id="1_d7o56"]
+[ext_resource type="Texture2D" uid="uid://bh40jx7natsxn" path="res://ui/battle/tp_bar/res/tp_bar_sprite_bg.png" id="1_tav74"]
+[ext_resource type="Shader" uid="uid://b8tu3lrsnd1ny" path="res://ui/battle/tp_bar/res/tp_bar_fill.gdshader" id="2_mxrse"]
+[ext_resource type="Texture2D" uid="uid://c0aex5gvjaq03" path="res://ui/battle/tp_bar/res/tp_bar_sprite_mask.png" id="2_uohdx"]
+[ext_resource type="Texture2D" uid="uid://dftojhsca6i52" path="res://ui/battle/tp_bar/res/tp_icon.png" id="4_mxrse"]
+[ext_resource type="Texture2D" uid="uid://ms1xgd2nlenx" path="res://ui/battle/tp_bar/res/tp_max.png" id="5_68emk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_68emk"]
+shader = ExtResource("2_mxrse")
+shader_parameter/base_color = Color(1, 0.627451, 0.25098, 1)
+shader_parameter/max_color = Color(1, 0.815686, 0.12549, 1)
+shader_parameter/fill = 0.0
+
+[sub_resource type="FontVariation" id="FontVariation_mxrse"]
+
+[node name="TPBar" type="Node2D"]
+script = ExtResource("1_d7o56")
+
+[node name="BG" type="Sprite2D" parent="."]
+texture = ExtResource("1_tav74")
+
+[node name="Fill" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_68emk")
+texture = ExtResource("2_uohdx")
+
+[node name="TPIcon" type="Sprite2D" parent="."]
+position = Vector2(-32, -46)
+scale = Vector2(2, 2)
+texture = ExtResource("4_mxrse")
+
+[node name="Number" type="Label" parent="."]
+offset_left = -43.0
+offset_top = -29.0
+offset_right = -15.0
+offset_bottom = 3.0
+theme_override_fonts/font = SubResource("FontVariation_mxrse")
+text = "0"
+
+[node name="Percent" type="Label" parent="Number"]
+offset_left = -2.0
+offset_top = 25.0
+offset_right = 26.0
+offset_bottom = 57.0
+text = "%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TPMax" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-31, 7)
+scale = Vector2(2, 2)
+texture = ExtResource("5_68emk")

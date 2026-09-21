@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=3 uid="uid://bn7o6vx5tirfh"]
+
+[ext_resource type="Script" uid="uid://d0i7vubtqkgp1" path="res://ui/battle/monster_select/monster_select.gd" id="1_mldsp"]
+[ext_resource type="FontFile" uid="uid://q4tuyk42idmk" path="res://fonts/8bitoperator Cyrillic Extension.otf" id="2_mldsp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uqoo1"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="MonsterSelect" type="Node2D"]
+script = ExtResource("1_mldsp")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(640, 115)
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_uqoo1")
+
+[node name="Monsters" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(640, 104)
+offset_top = 11.0
+offset_right = 640.0
+offset_bottom = 115.0
+
+[node name="Labels" type="Node2D" parent="."]
+
+[node name="HP" type="Label" parent="Labels"]
+offset_left = 424.0
+offset_top = -1.0
+offset_right = 464.0
+offset_bottom = 31.0
+scale = Vector2(1, 0.5)
+theme_override_fonts/font = ExtResource("2_mldsp")
+text = "ХП"
+vertical_alignment = 2
+
+[node name="Me-" type="Label" parent="Labels"]
+offset_left = 524.0
+offset_top = -1.0
+offset_right = 564.0
+offset_bottom = 31.0
+scale = Vector2(1, 0.5)
+theme_override_fonts/font = ExtResource("2_mldsp")
+text = "ПО"
+vertical_alignment = 2
+
+[node name="-Rcy" type="Label" parent="Labels"]
+offset_left = 552.0
+offset_top = -1.0
+offset_right = 630.0
+offset_bottom = 31.0
+scale = Vector2(1, 0.5)
+theme_override_fonts/font = ExtResource("2_mldsp")
+text = "ЩАДА"
+vertical_alignment = 2

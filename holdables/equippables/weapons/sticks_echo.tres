@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Equippable" load_steps=3 format=3 uid="uid://nqxnugruyp68"]
+
+[ext_resource type="Script" uid="uid://cp643of2mfab3" path="res://holdables/equippables/equippable_attribute.gd" id="1_j0xx4"]
+[ext_resource type="Script" uid="uid://cbtfclefu13k7" path="res://holdables/equippables/equippable.gd" id="2_r6ifa"]
+
+[resource]
+script = ExtResource("2_r6ifa")
+category = 1
+fighter_stat_modifiers = Dictionary[int, int]({
+0: 15,
+1: 4,
+2: 5,
+3: 22
+})
+name = "Палочки Эха"
+short_description = "После удара звук не исчезает, а продолжается."
+long_description = "Сделаны из элитного дерева темного мира. Каждый удар оставляет след в воздухе.
+АТК +5  МАГ +22  ЗЩТ +4  ХП +15"
+price = 1400
+sell_price = 700
+inventory_tab = 3

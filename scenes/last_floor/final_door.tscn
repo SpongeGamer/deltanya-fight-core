@@ -1,0 +1,68 @@
+[gd_scene load_steps=8 format=3 uid="uid://dx6t2sqdb7mvd"]
+
+[ext_resource type="Script" uid="uid://bmksu6x735gp1" path="res://scenes/last_floor/final_door.gd" id="1_33una"]
+[ext_resource type="Texture2D" uid="uid://c2adbp6ohl38h" path="res://assets/furniture/final_door.png" id="2_dg3qr"]
+[ext_resource type="Script" uid="uid://cl0po3hk3l2ri" path="res://scripts/overworld/travel_trigger.gd" id="3_drf6h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dklaq"]
+atlas = ExtResource("2_dg3qr")
+region = Rect2(0, 0, 41, 60)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7dryj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dklaq")
+}],
+"loop": false,
+"name": &"closed",
+"speed": 1.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"open",
+"speed": 1.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2mof1"]
+size = Vector2(70, 54)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ioraq"]
+size = Vector2(78, 54)
+
+[node name="FinalDoor" type="Node"]
+script = ExtResource("1_33una")
+dialogue_area = NodePath("ExitDialogue")
+travel_trigger = NodePath("ExitTrigger")
+
+[node name="DoorSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(2087, 2061)
+scale = Vector2(1.9695071, 1.9749984)
+sprite_frames = SubResource("SpriteFrames_7dryj")
+animation = &"closed"
+autoplay = "closed"
+
+[node name="ExitDialogue" type="Area2D" parent="."]
+position = Vector2(2086, 2104)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitDialogue"]
+position = Vector2(1, 27)
+shape = SubResource("RectangleShape2D_2mof1")
+
+[node name="ExitTrigger" type="Area2D" parent="."]
+position = Vector2(2086, 2043)
+script = ExtResource("3_drf6h")
+target_scene = "uid://nf3n00h0bfge"
+spawn_point = "Spawnpoint"
+set_dark_world = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitTrigger"]
+position = Vector2(1, 27)
+shape = SubResource("RectangleShape2D_2mof1")
+
+[node name="DoorBlock" type="StaticBody2D" parent="."]
+position = Vector2(2086, 2068)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorBlock"]
+position = Vector2(1, 27)
+shape = SubResource("RectangleShape2D_ioraq")

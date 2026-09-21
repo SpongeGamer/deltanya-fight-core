@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cxo5kuu1yqn1a"]
+
+[ext_resource type="Script" uid="uid://dg2oswae7q6lb" path="res://fighters/monsters/gorshok/attacks/kosti/kosti.gd" id="1_kosti"]
+[ext_resource type="Script" uid="uid://bllme0nu3hyxn" path="res://fighters/monsters/gorshok/attacks/kosti/bone_bullet.gd" id="2_bone"]
+[ext_resource type="Texture2D" uid="uid://d0yiruuvybnki" path="res://fighters/monsters/gorshok/attacks/kosti/bone.png" id="3_gptpi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bone"]
+size = Vector2(8, 26)
+
+[node name="Kosti" type="Node2D"]
+script = ExtResource("1_kosti")
+
+[node name="BaseBone" type="Area2D" parent="."]
+visible = false
+position = Vector2(0, -9000)
+collision_layer = 2
+script = ExtResource("2_bone")
+damage = 15
+graze_points = 1
+time_points = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BaseBone"]
+shape = SubResource("RectangleShape2D_bone")
+
+[node name="Sprite2D" type="Sprite2D" parent="BaseBone"]
+position = Vector2(-9.536743e-07, -0.0003567934)
+scale = Vector2(0.625, 0.87499297)
+texture = ExtResource("3_gptpi")
+
+[connection signal="body_entered" from="BaseBone" to="BaseBone" method="_on_body_entered"]

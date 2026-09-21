@@ -1,0 +1,63 @@
+[gd_scene load_steps=7 format=3 uid="uid://bcd7akq4n0wp"]
+
+[ext_resource type="Texture2D" uid="uid://dod8emhwnu7uh" path="res://ui/battle/char_menu/char_menu_button/res/actions.png" id="1_1ej8s"]
+[ext_resource type="Texture2D" uid="uid://cafdl7gityhjb" path="res://ui/battle/char_menu/char_menu_button/res/action_titles.png" id="1_fftg6"]
+[ext_resource type="Script" uid="uid://emi2x02mqbs2" path="res://ui/battle/char_menu/char_menu_button/char_menu_button.gd" id="2_asa6e"]
+
+[sub_resource type="Animation" id="Animation_eu816"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:flash_amount")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_asa6e"]
+resource_name = "flash"
+length = 2.0
+loop_mode = 1
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:flash_amount")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eu816"]
+_data = {
+&"RESET": SubResource("Animation_eu816"),
+&"flash": SubResource("Animation_asa6e")
+}
+
+[node name="CharMenuButton" type="Sprite2D"]
+self_modulate = Color(1, 0.498039, 0.152941, 1)
+texture = ExtResource("1_1ej8s")
+region_enabled = true
+region_rect = Rect2(0, 0, 31, 26)
+script = ExtResource("2_asa6e")
+
+[node name="Title" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(0, 16)
+texture = ExtResource("1_fftg6")
+region_enabled = true
+region_rect = Rect2(0, 0, 31, 5)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_eu816")
+}

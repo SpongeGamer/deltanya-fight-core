@@ -1,0 +1,404 @@
+[gd_scene load_steps=58 format=4 uid="uid://bqsb11kawwuk0"]
+
+[ext_resource type="Script" uid="uid://c58ijqgo7idg6" path="res://scenes/prefabs/test.gd" id="1_db20y"]
+[ext_resource type="PackedScene" uid="uid://bqtlrsnx3khll" path="res://scenes/prefabs/player.tscn" id="1_elvnh"]
+[ext_resource type="Script" uid="uid://ct404q8dpij18" path="res://scripts/overworld/camera_controller.gd" id="4_302i4"]
+[ext_resource type="PackedScene" uid="uid://c34cw0dyc160i" path="res://scenes/prefabs/starwalker_body.tscn" id="5_snodd"]
+[ext_resource type="PackedScene" uid="uid://ogidicqqkcwp" path="res://scenes/prefabs/dialogue_area_2d.tscn" id="6_t61p3"]
+[ext_resource type="Script" uid="uid://buho0degfd14w" path="res://resources/DialogueExportResource.gd" id="7_2yr0x"]
+[ext_resource type="Script" uid="uid://dpl3myc5lbyaq" path="res://scripts/DialogueTextResource.gd" id="8_fx5m5"]
+[ext_resource type="AudioStream" uid="uid://i4vcywn1vmje" path="res://globals/sounds/voices/egor_voice.ogg" id="11_douqf"]
+[ext_resource type="Script" uid="uid://dxhsmijrodh41" path="res://resources/DialogueFunctionResource.gd" id="11_fx5m5"]
+[ext_resource type="Script" uid="uid://duk2femdl2tfy" path="res://resources/DialogueChoiceResource.gd" id="12_7fjgt"]
+[ext_resource type="Script" uid="uid://lshh8kqeolbm" path="res://scripts/debug/test_enemy_encounter.gd" id="12_302i4"]
+[ext_resource type="Script" uid="uid://csr5dab25ud4e" path="res://scenes/prefabs/z_index.gd" id="17_rsent"]
+[ext_resource type="Texture2D" uid="uid://dx60tdiie7khf" path="res://assets/bg/Temmie Village.png" id="22_agot6"]
+[ext_resource type="PackedScene" uid="uid://b8ny5hm5wkufg" path="res://ui/settings/settings_menu.tscn" id="25_302i4"]
+[ext_resource type="PackedScene" uid="uid://bfa4lb432xvs7" path="res://scenes/prefabs/storage_chest.tscn" id="28_7gjip"]
+[ext_resource type="Script" uid="uid://cd547rsa4e5yh" path="res://scenes/prefabs/test_sell.gd" id="29_db20y"]
+[ext_resource type="Resource" uid="uid://c5q2r8qre1cu0" path="res://resources/shop/test_sell.tres" id="30_jctx5"]
+[ext_resource type="Texture2D" uid="uid://b5vo0i43do7nb" path="res://assets/NPC/NPC_Zahar_G.png" id="31_mrw6a"]
+[ext_resource type="Texture2D" uid="uid://c4t8kd41frivd" path="res://assets/NPC/NPC_Dasha_M.png" id="32_0lvsi"]
+[ext_resource type="Texture2D" uid="uid://erevrn4ovac3" path="res://assets/NPC/NPC_Dasha_K.png" id="33_qdj1a"]
+[ext_resource type="AudioStream" uid="uid://dg7xuf4u26763" path="res://globals/sounds/sound_effects/snd_text.wav" id="33_x1ujj"]
+[ext_resource type="Texture2D" uid="uid://rcx0krgpln7g" path="res://assets/NPC/NPC_Max.png" id="34_7k6x3"]
+[ext_resource type="AudioStream" uid="uid://cc4bqj57qf6k1" path="res://globals/sounds/voices/zahar_voice.ogg" id="35_mrw6a"]
+[ext_resource type="AudioStream" uid="uid://0lrteve03r8" path="res://globals/sounds/voices/dasham_voice.ogg" id="36_0lvsi"]
+[ext_resource type="AudioStream" uid="uid://cioq8w0o650u" path="res://globals/sounds/voices/dashak_voice.ogg" id="37_0lvsi"]
+[ext_resource type="AudioStream" uid="uid://bdpj3kgajclrp" path="res://globals/sounds/voices/max_voice.ogg" id="37_qdj1a"]
+[ext_resource type="Resource" uid="uid://dm1pwalxreln4" path="res://holdables/items/dark_candy.tres" id="46_62ifi"]
+[ext_resource type="Script" uid="uid://bxt24qe8okxx0" path="res://resources/DialogueAddItem.gd" id="47_6pfl7"]
+[ext_resource type="PackedScene" uid="uid://cw6esr2e5vl0o" path="res://scenes/prefabs/save_point.tscn" id="48_save"]
+[ext_resource type="Script" uid="uid://ds818ti5exl4e" path="res://scripts/overworld/return_position.gd" id="49_retpos"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8no8a"]
+size = Vector2(610.5, 331)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_agot6"]
+size = Vector2(1384, 123)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m6854"]
+size = Vector2(607.5, 119)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_db20y"]
+size = Vector2(610.5, 379)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8no8a"]
+load_path = "res://.godot/imported/starwalker.png-df445468efd2ced7ee5bd3d850fe9339.ctex"
+
+[sub_resource type="Resource" id="Resource_302i4"]
+script = ExtResource("8_fx5m5")
+speaker_name = "Старуолкер"
+speaker_img = SubResource("CompressedTexture2D_8no8a")
+text = "[b][color=yellow] Я [/color]             настоящий [color=yellow]Старуолкер[/color] [/b]"
+text_speed = 6.0
+text_sound = ExtResource("11_douqf")
+text_volume_pitch_min = 0.4
+text_volume_pitch_max = 0.5
+metadata/_custom_type_script = "uid://ba4b54me8wml6"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rsent"]
+load_path = "res://.godot/imported/starwalker.png-df445468efd2ced7ee5bd3d850fe9339.ctex"
+
+[sub_resource type="OggPacketSequence" id="OggPacketSequence_gwjss"]
+packet_data = Array[Array]([[PackedByteArray("AXZvcmJpcwAAAAACRKwAAAAAAAAAcQIAAAAAALgB")], [PackedByteArray("A3ZvcmJpczQAAABYaXBoLk9yZyBsaWJWb3JiaXMgSSAyMDIwMDcwNCAoUmVkdWNpbmcgRW52aXJvbm1lbnQpAAAAAAE="), PackedByteArray("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")], [PackedByteArray("jPnEaKSbRsjNGNdDooK6pVL8e3mtWs4yhRWDIvCsMccMGhilemEcG6+zAaOeX07P7CgIxDCOwaVAjcH43RMrIyQUD8qWAg=="), PackedByteArray("HP4mYwfAYXjYG84OhQqgcNpbqc0iJEeEEbDGGNSIUC+a0ThStER04ChQRUsU5EzVOktlKfdMBwGBcpm1Rl0wnRlJBAKd5n0+RJHlxeFtMSsC"), PackedByteArray("NBId1Gyqtu9DIaTGoYOatTXM+6GElGe9lUiZIqcuBBSDiFFkPaCmGQRREARY1VpRRGqlVAK8wsLa6FIVRHPGmEMgGIEXk9bYUSwkLSNpQY77kp13AQ=="), PackedByteArray("/PF0FmiNeQM1Dfvj6QwQNeQN1Oxz61QrSUhXg9UiNTaoWlEKq4oGVQfTmmFiBBVIXlq0ScBa0axZKwoWQKPoRGJdJRgGqEbhlURgHmHBZaHXoUMBgEIA"), PackedByteArray("TBKZBE7EZNL9ZJFJ4EQc5p63HrUZSEtb1iIrqhiMgKg6VGsYNloJTeXQ0kKiaDRR6kRB6BgpgmqNorQyqKrWCdg2KBLY6giwiC0rAPjXHw4="), PackedByteArray("dCZZBNA5aTRgfGeSRSD56ZQSGkzOdSshM5FHSYwAatRgdFHb+HL1yw2IQgGiEVsA0JqxAHkJNQAg7PSnAA=="), PackedByteArray("dDKDYroQv29SvE5mUGQX4v/NkvcACE9xOAAlAUkjAx60ZrgDlkOB5QX5xljfCFgHVoyFAAEZsQe2EZEBCGJjZA=="), PackedByteArray("bEIJoaNs/ZhpPd98EkhH2fop848DAchhFRkUgWYAYlxhBiyfUX075vvYJeHL6zWoNHhVQCCXU9bByhwJZ3aRog=="), PackedByteArray("nEZtBlq1PyiB42nUVqDW/6brWfUBBEOHCQYAJQFhISGWyxK+CKAVUFoEZTW9QMcgW9RSiw02hWgI+yYNdFYiJeML"), PackedByteArray("jFqtssO0swNnjVqtskO2vUM644EAI5JRDEATIBooJSjICGL1C0TRhSC11grYgXFJFq1gS4sjuT3ECLIqNR0="), PackedByteArray("lFKtBNHaI6ZRWGo1EuTWrtlbfAA4USsxAA0AX5QjxSUc/gKIFj/dyYpzenVoK1MFEEGrw5iawANgfgiZ"), PackedByteArray("nGI7JItoUWJ63ym2Q7KIFiWm532ARKLKCNQEWDExyuNAQBRBVdGqaMRGU1vf4zSKaH+jNYJWFquBUAOCKFURERZeDdISE63CCgwB"), PackedByteArray("nFITNmDbzCTXKU+pCRuw51+J7aE+QKeZXoFACSC8IEeQw3CpDpRSRdEKat2KIphqDZSQMi2soenSUzW2qBpthElAVYXVGshIBkKvBuyFCqY="), PackedByteArray("rGaHBY7/J8z1ZG8VOxwI8vcK4Z5sXoBuVQIIqIAIKyhIWEYYFDVtBIzMi5gkScYkURGbQtEhKepirBUUsUYVfWgXWIQgijUOVgyK3WSxeAEE"), PackedByteArray("xHaz0aueemXp+GO52ehVT71yafcCbEkyAMgCSGNFWQgwVA3FsKZQqRSgUVDQGrFB1WnQ1KBoFAVUDRtsNURxqdBWsHx3ABaLDK6uAQ=="), PackedByteArray("jGojZEb79h/KZlQbMTPadmuh+vkA6xO0SyDQUgBALAhICkox4PAZi2KLqsEiGhSxljVIKVbEGkF0JrZR+j9YO3hFbVmBALWRqoOuKQ=="), PackedByteArray("3G4bd2Rr7Yrw7u22cUe21o4J3z4QgDxBRoYByApICEgTpmA4n6XJLzXd1WCQlRZpMf0LTa7qylrC1gsB"), PackedByteArray("5IJtArmVFq0E9nPBNoHcSotWAnu3bk2GCEtLWxDACCrWWiOCqhVBsUYsCqUWxaCY1q0rpQAHAaiKIgo6AgoAFEWrFWRbRwC0FmGjhQI="), PackedByteArray("DINdlEQ9f8P7zzDYRUnU6zv8/9w6UZZIjZI+QR8ZAmJQjKriOgKCYFUTVQUrGq0RqWjQWjCiaC1odCsU6lPUOrToMICgN6Lo9N9PBQ=="), PackedByteArray("9IZHtS/PWlPyCo3ZCx7Zvj1rTcUrNEZyrtZVCEGuLZgwAGJVrbX5QzfrjttZAtBYFedIqApoiBMAxEsTJanrBA=="), PackedByteArray("DJvjQiTx3xStQduOb9gcFyKJ/6ZoDdp2fLdunSyTTGg1IyMHQDBqLEZEUTSKglVVJ6qgdH8IqlZbq/79xMKKhWmzVaMQyDeSnvuia44bAA=="), PackedByteArray("DIdN01Tc5+S99tfDYdM0Ffc5Of3217dObRSijIRmWk2CCKix1lqjKBidGouqKFoNfOoLVKxaU1Nyzk/RGhRVtj3D0tqAwDqnTE6LNQYS"), PackedByteArray("vHr5sBm/rpEk7WxevXzYjF/XSKJ22Q+wSrIByCpBRARShMvjowoa0aqiKitVjKLVgYLBokOrU6FkQRCS0aoR2DYjozesaksmo1hAYCRFRGEAYA=="), PackedByteArray("5J7lpBm/z19f2q1zz7Jrxu/z50v7736ArbRkANQAxLlUgjIcjkVsHQq2VrVRK6KoIiJIrUOrUxG8si2i1YLVUrIgMggabHvz9VqLbQE="), PackedByteArray("FI9N4kbcv59o09YqHpvMjbh/32jT1rp16tYiSsGWYckQEIMAQlq0GsXfjatGi6IiSNgs1qyCMYiqsaqIdWgVAIEx2W8sKDpr5NmqDQI="), PackedByteArray("vG6podn8q/kFpYj4uqWGZvOf+guyIvoH0JLbcABUQEqA5YErKIQYdCqAvoIqZHOsq7pGHJZDUCIYCEIaMIAW0B81EQA="), PackedByteArray("3J5tx1iP7xe/Veb2bDvGevx+jO1kPsD6BlVwAFoDQNwgTnVFGEGGAU8UI4qqtSqKRlVVu0KpMeDWoUNxSAVBoDrC0MaqVzQAETTxugIA"), PackedByteArray("HJPVQPGv60TzVttjshoo/nWdaH7bW1Oti9BagggLgLFWUIwVo2gR0xDrYpiCKmjUHrAxo4WpkqouY0VVUMXWQD6/PdFUBTSKyTpkZTEA"), PackedByteArray("tHZVt0/6q31KG2xrV3X7pN/Cz1R5B+vUCpHJWBtMkCOAtQarRkVVQaxY0Sl4kUHVQKnFWKYBRlGxBtRWrBUBjCgaDYshHSLdJJMCEAA="), PackedByteArray("vJ7Nwpb5XXcpu1ezWdkyv/PMyvYD5EYeEoC2ABwxQUmAI6BKo+oUFY012KqGBVhHwS5zYKIoOhRBlKS6CscRCUkAImisLMhgEg=="), PackedByteArray("BJdtMyC++9Ba7ILLthkQX32YNrtbT1ST1AZZQpKTI2CMIgpkrUQNU1FBa8VqgY1kMVewaBUZe9FRY8Q6NWJVeeH4MotlTRf1aEQA"), PackedByteArray("zIJTtIP7lJysnb1ZcIp2cJ+Sk7Wzf+uoLWRYg7ngAEDAilWLaEVFEbSqVR3gaR3KQIh101JLEayKqlHfD4Bhg2mtN2CMVpeqwwKI0RsA"), PackedByteArray("5JKXzOzq8jtL7Xl0LnnJzK7OvUvt2c0HWBusFoBmAhwJMVGwLEcUEaNTtRW9qoiCInoRAbCFWgiiiKIxNlpjGxvdoqhtB0CsY6FG6xqyAA=="), PackedByteArray("7JbVpCS+jXnn2S2rWUl8Y2573gMB0jZBTQCUAvD5EKQchs13uVMLQ220FLHlIFRCJutqkaurS40WMYhUjEF0iOUyICBotYatiZqAbwk="), PackedByteArray("+gp2eg/PA3MUwwYQvIKd3sPzwBzFsAEEfwAAAICHhUEJdSDhkOLIiZOUucBGKGFuqUgCZmYAAIDIVpRMagQFABTBRA2LmBZb00aMUStWjVpBRKGMqKiwgJCkBIeKMOJiRBLgCUsygoJCElwOl8tIacFCP1wTD0EUFaNqbDHzwfq55muUgmgxoqiIiiAyMoELW6Al0y5LAoHBABgSCH+yYLEqGtWKDQYAAIBYEK0GQeNFh06RtqJarCdGmYalhIhhBtnoeNBaimgkWbYitFomsApWUDSoIBYUggDbwBijoMBGEt3Z7U4DGxEAnkQBpBbQ6tTaOhTFsMFmsbSioKIkKA0IpQqiUbDWiiDWGhHStLMvsIQHAMIgPcmZ6avW8vENjefrSN8XuAkOSUgA"), PackedByteArray("lvptbAz/Aa00ShYU6tRvY1P4D2htEFkE6w8AoCyzTpkUVSQHacFRKu/IMmEnPkVShCXKBJnZCQMAAIgWQiOJFtUqRsWCGouAHSaipmEotgpKGCKNiIlSIZ6wEBHmEFELGywNzShgRWy0YmRnezwLGEAEQWNAh07F0gaDcNlVGAoVyxiQZRFBRKvYCtjYH0IKCxZAVGWFmCQS07SxDO4KSkilWBOLoipGwAKwAABLVVqztDQs7SwNkcQ0VBSsMAiFBbQlNJMJICcYwIEbJEGMqKLVKKpoNdaKRasF1TLe5MiGyGrfmLEDoJRoCmwrlmbGAUVQIerXkqmApbTqEbQillKHRqtUNFgspfhGgRYdgAGAhAcodlB1zMoWdmqv1QYLO5bwOseEocgA"), PackedByteArray("rG5rZ2T4+itM317d1sFQnfohpE36gEo9BUrpYJIYAKsiVgI6iQbDmoCmpcUNVNVeagNTqWCNJ8hfFWcJILmWCQ=="), PackedByteArray("tG7HwpDN/IawaOX2mfHqFr8wavNAgAhGhQBoRgAxcb4giGmNjkvAE0miFokqmfbiiMpB1cmCVMVu1T58rFg1gSgdWQ=="), PackedByteArray("vGYPB9zyH+9Ur9ktgazqj3eIAwFKGCZMACBKAH5ZEeEj/CBUS2JR1iwjJLl0rcqgkKC+XAmBixcWvv1qEQ=="), PackedByteArray("xHIfjqXq8oYmfrHch2Oput4c139W6i2QuVkaAFFrRY0RRNU6Ia3R1FhlGVlTJYy2lCwUQdWqKArj1QokHK5WFGgNjaLtnpQkhyuKlGA="), PackedByteArray("bF4HRZQg7ykzXXfz2ilaMnktmek6HyCPvCQCbRVAjM+AYTkCwmRVhwmNPQ5biHUtFY3UgkYV0amgauwqV5N6lEpFsGITA1hWFMpE/3ibAQ=="), PackedByteArray("vGafLJucro962Nfsw7E28/mjHvvWqacgpEbJbCNgrGAwqF9a6IrgRUTVp1YoVSkmWS0axSWi14oCgYOWg7hdq9qKkGIRCohIpEiElqVFht4A"), PackedByteArray("uvlc9RQ9wogg45V187mYKfoIA8j4Z/0BABTVSrWSkaHISLl3nfXRsKGhVXMlu64kIEkAZKQCIoOxVrDGqFVRawzlSQky0kQFpUS54kSMETCUDIqlNcO6mGIaKoalWqhhWBcVFZUQAgekjWMCEYAlbJsF5aYhY6DBNFRRI1BHxsIgFRqcDQgmREAqlJOEOJWEtAhkuTrjIAwhVU5h40SNSO6Yaak4rFf1JSgRgBQJIRfBQOExZ56HRGLAbomo8ZjJJogUEIJDkOixvHa6eoeGrpslX0gIDJhRKnJbSCzIomhFhc54NTJrj+hRtHfIV7xYrAmVoTGpmLDBUkkeYhmFkehlpp2Mi4khdG6YJHKG0JhsAFhpcoYbnANTlBSWLe6mlLKnl0qYABtFtiViJBxLslk2fquABcCfFsp3W8j/b1PCSIZIGIku9Z1IGLXxIla2P1kcAuDIsgNQLVMFAA=="), PackedByteArray("PplcfW/lIssE8CaTq59a2dEyAbwXqNZJIkOWux9tw5tvVRt1w1WamQEAsNYiRq0aIxgmVm1hik1WLAzDqqhio4UVqxaZmZbWLHJQQy0UayampViCKSNBqEYCCJDRIAIYDFhxWERjwbQTwYFUWAMyWG4cDgIkyYwdtlibEEYZ2wShSTkADC3hOMxV12rK2fF0VMqagmhySp2ZnuoCEUxQyAxFSnBmNEWhDOgqcjWiFgATiFSk3H/bJ5ZDkehsW3RUCQoNQC9VaNJeTMWChIgIACYuCmCBBtyrgaEX6CJVcblyrBItVVwUhcA+9teG3plpOwZitssZotefh62v2xgTdSemjFayJVoC0sSUSo2SQSb2FH6EiWdeVAYAgyEBFoTBAIBQZIEAOHthJXJkIMI2FlRKHAGWAWMIVKEpUgUxItAzTxoCMAsA3JhevNWArIEl0AAU")], [PackedByteArray("PkjscpxpRwYJuIPFUfSZdmKQgHdZbLS3Ud/6obUws7rhcjBTTAIwDRsbC2KLjaAikaWKaShqzUYLC+uGkaptSys2WlNLw85GK2LdmmmNVsGCFVUAsWBJK1qNLVgUSqGAkhGgUFgWiEoK2lIYwSyeBmSrRjjbi0FUjSoWdxsxcgWh8OKsBPBi5CyAUqwBpgetUVUyWXJnLIoe0iqyktLaVKS4sZCRUOq1dRwDCBgx4k73oDDwaODOXcFVlxRKBFEURzVNJdADcg+VvS6DyNLOvodNXrZVWKwL1oAMGV9U9jS8cjp6N9O2y/nN8VwxiFmcbQ1y7jFlr9o4AQBwYNTzyBaW1NSrCgCQ5R45e2RhFEaUpodmGgeGSkpxNqMBtvLeLQZAloWFlo6MFFAcGWQBwDunO+p++NrExSCjdTGAhYSI+IcvrOkm3ueymcvoF81NWloioCIBwAA=")]])
+granule_positions = PackedInt64Array(0, 0, 8640, 9600)
+sampling_rate = 44100.0
+
+[sub_resource type="AudioStreamOggVorbis" id="AudioStreamOggVorbis_7gjip"]
+packet_sequence = SubResource("OggPacketSequence_gwjss")
+
+[sub_resource type="Resource" id="Resource_db20y"]
+script = ExtResource("8_fx5m5")
+speaker_name = "Старуолкер"
+speaker_img = SubResource("CompressedTexture2D_rsent")
+text = "[b]И [color=yellow] Я [/color]             докажу это этим [color=yellow]боем[/color] [/b]"
+text_speed = 6.0
+text_sound = SubResource("AudioStreamOggVorbis_7gjip")
+text_volume_pitch_min = 0.4
+text_volume_pitch_max = 0.5
+metadata/_custom_type_script = "uid://ba4b54me8wml6"
+
+[sub_resource type="Resource" id="Resource_nhoj7"]
+script = ExtResource("11_fx5m5")
+target_path = NodePath("HelperNode")
+function_name = "start_nikita_battle"
+hide_dialogue_box = true
+metadata/_custom_type_script = "uid://dkpcd6ejbeqxq"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bp21e"]
+size = Vector2(10, 91.00012)
+
+[sub_resource type="Resource" id="Resource_x1ujj"]
+script = ExtResource("8_fx5m5")
+text = "* Вы слышите знакомые звуки..."
+text_speed = 14.0
+text_sound = ExtResource("33_x1ujj")
+text_volume_pitch_min = 1.0
+text_volume_pitch_max = 1.0
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="Resource" id="Resource_62ifi"]
+script = ExtResource("11_fx5m5")
+target_path = NodePath("HelperNode")
+function_name = "start_clippy_battle"
+hide_dialogue_box = true
+metadata/_custom_type_script = "uid://dkpcd6ejbeqxq"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nhoj7"]
+size = Vector2(11, 89.00012)
+
+[sub_resource type="Resource" id="Resource_7k6x3"]
+script = ExtResource("8_fx5m5")
+speaker_name = "Захар"
+speaker_img = ExtResource("31_mrw6a")
+text = "Это - тестовый диалог для проверки..."
+text_speed = 12.0
+text_sound = ExtResource("35_mrw6a")
+text_volume_pitch_min = 0.95
+text_volume_pitch_max = 1.05
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="Resource" id="Resource_0gh8x"]
+script = ExtResource("8_fx5m5")
+speaker_name = "Даша"
+speaker_img = ExtResource("32_0lvsi")
+text = "Наших прекрасных голосов..."
+text_speed = 12.0
+text_sound = ExtResource("36_0lvsi")
+text_volume_db = -5
+text_volume_pitch_min = 0.95
+text_volume_pitch_max = 1.05
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="Resource" id="Resource_enfdj"]
+script = ExtResource("8_fx5m5")
+speaker_name = "Даша"
+speaker_img = ExtResource("33_qdj1a")
+text = "Наших прекрасных спраитов..."
+text_speed = 12.0
+text_sound = ExtResource("37_0lvsi")
+text_volume_pitch_min = 0.95
+text_volume_pitch_max = 1.05
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="Resource" id="Resource_lgrrj"]
+script = ExtResource("8_fx5m5")
+speaker_name = "Макс"
+speaker_img = ExtResource("34_7k6x3")
+text = "И в целом как это все будет выглядить и работать в игре..."
+text_speed = 12.0
+text_sound = ExtResource("37_qdj1a")
+text_volume_pitch_min = 0.95
+text_volume_pitch_max = 1.05
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="Resource" id="Resource_6pfl7"]
+script = ExtResource("47_6pfl7")
+item = ExtResource("46_62ifi")
+metadata/_custom_type_script = "uid://bxt24qe8okxx0"
+
+[sub_resource type="Resource" id="Resource_aoq3n"]
+script = ExtResource("8_fx5m5")
+speaker_name = "Захар"
+speaker_img = ExtResource("31_mrw6a")
+text = "Как знаешь. Мне больше достанется."
+text_speed = 12.0
+text_sound = ExtResource("35_mrw6a")
+text_volume_pitch_min = 0.95
+text_volume_pitch_max = 1.05
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="Resource" id="Resource_f7c5u"]
+script = ExtResource("12_7fjgt")
+speaker_name = "Захар"
+speaker_img = ExtResource("31_mrw6a")
+text = "Конфету будешь?"
+choice_text = Array[String](["Давай", "Не хочу, спасибо"])
+choice_function_call = Array[ExtResource("7_2yr0x")]([SubResource("Resource_6pfl7"), SubResource("Resource_aoq3n")])
+metadata/_custom_type_script = "uid://duk2femdl2tfy"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x1ujj"]
+size = Vector2(161, 60.5)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_db20y"]
+blend_mode = 1
+
+[sub_resource type="Resource" id="Resource_gd41w"]
+script = ExtResource("11_fx5m5")
+target_path = NodePath("..")
+function_name = "open_shop"
+function_arguments = [ExtResource("30_jctx5")]
+hide_dialogue_box = true
+metadata/_custom_type_script = "uid://dxhsmijrodh41"
+
+[sub_resource type="Resource" id="Resource_ojwqt"]
+script = ExtResource("12_7fjgt")
+speaker_name = "ЛжеМакс"
+text = "Тест магазина"
+choice_text = Array[String](["Магазин!", "Пока."])
+choice_function_call = Array[ExtResource("7_2yr0x")]([SubResource("Resource_gd41w"), null])
+metadata/_custom_type_script = "uid://duk2femdl2tfy"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qxwa2"]
+size = Vector2(470, 1151)
+
+[node name="Test" type="Node2D"]
+script = ExtResource("1_db20y")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+z_index = 1
+position = Vector2(-92, -191)
+script = ExtResource("4_302i4")
+
+[node name="HelperNode" type="Node" parent="."]
+script = ExtResource("12_302i4")
+
+[node name="Walls" type="Node" parent="."]
+
+[node name="Wall1" type="StaticBody2D" parent="Walls"]
+position = Vector2(0, -319)
+collision_layer = 4
+collision_mask = 4
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall1"]
+position = Vector2(218.75, -6.5)
+shape = SubResource("RectangleShape2D_8no8a")
+metadata/_edit_lock_ = true
+
+[node name="Wall2" type="StaticBody2D" parent="Walls"]
+position = Vector2(3, 18)
+collision_layer = 4
+collision_mask = 4
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall2"]
+position = Vector2(-171, 49.5)
+shape = SubResource("RectangleShape2D_agot6")
+metadata/_edit_lock_ = true
+
+[node name="Wall3" type="StaticBody2D" parent="Walls"]
+position = Vector2(413, 35)
+rotation = -1.5707964
+collision_layer = 4
+collision_mask = 4
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall3"]
+position = Vector2(217.25, 54.5)
+shape = SubResource("RectangleShape2D_m6854")
+metadata/_edit_lock_ = true
+
+[node name="Wall4" type="StaticBody2D" parent="Walls"]
+position = Vector2(-895, 30)
+rotation = -1.5707964
+collision_layer = 4
+collision_mask = 4
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall4"]
+position = Vector2(217.24997, 57.5)
+shape = SubResource("RectangleShape2D_m6854")
+metadata/_edit_lock_ = true
+
+[node name="Wall5" type="StaticBody2D" parent="Walls"]
+position = Vector2(-597, -319)
+collision_layer = 4
+collision_mask = 4
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Wall5"]
+position = Vector2(218.75, -30.5)
+shape = SubResource("RectangleShape2D_db20y")
+metadata/_edit_lock_ = true
+
+[node name="Spawnpoint" type="Node2D" parent="."]
+position = Vector2(57, -9)
+
+[node name="SettingsMenu" parent="." instance=ExtResource("25_302i4")]
+
+[node name="Bg" type="Node2D" parent="."]
+z_index = -1000
+z_as_relative = false
+
+[node name="TemmieVillage" type="Sprite2D" parent="Bg"]
+position = Vector2(-167.99998, -181)
+scale = Vector2(2.1, 2.1)
+texture = ExtResource("22_agot6")
+metadata/_edit_lock_ = true
+
+[node name="Actors" type="Node2D" parent="."]
+z_as_relative = false
+
+[node name="AnnePlayer" parent="Actors" groups=["player"] instance=ExtResource("1_elvnh")]
+position = Vector2(62, -27)
+
+[node name="PlayerPosition" type="Node" parent="Actors/AnnePlayer"]
+script = ExtResource("49_retpos")
+
+[node name="SavePoint" parent="Actors" instance=ExtResource("48_save")]
+position = Vector2(133, -25)
+scale = Vector2(0.8, 0.8)
+
+[node name="StarwalkerBody" parent="Actors" instance=ExtResource("5_snodd")]
+y_sort_enabled = false
+position = Vector2(-143, -185)
+
+[node name="Z_Index" type="Node2D" parent="Actors/StarwalkerBody"]
+script = ExtResource("17_rsent")
+
+[node name="TestDialogueArea2D" parent="Actors" instance=ExtResource("6_t61p3")]
+position = Vector2(-370, -101)
+collision_layer = 4
+collision_mask = 4
+activate_instant = true
+only_activate_once = true
+flag_key = "nikita_battle"
+dialogue = Array[ExtResource("7_2yr0x")]([SubResource("Resource_302i4"), SubResource("Resource_db20y"), SubResource("Resource_nhoj7")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Actors/TestDialogueArea2D"]
+position = Vector2(-6, -4.500061)
+shape = SubResource("RectangleShape2D_bp21e")
+
+[node name="TestClippyArea2D2" parent="Actors" instance=ExtResource("6_t61p3")]
+position = Vector2(-547, -99)
+collision_layer = 4
+collision_mask = 4
+activate_instant = true
+only_activate_once = true
+flag_key = "clippy_battle"
+dialogue = Array[ExtResource("7_2yr0x")]([SubResource("Resource_x1ujj"), SubResource("Resource_62ifi")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Actors/TestClippyArea2D2"]
+position = Vector2(-5.5, -5.500061)
+shape = SubResource("RectangleShape2D_nhoj7")
+
+[node name="NPC_Z" type="Sprite2D" parent="Actors"]
+z_index = -400
+z_as_relative = false
+position = Vector2(267, -136)
+scale = Vector2(0.09, 0.09)
+texture = ExtResource("31_mrw6a")
+offset = Vector2(0, -400)
+
+[node name="NPC_Dasha_M" type="Sprite2D" parent="Actors"]
+z_index = -330
+z_as_relative = false
+position = Vector2(303, -134)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("32_0lvsi")
+offset = Vector2(0, -330)
+
+[node name="NPC_Dasha_K" type="Sprite2D" parent="Actors"]
+z_index = -330
+z_as_relative = false
+position = Vector2(341, -140)
+scale = Vector2(0.09, 0.09)
+texture = ExtResource("33_qdj1a")
+offset = Vector2(0, -330)
+
+[node name="NPC_Max" type="Sprite2D" parent="Actors"]
+z_index = -350
+z_as_relative = false
+position = Vector2(379, -136)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("34_7k6x3")
+offset = Vector2(0, -350)
+
+[node name="DialogueArea2D" parent="Actors" instance=ExtResource("6_t61p3")]
+collision_layer = 4
+collision_mask = 4
+only_activate_once = true
+flag_key = "npc_zahar_candy"
+dialogue = Array[ExtResource("7_2yr0x")]([SubResource("Resource_7k6x3"), SubResource("Resource_0gh8x"), SubResource("Resource_enfdj"), SubResource("Resource_lgrrj"), SubResource("Resource_f7c5u")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Actors/DialogueArea2D"]
+position = Vector2(320, -126.25)
+shape = SubResource("RectangleShape2D_x1ujj")
+
+[node name="StorageChest" parent="Actors" instance=ExtResource("28_7gjip")]
+z_index = -400
+z_as_relative = false
+position = Vector2(201, -25)
+
+[node name="NPC_Max2" type="Sprite2D" parent="Actors"]
+z_index = -350
+z_as_relative = false
+material = SubResource("CanvasItemMaterial_db20y")
+position = Vector2(9, -131)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("34_7k6x3")
+offset = Vector2(0, -350)
+script = ExtResource("29_db20y")
+
+[node name="ShopZone" parent="Actors/NPC_Max2" instance=ExtResource("6_t61p3")]
+position = Vector2(47, 127)
+collision_layer = 4
+collision_mask = 4
+dialogue = Array[ExtResource("7_2yr0x")]([SubResource("Resource_ojwqt")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Actors/NPC_Max2/ShopZone"]
+position = Vector2(-42, -262.49963)
+scale = Vector2(0.9999997, 0.9999997)
+shape = SubResource("RectangleShape2D_qxwa2")

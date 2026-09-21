@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Equippable" load_steps=3 format=3 uid="uid://b57jqua2vmw16"]
+
+[ext_resource type="Script" uid="uid://cp643of2mfab3" path="res://holdables/equippables/equippable_attribute.gd" id="1_skib3"]
+[ext_resource type="Script" uid="uid://cbtfclefu13k7" path="res://holdables/equippables/equippable.gd" id="2_r6ifa"]
+
+[resource]
+script = ExtResource("2_r6ifa")
+fighter_stat_modifiers = Dictionary[int, int]({
+1: 4,
+2: 8,
+3: 15
+})
+name = "Темный микрофон"
+short_description = "Голос в нем звучит не как твой."
+long_description = "Найден в глубине темного Волгограда. 
+МАГ +15  АТК +5  ЗЩТ +4"
+price = 900
+sell_price = 450
+inventory_tab = 3

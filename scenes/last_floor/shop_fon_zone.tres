@@ -1,0 +1,244 @@
+[gd_resource type="Resource" script_class="ShopResource" load_steps=41 format=4 uid="uid://bwfnnxmoj0g42"]
+
+[ext_resource type="Script" uid="uid://dpl3myc5lbyaq" path="res://scripts/DialogueTextResource.gd" id="1_h86yt"]
+[ext_resource type="AudioStream" uid="uid://cokeb3uhcodct" path="res://globals/sounds/voices/snd_electric_talk.ogg" id="2_77vr4"]
+[ext_resource type="Script" uid="uid://ce37nn4xa836l" path="res://resources/shop/ShopResource.gd" id="3_1alhf"]
+[ext_resource type="Script" uid="uid://drff552q4x8m8" path="res://holdables/item.gd" id="4_5qoeq"]
+[ext_resource type="Resource" uid="uid://cr20wo1h2qnnp" path="res://holdables/items/heal_candy.tres" id="5_y4wx5"]
+[ext_resource type="Resource" uid="uid://dm1pwalxreln4" path="res://holdables/items/dark_candy.tres" id="6_cieah"]
+[ext_resource type="Resource" uid="uid://ltyvcjwrf3hd" path="res://holdables/equippables/armors/armor_hoodie.tres" id="7_minao"]
+[ext_resource type="Resource" uid="uid://bcd4ylx6jtju5" path="res://holdables/items/translator.tres" id="8_leqw1"]
+[ext_resource type="Script" uid="uid://buho0degfd14w" path="res://resources/DialogueExportResource.gd" id="9_fhavy"]
+[ext_resource type="Script" uid="uid://8orgtokfu828" path="res://resources/shop/ShopTalkTopic.gd" id="10_c4ayg"]
+
+[sub_resource type="Resource" id="Resource_fajlw"]
+script = ExtResource("1_h86yt")
+text = "Хороший выбор. Эта вещь помогла пережить не одну бурю. Переживет и тебя."
+text_speed = 17.0
+text_sound = ExtResource("2_77vr4")
+text_volume_db = 4
+text_volume_pitch_min = 0.8
+text_volume_pitch_max = 0.8
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="Resource" id="Resource_pfo5p"]
+script = ExtResource("1_h86yt")
+text = "Забирай. Мне эта вещь уже не нужна. А тебе - пригодится. Надеюсь."
+text_speed = 17.0
+text_sound = ExtResource("2_77vr4")
+text_volume_db = 4
+text_volume_pitch_min = 0.8
+text_volume_pitch_max = 0.8
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="Resource" id="Resource_3dr30"]
+script = ExtResource("1_h86yt")
+text = "Пользуйся на здоровье. Оно тебе понадобится... дальше."
+text_speed = 17.0
+text_sound = ExtResource("2_77vr4")
+text_volume_db = 4
+text_volume_pitch_min = 0.8
+text_volume_pitch_max = 0.8
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="Resource" id="Resource_d00uh"]
+script = ExtResource("1_h86yt")
+text = "Батарейки кончаются... О, покупатель. Быстро выбирай, пока я не вырубился."
+text_speed = 17.0
+text_sound = ExtResource("2_77vr4")
+text_volume_db = 4
+text_volume_pitch_min = 0.8
+text_volume_pitch_max = 0.8
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="Resource" id="Resource_7hc37"]
+script = ExtResource("1_h86yt")
+text = "Редко кто сюда заходит. Обычно все бегут мимо. А ты зашел. Значит, есть что терять... или искать."
+text_speed = 17.0
+text_sound = ExtResource("2_77vr4")
+text_volume_db = 4
+text_volume_pitch_min = 0.8
+text_volume_pitch_max = 0.8
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="Resource" id="Resource_sd061"]
+script = ExtResource("1_h86yt")
+text = "Фонит на связи."
+text_speed = 17.0
+text_sound = ExtResource("2_77vr4")
+text_volume_db = 4
+text_volume_pitch_min = 0.8
+text_volume_pitch_max = 0.8
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="Resource" id="Resource_3q8r2"]
+script = ExtResource("1_h86yt")
+text = "Это тебя не спасло. Может, меня спасет. Или просто запылится."
+text_speed = 17.0
+text_sound = ExtResource("2_77vr4")
+text_volume_db = 4
+text_volume_pitch_min = 0.8
+text_volume_pitch_max = 0.8
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="Resource" id="Resource_uj0b7"]
+script = ExtResource("1_h86yt")
+text = "Очень даже неплохой товар."
+text_speed = 17.0
+text_sound = ExtResource("2_77vr4")
+text_volume_db = 4
+text_volume_pitch_min = 0.8
+text_volume_pitch_max = 0.8
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="Resource" id="Resource_aiucp"]
+script = ExtResource("1_h86yt")
+text = "Хорошая сделка - только здесь!"
+text_speed = 17.0
+text_sound = ExtResource("2_77vr4")
+text_volume_db = 4
+text_volume_pitch_min = 0.8
+text_volume_pitch_max = 0.8
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="OggPacketSequence" id="OggPacketSequence_h67c6"]
+packet_data = Array[Array]([[PackedByteArray("AXZvcmJpcwAAAAABRKwAAAAAAAAAdwEAAAAAALgB")], [PackedByteArray("A3ZvcmJpczQAAABYaXBoLk9yZyBsaWJWb3JiaXMgSSAyMDIwMDcwNCAoUmVkdWNpbmcgRW52aXJvbm1lbnQpAAAAAAE="), PackedByteArray("BXZvcmJpcylCQ1YBAAgAAAAxTCDFgNCQVQAAEAAAYCQpDpNmSSmllKEoeZiUSEkppZTFMImYlInFGGOMMcYYY4wxxhhjjCA0ZBUAAAQAgCgJjqPmSWrOOWcYJ45yoDlpTjinIAeKUeA5CcL1JmNuprSma27OKSUIDVkFAAACAEBIIYUUUkghhRRiiCGGGGKIIYcccsghp5xyCiqooIIKMsggg0wy6aSTTjrpqKOOOuootNBCCy200kpMMdVWY669Bl18c84555xzzjnnnHPOCUJDVgEAIAAABEIGGWQQQgghhRRSiCmmmHIKMsiA0JBVAAAgAIAAAAAAR5EUSbEUy7EczdEkT/IsURM10TNFU1RNVVVVVXVdV3Zl13Z113Z9WZiFW7h9WbiFW9iFXfeFYRiGYRiGYRiGYfh93/d93/d9IDRkFQAgAQCgIzmW4ymiIhqi4jmiA4SGrAIAZAAABAAgCZIiKZKjSaZmaq5pm7Zoq7Zty7Isy7IMhIasAgAAAQAEAAAAAACgaZqmaZqmaZqmaZqmaZqmaZqmaZpmWZZlWZZlWZZlWZZlWZZlWZZlWZZlWZZlWZZlWZZlWZZlWZZlWUBoyCoAQAIAQMdxHMdxJEVSJMdyLAcIDVkFAMgAAAgAQFIsxXI0R3M0x3M8x3M8R3REyZRMzfRMDwgNWQUAAAIACAAAAAAAQDEcxXEcydEkT1It03I1V3M913NN13VdV1VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVWB0JBVAAAEAAAhnWaWaoAIM5BhIDRkFQCAAAAAGKEIQwwIDVkFAAAEAACIoeQgmtCa8805DprloKkUm9PBiVSbJ7mpmJtzzjnnnGzOGeOcc84pypnFoJnQmnPOSQyapaCZ0JpzznkSmwetqdKac84Z55wOxhlhnHPOadKaB6nZWJtzzlnQmuaouRSbc86JlJsntblUm3POOeecc84555xzzqlenM7BOeGcc86J2ptruQldnHPO+WSc7s0J4ZxzzjnnnHPOOeecc84JQkNWAQBAAAAEYdgYxp2CIH2OBmIUIaYhkx50jw6ToDHIKaQejY5GSqmDUFIZJ6V0gtCQVQAAIAAAhBBSSCGFFFJIIYUUUkghhhhiiCGnnHIKKqikkooqyiizzDLLLLPMMsusw84667DDEEMMMbTSSiw11VZjjbXmnnOuOUhrpbXWWiullFJKKaUgNGQVAAACAEAgZJBBBhmFFFJIIYaYcsopp6CCCggNWQUAAAIACAAAAPAkzxEd0REd0REd0REd0REdz/EcURIlURIl0TItUzM9VVRVV3ZtWZd127eFXdh139d939eNXxeGZVmWZVmWZVmWZVmWZVmWZQlCQ1YBACAAAABCCCGEFFJIIYWUYowxx5yDTkIJgdCQVQAAIACAAAAAAEdxFMeRHMmRJEuyJE3SLM3yNE/zNNETRVE0TVMVXdEVddMWZVM2XdM1ZdNVZdV2Zdm2ZVu3fVm2fd/3fd/3fd/3fd/3fd/XdSA0ZBUAIAEAoCM5kiIpkiI5juNIkgSEhqwCAGQAAAQAoCiO4jiOI0mSJFmSJnmWZ4maqZme6amiCoSGrAIAAAEABAAAAAAAoGiKp5iKp4iK54iOKImWaYmaqrmibMqu67qu67qu67qu67qu67qu67qu67qu67qu67qu67qu67qu67pAaMgqAEACAEBHciRHciRFUiRFciQHCA1ZBQDIAAAIAMAxHENSJMeyLE3zNE/zNNETPdEzPVV0RRcIDVkFAAACAAgAAAAAAMCQDEuxHM3RJFFSLdVSNdVSLVVUPVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVdU0TdM0gdCQlQAAGQAAI0EGGYQQinKQQm49WAgx5iQFoTkGocQYhKcQMww5DSJ0kEEnPbiSOcMM8+BSKBVETIONJTeOIA3CplxJ5TgIQkNWBABRAACAMcgxxBhyzknJoETOMQmdlMg5J6WT0kkpLZYYMyklphJj45yj0knJpJQYS4qdpBJjia0AAIAABwCAAAuh0JAVAUAUAABiDFIKKYWUUs4p5pBSyjHlHFJKOaecU845CB2EyjEGnYMQKaUcU84pxxyEzEHlnIPQQSgAACDAAQAgwEIoNGRFABAnAOBwJM+TNEsUJUsTRc8UZdcTTdeVNM00NVFUVcsTVdVUVdsWTVW2JU0TTU30VFUTRVUVVdOWTVW1bc80ZdlUVd0WVdW2ZdsWfleWdd8zTVkWVdXWTVW1ddeWfV/WbV2YNM00NVFUVU0UVdVUVds2Vde2NVF0VVFVZVlUVVl2ZVn3VVfWfUsUVdVTTdkVVVW2Vdn1bVWWfeF0VV1XZdn3VVkWflvXheH2feEYVdXWTdfVdVWWfWHWZWG3dd8oaZppaqKoqpooqqqpqrZtqq6tW6LoqqKqyrJnqq6syrKvq65s65ooqq6oqrIsqqosq7Ks+6os67aoqrqtyrKwm66r67bvC8Ms67pwqq6uq7Ls+6os67qt68Zx67owfKYpy6ar6rqpurpu67pxzLZtHKOq6r4qy8KwyrLv67ovtHUhUVV13ZRd41dlWfdtX3eeW/eFsm07v637ynHrutL4Oc9vHLm2bRyzbhu/rfvG8ys/YTiOpWeatm2qqq2bqqvrsm4rw6zrQlFVfV2VZd83XVkXbt83jlvXjaKq6roqy76wyrIx3MZvHLswHF3bNo5b152yrQt9Y8j3Cc9r28Zx+zrj9nWjrwwJx48AAIABBwCAABPKQKEhKwKAOAEABiHnFFMQKsUgdBBS6iCkVDEGIXNOSsUclFBKaiGU1CrGIFSOScickxJKaCmU0lIHoaVQSmuhlNZSa7Gm1GLtIKQWSmktlNJaaqnG1FqMEWMQMuekZM5JCaW0FkppLXNOSuegpA5CSqWkFEtKLVbMScmgo9JBSKmkElNJqbVQSmulpBZLSjG2FFtuMdYcSmktpBJbSSnGFFNtLcaaI8YgZM5JyZyTEkppLZTSWuWYlA5CSpmDkkpKrZWSUsyck9JBSKmDjkpJKbaSSkyhlNZKSrGFUlpsMdacUmw1lNJaSSnGkkpsLcZaW0y1dRBaC6W0FkpprbVWa2qtxlBKayWlGEtKsbUWa24x5hpKaa2kEltJqcUWW44txppTazWm1mpuMeYaW2091ppzSq3W1FKNLcaaY2291Zp77yCkFkppLZTSYmotxtZiraGU1koqsZWSWmwx5tpajDmU0mJJqcWSUowtxppbbLmmlmpsMeaaUou15tpzbDX21FqsLcaaU0u11lpzj7n1VgAAwIADAECACWWg0JCVAEAUAABBiFLOSWkQcsw5KglCzDknqXJMQikpVcxBCCW1zjkpKcXWOQglpRZLKi3FVmspKbUWay0AAKDAAQAgwAZNicUBCg1ZCQBEAQAgxiDEGIQGGaUYg9AYpBRjECKlGHNOSqUUY85JyRhzDkIqGWPOQSgphFBKKimFEEpJJaUCAAAKHAAAAmzQlFgcoNCQFQFAFAAAYAxiDDGGIHRUMioRhExKJ6mBEFoLrXXWUmulxcxaaq202EAIrYXWMkslxtRaZq3EmForAADswAEA7MBCKDRkJQCQBwBAGKMUY845ZxBizDnoHDQIMeYchA4qxpyDDkIIFWPOQQghhMw5CCGEEELmHIQQQgihgxBCCKWU0kEIIYRSSukghBBCKaV0EEIIoZRSCgAAKnAAAAiwUWRzgpGgQkNWAgB5AACAMUo5B6GURinGIJSSUqMUYxBKSalyDEIpKcVWOQehlJRa7CCU0lpsNXYQSmktxlpDSq3FWGuuIaXWYqw119RajLXmmmtKLcZaa825AADcBQcAsAMbRTYnGAkqNGQlAJAHAIAgpBRjjDGGFGKKMeecQwgpxZhzzimmGHPOOeeUYow555xzjDHnnHPOOcaYc8455xxzzjnnnHOOOeecc84555xzzjnnnHPOOeecc84JAAAqcAAACLBRZHOCkaBCQ1YCAKkAAAARVmKMMcYYGwgxxhhjjDFGEmKMMcYYY2wxxhhjjDHGmGKMMcYYY4wxxhhjjDHGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wxxhhjjDHGGGOMMcYYY4wxxhhba6211lprrbXWWmuttdZaa60AQL8KBwD/BxtWRzgpGgssNGQlABAOAAAYw5hzjjkGHYSGKeikhA5CCKFDSjkoJYRQSikpc05KSqWklFpKmXNSUiolpZZS6iCk1FpKLbXWWgclpdZSaq211joIpbTUWmuttdhBSCml1lqLLcZQSkqttdhijDWGUlJqrcXYYqwxpNJSbC3GGGOsoZTWWmsxxhhrLSm11mKMtcZaa0mptdZiizXWWgsA4G5wAIBIsHGGlaSzwtHgQkNWAgAhAQAEQow555xzEEIIIVKKMeeggxBCCCFESjHmHHQQQgghhIwx56CDEEIIIYSQMeYcdBBCCCGEEDrnHIQQQgihhFJK5xx0EEIIIZRQQukghBBCCKGEUkopHYQQQiihhFJKKSWEEEIJpZRSSimlhBBCCKGEEkoppZQQQgillFJKKaWUEkIIIZRSSimllFJCCKGUUEoppZRSSgghhFJKKaWUUkoJIYRQSimllFJKKSGEEkoppZRSSimlAACAAwcAgAAj6CSjyiJsNOHCA1BoyEoAgAwAAHHYausp1sggxZyElkuEkHIQYi4RUoo5R7FlSBnFGNWUMaUUU1Jr6JxijFFPnWNKMcOslFZKKJGC0nKstXbMAQAAIAgAMBAhM4FAARQYyACAA4QEKQCgsMDQMVwEBOQSMgoMCseEc9JpAwAQhMgMkYhYDBITqoGiYjoAWFxgyAeADI2NtIsL6DLABV3cdSCEIAQhiMUBFJCAgxNueOINT7jBCTpFpQ4CAAAAAAABAB4AAJINICIimjmODo8PkBCREZISkxOUAAAAAADgAYAPAIAkBYiIiGaOo8PjAyREZISkxOQEJQAAAAAAAAAAAAgICAAAAAAABAAAAAgI")], [PackedByteArray("9AXLITakRsZ2sfUhYS1cn1y8HBPriy5MnPL/FtuPu3u7hM8hWLdqnr/dyOK5+l1ZMg=="), PackedByteArray("LAp9QBkshoqtyqyXAaBpAV0M4Pn140YkLTbvrPWbMKdSh81k9psVHXN9EG5zyP/Unkk+Q6DTEQ=="), PackedByteArray("mlbceBsmzycaevjfdMuOszzzMTboPFkI077pNE1CJmk2AABMgWF/3qleulGytyn5PqsfaS8OimcJPXjYNtXgIOxAVTHmUzX2PxbjWz7VJHFR4DdtjAtfWk5sMblER08Igd/JLa8NxcPvPRMPpLU8UJH2cgb/K0iLAr+hGzTd2kaZKttaacl7QsOSophCfWKjYlmNypxM0m+1hkZ69XcqVypsgLiYi9WloUz+a5tvtbe14P9265qBw2TsBP+iOmpp2G5A2o/3dqRg9Dl/1UPcDl5d5C8eQQAT162WG+216R88P/Z9+omOBwAA"), PackedByteArray("flgc4MhgLyBDTXhMrKDwYdI3meQlO6fNFMCV/ufa+Z3H9IyLr939fvVp+lXb9vOKvEuJac6/nFu4adGe/xcgWGntgQAiw8uYXijYLMP4cGRabwQc8EfIuwMYw8G0y1RSIlZjYqLlnCn+fhD0gO8OuC7A6gBngJFf03+OClk37ynpUyGlfs7LBzSQDp2NwXXZiBmfsoxAp4ajFQJEQEeGP6DLldFo7cmp7CIy9NnSS1pB0GgMirrQ9KKwt7MgQGW7xLiI3F1tPNacPW0PVqlQhY/38Xn77z4AAAAAAA=="), PackedByteArray("tkbc+IALHECFWujFMB5u3pQbZ9ZBE4fYaOCAB7CUwAwg7RrnyVMA0Qf7o99sL+86SnjdsPAxec2vry6uzi8lc6vXsxdym1sX+XizNwZYZDeus42dhRKKZn4cBqYYTWSvdNqeloVxm9bBwCKMZ+h3opBJbMuUyHuJ+8C13bl03/5zE1DNQtWU96JsjdrIf1GzqYGM8dLokn8Kv81yLCTuUZAdnqCssCAkX+yf7u8kH3HGWpTkTPa26xrkVDkl7MUhfJb+rP2tPIgmqEDxJUFl/NIW2aKZFBm4pTgEKYUEnuuRWoKeqUDZMjOjFCydcPmUfHtoX/8nAAAAAA=="), PackedByteArray("BO52ChqGtSry52gWTPRIBfA7sybf3kWCr3y78mWpu6jPHCos536BX/YfiQQ="), PackedByteArray("RO70xUakjQtsHwwcD5ceOJ7dm82NXUejDa2vkj+lXL+1ifhOD9+9jxA="), PackedByteArray("NAbLRAA4cMW5ngDuUN0Mj/Q43KO7LHDYscJXAVUppV9ojunTA7HQAg=="), PackedByteArray("LPLKvEQznBWsq8Q5JggIKYetacyWSonbes+ZEpGpRRcM7r6oxKdMuLR6Fg=="), PackedByteArray("RAZLaZAlOiz7qoji4ezzjTE1VrI9Kaz0NpvoJcvwGz0ZqncO6pfFxhk="), PackedByteArray("DOJ2igYADvfebOPhePj4/skfc1wq+T+sVTbQGtyTuueRBcZptQUE1s4T"), PackedByteArray("NPYKPEY3rDnUi5p94ni4PZPGsg7jeLnGW1XvnYuf01Y0/qnOFsJNDA8="), PackedByteArray("JApLCVvCZjrbY1xfrSQGASbw9MZag+OB5bTIgI/mULg4YOlvevF2TGph3euIg7UCrtG2Aw=="), PackedByteArray("TBpFygMDLvi0rUFAWRjzbd1ituSPtgwk+SPj2rfrSYS23M9mXtOOXtZYfeoK/1HvAA=="), PackedByteArray("BA6tCZSHFBex2EGvrw7lYN8fnpmeTi4fX63XhY/ozDUehuZ+/zD0JWNx8an6TrQ/yho=")]])
+granule_positions = PackedInt64Array(0, 0, 4410)
+sampling_rate = 44100.0
+
+[sub_resource type="AudioStreamOggVorbis" id="AudioStreamOggVorbis_kac6g"]
+packet_sequence = SubResource("OggPacketSequence_h67c6")
+
+[sub_resource type="Resource" id="Resource_fupcb"]
+script = ExtResource("1_h86yt")
+text = "Уходя, выключи свет. А, неважно. Тут его и так нет."
+text_speed = 17.0
+text_sound = SubResource("AudioStreamOggVorbis_kac6g")
+text_volume_db = 4
+text_volume_pitch_min = 0.8
+text_volume_pitch_max = 0.8
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="AudioStreamOggVorbis" id="AudioStreamOggVorbis_ay6aq"]
+packet_sequence = SubResource("OggPacketSequence_h67c6")
+
+[sub_resource type="Resource" id="Resource_sh2sj"]
+script = ExtResource("1_h86yt")
+text = "Когда-то и меня вела дорога приключений..."
+text_speed = 17.0
+text_sound = SubResource("AudioStreamOggVorbis_ay6aq")
+text_volume_db = 4
+text_volume_pitch_min = 0.8
+text_volume_pitch_max = 0.8
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="AudioStreamOggVorbis" id="AudioStreamOggVorbis_7b4gm"]
+packet_sequence = SubResource("OggPacketSequence_h67c6")
+
+[sub_resource type="Resource" id="Resource_eogbh"]
+script = ExtResource("1_h86yt")
+text = "Меня зовут Фонит. Потому что я... фоню. Но иногда -  я все еще могу сыграть что-то чистое. Хочешь послушать? Нет? Жаль."
+text_speed = 17.0
+text_sound = SubResource("AudioStreamOggVorbis_7b4gm")
+text_volume_db = 4
+text_volume_pitch_min = 0.8
+text_volume_pitch_max = 0.8
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="AudioStreamOggVorbis" id="AudioStreamOggVorbis_2i2y1"]
+packet_sequence = SubResource("OggPacketSequence_h67c6")
+
+[sub_resource type="Resource" id="Resource_7dryj"]
+script = ExtResource("1_h86yt")
+text = "Не верь тем, кто говорит, что знает путь. Тут все блуждают. Даже я. Особенно я."
+text_speed = 17.0
+text_sound = SubResource("AudioStreamOggVorbis_2i2y1")
+text_volume_db = 4
+text_volume_pitch_min = 0.8
+text_volume_pitch_max = 0.8
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="AudioStreamOggVorbis" id="AudioStreamOggVorbis_kx0uh"]
+packet_sequence = SubResource("OggPacketSequence_h67c6")
+
+[sub_resource type="Resource" id="Resource_2i2y1"]
+script = ExtResource("1_h86yt")
+text = "Все, что ты видишь - чьи-то потерянные вещи. Кто-то потерял надежду, кто-то - память. А кто-то - просто кошелек."
+text_speed = 17.0
+text_sound = SubResource("AudioStreamOggVorbis_kx0uh")
+text_volume_db = 4
+text_volume_pitch_min = 0.8
+text_volume_pitch_max = 0.8
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="Resource" id="Resource_kac6g"]
+script = ExtResource("10_c4ayg")
+label = "О барахле"
+dialogue = Array[ExtResource("9_fhavy")]([SubResource("Resource_2i2y1")])
+
+[sub_resource type="AudioStreamOggVorbis" id="AudioStreamOggVorbis_gh6t8"]
+packet_sequence = SubResource("OggPacketSequence_h67c6")
+
+[sub_resource type="Resource" id="Resource_5yecv"]
+script = ExtResource("1_h86yt")
+text = "Тот, кто носит тьму внутри - не злой. Он... разбитый.
+Все мы - простые и хрупкие вещи."
+text_speed = 17.0
+text_sound = SubResource("AudioStreamOggVorbis_gh6t8")
+text_volume_db = 4
+text_volume_pitch_min = 0.8
+text_volume_pitch_max = 0.8
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="Resource" id="Resource_4fupj"]
+script = ExtResource("10_c4ayg")
+label = "О темноте"
+dialogue = Array[ExtResource("9_fhavy")]([SubResource("Resource_5yecv")])
+
+[sub_resource type="AudioStreamOggVorbis" id="AudioStreamOggVorbis_5eqfm"]
+packet_sequence = SubResource("OggPacketSequence_h67c6")
+
+[sub_resource type="Resource" id="Resource_c0gob"]
+script = ExtResource("1_h86yt")
+text = "Фонтан - это второе сердце. Оно бьется неправильно и в целом оно не нужно этому миру."
+text_speed = 17.0
+text_sound = SubResource("AudioStreamOggVorbis_5eqfm")
+text_volume_db = 4
+text_volume_pitch_min = 0.8
+text_volume_pitch_max = 0.8
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="Resource" id="Resource_d8j8f"]
+script = ExtResource("10_c4ayg")
+label = "О Фонтане"
+dialogue = Array[ExtResource("9_fhavy")]([SubResource("Resource_c0gob")])
+metadata/_custom_type_script = "uid://8orgtokfu828"
+
+[sub_resource type="AudioStreamOggVorbis" id="AudioStreamOggVorbis_c0gob"]
+packet_sequence = SubResource("OggPacketSequence_h67c6")
+
+[sub_resource type="Resource" id="Resource_l3o76"]
+script = ExtResource("1_h86yt")
+text = "Я здесь давно. Настолько, что забыл, как звучит настоящая тишина. Все шипит, трещит... Но ты привыкаешь. Или сходишь с ума. Тут тонкая грань."
+text_speed = 17.0
+text_sound = SubResource("AudioStreamOggVorbis_c0gob")
+text_volume_db = 4
+text_volume_pitch_min = 0.8
+text_volume_pitch_max = 0.8
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="Resource" id="Resource_llob6"]
+script = ExtResource("10_c4ayg")
+label = "О себе"
+dialogue = Array[ExtResource("9_fhavy")]([SubResource("Resource_l3o76")])
+metadata/_custom_type_script = "uid://8orgtokfu828"
+
+[resource]
+script = ExtResource("3_1alhf")
+greetings = Array[ExtResource("1_h86yt")]([SubResource("Resource_d00uh"), SubResource("Resource_7hc37"), SubResource("Resource_sd061")])
+stock = Array[ExtResource("4_5qoeq")]([ExtResource("5_y4wx5"), ExtResource("6_cieah"), ExtResource("7_minao"), ExtResource("8_leqw1")])
+buy_comments = Array[ExtResource("1_h86yt")]([SubResource("Resource_fajlw"), SubResource("Resource_pfo5p"), SubResource("Resource_3dr30")])
+sell_comments = Array[ExtResource("1_h86yt")]([SubResource("Resource_3q8r2"), SubResource("Resource_uj0b7"), SubResource("Resource_aiucp")])
+talk_topics = Array[Resource]([SubResource("Resource_kac6g"), SubResource("Resource_4fupj"), SubResource("Resource_d8j8f"), SubResource("Resource_llob6")])
+talk_comments = Array[ExtResource("1_h86yt")]([SubResource("Resource_fupcb"), SubResource("Resource_sh2sj"), SubResource("Resource_eogbh"), SubResource("Resource_7dryj")])
+metadata/_custom_type_script = "uid://ce37nn4xa836l"

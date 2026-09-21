@@ -1,0 +1,109 @@
+[gd_scene load_steps=11 format=3 uid="uid://c0jhyf5ucpi8i"]
+
+[ext_resource type="Script" uid="uid://dx07jww7eek28" path="res://fighters/monsters/shroompals/shroompal/shroompal.gd" id="1_spal"]
+[ext_resource type="Texture2D" uid="uid://bay3wxayr7hto" path="res://fighters/monsters/shroompals/shroompal/shroompal_idle.png" id="2_spal"]
+[ext_resource type="Script" uid="uid://bwvvm6kvpsqi1" path="res://fighters/characters/acts/act.gd" id="3_act"]
+
+[sub_resource type="Resource" id="Resource_hum"]
+script = ExtResource("3_act")
+title = "Напеть"
+text = "  * Вы напеваете знакомый мотив.
+  * Шрумп удивленно покачивает шляпой."
+spare_percent = 20
+metadata/_custom_type_script = "uid://bwvvm6kvpsqi1"
+
+[sub_resource type="Resource" id="Resource_pet"]
+script = ExtResource("3_act")
+title = "Погладить"
+text = "  * Вы тянетесь погладить его шляпу.
+  * Шрумп замирает. Кажется, ему приятно."
+spare_percent = 25
+metadata/_custom_type_script = "uid://bwvvm6kvpsqi1"
+
+[sub_resource type="Resource" id="Resource_ask"]
+script = ExtResource("3_act")
+title = "Спросить"
+text = "  * Вы спрашиваете откуда он.
+  * «Из глубин», - отвечает Шрумп.
+  * «Глубоко внизу»."
+spare_percent = 10
+metadata/_custom_type_script = "uid://bwvvm6kvpsqi1"
+
+[sub_resource type="Animation" id="Animation_die"]
+resource_name = "die"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.4, 0.9, 0.8, 0.5), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hurt"]
+resource_name = "hurt"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.25, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.2, 0.2), Vector2(0.32, 0.32), Vector2(0.4, 0.4), Vector2(0.28, 0.28), Vector2(0.2, 0.2)]
+}
+
+[sub_resource type="Animation" id="Animation_spare"]
+resource_name = "spare"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -6), Vector2(0, -10), Vector2(0, -6), Vector2(0, 0), Vector2(0, 4), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_spal"]
+_data = {
+&"die": SubResource("Animation_die"),
+&"hurt": SubResource("Animation_hurt"),
+&"spare": SubResource("Animation_spare")
+}
+
+[node name="Shroompal" type="Node2D" groups=["shrump"]]
+script = ExtResource("1_spal")
+description = "* Шрумп — грибной кот. Смотрит снизу вверх."
+acts = Array[ExtResource("3_act")]([SubResource("Resource_hum"), SubResource("Resource_pet"), SubResource("Resource_ask")])
+money_dropped = 60
+battle_music = "shroompals"
+idle_lines = PackedStringArray("...", "Споры в воздухе.", "Котогриб тихо пыхтит.", "Зачем он щурится?", "Его шляпа слегка светится.", "Мицелий помнит все.")
+opening_line_singular = "  * Шрумп выходит из темноты."
+opening_line_plural = "  * Несколько Шрумпов окружают вас."
+title = "Шрумп"
+base_fighter_stats = Dictionary[int, int]({
+0: 150,
+1: 3,
+2: 5,
+4: 1
+})
+main_sprite = NodePath("Sprite")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_spal")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_spal")
+}

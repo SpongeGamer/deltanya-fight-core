@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://be7o6okddhtrm"]
+
+[ext_resource type="Script" uid="uid://3otynlkw58ee" path="res://fighters/monsters/serega/attacks/disonans/disonans_bar.gd" id="1_bar"]
+[ext_resource type="Script" uid="uid://bb4bu30hkktd5" path="res://fighters/monsters/serega/attacks/disonans/disonans_burst.gd" id="2_burst"]
+[ext_resource type="Script" uid="uid://co8ucf1fl1t7h" path="res://fighters/monsters/serega/attacks/disonans/disonans.gd" id="3_dis"]
+[ext_resource type="Texture2D" uid="uid://8t4pp4vhhs7y" path="res://fighters/monsters/knyaz/attacks/ballada/res/note_bullet.png" id="4_tex"]
+
+[sub_resource type="RectangleShape2D" id="Shape_bar"]
+size = Vector2(18, 8)
+
+[sub_resource type="RectangleShape2D" id="Shape_burst"]
+size = Vector2(10, 10)
+
+[node name="Disonans" type="Node2D"]
+z_index = 5
+script = ExtResource("3_dis")
+
+[node name="BaseBar" type="Area2D" parent="."]
+visible = false
+z_index = 5
+position = Vector2(0, -400)
+collision_layer = 2
+script = ExtResource("1_bar")
+damage = 14
+graze_points = 2
+time_points = 0.01
+
+[node name="Sprite" type="Sprite2D" parent="BaseBar"]
+scale = Vector2(2.8, 0.9)
+texture = ExtResource("4_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BaseBar"]
+shape = SubResource("Shape_bar")
+
+[node name="BaseBurst" type="Area2D" parent="."]
+visible = false
+z_index = 5
+position = Vector2(0, -400)
+collision_layer = 2
+script = ExtResource("2_burst")
+damage = 10
+graze_points = 3
+time_points = 0.01
+
+[node name="Sprite2" type="Sprite2D" parent="BaseBurst"]
+texture = ExtResource("4_tex")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="BaseBurst"]
+shape = SubResource("Shape_burst")
+
+[connection signal="body_entered" from="BaseBar" to="BaseBar" method="_on_body_entered"]
+[connection signal="body_entered" from="BaseBurst" to="BaseBurst" method="_on_body_entered"]

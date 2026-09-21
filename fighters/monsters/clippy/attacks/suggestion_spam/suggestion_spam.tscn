@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://uo7k0samsyfx"]
+
+[ext_resource type="Script" uid="uid://ds7dqk245su0u" path="res://fighters/monsters/clippy/attacks/suggestion_spam/suggestion_spam.gd" id="1_sg"]
+[ext_resource type="Script" uid="uid://bnkccwqaergjd" path="res://fighters/monsters/clippy/attacks/suggestion_spam/sine_bullet.gd" id="2_sg"]
+[ext_resource type="Texture2D" uid="uid://dihvih35lw4vv" path="res://fighters/monsters/clippy/attacks/suggestion_spam/send.png" id="3_rlx3u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qer46"]
+size = Vector2(20, 14)
+
+[node name="SuggestionSpam" type="Node2D"]
+script = ExtResource("1_sg")
+
+[node name="BaseBullet" type="Area2D" parent="."]
+visible = false
+position = Vector2(0, -400)
+collision_layer = 2
+script = ExtResource("2_sg")
+damage = 5
+
+[node name="Sprite" type="Sprite2D" parent="BaseBullet"]
+texture = ExtResource("3_rlx3u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BaseBullet"]
+position = Vector2(1, -1)
+shape = SubResource("RectangleShape2D_qer46")
+
+[connection signal="body_entered" from="BaseBullet" to="BaseBullet" method="_on_body_entered"]

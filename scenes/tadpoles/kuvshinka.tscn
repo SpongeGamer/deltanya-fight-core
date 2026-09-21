@@ -1,0 +1,96 @@
+[gd_scene load_steps=13 format=3 uid="uid://d2x42535kp3or"]
+
+[ext_resource type="Script" uid="uid://b6wc1102r4pqr" path="res://scenes/tadpoles/kuvshinka.gd" id="1_kuv"]
+[ext_resource type="Texture2D" uid="uid://woq5uyfyme4h" path="res://assets/VFX/lilypad.png" id="2_kuv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1h5su"]
+atlas = ExtResource("2_kuv")
+region = Rect2(21, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmvwg"]
+atlas = ExtResource("2_kuv")
+region = Rect2(42, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ydhf3"]
+atlas = ExtResource("2_kuv")
+region = Rect2(63, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c71wc"]
+atlas = ExtResource("2_kuv")
+region = Rect2(84, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l8t5r"]
+atlas = ExtResource("2_kuv")
+region = Rect2(105, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f066y"]
+atlas = ExtResource("2_kuv")
+region = Rect2(126, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_urkox"]
+atlas = ExtResource("2_kuv")
+region = Rect2(21, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wymmr"]
+atlas = ExtResource("2_kuv")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kuv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1h5su")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rmvwg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ydhf3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c71wc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l8t5r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f066y")
+}],
+"loop": false,
+"name": &"bloom",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_urkox")
+}],
+"loop": false,
+"name": &"float",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wymmr")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kuv"]
+size = Vector2(24, 24)
+
+[node name="Kuvshinka" type="Area2D"]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_kuv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_kuv")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_kuv")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

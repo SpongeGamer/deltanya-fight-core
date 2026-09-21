@@ -1,0 +1,76 @@
+[gd_scene load_steps=7 format=3 uid="uid://nrydukbm66cg"]
+
+[ext_resource type="Script" uid="uid://bwb01xxxli1hx" path="res://ui/battle/attack_timing/char_timing/char_timing.gd" id="1_1icfm"]
+[ext_resource type="Texture2D" uid="uid://cbk71ogj6f747" path="res://ui/battle/attack_timing/char_timing/res/press.png" id="1_o5x6y"]
+[ext_resource type="Texture2D" uid="uid://bji54nmvqt6id" path="res://ui/battle/char_menu/res/sample_char_icon.png" id="2_oypfe"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6l5ia"]
+bg_color = Color(0, 0, 0, 1)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.41598, 0.41598, 0.41598, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1icfm"]
+bg_color = Color(0, 0, 0, 1)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cnqbx"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="CharTiming" type="Control"]
+custom_minimum_size = Vector2(204, 38)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_1icfm")
+
+[node name="Press" type="Sprite2D" parent="."]
+position = Vector2(60, 10)
+texture = ExtResource("1_o5x6y")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(5, 3)
+texture = ExtResource("2_oypfe")
+centered = false
+
+[node name="HitRegion" type="Panel" parent="."]
+custom_minimum_size = Vector2(125, 38)
+layout_mode = 0
+offset_left = 79.0
+offset_right = 204.0
+offset_bottom = 38.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_6l5ia")
+
+[node name="PerfectHit" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 82.0
+offset_right = 92.0
+offset_bottom = 38.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_1icfm")
+
+[node name="IndicatorShadows" type="Node2D" parent="."]
+
+[node name="AttackIndicator" type="Panel" parent="."]
+custom_minimum_size = Vector2(6, 38)
+layout_mode = 0
+offset_left = 410.0
+offset_right = 416.0
+offset_bottom = 38.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_cnqbx")
+
+[node name="Flash" type="Panel" parent="."]
+modulate = Color(1, 1, 1, 0)
+top_level = true
+custom_minimum_size = Vector2(6, 38)
+layout_mode = 0
+offset_right = 6.0
+offset_bottom = 38.0
+pivot_offset = Vector2(3, 19)
+theme_override_styles/panel = SubResource("StyleBoxFlat_cnqbx")

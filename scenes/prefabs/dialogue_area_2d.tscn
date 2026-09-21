@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://ogidicqqkcwp"]
+
+[ext_resource type="Script" uid="uid://b6gdy3dw2vw1c" path="res://scripts/overworld/dialogue_area_2d.gd" id="1_uei0f"]
+
+[node name="DialogueArea2D" type="Area2D"]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_uei0f")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

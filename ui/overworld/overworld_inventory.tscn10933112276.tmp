@@ -1,0 +1,167 @@
+[gd_scene load_steps=4 format=3 uid="uid://crtmg1m22eqhw"]
+
+[ext_resource type="Script" uid="uid://dcwh871ilcbvo" path="res://ui/overworld/overworld_inventory.gd" id="1"]
+[ext_resource type="FontFile" uid="uid://q4tuyk42idmk" path="res://fonts/8bitoperator Cyrillic Extension.otf" id="2_kloxf"]
+[ext_resource type="Texture2D" uid="uid://b0mx4qepjjvn" path="res://globals/global/res/heart.png" id="3_heart"]
+
+[node name="OverworldInventory" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1")
+
+[node name="BG" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.9)
+
+[node name="Left" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 148.0
+grow_vertical = 2
+theme_override_constants/separation = 4
+
+[node name="CharInfo" type="VBoxContainer" parent="Left"]
+custom_minimum_size = Vector2(0, 92)
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 2
+
+[node name="HSeparator" type="HSeparator" parent="Left/CharInfo"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="Left/CharInfo"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_kloxf")
+text = "Аня"
+vertical_alignment = 2
+
+[node name="HP" type="Label" parent="Left/CharInfo"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_kloxf")
+text = "ХП  0/ 0"
+vertical_alignment = 2
+
+[node name="Money" type="Label" parent="Left/CharInfo"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_kloxf")
+text = "Р  0"
+vertical_alignment = 2
+
+[node name="Separator" type="HSeparator" parent="Left"]
+layout_mode = 2
+
+[node name="Tabs" type="VBoxContainer" parent="Left"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="ItemBtn" type="Button" parent="Left/Tabs"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("2_kloxf")
+text = "ПРДМ"
+
+[node name="Heart" type="TextureRect" parent="Left/Tabs/ItemBtn"]
+visible = false
+layout_mode = 0
+offset_left = 16.0
+offset_right = 32.0
+offset_bottom = 16.0
+texture = ExtResource("3_heart")
+stretch_mode = 2
+
+[node name="StatBtn" type="Button" parent="Left/Tabs"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("2_kloxf")
+text = "СТАТ"
+
+[node name="Heart" type="TextureRect" parent="Left/Tabs/StatBtn"]
+visible = false
+layout_mode = 0
+offset_left = 16.0
+offset_right = 32.0
+offset_bottom = 16.0
+texture = ExtResource("3_heart")
+stretch_mode = 2
+
+[node name="Right" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 156.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 4
+
+[node name="ItemScroll" type="ScrollContainer" parent="Right"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ItemList" type="VBoxContainer" parent="Right/ItemScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+
+[node name="StatPanel" type="VBoxContainer" parent="Right"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="InfoLabel" type="RichTextLabel" parent="Right"]
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_kloxf")
+fit_content = true
+vertical_alignment = 2
+
+[node name="Separator2" type="HSeparator" parent="Right"]
+layout_mode = 2
+
+[node name="BottomBar" type="HBoxContainer" parent="Right"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="Use" type="Label" parent="Right/BottomBar"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_kloxf")
+text = "ИСПЛ"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Info" type="Label" parent="Right/BottomBar"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_kloxf")
+text = "ИНФО"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Drop" type="Label" parent="Right/BottomBar"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_kloxf")
+text = "БРОС"
+horizontal_alignment = 1
+vertical_alignment = 2

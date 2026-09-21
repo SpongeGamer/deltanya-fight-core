@@ -1,0 +1,245 @@
+[gd_scene load_steps=34 format=3 uid="uid://co4y6qkqtb556"]
+
+[ext_resource type="Script" uid="uid://dsqojdfqy8uoq" path="res://fighters/monsters/nikita/mini_nikita/mini_nikita.gd" id="1_mnikita"]
+[ext_resource type="Shader" uid="uid://dyrt7gdlbx6eb" path="res://fighters/shaders/generic_monster.gdshader" id="2_mnikita"]
+[ext_resource type="Texture2D" uid="uid://bobs423tl50cy" path="res://fighters/monsters/nikita/mini_nikita/микро никита стойка.png" id="3_8cj5b"]
+[ext_resource type="Texture2D" uid="uid://ba3f0gef7hp3b" path="res://fighters/monsters/nikita/mini_nikita/микро никита атака 1.png" id="4_ntsjw"]
+[ext_resource type="Texture2D" uid="uid://b5l1lnj7ven2b" path="res://fighters/monsters/nikita/mini_nikita/микро никита атака 2.png" id="4_r0o8p"]
+[ext_resource type="Texture2D" uid="uid://dlmekwsalxwws" path="res://fighters/monsters/nikita/mini_nikita/микро никита атака 3.png" id="5_l2u8r"]
+[ext_resource type="Texture2D" uid="uid://dkuwe2pl2xeko" path="res://fighters/monsters/nikita/mini_nikita/микро никита урон.png" id="6_kj76l"]
+[ext_resource type="Texture2D" uid="uid://cbfivr4go5ot6" path="res://fighters/monsters/nikita/mini_nikita/микро никита ранен.png" id="7_lvr5a"]
+[ext_resource type="Texture2D" uid="uid://bfcsf8wse1exk" path="res://fighters/monsters/nikita/mini_nikita/микро никита убит.png" id="9_aapp8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mn"]
+shader = ExtResource("2_mnikita")
+shader_parameter/flash = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l2u8r"]
+atlas = ExtResource("4_ntsjw")
+region = Rect2(0, 0, 300, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l21nf"]
+atlas = ExtResource("4_ntsjw")
+region = Rect2(300, 0, 300, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kj76l"]
+atlas = ExtResource("4_ntsjw")
+region = Rect2(600, 0, 300, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvr5a"]
+atlas = ExtResource("4_ntsjw")
+region = Rect2(900, 0, 300, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aapp8"]
+atlas = ExtResource("4_ntsjw")
+region = Rect2(1200, 0, 300, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qedoq"]
+atlas = ExtResource("4_ntsjw")
+region = Rect2(1500, 0, 300, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4rf10"]
+atlas = ExtResource("4_r0o8p")
+region = Rect2(0, 0, 160, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_so1i6"]
+atlas = ExtResource("4_r0o8p")
+region = Rect2(160, 0, 160, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eev0c"]
+atlas = ExtResource("5_l2u8r")
+region = Rect2(0, 0, 160, 600)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lgiye"]
+atlas = ExtResource("5_l2u8r")
+region = Rect2(160, 0, 160, 600)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8mbv7"]
+atlas = ExtResource("5_l2u8r")
+region = Rect2(320, 0, 160, 600)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ytaue"]
+atlas = ExtResource("5_l2u8r")
+region = Rect2(480, 0, 160, 600)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e6pff"]
+atlas = ExtResource("5_l2u8r")
+region = Rect2(640, 0, 160, 600)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oqk0n"]
+atlas = ExtResource("6_kj76l")
+region = Rect2(0, 0, 160, 220)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f5nmg"]
+atlas = ExtResource("7_lvr5a")
+region = Rect2(0, 0, 240, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p0l2t"]
+atlas = ExtResource("7_lvr5a")
+region = Rect2(0, 0, 240, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ntsjw"]
+atlas = ExtResource("3_8cj5b")
+region = Rect2(0, 0, 160, 220)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7kd73"]
+atlas = ExtResource("3_8cj5b")
+region = Rect2(160, 0, 160, 220)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3a80d"]
+atlas = ExtResource("9_aapp8")
+region = Rect2(0, 0, 240, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7nf16"]
+atlas = ExtResource("9_aapp8")
+region = Rect2(240, 0, 240, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8cj5b"]
+atlas = ExtResource("3_8cj5b")
+region = Rect2(0, 0, 160, 220)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r0o8p"]
+atlas = ExtResource("3_8cj5b")
+region = Rect2(160, 0, 160, 220)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l2u8r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l21nf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kj76l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lvr5a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aapp8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qedoq")
+}],
+"loop": true,
+"name": &"attack_fahh",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4rf10")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_so1i6")
+}],
+"loop": false,
+"name": &"attack_ksyuha",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eev0c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lgiye")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8mbv7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ytaue")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e6pff")
+}],
+"loop": true,
+"name": &"attack_slam",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oqk0n")
+}],
+"loop": true,
+"name": &"damaged",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f5nmg")
+}],
+"loop": true,
+"name": &"damaged_damaged",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p0l2t")
+}],
+"loop": true,
+"name": &"damaged_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ntsjw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7kd73")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p0l2t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3a80d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7nf16")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3a80d")
+}],
+"loop": false,
+"name": &"faint",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8cj5b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r0o8p")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 3.0
+}]
+
+[node name="MiniNikita" type="Node2D"]
+script = ExtResource("1_mnikita")
+description = "Маленький Никита. Такой же громкий."
+battle_music = ""
+idle_lines = PackedStringArray("Я ТОЖЕ ТУТ!", "Не игнорируй меня!", "ЕШЬ ЧО ДОЮТ, но потише.")
+opening_line_singular = "  * Из тени появляется мини-Никита!"
+title = "Мини-Никита"
+base_fighter_stats = Dictionary[int, int]({
+0: 150,
+1: 1,
+2: 4,
+4: 1
+})
+main_sprite = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_mn")
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_mn")
+animation = &"damaged"
+autoplay = "default"

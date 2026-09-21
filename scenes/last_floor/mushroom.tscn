@@ -1,0 +1,69 @@
+[gd_scene load_steps=9 format=3 uid="uid://tipre53q7ctu"]
+
+[ext_resource type="Script" uid="uid://dwxs22wsc3mse" path="res://scenes/last_floor/mushroom.gd" id="1_qw1u8"]
+[ext_resource type="Texture2D" uid="uid://dnlyoa3q7bpro" path="res://assets/VFX/shroom.png" id="2_omoad"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25aas"]
+atlas = ExtResource("2_omoad")
+region = Rect2(19, 0, 19, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u4lu5"]
+atlas = ExtResource("2_omoad")
+region = Rect2(0, 0, 19, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_82vtd"]
+atlas = ExtResource("2_omoad")
+region = Rect2(19, 0, 19, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_im72d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_25aas")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u4lu5")
+}],
+"loop": true,
+"name": &"lit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_82vtd")
+}],
+"loop": false,
+"name": &"unlit",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6rr6q"]
+size = Vector2(40, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qw1u8"]
+
+[node name="Mushroom" type="Area2D"]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_qw1u8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_im72d")
+animation = &"unlit"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_6rr6q")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_qw1u8")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

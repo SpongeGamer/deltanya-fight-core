@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dbf401muq8k1q"]
+
+[ext_resource type="Script" uid="uid://b847l68tpl26m" path="res://fighters/monsters/gateguard/attacks/access_denied/access_denied.gd" id="1_ad"]
+[ext_resource type="Script" uid="uid://banx2kqylgojf" path="res://fighters/monsters/gateguard/attacks/access_denied/sign_bullet.gd" id="2_ad"]
+[ext_resource type="Texture2D" uid="uid://bwsgpab2qg0kq" path="res://fighters/monsters/gateguard/attacks/access_denied/stop.png" id="3_w8sr8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ad"]
+size = Vector2(36, 12)
+
+[node name="AccessDenied" type="Node2D"]
+script = ExtResource("1_ad")
+
+[node name="BaseBullet" type="Area2D" parent="."]
+visible = false
+position = Vector2(0, -400)
+collision_layer = 2
+script = ExtResource("2_ad")
+damage = 6
+
+[node name="Sprite" type="Sprite2D" parent="BaseBullet"]
+position = Vector2(0.099999905, 0)
+scale = Vector2(0.99473685, 0.9)
+texture = ExtResource("3_w8sr8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BaseBullet"]
+shape = SubResource("RectangleShape2D_ad")
+
+[connection signal="body_entered" from="BaseBullet" to="BaseBullet" method="_on_body_entered"]

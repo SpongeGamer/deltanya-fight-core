@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://uo7k0samsyfx"]
+
+[ext_resource type="Script" uid="uid://ds7dqk245su0u" path="res://fighters/monsters/clippy/attacks/suggestion_spam/suggestion_spam.gd" id="1_sg"]
+[ext_resource type="Script" uid="uid://bnkccwqaergjd" path="res://fighters/monsters/clippy/attacks/suggestion_spam/sine_bullet.gd" id="2_sg"]
+[ext_resource type="Texture2D" uid="uid://djgcua8kf8vpf" path="res://fighters/monsters/clippy/clippy_disk_bullet.png" id="3_sg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sg"]
+radius = 7.0
+
+[node name="SuggestionSpam" type="Node2D"]
+script = ExtResource("1_sg")
+
+[node name="BaseBullet" type="Area2D" parent="."]
+visible = false
+position = Vector2(0, -400)
+collision_layer = 2
+script = ExtResource("2_sg")
+damage = 3
+
+[node name="Sprite" type="Sprite2D" parent="BaseBullet"]
+scale = Vector2(0.55, 0.55)
+texture = ExtResource("3_sg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BaseBullet"]
+shape = SubResource("CircleShape2D_sg")
+
+[connection signal="body_entered" from="BaseBullet" to="BaseBullet" method="_on_body_entered"]

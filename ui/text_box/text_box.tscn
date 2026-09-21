@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://c5cnxltgwop68"]
+
+[ext_resource type="Script" uid="uid://rrdy5u8hbpop" path="res://ui/text_box/text_box.gd" id="1_kta3i"]
+[ext_resource type="FontFile" uid="uid://q4tuyk42idmk" path="res://fonts/8bitoperator Cyrillic Extension.otf" id="1_tgo65"]
+[ext_resource type="AudioStream" uid="uid://cwpp4q2dqf4ga" path="res://ui/text_box/res/typing_sound.wav" id="2_11jbd"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_tgo65"]
+random_pitch = 1.2
+random_volume_offset_db = 0.2
+streams_count = 1
+stream_0/stream = ExtResource("2_11jbd")
+
+[node name="TextBox" type="RichTextLabel"]
+custom_minimum_size = Vector2(100, 40)
+theme_override_constants/line_separation = 3
+theme_override_constants/paragraph_separation = 3
+theme_override_fonts/normal_font = ExtResource("1_tgo65")
+theme_override_font_sizes/normal_font_size = 20
+text = "Проверочный"
+scroll_active = false
+vertical_alignment = 1
+visible_characters_behavior = 1
+script = ExtResource("1_kta3i")
+
+[node name="TypingSound" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_tgo65")
+volume_db = -80.0

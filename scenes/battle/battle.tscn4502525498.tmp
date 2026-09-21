@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://b53ljrv0fb6u4"]
+
+[ext_resource type="Script" uid="uid://cosoh16n65vwr" path="res://scenes/battle/battle.gd" id="1_0yh6x"]
+[ext_resource type="PackedScene" uid="uid://dh7u53yj0xavd" path="res://ui/battle/bottom_panel/bottom_panel.tscn" id="1_7gynk"]
+[ext_resource type="PackedScene" uid="uid://b3uxp6uapsy5m" path="res://ui/battle/soul_cage/SoulCage.tscn" id="2_xd4uy"]
+[ext_resource type="PackedScene" uid="uid://daa26yfs5qdsb" path="res://soul/soul.tscn" id="3_0yh6x"]
+[ext_resource type="PackedScene" uid="uid://siv76bpw5pri" path="res://ui/battle/tp_bar/tp_bar.tscn" id="5_h0kxc"]
+
+[node name="Battle" type="Node2D"]
+script = ExtResource("1_0yh6x")
+
+[node name="SoulCage" parent="." instance=ExtResource("2_xd4uy")]
+position = Vector2(308, 171)
+
+[node name="Characters" type="Node2D" parent="."]
+
+[node name="Monsters" type="Node2D" parent="."]
+
+[node name="BottomPanel" parent="." instance=ExtResource("1_7gynk")]
+position = Vector2(0, 365)
+
+[node name="Soul" parent="." instance=ExtResource("3_0yh6x")]
+visible = false
+position = Vector2(308, 171)
+
+[node name="TPBar" parent="." instance=ExtResource("5_h0kxc")]
+position = Vector2(51, 139)

@@ -1,0 +1,89 @@
+[gd_scene load_steps=10 format=3 uid="uid://fktqdor14g3y"]
+
+[ext_resource type="Script" uid="uid://bqthnxln1eg8m" path="res://trailer/trailer_sequence.gd" id="1_pnevc"]
+[ext_resource type="Texture2D" uid="uid://uev0548qhtgq" path="res://assets/furniture/bed.png" id="2_baktl"]
+[ext_resource type="Texture2D" uid="uid://breupa3abab8e" path="res://trailer/Sprite.png" id="3_lah5x"]
+[ext_resource type="FontFile" uid="uid://i65lhainpmd6" path="res://ui/theme/fonts/8BitOperatorJVE/8BitOperatorJVE.ttf" id="4_qpd74"]
+[ext_resource type="Texture2D" uid="uid://b0mx4qepjjvn" path="res://globals/global/res/heart.png" id="5_c18qv"]
+[ext_resource type="FontFile" uid="uid://q4tuyk42idmk" path="res://fonts/8bitoperator Cyrillic Extension.otf" id="6_wvyhc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7n74m"]
+font = ExtResource("4_qpd74")
+font_size = 70
+
+[sub_resource type="LabelSettings" id="LabelSettings_qpd74"]
+font = ExtResource("6_wvyhc")
+font_size = 50
+font_color = Color(1, 1, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_x8cbo"]
+font = ExtResource("6_wvyhc")
+font_size = 50
+
+[node name="TrailerSequence" type="CanvasLayer" node_paths=PackedStringArray("anne_sprite", "zzz_parent", "title_label", "chapter_label", "date_label")]
+process_mode = 3
+layer = 100
+script = ExtResource("1_pnevc")
+anne_sprite = NodePath("Anne")
+zzz_parent = NodePath("Anne")
+title_label = NodePath("Logo")
+chapter_label = NodePath("Text1")
+date_label = NodePath("Text2")
+fade_time = 2.0
+show_time = 3.0
+pause_time = 1.0
+
+[node name="BedSprite" type="Sprite2D" parent="."]
+z_index = 30
+position = Vector2(318, 256)
+rotation = 1.5707964
+scale = Vector2(4.6375003, 4.3125033)
+texture = ExtResource("2_baktl")
+flip_v = true
+
+[node name="Anne" type="Sprite2D" parent="."]
+z_index = 31
+position = Vector2(314, 226)
+scale = Vector2(0.16630435, 0.175)
+texture = ExtResource("3_lah5x")
+hframes = 3
+frame = 1
+
+[node name="Logo" type="Label" parent="."]
+offset_left = 103.0
+offset_top = 120.0
+offset_right = 503.0
+offset_bottom = 191.0
+size_flags_horizontal = 3
+text = "Deltanyarune"
+label_settings = SubResource("LabelSettings_7n74m")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Heart" type="Sprite2D" parent="Logo"]
+self_modulate = Color(1, 0, 0, 1)
+position = Vector2(405, 41)
+scale = Vector2(2, 2)
+texture = ExtResource("5_c18qv")
+
+[node name="Text1" type="Label" parent="."]
+offset_left = 120.0
+offset_top = 200.0
+offset_right = 524.0
+offset_bottom = 303.0
+size_flags_horizontal = 3
+text = "Глава 1"
+label_settings = SubResource("LabelSettings_qpd74")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Text2" type="Label" parent="."]
+offset_left = 120.0
+offset_top = 270.0
+offset_right = 524.0
+offset_bottom = 373.0
+size_flags_horizontal = 3
+text = "??. 05. 2026"
+label_settings = SubResource("LabelSettings_x8cbo")
+horizontal_alignment = 1
+vertical_alignment = 1

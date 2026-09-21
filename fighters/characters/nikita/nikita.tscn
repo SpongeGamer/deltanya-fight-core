@@ -1,0 +1,79 @@
+[gd_scene load_steps=9 format=3 uid="uid://dtftklueeairt"]
+
+[ext_resource type="Script" uid="uid://jit0je10t72y" path="res://fighters/characters/kate/kate.gd" id="1_52vma"]
+[ext_resource type="Texture2D" uid="uid://b0mx4qepjjvn" path="res://globals/global/res/heart.png" id="2_scvic"]
+[ext_resource type="Texture2D" uid="uid://bugejgdsvu87k" path="res://assets/main_characters/nikita_down.png" id="4_ttdi8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bxvur"]
+atlas = ExtResource("4_ttdi8")
+region = Rect2(0, 0, 440, 800)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0gur"]
+atlas = ExtResource("4_ttdi8")
+region = Rect2(440, 0, 440, 800)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bat4p"]
+atlas = ExtResource("4_ttdi8")
+region = Rect2(880, 0, 440, 800)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4x620"]
+atlas = ExtResource("4_ttdi8")
+region = Rect2(1320, 0, 440, 800)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xhk0f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bxvur")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a0gur")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bat4p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4x620")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bxvur")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a0gur")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bat4p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4x620")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Nikita" type="Node2D"]
+script = ExtResource("1_52vma")
+main_color = Color(0.22352941, 0.078431375, 0, 1)
+icon_color = Color(0.22419196, 0.07670892, 1.2032688e-08, 1)
+icon = ExtResource("2_scvic")
+title = "Никита"
+base_fighter_stats = Dictionary[int, int]({
+0: 110,
+1: 5,
+2: 9,
+3: 1
+})
+main_sprite = NodePath("AnimatedSprite2D")
+metadata/_custom_type_script = "uid://d1ho1nqa4x7fm"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.15, 0.15)
+sprite_frames = SubResource("SpriteFrames_xhk0f")
+animation = &"idle"
+frame_progress = 0.33662033

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Equippable" load_steps=3 format=3 uid="uid://cofx207qms3k1"]
+
+[ext_resource type="Script" uid="uid://cp643of2mfab3" path="res://holdables/equippables/equippable_attribute.gd" id="1_skib3"]
+[ext_resource type="Script" uid="uid://cbtfclefu13k7" path="res://holdables/equippables/equippable.gd" id="2_r6ifa"]
+
+[resource]
+script = ExtResource("2_r6ifa")
+fighter_stat_modifiers = Dictionary[int, int]({
+0: 10,
+1: 3,
+2: 9,
+3: 18
+})
+name = "Микрофон Пустоты"
+short_description = "Молчит. Но все слышат."
+long_description = "Последний артефакт темного мира. В него не нужно петь - он сам знает что спеть.
+МАГ +18  АТК +9  ЗЩТ +3  ХП +10"
+price = 1600
+sell_price = 800
+inventory_tab = 3

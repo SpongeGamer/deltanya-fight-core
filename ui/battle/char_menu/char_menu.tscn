@@ -1,0 +1,208 @@
+[gd_scene load_steps=16 format=3 uid="uid://bd2jy3sq4c58u"]
+
+[ext_resource type="Script" uid="uid://il0gaqwbwkjg" path="res://ui/battle/char_menu/char_menu.gd" id="1_1ln4u"]
+[ext_resource type="Texture2D" uid="uid://b6vlddkq2yji4" path="res://ui/battle/char_menu/res/hp_static.png" id="1_g0hy4"]
+[ext_resource type="FontFile" uid="uid://dln4jdnfh0rd6" path="res://ui/theme/fonts/hp_numbers/hp_numbers.png" id="2_655sv"]
+[ext_resource type="PackedScene" uid="uid://bcd7akq4n0wp" path="res://ui/battle/char_menu/char_menu_button/char_menu_button.tscn" id="2_an0ot"]
+[ext_resource type="Script" uid="uid://bkqybx3nr4a40" path="res://ui/battle/char_menu/bg_line_animation.gd" id="2_mei5j"]
+[ext_resource type="Texture2D" uid="uid://bji54nmvqt6id" path="res://ui/battle/char_menu/res/sample_char_icon.png" id="4_lgnlm"]
+[ext_resource type="Texture2D" uid="uid://3f62x0n7gva3" path="res://ui/battle/char_menu/res/action_icons.png" id="5_ler53"]
+[ext_resource type="FontFile" uid="uid://dq2x4liarn6x5" path="res://fonts/8bitoperator Cyrillic Extension.ttf" id="7_an0ot"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cp84r"]
+resource_local_to_scene = true
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_color = Color(0.2, 0.12549, 0.2, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_an0ot"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1ln4u"]
+resource_local_to_scene = true
+line_spacing = 0.0
+font_size = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_rjcck"]
+resource_local_to_scene = true
+line_spacing = 0.0
+font_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j4e55"]
+bg_color = Color(0.501961, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q2bc2"]
+resource_local_to_scene = true
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ln4u"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="CharMenu" type="Control"]
+custom_minimum_size = Vector2(212, 36)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_1ln4u")
+
+[node name="Actions" type="Panel" parent="."]
+custom_minimum_size = Vector2(210, 32)
+layout_mode = 0
+offset_top = 4.0
+offset_right = 212.0
+offset_bottom = 36.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_cp84r")
+
+[node name="BGLineAnimation" type="Node2D" parent="Actions"]
+visible = false
+position = Vector2(0, -4)
+script = ExtResource("2_mei5j")
+
+[node name="LeftPanel1" type="Panel" parent="Actions/BGLineAnimation"]
+offset_top = 6.0
+offset_right = 2.0
+offset_bottom = 36.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_an0ot")
+
+[node name="LeftPanel2" type="Panel" parent="Actions/BGLineAnimation"]
+offset_top = 6.0
+offset_right = 2.0
+offset_bottom = 36.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_an0ot")
+
+[node name="RightPanel1" type="Panel" parent="Actions/BGLineAnimation"]
+offset_left = 210.0
+offset_top = 6.0
+offset_right = 212.0
+offset_bottom = 36.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_an0ot")
+
+[node name="RightPanel2" type="Panel" parent="Actions/BGLineAnimation"]
+offset_left = 210.0
+offset_top = 6.0
+offset_right = 212.0
+offset_bottom = 36.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_an0ot")
+
+[node name="Attack" parent="Actions" instance=ExtResource("2_an0ot")]
+self_modulate = Color(1, 1, 0, 1)
+position = Vector2(33, 16)
+selected = true
+
+[node name="Act" parent="Actions" instance=ExtResource("2_an0ot")]
+self_modulate = Color(1, 0.49803922, 0.15294118, 1)
+position = Vector2(68, 16)
+region_rect = Rect2(31, 0, 31, 26)
+sprite = 1
+
+[node name="Magic" parent="Actions" instance=ExtResource("2_an0ot")]
+self_modulate = Color(1, 0.49803922, 0.15294118, 1)
+position = Vector2(68, 16)
+region_rect = Rect2(62, 0, 31, 26)
+sprite = 2
+
+[node name="Item" parent="Actions" instance=ExtResource("2_an0ot")]
+self_modulate = Color(1, 0.49803922, 0.15294118, 1)
+position = Vector2(103, 16)
+region_rect = Rect2(93, 0, 31, 26)
+sprite = 3
+
+[node name="Spare" parent="Actions" instance=ExtResource("2_an0ot")]
+self_modulate = Color(1, 0.49803922, 0.15294118, 1)
+position = Vector2(138, 16)
+region_rect = Rect2(124, 0, 31, 26)
+sprite = 4
+
+[node name="Defend" parent="Actions" instance=ExtResource("2_an0ot")]
+self_modulate = Color(1, 0.49803922, 0.15294118, 1)
+position = Vector2(173, 16)
+region_rect = Rect2(155, 0, 31, 26)
+sprite = 5
+
+[node name="Stats" type="Panel" parent="."]
+custom_minimum_size = Vector2(212, 36)
+layout_mode = 0
+offset_right = 212.0
+offset_bottom = 36.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_cp84r")
+
+[node name="HPStatic" type="Sprite2D" parent="Stats"]
+position = Vector2(141, 18)
+texture = ExtResource("1_g0hy4")
+
+[node name="Icon" type="Sprite2D" parent="Stats"]
+position = Vector2(27, 19)
+texture = ExtResource("4_lgnlm")
+
+[node name="ActionIcon" type="Sprite2D" parent="Stats"]
+visible = false
+position = Vector2(27, 19)
+texture = ExtResource("5_ler53")
+hframes = 6
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="Name" type="Label" parent="Stats"]
+layout_mode = 0
+offset_left = 51.0
+offset_top = 15.0
+offset_right = 151.0
+offset_bottom = 35.0
+theme_override_fonts/font = ExtResource("7_an0ot")
+theme_override_font_sizes/font_size = 16
+text = "АНЯ"
+vertical_alignment = 1
+uppercase = true
+
+[node name="CurrentHP" type="Label" parent="Stats"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 7.0
+offset_right = 159.0
+offset_bottom = 18.0
+theme_override_fonts/font = ExtResource("2_655sv")
+text = "80"
+label_settings = SubResource("LabelSettings_1ln4u")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="MaxHP" type="Label" parent="Stats"]
+layout_mode = 0
+offset_left = 174.0
+offset_top = 7.0
+offset_right = 205.0
+offset_bottom = 18.0
+theme_override_fonts/font = ExtResource("2_655sv")
+theme_override_font_sizes/font_size = 10
+text = "100"
+label_settings = SubResource("LabelSettings_rjcck")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HealthBar" type="ProgressBar" parent="Stats"]
+custom_minimum_size = Vector2(76, 9)
+layout_mode = 0
+offset_left = 128.0
+offset_top = 21.0
+offset_right = 204.0
+offset_bottom = 30.0
+theme_override_styles/background = SubResource("StyleBoxFlat_j4e55")
+theme_override_styles/fill = SubResource("StyleBoxFlat_q2bc2")
+value = 100.0
+allow_greater = true
+show_percentage = false
+
+[node name="Cover1" type="Panel" parent="."]
+layout_mode = 0
+offset_top = 2.0
+offset_right = 2.0
+offset_bottom = 36.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_1ln4u")
+
+[node name="Cover2" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 210.0
+offset_top = 2.0
+offset_right = 212.0
+offset_bottom = 36.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_1ln4u")

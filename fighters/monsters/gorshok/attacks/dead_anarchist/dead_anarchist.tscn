@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://66b3snl1871t"]
+
+[ext_resource type="Script" uid="uid://dbhsn2elnivv1" path="res://fighters/monsters/gorshok/attacks/dead_anarchist/walking_skull.gd" id="1_ws"]
+[ext_resource type="Script" uid="uid://c8qaw2tqbpfaw" path="res://fighters/monsters/gorshok/attacks/dead_anarchist/dead_anarchist.gd" id="2_da"]
+[ext_resource type="Texture2D" uid="uid://xks4mtqe7c78" path="res://fighters/monsters/gorshok/attacks/ricochet/skull_bullet.png" id="3_tex"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a"]
+atlas = ExtResource("3_tex")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b"]
+atlas = ExtResource("3_tex")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_skull"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="RectangleShape2D" id="Shape_skull"]
+size = Vector2(20, 21)
+
+[node name="DeadAnarchist" type="Node2D"]
+script = ExtResource("2_da")
+
+[node name="BaseSkull" type="Area2D" parent="."]
+visible = false
+z_index = 5
+position = Vector2(0, -400)
+collision_layer = 2
+script = ExtResource("1_ws")
+damage = 20
+graze_points = 2
+time_points = 0.01
+
+[node name="Sprite" type="AnimatedSprite2D" parent="BaseSkull"]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_skull")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BaseSkull"]
+position = Vector2(0, -0.5)
+shape = SubResource("Shape_skull")
+
+[connection signal="body_entered" from="BaseSkull" to="BaseSkull" method="_on_body_entered"]

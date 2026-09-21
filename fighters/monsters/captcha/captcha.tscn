@@ -1,0 +1,125 @@
+[gd_scene load_steps=12 format=3 uid="uid://du2rnt8ipg35b"]
+
+[ext_resource type="Script" uid="uid://cuuhr3lgrkkg0" path="res://fighters/monsters/captcha/captcha.gd" id="1_cap"]
+[ext_resource type="Script" uid="uid://bwvvm6kvpsqi1" path="res://fighters/characters/acts/act.gd" id="3_act"]
+[ext_resource type="Texture2D" uid="uid://cxyrk7pp2b23n" path="res://fighters/monsters/captcha/captcha_idle.png" id="3_d1lhc"]
+
+[sub_resource type="Resource" id="Resource_ask"]
+script = ExtResource("3_act")
+title = "Пройти тест"
+text = "Ты смотришь на символы.
+Первый похож на цифру. Кажется, это «8»?"
+spare_percent = 25
+metadata/_custom_type_script = "uid://bwvvm6kvpsqi1"
+
+[sub_resource type="Resource" id="Resource_skip"]
+script = ExtResource("3_act")
+title = "Обновить"
+text = "Ты нажимаешь на стрелочку.
+Капча обновляется.
+Символы стали еще страннее."
+metadata/_custom_type_script = "uid://bwvvm6kvpsqi1"
+
+[sub_resource type="Resource" id="Resource_audio"]
+script = ExtResource("3_act")
+title = "Аудио"
+text = "Ты просишь версию для прослушивания.
+Раздается шум. Потом еще шум.
+Потом кто-то бормочет цифры в обратном порядке."
+spare_percent = 10
+metadata/_custom_type_script = "uid://bwvvm6kvpsqi1"
+
+[sub_resource type="Animation" id="Animation_reset"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_die"]
+resource_name = "die"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666666, 0.1, 0.13333334, 0.16666667, 0.2, 0.23333333, 0.26666668, 0.3, 0.33333334, 0.36666667, 0.4, 0.43333334, 0.46666667, 0.5, 0.53333336, 0.56666666, 0.6, 0.6333333, 0.6666667, 0.7, 0.73333335, 0.76666665, 0.8000001),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(20.833332, 0), Vector2(41.666664, 0), Vector2(62.499996, 0), Vector2(83.33333, 0), Vector2(104.166664, 0), Vector2(124.99999, 0), Vector2(145.83333, 0), Vector2(166.66666, 0), Vector2(187.49998, 0), Vector2(208.33333, 0), Vector2(229.16666, 0), Vector2(249.99998, 0), Vector2(270.8333, 0), Vector2(291.66666, 0), Vector2(312.49997, 0), Vector2(333.3333, 0), Vector2(354.16663, 0), Vector2(374.99997, 0), Vector2(395.83328, 0), Vector2(416.66666, 0), Vector2(437.49994, 0), Vector2(458.3333, 0), Vector2(479.16663, 0), Vector2(500, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hurt"]
+resource_name = "hurt"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666666, 0.1, 0.13333334, 0.16666667, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(10, 0), Vector2(-10, 0), Vector2(8, 0), Vector2(-8, 0), Vector2(4, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_spare"]
+resource_name = "spare"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666666, 0.1, 0.13333334, 0.16666667, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(10, 0), Vector2(-10, 0), Vector2(8, 0), Vector2(-8, 0), Vector2(4, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cap"]
+_data = {
+&"RESET": SubResource("Animation_reset"),
+&"die": SubResource("Animation_die"),
+&"hurt": SubResource("Animation_hurt"),
+&"spare": SubResource("Animation_spare")
+}
+
+[node name="Captcha" type="Node2D"]
+script = ExtResource("1_cap")
+description = "* Капча — страж без лица. Проверяет всех."
+acts = Array[ExtResource("3_act")]([SubResource("Resource_ask"), SubResource("Resource_skip"), SubResource("Resource_audio")])
+money_dropped = 200
+battle_music = "captcha"
+idle_lines = PackedStringArray("Выберите все светофоры.", "Нажмите для новых символов.", "Я не робот. А ты?", "Срок действия истек. Попробуйте снова.", "Выберите все велосипеды.", "Пожалуйста, подождите...", "Ошибка проверки. Повторите.")
+opening_line_singular = "  * Капча блокирует путь."
+opening_line_plural = "  * Несколько Капч требуют верификации."
+title = "Капча"
+base_fighter_stats = Dictionary[int, int]({
+0: 220,
+1: 4,
+2: 6,
+4: 1
+})
+main_sprite = NodePath("Sprite")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("3_d1lhc")
+hframes = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_cap")
+}

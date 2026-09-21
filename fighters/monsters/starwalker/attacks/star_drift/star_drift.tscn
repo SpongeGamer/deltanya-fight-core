@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://gorpunrnae2b"]
+
+[ext_resource type="Script" uid="uid://d25f66rkr5xkn" path="res://fighters/monsters/starwalker/attacks/star_drift/star_drift.gd" id="1_afqro"]
+[ext_resource type="Script" uid="uid://c288j20vyy5hp" path="res://fighters/monsters/starwalker/attacks/star_drift/star_bullet.gd" id="2_afqro"]
+[ext_resource type="Texture2D" uid="uid://6yinvheyw0nt" path="res://fighters/monsters/starwalker/starwalker_bullet.png" id="3_pdsu5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xpvif"]
+size = Vector2(13, 14)
+
+[node name="StarDrift" type="Node2D"]
+script = ExtResource("1_afqro")
+
+[node name="BaseBullet" type="Area2D" parent="."]
+visible = false
+position = Vector2(0, -400)
+collision_layer = 2
+script = ExtResource("2_afqro")
+damage = 7
+
+[node name="Sprite" type="Sprite2D" parent="BaseBullet"]
+texture = ExtResource("3_pdsu5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BaseBullet"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_xpvif")
+
+[connection signal="body_entered" from="BaseBullet" to="BaseBullet" method="_on_body_entered"]

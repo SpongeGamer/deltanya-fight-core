@@ -1,0 +1,228 @@
+[gd_scene load_steps=12 format=4 uid="uid://ce0e1df6cxaib"]
+
+[ext_resource type="Texture2D" uid="uid://kvjj3os6js8o" path="res://assets/tilesets/PostApoc_Workshop.png" id="1_hlwbc"]
+[ext_resource type="Texture2D" uid="uid://b2c1fcixnn3wm" path="res://assets/tilesets/PostApoc_Workshop_RoomTiles.png" id="2_kgkf2"]
+[ext_resource type="Texture2D" uid="uid://6lmnk8muqm7r" path="res://assets/tilesets/house_walls.png" id="3_uiakm"]
+[ext_resource type="Script" uid="uid://ct404q8dpij18" path="res://scripts/overworld/camera_controller.gd" id="4_f6tgh"]
+[ext_resource type="PackedScene" uid="uid://b8ny5hm5wkufg" path="res://ui/settings/settings_menu.tscn" id="5_oug14"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_772ij"]
+texture = ExtResource("1_hlwbc")
+22:25/size_in_atlas = Vector2i(4, 3)
+22:25/0 = 0
+22:25/0/z_index = 1
+26:24/size_in_atlas = Vector2i(1, 2)
+26:24/0 = 0
+26:24/0/z_index = 1
+27:24/size_in_atlas = Vector2i(1, 2)
+27:24/0 = 0
+27:24/0/z_index = 1
+22:18/size_in_atlas = Vector2i(2, 2)
+22:18/0 = 0
+22:18/0/z_index = 1
+6:14/size_in_atlas = Vector2i(2, 2)
+6:14/0 = 0
+6:14/0/z_index = 1
+8:1/size_in_atlas = Vector2i(4, 3)
+8:1/0 = 0
+8:1/0/z_index = 1
+20:8/size_in_atlas = Vector2i(2, 2)
+20:8/0 = 0
+20:8/0/z_index = 1
+2:8/size_in_atlas = Vector2i(1, 2)
+2:8/0 = 0
+2:8/0/z_index = 1
+4:8/size_in_atlas = Vector2i(1, 2)
+4:8/0 = 0
+4:8/0/z_index = 1
+10:24/0 = 0
+11:24/0 = 0
+10:25/0 = 0
+11:25/0 = 0
+10:26/0 = 0
+11:26/0 = 0
+10:27/0 = 0
+11:27/0 = 0
+15:24/0 = 0
+15:25/0 = 0
+16:25/0 = 0
+16:24/0 = 0
+17:24/0 = 0
+17:25/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4jcsg"]
+texture = ExtResource("2_kgkf2")
+1:3/0 = 0
+1:4/0 = 0
+1:5/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+6:4/0 = 0
+6:5/0 = 0
+13:4/0 = 0
+13:5/0 = 0
+13:6/0 = 0
+13:7/0 = 0
+12:4/0 = 0
+12:5/0 = 0
+12:6/0 = 0
+12:7/0 = 0
+14:4/0 = 0
+15:4/0 = 0
+15:5/0 = 0
+14:5/0 = 0
+14:6/0 = 0
+15:6/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yo75t"]
+texture = ExtResource("3_uiakm")
+9:5/0 = 0
+10:5/0 = 0
+11:5/0 = 0
+12:5/0 = 0
+12:6/0 = 0
+11:6/0 = 0
+10:6/0 = 0
+9:6/0 = 0
+10:7/0 = 0
+11:7/0 = 0
+12:7/0 = 0
+9:7/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_l66dx"]
+sources/0 = SubResource("TileSetAtlasSource_772ij")
+sources/2 = SubResource("TileSetAtlasSource_4jcsg")
+sources/3 = SubResource("TileSetAtlasSource_yo75t")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hlwbc"]
+texture = ExtResource("1_hlwbc")
+10:20/0 = 0
+10:20/0/z_index = 1
+11:20/0 = 0
+11:20/0/z_index = 1
+11:21/0 = 0
+11:21/0/z_index = 1
+10:21/0 = 0
+10:21/0/z_index = 1
+10:22/0 = 0
+10:22/0/z_index = 1
+11:22/0 = 0
+11:22/0/z_index = 1
+11:23/0 = 0
+11:23/0/z_index = 1
+10:23/0 = 0
+10:23/0/z_index = 1
+14:19/0 = 0
+14:19/0/z_index = 1
+14:20/0 = 0
+14:20/0/z_index = 1
+14:21/0 = 0
+14:21/0/z_index = 1
+14:22/0 = 0
+14:22/0/z_index = 1
+14:23/0 = 0
+14:23/0/z_index = 1
+5:27/0 = 0
+5:27/0/z_index = 1
+8:27/0 = 0
+8:27/0/z_index = 1
+9:27/0 = 0
+9:27/0/z_index = 1
+9:26/0 = 0
+9:26/0/z_index = 1
+8:26/0 = 0
+8:26/0/z_index = 1
+1:26/0 = 0
+1:26/0/z_index = 1
+0:26/0 = 0
+0:26/0/z_index = 1
+8:22/0 = 0
+8:22/0/z_index = 1
+8:14/0 = 0
+8:14/0/z_index = 1
+8:15/0 = 0
+8:15/0/z_index = 1
+6:14/0 = 0
+6:14/0/z_index = 1
+7:14/0 = 0
+7:14/0/z_index = 1
+7:15/0 = 0
+7:15/0/z_index = 1
+6:15/0 = 0
+6:15/0/z_index = 1
+10:14/0 = 0
+10:14/0/z_index = 1
+11:14/0 = 0
+11:14/0/z_index = 1
+12:15/0 = 0
+12:15/0/z_index = 1
+20:8/0 = 0
+20:8/0/z_index = 2
+20:9/0 = 0
+20:9/0/z_index = 2
+21:9/0 = 0
+21:9/0/z_index = 2
+21:8/0 = 0
+21:8/0/z_index = 2
+4:0/size_in_atlas = Vector2i(4, 4)
+4:0/0 = 0
+26:24/size_in_atlas = Vector2i(1, 2)
+26:24/0 = 0
+26:24/0/z_index = 1
+27:24/size_in_atlas = Vector2i(1, 2)
+27:24/0 = 0
+27:24/0/z_index = 1
+26:26/size_in_atlas = Vector2i(2, 2)
+26:26/0 = 0
+26:26/0/z_index = 1
+20:24/size_in_atlas = Vector2i(2, 4)
+20:24/0 = 0
+20:24/0/z_index = 2
+2:8/size_in_atlas = Vector2i(1, 2)
+2:8/0 = 0
+5:8/size_in_atlas = Vector2i(1, 2)
+5:8/0 = 0
+3:8/size_in_atlas = Vector2i(1, 2)
+3:8/0 = 0
+9:13/0 = 0
+9:13/0/z_index = 3
+7:19/0 = 0
+3:18/0 = 0
+3:17/0 = 0
+19:24/0 = 0
+19:24/0/z_index = 2
+19:25/0 = 0
+19:25/0/z_index = 2
+
+[sub_resource type="TileSet" id="TileSet_kgkf2"]
+sources/0 = SubResource("TileSetAtlasSource_hlwbc")
+
+[node name="basement_garage_finale" type="Node2D"]
+
+[node name="Layer1" type="TileMapLayer" parent="."]
+z_index = -4000
+z_as_relative = false
+scale = Vector2(2, 2)
+tile_map_data = PackedByteArray("AAAEAAYAAAAKABsAAAAFAAYAAAALABsAAAAGAAYAAAAKABsAAAAHAAYAAAALABsAAAAIAAYAAAAKABsAAAAJAAYAAAALABsAAAAKAAYAAAAKABsAAAALAAYAAAALABsAAAAMAAYAAAAKABsAAAANAAYAAAAKABsAAAAOAAYAAAALABsAAAAOAAcAAwAMAAUAAAAOAAgAAwAJAAYAAAAOAAkAAwAMAAYAAAAOAAoAAwAJAAYAAAANAAoAAwAJAAYAAAAMAAoAAwAMAAYAAAALAAoAAwAJAAYAAAAKAAoAAwAJAAYAAAAJAAoAAwALAAcAAAAIAAoAAwAJAAYAAAAHAAoAAwAJAAYAAAAGAAoAAwALAAcAAGAFAAoAAwAJAAYAAAAEAAoAAwAJAAcAAAAEAAkAAwAJAAYAAAAEAAgAAwAJAAYAAAAEAAcAAwAJAAUAAAANAAkAAwAJAAYAAAAMAAkAAwAJAAYAAAALAAkAAwAJAAYAAAAKAAkAAwAJAAYAAAAJAAkAAwAJAAYAAAAIAAkAAwAJAAYAAAAHAAkAAwAJAAYAAAAGAAkAAwAJAAYAAAAFAAkAAwAMAAYAAAAEAAMAAAAKABgAAAAFAAMAAAALABgAAAAGAAMAAAAKABgAAAAHAAMAAAALABgAAAAIAAMAAAAKABgAAAAJAAMAAAALABgAAAAKAAMAAAAKABgAAAALAAMAAAALABgAAAAMAAMAAAAKABgAAAANAAMAAAALABgAAAAOAAMAAAAKABgAAAAEAAQAAAAKABkAAAAFAAQAAAALABkAAAAGAAQAAAAKABkAAAAHAAQAAAALABkAAAAIAAQAAAAKABkAAAAJAAQAAAALABkAAAAKAAQAAAAKABkAAAALAAQAAAALABkAAAAMAAQAAAAKABkAAAANAAQAAAAKABkAAAAOAAQAAAALABkAAAAEAAUAAAAKABoAAAAFAAUAAAALABoAAAAGAAUAAAAKABoAAAAHAAUAAAALABoAAAAIAAUAAAAKABoAAAAJAAUAAAALABoAAAAKAAUAAAAKABoAAAALAAUAAAALABoAAAAMAAUAAAAKABoAAAANAAUAAAAKABoAAAAOAAUAAAALABoAAAAFAAgAAwAJAAYAAAAGAAgAAwAJAAYAAAAHAAgAAwAJAAYAAAAIAAgAAwAJAAYAAAAJAAgAAwAJAAYAAAAKAAgAAwAJAAYAAAALAAgAAwAJAAYAAAAMAAgAAwAJAAYAAAANAAgAAwAJAAYAAAAFAAcAAwAKAAUAAAAGAAcAAwALAAUAAAAHAAcAAwAKAAUAAAAIAAcAAwALAAUAAAAJAAcAAwALAAUAAAAKAAcAAwAKAAUAAAALAAcAAwALAAUAAAAMAAcAAwAKAAUAAAANAAcAAwALAAUAAAADAAYAAgABAAUAAAADAAUAAgABAAQAAAADAAQAAgABAAQAAAADAAMAAgABAAQAAAADAAIAAgABAAMAAAAEAAIAAgACAAMAAAAFAAIAAgACAAMAAAAGAAIAAgACAAMAAAAHAAIAAgACAAMAAAAIAAIAAgACAAMAAAAJAAIAAgACAAMAAAAKAAIAAgACAAMAAAALAAIAAgACAAMAAAAMAAIAAgACAAMAAAANAAIAAgACAAMAAAAOAAIAAgACAAMAAAAPAAIAAgAGAAMAAAAPAAMAAgAGAAQAAAAPAAQAAgAGAAQAAAAPAAUAAgAGAAQAAAAPAAYAAgAGAAQAAAAPAAcAAgAGAAQAAAAPAAgAAgAGAAQAAAAPAAkAAgAGAAQAAAAPAAoAAgAGAAQAAAAEAAsAAwAJAAYAAAAEAAwAAwAMAAYAAAAEAA0AAwALAAUAADAOAAsAAwAJAAYAAAAOAAwAAwAJAAYAAAAOAA0AAwAMAAUAADANAA0AAwALAAUAADAMAA0AAwALAAUAADALAA0AAwALAAUAADAKAA0AAwALAAUAADAJAA0AAwALAAUAADAIAA0AAwALAAUAADAHAA0AAwAKAAUAADAGAA0AAwALAAUAADAFAA0AAwALAAUAADANAAwAAwAMAAYAAFAMAAwAAwAJAAYAAAALAAwAAwAJAAcAAAAKAAwAAwAJAAYAAAAJAAwAAwAJAAYAAAAIAAwAAwAJAAYAAAAHAAwAAwAJAAYAAAAGAAwAAwAJAAYAAAAFAAwAAwAJAAYAAAANAAsAAwAJAAYAAAAMAAsAAwAJAAYAAAALAAsAAwAJAAYAAAAKAAsAAwAJAAYAAAAJAAsAAwAJAAYAAAAIAAsAAwAJAAYAAAAHAAsAAwAJAAYAAAAGAAsAAwAJAAYAAAAFAAsAAwAJAAYAAAADAAcAAgABAAQAAAADAAgAAgABAAQAAAADAAkAAgABAAQAAAADAAoAAgABAAQAAAADAAsAAgABAAQAAAADAAwAAgABAAQAAAADAA0AAgABAAQAAAAPAAsAAgAGAAQAAAAPAAwAAgAGAAQAAAAPAA0AAgAGAAQAAAAEAA4AAgACAAMAADAFAA4AAgACAAMAADAGAA4AAgACAAMAADAHAA4AAgACAAMAADAIAA4AAgACAAMAADAJAA4AAgACAAMAADAKAA4AAgACAAMAADALAA4AAgACAAMAADAMAA4AAgACAAMAADANAA4AAgACAAMAADAOAA4AAgACAAMAADADAA4AAgABAAMAAGAPAA4AAgAGAAMAAFA=")
+tile_set = SubResource("TileSet_l66dx")
+
+[node name="Layer2" type="TileMapLayer" parent="."]
+z_index = -3999
+z_as_relative = false
+scale = Vector2(2, 2)
+tile_map_data = PackedByteArray("AAAFAAQAAAAJABoAAFAGAAQAAAAbABgAAAAOAAUAAAAOABMAAAAOAAYAAAAOABQAAAAOAAcAAAAOABUAAAAOAAgAAAAOABYAAAAOAAkAAAAOABcAAAALAAYAAAAEAAAAAAAMAAUAAAAUAAgAAAAMAAYAAAAUAAkAAAANAAUAAAAVAAgAAAANAAYAAAAVAAkAAAANAAsAAAAUABgAAAAIAAcAAAALABcAAAALAAwAAAACAAgAAAAEAAgAAAAFAAgAAAAKAAYAAAAKAA4AAAAHAAQAAAAKABQAAAAHAAUAAAAKABUAAAAHAAYAAAAKABYAAAAHAAcAAAAKABcAAAAIAAQAAAALABQAAAAIAAUAAAALABUAAAAIAAYAAAALABYAAAAEAAsAAAATABgAAAAEAAwAAAATABkAAAAKAAMAAAAIABYAAAANAAoAAAAJAA0AAAAEAAQAAAAIABoAAAAFAAMAAAAJABoAAFAEAAMAAAAIABoAAAAEAAUAAAAIABoAAAAEAAYAAAAIABoAAAAFAAUAAAAJABoAAFAFAAYAAAAJABoAAFA=")
+tile_set = SubResource("TileSet_kgkf2")
+
+[node name="Spawnpoint" type="Node2D" parent="."]
+position = Vector2(258, 314)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+z_index = 1
+position = Vector2(301.66666, 278.66666)
+script = ExtResource("4_f6tgh")
+static_camera = true
+
+[node name="SettingsMenu" parent="." instance=ExtResource("5_oug14")]

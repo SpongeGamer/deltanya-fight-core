@@ -1,0 +1,381 @@
+[gd_resource type="Resource" script_class="ShopResource" load_steps=59 format=4 uid="uid://vp37ksu7itsl"]
+
+[ext_resource type="Script" uid="uid://dpl3myc5lbyaq" path="res://scripts/DialogueTextResource.gd" id="1_text"]
+[ext_resource type="Script" uid="uid://ce37nn4xa836l" path="res://resources/shop/ShopResource.gd" id="2_shop"]
+[ext_resource type="Script" uid="uid://buho0degfd14w" path="res://resources/DialogueExportResource.gd" id="3_de"]
+[ext_resource type="Script" uid="uid://8orgtokfu828" path="res://resources/shop/ShopTalkTopic.gd" id="4_topic"]
+[ext_resource type="Script" uid="uid://drff552q4x8m8" path="res://holdables/item.gd" id="5_10emf"]
+[ext_resource type="Texture2D" uid="uid://cqnw47q2lj345" path="res://fighters/monsters/knyaz/res/portrait.png" id="5_portrait"]
+[ext_resource type="Resource" uid="uid://cnyr5qfvtwoef" path="res://holdables/items/beer.tres" id="6_0jjh0"]
+[ext_resource type="Resource" uid="uid://de0lb0oa33m5y" path="res://holdables/items/apple_lemonade.tres" id="7_0uk62"]
+[ext_resource type="AudioStream" uid="uid://bn35rwn1wiphe" path="res://globals/sounds/voices/knyaz_voice.ogg" id="7_voice"]
+[ext_resource type="Resource" uid="uid://2xx7uwj2gcf7" path="res://holdables/items/dark_beer.tres" id="8_b7pa0"]
+[ext_resource type="Resource" uid="uid://ca6ptdovkgqvd" path="res://holdables/equippables/weapons/mic_sm67.tres" id="9_b7pa0"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_10emf"]
+load_path = "res://.godot/imported/portrait.png-57ecb46aab2617401a3f3a41d422d526.ctex"
+
+[sub_resource type="OggPacketSequence" id="OggPacketSequence_fqdva"]
+packet_data = Array[Array]([[PackedByteArray("AXZvcmJpcwAAAAACRKwAAAAAAAAAcQIAAAAAALgB")], [PackedByteArray("A3ZvcmJpczQAAABYaXBoLk9yZyBsaWJWb3JiaXMgSSAyMDIwMDcwNCAoUmVkdWNpbmcgRW52aXJvbm1lbnQpAAAAAAE="), PackedByteArray("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")], [PackedByteArray("hDq9xjPW0iusVKZWRgtYgvZ2qCtaamfrn9lPsyBrALRz/DnUn/arF/X8ctU0uXr/Wa8gT3g4S3cQBDgMURC0w9Bnga0ajS7l33v/FdgVOihGRmv7NHqlQQA="), PackedByteArray("XE4LVfAQbNxkmnAXaS02ucC1flF7PZ6tf9LLULRcwhmBP7bWnHlMu2RKZRjNRofl2VvVcRlXrdDaVSLsS8AybQ3RUSswa0gcrUEULBhj+BrGUqGyruVeAZVQ"), PackedByteArray("sqgdxlUJt0bwsJvwVcF2MbsR1CTcwFj8jRZ+JaHv/gAAAABfAQD2PPZOMz+8+hGCTLHVZWYAMM8869kv++3D5fGdDgFi95qZAEB2Pd/cZdDOs970xCPvT1+Rzukm9+zsz781ta+rqVE6gkvvW+o8gVLe9DBQenB9q4f0jzGv10yVqOBydzC2T1ljn6YaEUSjyVmc2aZZQBOlrjxJdfEMkwOQYmYyByBcVUwh16ViPHK3B7rzQ7gLNMXCt4f7FMGcZq87Wm7HdlavKgAQkByWAUPliuoOwxmABoCQlqNe7V4p2ooi59WIKCINAkKyfbYTiJwS3QiIwN68cLIft5Qrxt1xgxewQojBYIRIXK+89bUm6wbEigUEyLAAaxrZYJAxEwY2elVVRKO7dRIpHWvpJ7BgZN8AMQBasWWErEIpLKiaJ+WTQlLXWSoFiJVclFUKmShulwpRiSnirMR1lDOW5MIygDzQHxV5Ygu7TIYq/GtijgHS0kRCxFg2Di2DHYfYkoXR2CBBRCTJNlokCYzsyYCpFAlaTCKAAwYM"), PackedByteArray("RDZ3hgRMQz6cyR03m2XOM5b9ukIqOXJyt3tmokxkHIDdqO7PprswhlczVKEYCLvuKBe0ZMWLcYR4s/Att8piC6oVXUqMDgWNFuhegMLVAA=="), PackedByteArray("dELLJzvTtfculuTDuJNZPtnT7e6OMaKnsv00M5WahAGAb8447nnOLmCIXceAJroux3GAkSOMd137kIpuMgCK2lpQCyC0r9Q2/QQ="), PackedByteArray("dE7Ld3uq3V0hjD6fZdET2XYHXaycyvHpyBjhwQRHQK57hpjebdm5uw6pmwxXLCL4KjEQpFBH3TWIpyW02CJoLbR1yE6ZFoFiIxA="), PackedByteArray("tGKF6BnZ9v7o47Z06ouesWzrllEa9Jvc3YiQmrM4BGydcdfb60C4nlGYKX39tkHX1CQVlxJPq85ILKcU9uXQo1mrV8QdqDJ6xxyRYtogoI35RG221lo0pY86QE0A"), PackedByteArray("dE7pmJD50/foqJevbPpaYDiG+ucoA7G/vTCnxALAxhml9rYT4yxURUXRaowsGq3iDhdavRqsvStal3WxqLQxJovWszu8EBWFwa3rkh5E1atIWeR9XR4LL6EA")]])
+granule_positions = PackedInt64Array(0, 0, 1723)
+sampling_rate = 44100.0
+
+[sub_resource type="AudioStreamOggVorbis" id="AudioStreamOggVorbis_0jjh0"]
+packet_sequence = SubResource("OggPacketSequence_fqdva")
+
+[sub_resource type="Resource" id="Resource_uu8w2"]
+script = ExtResource("1_text")
+speaker_name = "Князь"
+speaker_img = SubResource("CompressedTexture2D_10emf")
+text = "Покупай, налетай!"
+text_speed = 14.0
+text_sound = SubResource("AudioStreamOggVorbis_0jjh0")
+text_volume_db = 4
+text_volume_pitch_min = 0.9
+text_volume_pitch_max = 0.9
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0uk62"]
+load_path = "res://.godot/imported/portrait.png-57ecb46aab2617401a3f3a41d422d526.ctex"
+
+[sub_resource type="AudioStreamOggVorbis" id="AudioStreamOggVorbis_b7pa0"]
+packet_sequence = SubResource("OggPacketSequence_fqdva")
+
+[sub_resource type="Resource" id="Resource_1yvfq"]
+script = ExtResource("1_text")
+speaker_name = "Князь"
+speaker_img = SubResource("CompressedTexture2D_0uk62")
+text = "Лучшие напитки Темного мира!"
+text_speed = 14.0
+text_sound = SubResource("AudioStreamOggVorbis_b7pa0")
+text_volume_db = 4
+text_volume_pitch_min = 0.9
+text_volume_pitch_max = 0.9
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0mdf4"]
+load_path = "res://.godot/imported/portrait.png-57ecb46aab2617401a3f3a41d422d526.ctex"
+
+[sub_resource type="AudioStreamOggVorbis" id="AudioStreamOggVorbis_fegk6"]
+packet_sequence = SubResource("OggPacketSequence_fqdva")
+
+[sub_resource type="Resource" id="Resource_tqi1h"]
+script = ExtResource("1_text")
+speaker_name = "Князь"
+speaker_img = SubResource("CompressedTexture2D_0mdf4")
+text = "Темнее темного, светлее светлого!"
+text_speed = 14.0
+text_sound = SubResource("AudioStreamOggVorbis_fegk6")
+text_volume_db = 4
+text_volume_pitch_min = 0.9
+text_volume_pitch_max = 0.9
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0jjh0"]
+load_path = "res://.godot/imported/portrait.png-57ecb46aab2617401a3f3a41d422d526.ctex"
+
+[sub_resource type="AudioStreamOggVorbis" id="AudioStreamOggVorbis_uu8w2"]
+packet_sequence = SubResource("OggPacketSequence_fqdva")
+
+[sub_resource type="Resource" id="Resource_0uk62"]
+script = ExtResource("1_text")
+speaker_name = "Князь"
+speaker_img = SubResource("CompressedTexture2D_0jjh0")
+text = "Может вас заинтересуют закуски?"
+text_speed = 14.0
+text_sound = SubResource("AudioStreamOggVorbis_uu8w2")
+text_volume_db = 4
+text_volume_pitch_min = 0.9
+text_volume_pitch_max = 0.9
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_b7pa0"]
+load_path = "res://.godot/imported/portrait.png-57ecb46aab2617401a3f3a41d422d526.ctex"
+
+[sub_resource type="AudioStreamOggVorbis" id="AudioStreamOggVorbis_1yvfq"]
+packet_sequence = SubResource("OggPacketSequence_fqdva")
+
+[sub_resource type="Resource" id="Resource_0mdf4"]
+script = ExtResource("1_text")
+speaker_name = "Князь"
+speaker_img = SubResource("CompressedTexture2D_b7pa0")
+text = "Выгодные предложения!"
+text_speed = 14.0
+text_sound = SubResource("AudioStreamOggVorbis_1yvfq")
+text_volume_db = 4
+text_volume_pitch_min = 0.9
+text_volume_pitch_max = 0.9
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="Resource" id="Resource_greet1"]
+script = ExtResource("1_text")
+speaker_name = "Князь"
+speaker_img = ExtResource("5_portrait")
+text = "О. Гости. Заказывать будете?"
+text_speed = 14.0
+text_sound = ExtResource("7_voice")
+text_volume_db = 4
+text_volume_pitch_min = 0.9
+text_volume_pitch_max = 0.9
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="Resource" id="Resource_greet2"]
+script = ExtResource("1_text")
+speaker_name = "Князь"
+speaker_img = ExtResource("5_portrait")
+text = "Мой бар. Мои правила. Садитесь."
+text_speed = 14.0
+text_sound = ExtResource("7_voice")
+text_volume_db = 4
+text_volume_pitch_min = 0.9
+text_volume_pitch_max = 0.9
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="Resource" id="Resource_greet3"]
+script = ExtResource("1_text")
+speaker_name = "Князь"
+speaker_img = ExtResource("5_portrait")
+text = "Снова вы. Интересно."
+text_speed = 14.0
+text_sound = ExtResource("7_voice")
+text_volume_db = 4
+text_volume_pitch_min = 0.9
+text_volume_pitch_max = 0.9
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1yvfq"]
+load_path = "res://.godot/imported/portrait.png-57ecb46aab2617401a3f3a41d422d526.ctex"
+
+[sub_resource type="AudioStreamOggVorbis" id="AudioStreamOggVorbis_0mdf4"]
+packet_sequence = SubResource("OggPacketSequence_fqdva")
+
+[sub_resource type="Resource" id="Resource_fegk6"]
+script = ExtResource("1_text")
+speaker_name = "Князь"
+speaker_img = SubResource("CompressedTexture2D_1yvfq")
+text = "Возможно, Я найду покупателя для этого!"
+text_speed = 14.0
+text_sound = SubResource("AudioStreamOggVorbis_0mdf4")
+text_volume_db = 4
+text_volume_pitch_min = 0.9
+text_volume_pitch_max = 0.9
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fegk6"]
+load_path = "res://.godot/imported/portrait.png-57ecb46aab2617401a3f3a41d422d526.ctex"
+
+[sub_resource type="AudioStreamOggVorbis" id="AudioStreamOggVorbis_tqi1h"]
+packet_sequence = SubResource("OggPacketSequence_fqdva")
+
+[sub_resource type="Resource" id="Resource_h2ljx"]
+script = ExtResource("1_text")
+speaker_name = "Князь"
+speaker_img = SubResource("CompressedTexture2D_fegk6")
+text = "Неплохо."
+text_speed = 14.0
+text_sound = SubResource("AudioStreamOggVorbis_tqi1h")
+text_volume_db = 4
+text_volume_pitch_min = 0.9
+text_volume_pitch_max = 0.9
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tqi1h"]
+load_path = "res://.godot/imported/portrait.png-57ecb46aab2617401a3f3a41d422d526.ctex"
+
+[sub_resource type="AudioStreamOggVorbis" id="AudioStreamOggVorbis_h2ljx"]
+packet_sequence = SubResource("OggPacketSequence_fqdva")
+
+[sub_resource type="Resource" id="Resource_qr0i2"]
+script = ExtResource("1_text")
+speaker_name = "Князь"
+speaker_img = SubResource("CompressedTexture2D_tqi1h")
+text = "Интересная безделушка."
+text_speed = 14.0
+text_sound = SubResource("AudioStreamOggVorbis_h2ljx")
+text_volume_db = 4
+text_volume_pitch_min = 0.9
+text_volume_pitch_max = 0.9
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_h2ljx"]
+load_path = "res://.godot/imported/portrait.png-57ecb46aab2617401a3f3a41d422d526.ctex"
+
+[sub_resource type="AudioStreamOggVorbis" id="AudioStreamOggVorbis_qr0i2"]
+packet_sequence = SubResource("OggPacketSequence_fqdva")
+
+[sub_resource type="Resource" id="Resource_5ekaf"]
+script = ExtResource("1_text")
+speaker_name = "Князь"
+speaker_img = SubResource("CompressedTexture2D_h2ljx")
+text = "Для следующего спектакля определенно понадобится!"
+text_speed = 14.0
+text_sound = SubResource("AudioStreamOggVorbis_qr0i2")
+text_volume_db = 4
+text_volume_pitch_min = 0.9
+text_volume_pitch_max = 0.9
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="Resource" id="Resource_talkcomment1"]
+script = ExtResource("1_text")
+speaker_name = "Князь"
+speaker_img = ExtResource("5_portrait")
+text = "Задавайте свои вопросы. "
+text_speed = 14.0
+text_sound = ExtResource("7_voice")
+text_volume_db = 4
+text_volume_pitch_min = 0.9
+text_volume_pitch_max = 0.9
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="Resource" id="Resource_talkcomment2"]
+script = ExtResource("1_text")
+speaker_name = "Князь"
+speaker_img = ExtResource("5_portrait")
+text = "Любопытные попались."
+text_speed = 14.0
+text_sound = ExtResource("7_voice")
+text_volume_db = 4
+text_volume_pitch_min = 0.9
+text_volume_pitch_max = 0.9
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qr0i2"]
+load_path = "res://.godot/imported/portrait.png-57ecb46aab2617401a3f3a41d422d526.ctex"
+
+[sub_resource type="AudioStreamOggVorbis" id="AudioStreamOggVorbis_5ekaf"]
+packet_sequence = SubResource("OggPacketSequence_fqdva")
+
+[sub_resource type="Resource" id="Resource_n6myn"]
+script = ExtResource("1_text")
+speaker_name = "Князь"
+speaker_img = SubResource("CompressedTexture2D_qr0i2")
+text = "Где же ответы... Одни вопросы..."
+text_speed = 14.0
+text_sound = SubResource("AudioStreamOggVorbis_5ekaf")
+text_volume_db = 4
+text_volume_pitch_min = 0.9
+text_volume_pitch_max = 0.9
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="Resource" id="Resource_talk1"]
+script = ExtResource("1_text")
+speaker_name = "Князь"
+speaker_img = ExtResource("5_portrait")
+text = "Этот бар стоит здесь дольше, чем кто-либо помнит.
+Даже я уже не помню, когда открыл его."
+text_speed = 14.0
+text_sound = ExtResource("7_voice")
+text_volume_db = 4
+text_volume_pitch_min = 0.9
+text_volume_pitch_max = 0.9
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="Resource" id="Resource_talk2"]
+script = ExtResource("1_text")
+speaker_name = "Князь"
+speaker_img = ExtResource("5_portrait")
+text = "Знаете, сколько людей приходило сюда со своей болью?
+Все они оставляли ее тут. Бар держит ее вместо них."
+text_speed = 14.0
+text_sound = ExtResource("7_voice")
+text_volume_db = 4
+text_volume_pitch_min = 0.9
+text_volume_pitch_max = 0.9
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="Resource" id="Resource_topic_bar"]
+script = ExtResource("4_topic")
+label = "О баре"
+dialogue = Array[ExtResource("3_de")]([SubResource("Resource_talk1"), SubResource("Resource_talk2")])
+metadata/_custom_type_script = "uid://8orgtokfu828"
+
+[sub_resource type="Resource" id="Resource_dark1"]
+script = ExtResource("1_text")
+speaker_name = "Князь"
+speaker_img = ExtResource("5_portrait")
+text = "Темный мир - это не обычное место. Это чье-то внутреннее состояние, которое стало слишком большим и обозленным."
+text_speed = 13.0
+text_sound = ExtResource("7_voice")
+text_volume_db = 4
+text_volume_pitch_min = 0.88
+text_volume_pitch_max = 0.88
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="Resource" id="Resource_dark2"]
+script = ExtResource("1_text")
+speaker_name = "Князь"
+speaker_img = ExtResource("5_portrait")
+text = "Рыцарь - не злодей. Он просто... чья-то потерянная часть, что ищет дорогу домой."
+text_speed = 13.0
+text_sound = ExtResource("7_voice")
+text_volume_db = 4
+text_volume_pitch_min = 0.88
+text_volume_pitch_max = 0.88
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="Resource" id="Resource_topic_dark"]
+script = ExtResource("4_topic")
+label = "О темном мире"
+dialogue = Array[ExtResource("3_de")]([SubResource("Resource_dark1"), SubResource("Resource_dark2")])
+metadata/_custom_type_script = "uid://8orgtokfu828"
+
+[sub_resource type="Resource" id="Resource_kids1"]
+script = ExtResource("1_text")
+speaker_name = "Князь"
+speaker_img = ExtResource("5_portrait")
+text = "Дети не виноваты. Наш фонтан держал баланс светлого и темного.
+Когда кому-то наверху стало совсем плохо - он треснул."
+text_speed = 13.0
+text_sound = ExtResource("7_voice")
+text_volume_db = 4
+text_volume_pitch_min = 0.88
+text_volume_pitch_max = 0.88
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="Resource" id="Resource_kids2"]
+script = ExtResource("1_text")
+speaker_name = "Князь"
+speaker_img = ExtResource("5_portrait")
+text = "Они просто увидели щель и полезли.
+Из любопытства. Из злости на свои подвалы и безпомощность. Вот и все."
+text_speed = 13.0
+text_sound = ExtResource("7_voice")
+text_volume_db = 4
+text_volume_pitch_min = 0.88
+text_volume_pitch_max = 0.88
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="Resource" id="Resource_topic_kids"]
+script = ExtResource("4_topic")
+label = "О детях"
+dialogue = Array[ExtResource("3_de")]([SubResource("Resource_kids1"), SubResource("Resource_kids2")])
+metadata/_custom_type_script = "uid://8orgtokfu828"
+
+[sub_resource type="Resource" id="Resource_knyaz1"]
+script = ExtResource("1_text")
+speaker_name = "Князь"
+speaker_img = ExtResource("5_portrait")
+text = "Я здесь потому что мне нравится здесь быть.
+Или потому что больше некуда идти. Для меня это давно одно и то же."
+text_speed = 14.0
+text_sound = ExtResource("7_voice")
+text_volume_db = 4
+text_volume_pitch_min = 0.9
+text_volume_pitch_max = 0.9
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="Resource" id="Resource_topic_knyaz"]
+script = ExtResource("4_topic")
+label = "О тебе"
+dialogue = Array[ExtResource("3_de")]([SubResource("Resource_knyaz1")])
+metadata/_custom_type_script = "uid://8orgtokfu828"
+
+[resource]
+script = ExtResource("2_shop")
+greetings = Array[ExtResource("1_text")]([SubResource("Resource_greet1"), SubResource("Resource_greet2"), SubResource("Resource_greet3")])
+stock = Array[ExtResource("5_10emf")]([ExtResource("6_0jjh0"), ExtResource("7_0uk62"), ExtResource("8_b7pa0"), ExtResource("9_b7pa0")])
+buy_comments = Array[ExtResource("1_text")]([SubResource("Resource_uu8w2"), SubResource("Resource_1yvfq"), SubResource("Resource_tqi1h"), SubResource("Resource_0uk62"), SubResource("Resource_0mdf4")])
+sell_comments = Array[ExtResource("1_text")]([SubResource("Resource_fegk6"), SubResource("Resource_h2ljx"), SubResource("Resource_qr0i2"), SubResource("Resource_5ekaf")])
+talk_topics = Array[Resource]([SubResource("Resource_topic_bar"), SubResource("Resource_topic_dark"), SubResource("Resource_topic_kids"), SubResource("Resource_topic_knyaz")])
+talk_comments = Array[ExtResource("1_text")]([SubResource("Resource_talkcomment1"), SubResource("Resource_talkcomment2"), SubResource("Resource_n6myn")])
+metadata/_custom_type_script = "uid://ce37nn4xa836l"

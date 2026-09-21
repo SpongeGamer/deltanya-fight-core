@@ -1,0 +1,41 @@
+[remap]
+
+importer="font_data_dynamic"
+type="FontFile"
+uid="uid://i65lhainpmd6"
+path="res://.godot/imported/8BitOperatorJVE.ttf-c9d97ed322b1494f6f45902b856e112d.fontdata"
+
+[deps]
+
+source_file="res://ui/theme/fonts/8BitOperatorJVE/8BitOperatorJVE.ttf"
+dest_files=["res://.godot/imported/8BitOperatorJVE.ttf-c9d97ed322b1494f6f45902b856e112d.fontdata"]
+
+[params]
+
+Rendering=null
+antialiasing=0
+generate_mipmaps=false
+disable_embedded_bitmaps=true
+multichannel_signed_distance_field=false
+msdf_pixel_range=8
+msdf_size=48
+allow_system_fallback=true
+force_autohinter=false
+modulate_color_glyphs=false
+hinting=1
+subpixel_positioning=4
+keep_rounding_remainders=true
+oversampling=0.0
+Fallbacks=null
+fallbacks=[]
+Compress=null
+compress=true
+preload=[{
+"chars": [],
+"glyphs": [],
+"name": "New Configuration",
+"size": Vector2i(16, 0)
+}]
+language_support={}
+script_support={}
+opentype_features={}

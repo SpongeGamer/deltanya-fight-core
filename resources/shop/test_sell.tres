@@ -1,0 +1,172 @@
+[gd_resource type="Resource" script_class="ShopResource" load_steps=32 format=4 uid="uid://c5q2r8qre1cu0"]
+
+[ext_resource type="Script" uid="uid://ce37nn4xa836l" path="res://resources/shop/ShopResource.gd" id="1_g7jqx"]
+[ext_resource type="Script" uid="uid://dpl3myc5lbyaq" path="res://scripts/DialogueTextResource.gd" id="1_tvf5k"]
+[ext_resource type="Script" uid="uid://drff552q4x8m8" path="res://holdables/item.gd" id="2_or0bu"]
+[ext_resource type="AudioStream" uid="uid://bdpj3kgajclrp" path="res://globals/sounds/voices/max_voice.ogg" id="2_yfv0f"]
+[ext_resource type="AudioStream" uid="uid://dv0fah63taegs" path="res://globals/sounds/voices/small_voice.ogg" id="3_6g5q6"]
+[ext_resource type="Resource" uid="uid://b2v2d7v8biuw1" path="res://resources/shop/talk_shop_test.tres" id="7_bgvys"]
+
+[sub_resource type="Resource" id="Resource_yfv0f"]
+script = ExtResource("1_tvf5k")
+text = "Приятно иметь с вами дело."
+text_speed = 17.0
+text_sound = ExtResource("2_yfv0f")
+text_volume_pitch_min = 0.8
+text_volume_pitch_max = 0.8
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="OggPacketSequence" id="OggPacketSequence_q7apa"]
+packet_data = Array[Array]([[PackedByteArray("AXZvcmJpcwAAAAABgLsAAAAAAAAAdwEAAAAAALgB")], [PackedByteArray("A3ZvcmJpczQAAABYaXBoLk9yZyBsaWJWb3JiaXMgSSAyMDIwMDcwNCAoUmVkdWNpbmcgRW52aXJvbm1lbnQpAAAAAAE="), PackedByteArray("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")], [PackedByteArray("xCEd0GK83VsKoQLgoHldwCBC822rSDMWFTm7SfHIzYjrWakEFSqW6QE="), PackedByteArray("ZEJXLi3dxo0OMw2Ytq8SwlAOSMpGiKNmKlWCBamXUyARj1ATgC8JtSYA"), PackedByteArray("tIKfoe3eP5x9QuP3bwvENBdAATvP83opfTjdPwP8oNA/FsoeEXTHl8703SOoMU9K644I"), PackedByteArray("7JpfAx/+8PZ9X7CWpsV/10AM1AQYjBjriiU9m1fTCru/lI4/B7Tw8K8a/d4QLqISPqZx7AQ="), PackedByteArray("rHof0XCe/ezKnCi0mn1VtAATT7tPMllF38yjz40wbX3hBXyxP//X7BNum4b56h9QAg=="), PackedByteArray("zII/eSU9P81dunaWPwqg66iYsyJISkLu+RFHqrptpGwWyb6KE9DwgP3wWt6K0AE="), PackedByteArray("BJevB20Sbof5nL7nnVUXAMQ6Aiggb1dASVjkTl28OIi9Zn6Yzg+cawFnCwH57wpB6yh5VAg="), PackedByteArray("5KoPXnBon+fvZ3tq/g8iIFp2SDRoapVIKWllqF9DTG6aslN4EvIyqeZnOhJOL3AZ"), PackedByteArray("Otr9zFvKAdIofv28PcX2EsLezWQfz/iqZnjX52JT2HCQdwCgLggFtDIrAELRgQ0TovQHuCvtPmoyWxO/eKIq6GSGAAqA16D8/mFjKyMY/P3qsNVqDwAsjGwzD5Jn9/LEDQAAALA72R6+hPXSJjD4SogPXOufcOwF2tBXoRLXBO3GIRncHTwHo+9mts9RbY92HY+0qY6V6Wt/8qyJAex3v6g+k+UgsT4XxVZ8eV4AQAEloISCLw8UAJ8Go5t6XgPhf49+cZJDAGMBCQAAXp9ty+CsKdWKHggAAA=="), PackedByteArray("PvvdLLaq5gdS8KWvne3Fqd7iI5zUvkMqJAI6aQDzUHCAVuAnQgEDYyJCjhPAvq2qYdLxkegdzVVexxDPdIxxUFm1ECJOD2FjndFzIasKOAD81IUdgAIAUN6G/lQBWJaPlwefjlmtAABYLJcvWK3WqcVfh134PpIHSGB7/4d/DIpx++8StGy1LoSboCDFNgCBgQ1Q+fXZc+71IuUkAABfWr3gYT2DH7++OwalyErBnqFuXIZ5fjlZ5DYd4Qolt1C877odgMWIqLyMAQA="), PackedByteArray("vtv9HZD5t4nhY97GTdfXe+RsLC3KCDqkkvcAeGngABMMfhIKOAdMDUAIFNEmAMN+68qYXvkmv6dSrxpzp80o8VKljTsHpAEAcJVdm2oDACQAAFBd3ufb91MBLPxrN94YJgBwmRM7/vCXEyNgjvNMmbPuPjNm3ZltzgMAwOZBXsoFxZWSSZshzrJHpTt41wGTTwztPLzFfcqwrQFABe/QrvcAAP97XIq5uugmU+J7b9hrg1dtQgBC4H7ynxUHgAcVFYDnGbREAU/JST4VIQA="), PackedByteArray("Htv9E3IqH4BgDJ//fihRRHs+Pk2xg9LhBQDhwIYCA9hSFQxmlgVAgElLAeAsc9RzH8l1QzMvzc5Udadqn7OdnCjtoQHowOs/fawGVQAA8P7tV/5DDoAFLGBcsPzFYj0xAsavjentU+bGDkTi0KhRhwTNSHO3efzuI2jd9KYXDvLdUnfHflQJAKgAgIHT/+N5FQIAACH/+A0A/C+9QwAANNAAAAE1vrxH1ttdLpiFMxWQi6WzStApLHyQjS/gwRoA7GN3OwE="), PackedByteArray("Htv9wxHZR7dg/f43ZjtEsNfI03lRobrarzWANHCUkgBcMLgRSdAt1xASy0wAoM0b/bjomeZxcjizOlGTcONqTmnCvptCCfD4tF1/0C7bPIIDABBhivHXsgBF5fWn50etUWEExnlsFsOfGeMsw+OKg1WsFMhBS5Ou8Ve8jOJTUYEZmT7dTgAAAAD40gbggldA8L+H5xX8t6cDAADn++XkqGCP0k4gtXkLjUpfnwAYTJdDIkkyfupwrwse7s/oAA=="), PackedByteArray("ftvdrBYnThAwKLr8c4zCaY8f90Hr6BCmCJJamCYEg4WDUAAJITHpMSCv+K/RxWr8ET/NtLUNDp4PWB7kNbegFmAEgKlL3/bJS5esO8DK9JT9OJcNFmNZ48NWz0eXDycjS3Ln5ZR/rT0wJDgd3E7H+WdfIEUHrP+pw3sYRjYDAADsESPKv/UbDwEAXsBG3MgfAF5fvyhfIgCQ6fysU7GcN3Wqu7Ozkt0XJcalTQUHga8zwE55GmhCCsC+iBoA"), PackedByteArray("XrvdrBZSXkBnzz62Y6PP9jKepUuvfikBabL95gSSwDEABAN4Nq8A8GZsWN8/2b9ze+P3Mm6f5GszNRwHONMVShQ+fs9fWKwAAEwlElPzBjfYTD03YYcV684KHGZ32h07vpi/P/7+cjHnAYAdam5uBratYIxXifz3aucKYb5fq+ET03OfLykKAABajfOxG0+s1et17EgAAACg9mkAAIAGAPBaDV9UE6BaAzPK3vH86hcme89karDYBZGKjXGxiLgAAA=="), PackedByteArray("Pmv9g6HaF3jpPbX2xR5d9oboyaWqhgOo6gv+DokQ6iyXooC/pewOdNv9f+/O9C+2pW4Mo8VXU8lbc/OjIvAx++wRAHaoLRDWzKRzaFHNe+Q0KlO6Iz+lhYuwPBpBwYPulwQxgNDi2m+SSAoGOQB0mymldBiTlAS2/vf/wCUA9QJ+/2oDACil/ElGne/xX443AACABgD01nfR3HrfQ1GGjJQMuD0PQRxRb3qVRWt6C9Q16eGaDYDvCQ=="), PackedByteArray("Psr8DV37Xzi2km4pJRyqAyJ3uc7VVZd4QDsAbApwgKsCyA2sYSELBvh9z7+0ubV6fPLay0H/zyZ+ypyf35vLk0RSm7J6P7cxzhxWAHC9MHx9bkkEICoAVHMFIpW9fMH2hTFJwjgdwWNVEygpiR9fedi8sCkz/hVy+l564MTqF4GFFoUFh+tvaTLL0SpAWuQXsQq0BuBhw/SxFvMfviI8ZDUAAFxPShQDAwM7RSdXsiffx0F4RaNHwpIulBLdmxNg0bvj4FiANzQNIDeBAg=="), PackedByteArray("Hob8P7UwJ7trwzt81BTPjTbNoAFUUQAAAIDJhd83x98d+TQw6Pgrn3+8vb9zeXCeJZlNtrG8i0aNsh/HEY3txl9MdelIJIOdhX7jUTvUpSOMCBcA")]])
+granule_positions = PackedInt64Array(0, 0, 9726)
+sampling_rate = 48000.0
+
+[sub_resource type="AudioStreamOggVorbis" id="AudioStreamOggVorbis_6g5q6"]
+packet_sequence = SubResource("OggPacketSequence_q7apa")
+
+[sub_resource type="Resource" id="Resource_h2mih"]
+script = ExtResource("1_tvf5k")
+text = "Полезные шмотки для любой погодки!"
+text_speed = 17.0
+text_sound = SubResource("AudioStreamOggVorbis_6g5q6")
+text_volume_pitch_min = 0.8
+text_volume_pitch_max = 0.8
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="AudioStreamOggVorbis" id="AudioStreamOggVorbis_yfv0f"]
+packet_sequence = SubResource("OggPacketSequence_q7apa")
+
+[sub_resource type="Resource" id="Resource_3dr30"]
+script = ExtResource("1_tvf5k")
+text = "Неплохая покупка."
+text_speed = 17.0
+text_sound = SubResource("AudioStreamOggVorbis_yfv0f")
+text_volume_pitch_min = 0.8
+text_volume_pitch_max = 0.8
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="Resource" id="Resource_n2siu"]
+script = ExtResource("1_tvf5k")
+text = "Возможно, Я смогу вам помочь."
+text_speed = 17.0
+text_sound = ExtResource("3_6g5q6")
+text_volume_pitch_min = 0.8
+text_volume_pitch_max = 0.8
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="AudioStreamOggVorbis" id="AudioStreamOggVorbis_lbk28"]
+packet_sequence = SubResource("OggPacketSequence_q7apa")
+
+[sub_resource type="Resource" id="Resource_nijg1"]
+script = ExtResource("1_tvf5k")
+text = "Я знаю что вам нужно."
+text_speed = 17.0
+text_sound = SubResource("AudioStreamOggVorbis_lbk28")
+text_volume_pitch_min = 0.8
+text_volume_pitch_max = 0.8
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="AudioStreamOggVorbis" id="AudioStreamOggVorbis_n2siu"]
+packet_sequence = SubResource("OggPacketSequence_q7apa")
+
+[sub_resource type="Resource" id="Resource_vfkkv"]
+script = ExtResource("1_tvf5k")
+text = "Без сомнения - лучшие товары."
+text_speed = 17.0
+text_sound = SubResource("AudioStreamOggVorbis_n2siu")
+text_volume_pitch_min = 0.8
+text_volume_pitch_max = 0.8
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="AudioStreamOggVorbis" id="AudioStreamOggVorbis_h2mih"]
+packet_sequence = SubResource("OggPacketSequence_q7apa")
+
+[sub_resource type="Resource" id="Resource_3q8r2"]
+script = ExtResource("1_tvf5k")
+text = "Я это возьму."
+text_speed = 17.0
+text_sound = SubResource("AudioStreamOggVorbis_h2mih")
+text_volume_pitch_min = 0.8
+text_volume_pitch_max = 0.8
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="AudioStreamOggVorbis" id="AudioStreamOggVorbis_aiucp"]
+packet_sequence = SubResource("OggPacketSequence_q7apa")
+
+[sub_resource type="Resource" id="Resource_uj0b7"]
+script = ExtResource("1_tvf5k")
+text = "Очень даже неплохой товар."
+text_speed = 17.0
+text_sound = SubResource("AudioStreamOggVorbis_aiucp")
+text_volume_pitch_min = 0.8
+text_volume_pitch_max = 0.8
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="AudioStreamOggVorbis" id="AudioStreamOggVorbis_3q8r2"]
+packet_sequence = SubResource("OggPacketSequence_q7apa")
+
+[sub_resource type="Resource" id="Resource_aiucp"]
+script = ExtResource("1_tvf5k")
+text = "Хорошая сделка."
+text_speed = 17.0
+text_sound = SubResource("AudioStreamOggVorbis_3q8r2")
+text_volume_pitch_min = 0.8
+text_volume_pitch_max = 0.8
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="AudioStreamOggVorbis" id="AudioStreamOggVorbis_uj0b7"]
+packet_sequence = SubResource("OggPacketSequence_q7apa")
+
+[sub_resource type="Resource" id="Resource_g3ny3"]
+script = ExtResource("1_tvf5k")
+text = "За такие товары готовы убить!"
+text_speed = 17.0
+text_sound = SubResource("AudioStreamOggVorbis_uj0b7")
+text_volume_pitch_min = 0.8
+text_volume_pitch_max = 0.8
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="AudioStreamOggVorbis" id="AudioStreamOggVorbis_3dr30"]
+packet_sequence = SubResource("OggPacketSequence_q7apa")
+
+[sub_resource type="Resource" id="Resource_51gnw"]
+script = ExtResource("1_tvf5k")
+text = "Когда-то и меня вела дорога приключений..."
+text_speed = 17.0
+text_sound = SubResource("AudioStreamOggVorbis_3dr30")
+text_volume_pitch_min = 0.8
+text_volume_pitch_max = 0.8
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="AudioStreamOggVorbis" id="AudioStreamOggVorbis_g3ny3"]
+packet_sequence = SubResource("OggPacketSequence_q7apa")
+
+[sub_resource type="Resource" id="Resource_lbk28"]
+script = ExtResource("1_tvf5k")
+text = "Тяжелое нынче время."
+text_speed = 17.0
+text_sound = SubResource("AudioStreamOggVorbis_g3ny3")
+text_volume_pitch_min = 0.8
+text_volume_pitch_max = 0.8
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="AudioStreamOggVorbis" id="AudioStreamOggVorbis_nijg1"]
+packet_sequence = SubResource("OggPacketSequence_q7apa")
+
+[sub_resource type="Resource" id="Resource_2v4ae"]
+script = ExtResource("1_tvf5k")
+text = "Раньше и товаров было больше..."
+text_speed = 17.0
+text_sound = SubResource("AudioStreamOggVorbis_nijg1")
+text_volume_pitch_min = 0.8
+text_volume_pitch_max = 0.8
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[resource]
+script = ExtResource("1_g7jqx")
+greetings = Array[ExtResource("1_tvf5k")]([SubResource("Resource_n2siu"), SubResource("Resource_nijg1"), SubResource("Resource_vfkkv")])
+buy_comments = Array[ExtResource("1_tvf5k")]([SubResource("Resource_yfv0f"), SubResource("Resource_h2mih"), SubResource("Resource_3dr30")])
+sell_comments = Array[ExtResource("1_tvf5k")]([SubResource("Resource_3q8r2"), SubResource("Resource_uj0b7"), SubResource("Resource_aiucp")])
+talk_topics = Array[Resource]([ExtResource("7_bgvys")])
+talk_comments = Array[ExtResource("1_tvf5k")]([SubResource("Resource_g3ny3"), SubResource("Resource_51gnw"), SubResource("Resource_lbk28"), SubResource("Resource_2v4ae")])
+metadata/_custom_type_script = "uid://ce37nn4xa836l"

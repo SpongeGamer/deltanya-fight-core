@@ -1,0 +1,88 @@
+[gd_scene load_steps=17 format=3 uid="uid://cw6esr2e5vl0o"]
+
+[ext_resource type="Script" uid="uid://dpk2cxiohooey" path="res://scripts/overworld/save_point_node.gd" id="1_save"]
+[ext_resource type="Texture2D" uid="uid://dnmtyglcbaokr" path="res://assets/VFX/save_point.png" id="2_1341y"]
+[ext_resource type="PackedScene" uid="uid://ogidicqqkcwp" path="res://scenes/prefabs/dialogue_area_2d.tscn" id="3_dialogue"]
+[ext_resource type="Script" uid="uid://buho0degfd14w" path="res://resources/DialogueExportResource.gd" id="4_a4ewr"]
+[ext_resource type="Script" uid="uid://dpl3myc5lbyaq" path="res://scripts/DialogueTextResource.gd" id="4_text"]
+[ext_resource type="Script" uid="uid://dxhsmijrodh41" path="res://resources/DialogueFunctionResource.gd" id="5_func"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a4ewr"]
+atlas = ExtResource("2_1341y")
+region = Rect2(0, 0, 20, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ahk46"]
+atlas = ExtResource("2_1341y")
+region = Rect2(22, 0, 20, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_81u2o"]
+atlas = ExtResource("2_1341y")
+region = Rect2(44, 0, 20, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a2rqm"]
+atlas = ExtResource("2_1341y")
+region = Rect2(66, 0, 20, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wspho"]
+atlas = ExtResource("2_1341y")
+region = Rect2(88, 0, 20, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qrbfe"]
+atlas = ExtResource("2_1341y")
+region = Rect2(110, 0, 20, 19)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_idle"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a4ewr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ahk46")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_81u2o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a2rqm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wspho")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qrbfe")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[sub_resource type="Resource" id="Resource_save_text"]
+script = ExtResource("4_text")
+text = "  * Точка сохранения. Ты наполняешься решимостью."
+text_speed = 18.0
+text_volume_db = -12
+
+[sub_resource type="Resource" id="Resource_open_menu"]
+script = ExtResource("5_func")
+target_path = NodePath("..")
+function_name = "open_save_menu"
+hide_dialogue_box = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ahk46"]
+size = Vector2(75, 75)
+
+[node name="SavePoint" type="Node2D"]
+script = ExtResource("1_save")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2.1, 2.1052632)
+sprite_frames = SubResource("SpriteFrames_idle")
+animation = &"idle"
+frame_progress = 0.6502612
+
+[node name="DialogueArea2D" parent="." instance=ExtResource("3_dialogue")]
+dialogue = Array[ExtResource("4_a4ewr")]([SubResource("Resource_save_text"), SubResource("Resource_open_menu")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DialogueArea2D"]
+shape = SubResource("RectangleShape2D_ahk46")

@@ -1,0 +1,754 @@
+[gd_scene load_steps=17 format=3 uid="uid://dyiveyiwynurb"]
+
+[ext_resource type="Script" uid="uid://c1giws8uwqx1o" path="res://scenes/menus/title_screen/title_screen.gd" id="1_ts"]
+[ext_resource type="Texture2D" uid="uid://b0mx4qepjjvn" path="res://globals/global/res/heart.png" id="4_ts"]
+[ext_resource type="FontFile" uid="uid://i65lhainpmd6" path="res://ui/theme/fonts/8BitOperatorJVE/8BitOperatorJVE.ttf" id="5_c8div"]
+[ext_resource type="FontFile" uid="uid://dq2x4liarn6x5" path="res://fonts/8bitoperator Cyrillic Extension.ttf" id="5_ts"]
+[ext_resource type="FontFile" uid="uid://q4tuyk42idmk" path="res://fonts/8bitoperator Cyrillic Extension.otf" id="6_3osdd"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_c8div"]
+font = ExtResource("5_c8div")
+font_size = 70
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_slot"]
+content_margin_left = 14.0
+content_margin_top = 8.0
+content_margin_right = 14.0
+content_margin_bottom = 8.0
+bg_color = Color(0.06, 0.18, 0.18, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.25, 0.38, 0.38, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_main"]
+font = ExtResource("6_3osdd")
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_slot"]
+font = ExtResource("5_ts")
+
+[sub_resource type="LabelSettings" id="LabelSettings_time"]
+font = ExtResource("5_ts")
+font_color = Color(0.8, 0.8, 0.8, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_sub"]
+font = ExtResource("6_3osdd")
+font_size = 22
+font_color = Color(0.5, 0.5, 0.5, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3osdd"]
+font = ExtResource("6_3osdd")
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_value"]
+font = ExtResource("5_c8div")
+font_size = 20
+font_color = Color(1, 1, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dim"]
+font = ExtResource("5_ts")
+font_size = 20
+font_color = Color(0.5, 0.5, 0.5, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_a4kjy"]
+font = ExtResource("6_3osdd")
+font_size = 20
+font_color = Color(1, 1, 0, 1)
+
+[node name="TitleScreen" type="Node2D"]
+script = ExtResource("1_ts")
+
+[node name="Background" type="AnimatedSprite2D" parent="."]
+z_index = -10
+position = Vector2(320, 171)
+sprite_frames = SubResource("SpriteFrames_bg")
+
+[node name="Logo2" type="Label" parent="."]
+offset_left = 105.0
+offset_top = 20.0
+offset_right = 505.0
+offset_bottom = 91.0
+size_flags_horizontal = 3
+text = "Deltanyarune"
+label_settings = SubResource("LabelSettings_c8div")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Heart" type="Sprite2D" parent="Logo2"]
+self_modulate = Color(1, 0, 0, 1)
+position = Vector2(405, 41)
+scale = Vector2(2, 2)
+texture = ExtResource("4_ts")
+
+[node name="Heart" type="Sprite2D" parent="."]
+self_modulate = Color(1, 0, 0, 1)
+z_index = 20
+scale = Vector2(1.8, 1.8)
+texture = ExtResource("4_ts")
+
+[node name="MainScreen" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 640.0
+offset_bottom = 479.0
+
+[node name="Panels" type="VBoxContainer" parent="MainScreen"]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 120.0
+offset_right = 520.0
+offset_bottom = 357.0
+theme_override_constants/separation = 7
+
+[node name="Continue" type="Panel" parent="MainScreen/Panels"]
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
+
+[node name="Label" type="Label" parent="MainScreen/Panels/Continue"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 5.0
+offset_right = -10.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Продолжить игру"
+label_settings = SubResource("LabelSettings_main")
+vertical_alignment = 1
+
+[node name="NewGame" type="Panel" parent="MainScreen/Panels"]
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
+
+[node name="Label" type="Label" parent="MainScreen/Panels/NewGame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 5.0
+offset_right = -10.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Новая игра"
+label_settings = SubResource("LabelSettings_main")
+vertical_alignment = 1
+
+[node name="Settings" type="Panel" parent="MainScreen/Panels"]
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
+
+[node name="Label" type="Label" parent="MainScreen/Panels/Settings"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 5.0
+offset_right = -10.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Настройки"
+label_settings = SubResource("LabelSettings_main")
+vertical_alignment = 1
+
+[node name="Quit" type="Panel" parent="MainScreen/Panels"]
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
+
+[node name="Label" type="Label" parent="MainScreen/Panels/Quit"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 5.0
+offset_right = -10.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Выйти"
+label_settings = SubResource("LabelSettings_main")
+vertical_alignment = 1
+
+[node name="SlotsScreen" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 640.0
+offset_bottom = 342.0
+
+[node name="Slots" type="VBoxContainer" parent="SlotsScreen"]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 120.0
+offset_right = 520.0
+offset_bottom = 368.0
+theme_override_constants/separation = 7
+
+[node name="Slot0" type="Panel" parent="SlotsScreen/Slots"]
+custom_minimum_size = Vector2(0, 78)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
+
+[node name="Top" type="HBoxContainer" parent="SlotsScreen/Slots/Slot0"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 14.0
+offset_top = 8.0
+offset_right = -14.0
+offset_bottom = 34.0
+grow_horizontal = 2
+
+[node name="Name" type="Label" parent="SlotsScreen/Slots/Slot0/Top"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "[ПУСТО]"
+label_settings = SubResource("LabelSettings_slot")
+vertical_alignment = 1
+
+[node name="Time" type="Label" parent="SlotsScreen/Slots/Slot0/Top"]
+layout_mode = 2
+text = "--:--"
+label_settings = SubResource("LabelSettings_time")
+horizontal_alignment = 2
+
+[node name="Bot" type="HBoxContainer" parent="SlotsScreen/Slots/Slot0"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 14.0
+offset_top = -34.0
+offset_right = -14.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Location" type="Label" parent="SlotsScreen/Slots/Slot0/Bot"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "———————————"
+label_settings = SubResource("LabelSettings_sub")
+
+[node name="Num" type="Label" parent="SlotsScreen/Slots/Slot0/Bot"]
+layout_mode = 2
+text = "Файл 1"
+label_settings = SubResource("LabelSettings_sub")
+horizontal_alignment = 2
+
+[node name="Slot1" type="Panel" parent="SlotsScreen/Slots"]
+custom_minimum_size = Vector2(0, 78)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
+
+[node name="Top" type="HBoxContainer" parent="SlotsScreen/Slots/Slot1"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 14.0
+offset_top = 8.0
+offset_right = -14.0
+offset_bottom = 34.0
+grow_horizontal = 2
+
+[node name="Name" type="Label" parent="SlotsScreen/Slots/Slot1/Top"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "[ПУСТО]"
+label_settings = SubResource("LabelSettings_slot")
+vertical_alignment = 1
+
+[node name="Time" type="Label" parent="SlotsScreen/Slots/Slot1/Top"]
+layout_mode = 2
+text = "--:--"
+label_settings = SubResource("LabelSettings_time")
+horizontal_alignment = 2
+
+[node name="Bot" type="HBoxContainer" parent="SlotsScreen/Slots/Slot1"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 14.0
+offset_top = -34.0
+offset_right = -14.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Location" type="Label" parent="SlotsScreen/Slots/Slot1/Bot"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "———————————"
+label_settings = SubResource("LabelSettings_sub")
+
+[node name="Num" type="Label" parent="SlotsScreen/Slots/Slot1/Bot"]
+layout_mode = 2
+text = "Файл 2"
+label_settings = SubResource("LabelSettings_sub")
+horizontal_alignment = 2
+
+[node name="Slot2" type="Panel" parent="SlotsScreen/Slots"]
+custom_minimum_size = Vector2(0, 78)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
+
+[node name="Top" type="HBoxContainer" parent="SlotsScreen/Slots/Slot2"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 14.0
+offset_top = 8.0
+offset_right = -14.0
+offset_bottom = 34.0
+grow_horizontal = 2
+
+[node name="Name" type="Label" parent="SlotsScreen/Slots/Slot2/Top"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "[ПУСТО]"
+label_settings = SubResource("LabelSettings_slot")
+vertical_alignment = 1
+
+[node name="Time" type="Label" parent="SlotsScreen/Slots/Slot2/Top"]
+layout_mode = 2
+text = "--:--"
+label_settings = SubResource("LabelSettings_time")
+horizontal_alignment = 2
+
+[node name="Bot" type="HBoxContainer" parent="SlotsScreen/Slots/Slot2"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 14.0
+offset_top = -34.0
+offset_right = -14.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Location" type="Label" parent="SlotsScreen/Slots/Slot2/Bot"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "———————————"
+label_settings = SubResource("LabelSettings_sub")
+
+[node name="Num" type="Label" parent="SlotsScreen/Slots/Slot2/Bot"]
+layout_mode = 2
+text = "Файл 3"
+label_settings = SubResource("LabelSettings_sub")
+horizontal_alignment = 2
+
+[node name="SettingsScreen" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 640.0
+offset_bottom = 342.0
+
+[node name="Panels" type="VBoxContainer" parent="SettingsScreen"]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 100.0
+offset_right = 520.0
+offset_bottom = 459.0
+theme_override_constants/separation = 7
+
+[node name="Master" type="Panel" parent="SettingsScreen/Panels"]
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
+
+[node name="Label" type="Label" parent="SettingsScreen/Panels/Master"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 25.0
+offset_right = 320.0
+offset_bottom = 45.0
+size_flags_horizontal = 3
+text = "Общая громкость"
+label_settings = SubResource("LabelSettings_3osdd")
+
+[node name="Value" type="Label" parent="SettingsScreen/Panels/Master"]
+layout_mode = 0
+offset_left = 310.0
+offset_top = 12.0
+offset_right = 397.0
+offset_bottom = 40.0
+text = "◄ 100% ►"
+label_settings = SubResource("LabelSettings_value")
+horizontal_alignment = 2
+
+[node name="Music" type="Panel" parent="SettingsScreen/Panels"]
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
+
+[node name="Label" type="Label" parent="SettingsScreen/Panels/Music"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 25.0
+offset_right = 320.0
+offset_bottom = 45.0
+size_flags_horizontal = 3
+text = "Музыка"
+label_settings = SubResource("LabelSettings_main")
+
+[node name="Value" type="Label" parent="SettingsScreen/Panels/Music"]
+layout_mode = 0
+offset_left = 310.0
+offset_top = 12.0
+offset_right = 397.0
+offset_bottom = 40.0
+text = "◄ 100% ►"
+label_settings = SubResource("LabelSettings_value")
+horizontal_alignment = 2
+
+[node name="SFX" type="Panel" parent="SettingsScreen/Panels"]
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
+
+[node name="Label" type="Label" parent="SettingsScreen/Panels/SFX"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 25.0
+offset_right = 320.0
+offset_bottom = 45.0
+size_flags_horizontal = 3
+text = "Звуки"
+label_settings = SubResource("LabelSettings_main")
+
+[node name="Value" type="Label" parent="SettingsScreen/Panels/SFX"]
+layout_mode = 0
+offset_left = 310.0
+offset_top = 10.0
+offset_right = 397.0
+offset_bottom = 38.0
+text = "◄ 100% ►"
+label_settings = SubResource("LabelSettings_value")
+horizontal_alignment = 2
+
+[node name="Controls" type="Panel" parent="SettingsScreen/Panels"]
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
+
+[node name="Label" type="Label" parent="SettingsScreen/Panels/Controls"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 25.0
+offset_right = 389.0
+offset_bottom = 45.0
+size_flags_horizontal = 3
+text = "Управление"
+label_settings = SubResource("LabelSettings_main")
+
+[node name="Value" type="Label" parent="SettingsScreen/Panels/Controls"]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 10.0
+offset_right = 377.0
+offset_bottom = 38.0
+text = "►"
+label_settings = SubResource("LabelSettings_dim")
+horizontal_alignment = 2
+
+[node name="Fullscreen" type="Panel" parent="SettingsScreen/Panels"]
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
+
+[node name="Label" type="Label" parent="SettingsScreen/Panels/Fullscreen"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 25.0
+offset_right = 327.0
+offset_bottom = 45.0
+size_flags_horizontal = 3
+text = "Полноэкранный"
+label_settings = SubResource("LabelSettings_main")
+
+[node name="Value" type="Label" parent="SettingsScreen/Panels/Fullscreen"]
+layout_mode = 0
+offset_left = 310.0
+offset_top = 12.0
+offset_right = 397.0
+offset_bottom = 40.0
+text = "◄ ВЫКЛ ►"
+label_settings = SubResource("LabelSettings_a4kjy")
+horizontal_alignment = 2
+
+[node name="Back" type="Panel" parent="SettingsScreen/Panels"]
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
+
+[node name="Label" type="Label" parent="SettingsScreen/Panels/Back"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 25.0
+offset_right = 327.0
+offset_bottom = 45.0
+size_flags_horizontal = 3
+text = "Назад"
+label_settings = SubResource("LabelSettings_main")
+
+[node name="Value" type="Label" parent="SettingsScreen/Panels/Back"]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 12.0
+offset_right = 361.0
+offset_bottom = 32.0
+label_settings = SubResource("LabelSettings_dim")
+
+[node name="ControlsScreen" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 640.0
+offset_bottom = 342.0
+
+[node name="Panels" type="VBoxContainer" parent="ControlsScreen"]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 88.0
+offset_right = 520.0
+theme_override_constants/separation = 5
+
+[node name="Up" type="Panel" parent="ControlsScreen/Panels"]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
+
+[node name="Label" type="Label" parent="ControlsScreen/Panels/Up"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 24.0
+offset_right = 210.0
+offset_bottom = 44.0
+size_flags_horizontal = 3
+text = "Вверх"
+label_settings = SubResource("LabelSettings_main")
+
+[node name="Value" type="Label" parent="ControlsScreen/Panels/Up"]
+layout_mode = 0
+offset_left = 370.0
+offset_top = 13.0
+offset_right = 379.0
+offset_bottom = 34.0
+text = "W"
+label_settings = SubResource("LabelSettings_value")
+
+[node name="Down" type="Panel" parent="ControlsScreen/Panels"]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
+
+[node name="Label" type="Label" parent="ControlsScreen/Panels/Down"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 24.0
+offset_right = 210.0
+offset_bottom = 44.0
+size_flags_horizontal = 3
+text = "Вниз"
+label_settings = SubResource("LabelSettings_main")
+
+[node name="Value" type="Label" parent="ControlsScreen/Panels/Down"]
+layout_mode = 0
+offset_left = 370.0
+offset_top = 13.0
+offset_right = 379.0
+offset_bottom = 34.0
+text = "S"
+label_settings = SubResource("LabelSettings_value")
+horizontal_alignment = 2
+
+[node name="Left" type="Panel" parent="ControlsScreen/Panels"]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
+
+[node name="Label" type="Label" parent="ControlsScreen/Panels/Left"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 24.0
+offset_right = 210.0
+offset_bottom = 44.0
+size_flags_horizontal = 3
+text = "Влево"
+label_settings = SubResource("LabelSettings_main")
+
+[node name="Value" type="Label" parent="ControlsScreen/Panels/Left"]
+layout_mode = 0
+offset_left = 370.0
+offset_top = 13.0
+offset_right = 379.0
+offset_bottom = 34.0
+text = "A"
+label_settings = SubResource("LabelSettings_value")
+horizontal_alignment = 2
+
+[node name="Right" type="Panel" parent="ControlsScreen/Panels"]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
+
+[node name="Label" type="Label" parent="ControlsScreen/Panels/Right"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 24.0
+offset_right = 210.0
+offset_bottom = 44.0
+size_flags_horizontal = 3
+text = "Вправо"
+label_settings = SubResource("LabelSettings_main")
+
+[node name="Value" type="Label" parent="ControlsScreen/Panels/Right"]
+layout_mode = 0
+offset_left = 370.0
+offset_top = 13.0
+offset_right = 379.0
+offset_bottom = 34.0
+text = "D"
+label_settings = SubResource("LabelSettings_value")
+horizontal_alignment = 2
+
+[node name="Confirm" type="Panel" parent="ControlsScreen/Panels"]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
+
+[node name="Label" type="Label" parent="ControlsScreen/Panels/Confirm"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 24.0
+offset_right = 220.0
+offset_bottom = 44.0
+size_flags_horizontal = 3
+text = "Подтвердить"
+label_settings = SubResource("LabelSettings_main")
+
+[node name="Value" type="Label" parent="ControlsScreen/Panels/Confirm"]
+layout_mode = 0
+offset_left = 370.0
+offset_top = 13.0
+offset_right = 379.0
+offset_bottom = 34.0
+text = "Z"
+label_settings = SubResource("LabelSettings_value")
+horizontal_alignment = 2
+
+[node name="Cancel" type="Panel" parent="ControlsScreen/Panels"]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
+
+[node name="Label" type="Label" parent="ControlsScreen/Panels/Cancel"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 24.0
+offset_right = 220.0
+offset_bottom = 44.0
+size_flags_horizontal = 3
+text = "Отмена"
+label_settings = SubResource("LabelSettings_main")
+
+[node name="Value" type="Label" parent="ControlsScreen/Panels/Cancel"]
+layout_mode = 0
+offset_left = 370.0
+offset_top = 13.0
+offset_right = 379.0
+offset_bottom = 34.0
+text = "X"
+label_settings = SubResource("LabelSettings_value")
+horizontal_alignment = 2
+
+[node name="Inventory" type="Panel" parent="ControlsScreen/Panels"]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
+
+[node name="Label" type="Label" parent="ControlsScreen/Panels/Inventory"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 24.0
+offset_right = 220.0
+offset_bottom = 44.0
+size_flags_horizontal = 3
+text = "Инвентарь"
+label_settings = SubResource("LabelSettings_main")
+
+[node name="Value" type="Label" parent="ControlsScreen/Panels/Inventory"]
+layout_mode = 0
+offset_left = 370.0
+offset_top = 13.0
+offset_right = 379.0
+offset_bottom = 34.0
+text = "C"
+label_settings = SubResource("LabelSettings_value")
+horizontal_alignment = 2
+
+[node name="Back" type="Panel" parent="ControlsScreen/Panels"]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot")
+
+[node name="Label" type="Label" parent="ControlsScreen/Panels/Back"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 24.0
+offset_right = 220.0
+offset_bottom = 44.0
+size_flags_horizontal = 3
+text = "Назад"
+label_settings = SubResource("LabelSettings_main")
+
+[node name="Value" type="Label" parent="ControlsScreen/Panels/Back"]
+layout_mode = 0
+offset_left = 375.0
+offset_top = 13.0
+offset_right = 376.0
+offset_bottom = 33.0
+label_settings = SubResource("LabelSettings_dim")

@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://d15o32v6po2gu"]
+
+[ext_resource type="Script" uid="uid://r4c8l4apcyv0" path="res://fighters/monsters/starwalker/attacks/star_shower/base_bullet.gd" id="1_ceu4g"]
+[ext_resource type="Script" uid="uid://cxy7stth4vs4r" path="res://fighters/monsters/starwalker/attacks/star_shower/star_shower.gd" id="1_exsrh"]
+[ext_resource type="Texture2D" uid="uid://6yinvheyw0nt" path="res://fighters/monsters/starwalker/starwalker_bullet.png" id="2_exsrh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xpvif"]
+size = Vector2(13, 14)
+
+[node name="StarShower" type="Node2D"]
+script = ExtResource("1_exsrh")
+
+[node name="BaseBullet" type="Area2D" parent="."]
+visible = false
+position = Vector2(0, -400)
+collision_layer = 2
+script = ExtResource("1_ceu4g")
+damage = 7
+
+[node name="Sprite" type="Sprite2D" parent="BaseBullet"]
+texture = ExtResource("2_exsrh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BaseBullet"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_xpvif")
+
+[connection signal="body_entered" from="BaseBullet" to="BaseBullet" method="_on_body_entered"]

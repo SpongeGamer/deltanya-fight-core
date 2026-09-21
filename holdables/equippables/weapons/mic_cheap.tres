@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Equippable" load_steps=3 format=3 uid="uid://bpji53tp7dh11"]
+
+[ext_resource type="Script" uid="uid://cp643of2mfab3" path="res://holdables/equippables/equippable_attribute.gd" id="1_skib3"]
+[ext_resource type="Script" uid="uid://cbtfclefu13k7" path="res://holdables/equippables/equippable.gd" id="2_r6ifa"]
+
+[resource]
+script = ExtResource("2_r6ifa")
+fighter_stat_modifiers = Dictionary[int, int]({
+2: 2,
+3: 3
+})
+name = "Дешевый микрофон"
+short_description = "Фонит. Но хоть что-то."
+long_description = "Куплен на Авито за 300 рублей. 
+МАГ +3  АТК +2"
+price = 70
+sell_price = 35
+inventory_tab = 3

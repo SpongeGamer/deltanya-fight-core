@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://fqq68nucdvtq"]
+
+[ext_resource type="Script" uid="uid://tnj8srla5xws" path="res://globals/post_processing/post_processing.gd" id="1_ffmm6"]
+
+[node name="PostProcessing" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_ffmm6")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+top_level = true

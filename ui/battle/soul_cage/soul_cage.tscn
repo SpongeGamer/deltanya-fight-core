@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=3 uid="uid://b3uxp6uapsy5m"]
+
+[ext_resource type="Script" uid="uid://n736j4u0dcl5" path="res://ui/battle/soul_cage/soul_cage.gd" id="1_7p05l"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fo1ge"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0.752941, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fo1ge"]
+size = Vector2(4, 150)
+
+[node name="SoulCage" type="StaticBody2D"]
+script = ExtResource("1_7p05l")
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+custom_minimum_size = Vector2(150, 150)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -75.0
+offset_right = 75.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(75, 75)
+theme_override_styles/panel = SubResource("StyleBoxFlat_fo1ge")
+
+[node name="LeftWall" type="CollisionShape2D" parent="."]
+position = Vector2(-73, 0)
+shape = SubResource("RectangleShape2D_fo1ge")
+disabled = true
+
+[node name="RightWall" type="CollisionShape2D" parent="."]
+position = Vector2(73, 0)
+shape = SubResource("RectangleShape2D_fo1ge")
+disabled = true
+
+[node name="TopWall" type="CollisionShape2D" parent="."]
+position = Vector2(0, -73)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_fo1ge")
+disabled = true
+
+[node name="BottomWall" type="CollisionShape2D" parent="."]
+position = Vector2(0, 73)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_fo1ge")
+disabled = true
+
+[node name="Copies" type="Node2D" parent="."]

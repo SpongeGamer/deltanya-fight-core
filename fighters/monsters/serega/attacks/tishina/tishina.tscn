@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://cinvt117bd7pt"]
+
+[ext_resource type="Script" uid="uid://ck5u7takirgnx" path="res://fighters/monsters/serega/attacks/tishina/tishina_hidden.gd" id="1_hid"]
+[ext_resource type="Script" uid="uid://b82ag2nj5pdas" path="res://fighters/monsters/serega/attacks/tishina/tishina_ghost.gd" id="2_ghost"]
+[ext_resource type="Script" uid="uid://bi6imh35tl8f1" path="res://fighters/monsters/serega/attacks/tishina/tishina.gd" id="3_tis"]
+[ext_resource type="Texture2D" uid="uid://8t4pp4vhhs7y" path="res://fighters/monsters/knyaz/attacks/ballada/res/note_bullet.png" id="4_tex"]
+
+[sub_resource type="RectangleShape2D" id="Shape_hidden"]
+size = Vector2(10, 14)
+
+[sub_resource type="RectangleShape2D" id="Shape_ghost"]
+size = Vector2(12, 16)
+
+[node name="Tishina" type="Node2D"]
+z_index = 4
+script = ExtResource("3_tis")
+
+[node name="BaseHidden" type="Area2D" parent="."]
+visible = false
+z_index = 5
+position = Vector2(0, -400)
+collision_layer = 2
+script = ExtResource("1_hid")
+damage = 16
+graze_points = 1
+time_points = 0.005
+
+[node name="Sprite" type="Sprite2D" parent="BaseHidden"]
+position = Vector2(-2, 3)
+scale = Vector2(1.3, 1.4)
+texture = ExtResource("4_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BaseHidden"]
+position = Vector2(-1, 3)
+shape = SubResource("Shape_hidden")
+
+[node name="BaseGhost" type="Area2D" parent="."]
+visible = false
+z_index = 5
+position = Vector2(0, -400)
+collision_layer = 2
+script = ExtResource("2_ghost")
+damage = 8
+graze_points = 2
+time_points = 0.01
+
+[node name="Sprite2" type="Sprite2D" parent="BaseGhost"]
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("4_tex")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="BaseGhost"]
+shape = SubResource("Shape_ghost")
+
+[connection signal="body_entered" from="BaseHidden" to="BaseHidden" method="_on_body_entered"]
+[connection signal="body_entered" from="BaseGhost" to="BaseGhost" method="_on_body_entered"]

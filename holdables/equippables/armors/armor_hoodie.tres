@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Equippable" load_steps=3 format=3 uid="uid://ltyvcjwrf3hd"]
+
+[ext_resource type="Script" uid="uid://cp643of2mfab3" path="res://holdables/equippables/equippable_attribute.gd" id="1_x1cbx"]
+[ext_resource type="Script" uid="uid://cbtfclefu13k7" path="res://holdables/equippables/equippable.gd" id="2_oillw"]
+
+[resource]
+script = ExtResource("2_oillw")
+category = 3
+fighter_stat_modifiers = Dictionary[int, int]({
+0: 15,
+1: 5
+})
+name = "Худи"
+short_description = "Теплое. Не дает замерзнуть в темноте."
+long_description = "Большой карман спереди. Практично и уютно.
+ЗЩТ +5 ХП +15"
+price = 160
+sell_price = 80
+inventory_tab = 2
+metadata/_custom_type_script = "uid://cbtfclefu13k7"

@@ -1,0 +1,73 @@
+[gd_scene load_steps=11 format=3 uid="uid://bfa4lb432xvs7"]
+
+[ext_resource type="Script" uid="uid://xmkcg31qxbjh" path="res://scripts/overworld/storage_node.gd" id="1_fgv33"]
+[ext_resource type="Texture2D" uid="uid://jw8tasqtp3ms" path="res://assets/VFX/chest.png" id="2_huyug"]
+[ext_resource type="PackedScene" uid="uid://ogidicqqkcwp" path="res://scenes/prefabs/dialogue_area_2d.tscn" id="3_6il2m"]
+[ext_resource type="Script" uid="uid://buho0degfd14w" path="res://resources/DialogueExportResource.gd" id="4_570nn"]
+[ext_resource type="Script" uid="uid://dxhsmijrodh41" path="res://resources/DialogueFunctionResource.gd" id="5_o538j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6il2m"]
+atlas = ExtResource("2_huyug")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fu2c5"]
+atlas = ExtResource("2_huyug")
+region = Rect2(22, 0, 20, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_570nn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6il2m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fu2c5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6il2m")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fu2c5")
+}],
+"loop": true,
+"name": &"open",
+"speed": 5.0
+}]
+
+[sub_resource type="Resource" id="Resource_evjj4"]
+script = ExtResource("5_o538j")
+target_path = NodePath("..")
+function_name = "open_storage"
+hide_dialogue_box = true
+metadata/_custom_type_script = "uid://dxhsmijrodh41"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fu2c5"]
+size = Vector2(30, 30)
+
+[node name="StorageChest" type="Node2D"]
+scale = Vector2(2, 2)
+script = ExtResource("1_fgv33")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = -20
+z_as_relative = false
+position = Vector2(0, 9)
+sprite_frames = SubResource("SpriteFrames_570nn")
+animation = &"idle"
+offset = Vector2(0, -9)
+
+[node name="DialogueArea2D" parent="." instance=ExtResource("3_6il2m")]
+dialogue = Array[ExtResource("4_570nn")]([SubResource("Resource_evjj4")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DialogueArea2D"]
+shape = SubResource("RectangleShape2D_fu2c5")

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8ny5hm5wkufg"]
+
+[ext_resource type="Script" uid="uid://c5fn6mxjuco2u" path="res://ui/settings/settings_menu.gd" id="1_set"]
+
+[node name="SettingsMenu" type="CanvasLayer"]
+process_mode = 3
+layer = 10
+script = ExtResource("1_set")

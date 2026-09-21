@@ -1,0 +1,102 @@
+[gd_scene load_steps=14 format=3 uid="uid://bb7k2fwn06ol2"]
+
+[ext_resource type="Script" uid="uid://bfyj6ee13qbb5" path="res://fighters/monsters/gorshok/attacks/kotyol/kotyol.gd" id="1_kotyol"]
+[ext_resource type="Script" uid="uid://bpsa37g4bd4ef" path="res://fighters/monsters/gorshok/attacks/kotyol/cauldron_hazard.gd" id="2_cauldron"]
+[ext_resource type="Texture2D" uid="uid://kvnewcxibnuj" path="res://fighters/monsters/gorshok/attacks/kotyol/toxic.png" id="3_6gdae"]
+[ext_resource type="Script" uid="uid://cvl1vipt17ku0" path="res://fighters/monsters/gorshok/attacks/kotyol/platform_plank.gd" id="3_plank"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cauldron"]
+size = Vector2(180, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ewbuv"]
+atlas = ExtResource("3_6gdae")
+region = Rect2(0, 0, 222, 203)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wjmhe"]
+atlas = ExtResource("3_6gdae")
+region = Rect2(222, 0, 222, 203)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c7nae"]
+atlas = ExtResource("3_6gdae")
+region = Rect2(444, 0, 222, 203)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6xcm0"]
+atlas = ExtResource("3_6gdae")
+region = Rect2(666, 0, 222, 203)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6bygn"]
+atlas = ExtResource("3_6gdae")
+region = Rect2(888, 0, 222, 203)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4kd2a"]
+atlas = ExtResource("3_6gdae")
+region = Rect2(1554, 0, 222, 203)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dati8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ewbuv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wjmhe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c7nae")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6xcm0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6bygn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6xcm0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wjmhe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4kd2a")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_plank"]
+size = Vector2(45, 8)
+
+[node name="Kotyol" type="Node2D"]
+script = ExtResource("1_kotyol")
+damage = 150
+
+[node name="Cauldron" type="Area2D" parent="."]
+position = Vector2(0, 200)
+collision_layer = 2
+script = ExtResource("2_cauldron")
+damage = 150
+graze_points = 0
+time_points = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cauldron"]
+shape = SubResource("RectangleShape2D_cauldron")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Cauldron"]
+position = Vector2(9.536743e-07, -15.375004)
+scale = Vector2(0.81081074, 0.34113303)
+sprite_frames = SubResource("SpriteFrames_dati8")
+autoplay = "default"
+frame_progress = 0.52892816
+
+[node name="BasePlatform" type="AnimatableBody2D" parent="."]
+visible = false
+position = Vector2(0, -7000)
+collision_mask = 0
+script = ExtResource("3_plank")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BasePlatform"]
+shape = SubResource("RectangleShape2D_plank")
+
+[connection signal="body_entered" from="Cauldron" to="Cauldron" method="_on_body_entered"]
+[connection signal="hit_soul" from="Cauldron" to="." method="_on_cauldron_hit"]

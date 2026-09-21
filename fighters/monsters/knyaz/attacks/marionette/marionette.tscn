@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://csev4y186v41j"]
+
+[ext_resource type="Script" uid="uid://ranglx8k8jiu" path="res://fighters/monsters/knyaz/attacks/marionette/string_bullet.gd" id="1_sb"]
+[ext_resource type="Script" uid="uid://0henw2r27jhr" path="res://fighters/monsters/knyaz/attacks/marionette/marionette.gd" id="2_mar"]
+[ext_resource type="Texture2D" uid="uid://8t4pp4vhhs7y" path="res://fighters/monsters/knyaz/attacks/ballada/res/note_bullet.png" id="3_tex"]
+
+[sub_resource type="RectangleShape2D" id="Shape_bullet"]
+size = Vector2(10, 10)
+
+[node name="Marionette" type="Node2D"]
+z_index = 5
+script = ExtResource("2_mar")
+
+[node name="BaseBullet" type="Area2D" parent="."]
+visible = false
+z_index = 5
+position = Vector2(0, -400)
+collision_layer = 2
+script = ExtResource("1_sb")
+damage = 10
+graze_points = 2
+time_points = 0.01
+
+[node name="Sprite" type="Sprite2D" parent="BaseBullet"]
+modulate = Color(0.84, 0.21, 0.86, 1)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("3_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BaseBullet"]
+shape = SubResource("Shape_bullet")
+
+[connection signal="body_entered" from="BaseBullet" to="BaseBullet" method="_on_body_entered"]

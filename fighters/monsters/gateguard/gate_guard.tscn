@@ -1,0 +1,145 @@
+[gd_scene load_steps=12 format=3 uid="uid://dwt74kuw6627p"]
+
+[ext_resource type="Script" uid="uid://bhkckhfdo3ldw" path="res://fighters/monsters/gateguard/gate_guard.gd" id="1_gg"]
+[ext_resource type="Texture2D" uid="uid://dhghtfiix2jq4" path="res://fighters/monsters/gateguard/res/gg_idle.png" id="2_gg"]
+[ext_resource type="Script" uid="uid://bwvvm6kvpsqi1" path="res://fighters/characters/acts/act.gd" id="3_gg"]
+
+[sub_resource type="Resource" id="Resource_act1"]
+script = ExtResource("3_gg")
+title = "Осмотреть"
+text = "  * Шлагбаум на двух ногах. Смотрит строго.
+  * Без пропуска не пройдешь."
+metadata/_custom_type_script = "uid://bwvvm6kvpsqi1"
+
+[sub_resource type="Resource" id="Resource_act2"]
+script = ExtResource("3_gg")
+title = "Пропуск"
+text = "  * У тебя нет пропуска.
+  * Ты пытаешься нарисовать лже-пропуск."
+spare_percent = 20
+metadata/_custom_type_script = "uid://bwvvm6kvpsqi1"
+
+[sub_resource type="Resource" id="Resource_act3"]
+script = ExtResource("3_gg")
+title = "Подмигнуть"
+text = "  * Охранник не реагирует.
+  * Он на службе."
+spare_percent = 10
+metadata/_custom_type_script = "uid://bwvvm6kvpsqi1"
+
+[sub_resource type="Animation" id="Animation_reset"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_die"]
+resource_name = "die"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666666, 0.099999994, 0.13333334, 0.16666667, 0.2, 0.23333333, 0.26666668, 0.3, 0.33333334, 0.36666667, 0.4, 0.43333334, 0.46666667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(20.833332, 0), Vector2(41.666664, 0), Vector2(62.499996, 0), Vector2(83.33333, 0), Vector2(104.166664, 0), Vector2(124.99999, 0), Vector2(145.83333, 0), Vector2(166.66666, 0), Vector2(187.49998, 0), Vector2(208.33333, 0), Vector2(229.16666, 0), Vector2(249.99998, 0), Vector2(270.8333, 0), Vector2(291.66666, 0), Vector2(312.49997, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hurt"]
+resource_name = "hurt"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.10000001, 0.25, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(1.25, 1.25), Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_spare"]
+resource_name = "spare"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666666, 0.099999994, 0.13333334, 0.16666667, 0.2, 0.23333333, 0.26666668, 0.3, 0.33333334, 0.36666667, 0.4, 0.43333334, 0.46666667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(20.833332, 0), Vector2(41.666664, 0), Vector2(62.499996, 0), Vector2(83.33333, 0), Vector2(104.166664, 0), Vector2(124.99999, 0), Vector2(145.83333, 0), Vector2(166.66666, 0), Vector2(187.49998, 0), Vector2(208.33333, 0), Vector2(229.16666, 0), Vector2(249.99998, 0), Vector2(270.8333, 0), Vector2(291.66666, 0), Vector2(312.49997, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gg"]
+_data = {
+&"RESET": SubResource("Animation_reset"),
+&"die": SubResource("Animation_die"),
+&"hurt": SubResource("Animation_hurt"),
+&"spare": SubResource("Animation_spare")
+}
+
+[node name="GateGuard" type="Node2D"]
+script = ExtResource("1_gg")
+description = "* Шлагбаум на страже. "
+acts = Array[ExtResource("3_gg")]([SubResource("Resource_act1"), SubResource("Resource_act2"), SubResource("Resource_act3")])
+money_dropped = 150
+idle_lines = PackedStringArray("Стоп.", "Пропуск.", "Проход закрыт.", "Нарушение периметра.", "ACCESS DENIED.")
+opening_line_singular = "  * Шлагбаум преградил путь."
+opening_line_plural = "  * Шлагбаумы преградили путь."
+title = "Рыцарь Шлаг"
+base_fighter_stats = Dictionary[int, int]({
+0: 1,
+1: 1,
+2: 1,
+4: 1
+})
+main_sprite = NodePath("Sprite")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_gg")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_gg")
+}

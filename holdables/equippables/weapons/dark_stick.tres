@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Equippable" load_steps=3 format=3 uid="uid://d26lmrefmopok"]
+
+[ext_resource type="Script" uid="uid://cp643of2mfab3" path="res://holdables/equippables/equippable_attribute.gd" id="1_j0xx4"]
+[ext_resource type="Script" uid="uid://cbtfclefu13k7" path="res://holdables/equippables/equippable.gd" id="2_r6ifa"]
+
+[resource]
+script = ExtResource("2_r6ifa")
+category = 1
+fighter_stat_modifiers = Dictionary[int, int]({
+1: 2,
+2: 4,
+3: 14
+})
+name = "Темные палочки"
+short_description = "Барабанные палочки темного цвета."
+long_description = "Вы чувствуете прилив сил.
+ЗЩТ +2 АТК +4  МАГ +14"
+price = 400
+sell_price = 200
+inventory_tab = 3
+metadata/_custom_type_script = "uid://cbtfclefu13k7"

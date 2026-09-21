@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cn42o4mhswuck"]
+
+[ext_resource type="Script" uid="uid://0gnk3k6r538f" path="res://scenes/prefabs/slide_zone.gd" id="1_8j4ys"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ajj71"]
+size = Vector2(41.5, 55)
+
+[node name="SlideZone" type="Area2D"]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_8j4ys")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ajj71")

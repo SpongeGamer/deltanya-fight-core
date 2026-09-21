@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://2ooqm5r466t8"]
+
+[ext_resource type="Script" uid="uid://bcpnu54fchbji" path="res://fighters/monsters/shroompals/shroompal/attacks/spore_rain/spore_rain.gd" id="1_sr"]
+[ext_resource type="Script" uid="uid://cdq82rjy52oi6" path="res://fighters/monsters/shroompals/shroompal/attacks/spore_rain/spore_bullet.gd" id="2_sr"]
+[ext_resource type="Texture2D" uid="uid://dmvavp0t0iejc" path="res://fighters/monsters/shroompals/shroompal/attacks/spore_rain/spore.png" id="3_sr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sr"]
+radius = 5.0
+
+[node name="SporeRain" type="Node2D"]
+script = ExtResource("1_sr")
+
+[node name="BaseBullet" type="Area2D" parent="."]
+visible = false
+position = Vector2(0, -400)
+collision_layer = 2
+script = ExtResource("2_sr")
+damage = 5
+
+[node name="Sprite" type="Sprite2D" parent="BaseBullet"]
+scale = Vector2(1.35, 1.35)
+texture = ExtResource("3_sr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BaseBullet"]
+shape = SubResource("CircleShape2D_sr")
+
+[connection signal="body_entered" from="BaseBullet" to="BaseBullet" method="_on_body_entered"]

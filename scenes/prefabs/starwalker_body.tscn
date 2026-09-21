@@ -1,0 +1,122 @@
+[gd_scene load_steps=12 format=3 uid="uid://c34cw0dyc160i"]
+
+[ext_resource type="Texture2D" uid="uid://df05d6xq3ykj8" path="res://assets/main_characters/starwalker_walk.png" id="1_gk6b2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fiwhw"]
+atlas = ExtResource("1_gk6b2")
+region = Rect2(0, 0, 97, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_enfdj"]
+atlas = ExtResource("1_gk6b2")
+region = Rect2(97, 0, 97, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lgrrj"]
+atlas = ExtResource("1_gk6b2")
+region = Rect2(194, 0, 97, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x1ujj"]
+atlas = ExtResource("1_gk6b2")
+region = Rect2(291, 0, 97, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bp21e"]
+atlas = ExtResource("1_gk6b2")
+region = Rect2(388, 0, 97, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_62ifi"]
+atlas = ExtResource("1_gk6b2")
+region = Rect2(485, 0, 97, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6pfl7"]
+atlas = ExtResource("1_gk6b2")
+region = Rect2(582, 0, 97, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cyvup"]
+atlas = ExtResource("1_gk6b2")
+region = Rect2(679, 0, 97, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0gh8x"]
+atlas = ExtResource("1_gk6b2")
+region = Rect2(388, 0, 97, 95)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j1w31"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fiwhw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_enfdj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lgrrj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x1ujj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bp21e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_62ifi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6pfl7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cyvup")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0gh8x")
+}],
+"loop": true,
+"name": &"starwalker_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_enfdj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lgrrj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x1ujj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fiwhw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_62ifi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6pfl7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cyvup")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bp21e")
+}],
+"loop": true,
+"name": &"starwalker_walk",
+"speed": 5.0
+}]
+
+[node name="StarwalkerBody" type="CharacterBody2D"]
+z_as_relative = false
+y_sort_enabled = true
+collision_layer = 4
+collision_mask = 4
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(0.1000061, 4.5)
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_j1w31")
+metadata/_edit_lock_ = true

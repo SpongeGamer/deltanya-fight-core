@@ -1,0 +1,67 @@
+[gd_scene load_steps=8 format=3 uid="uid://dwbfw6pn135pq"]
+
+[ext_resource type="FontFile" uid="uid://i65lhainpmd6" path="res://ui/theme/fonts/8BitOperatorJVE/8BitOperatorJVE.ttf" id="1_e4sl1"]
+[ext_resource type="Script" uid="uid://dkbinrrai4fkg" path="res://scenes/overworld/title_sequence.gd" id="1_yx730"]
+[ext_resource type="Texture2D" uid="uid://b0mx4qepjjvn" path="res://globals/global/res/heart.png" id="2_g8ost"]
+[ext_resource type="FontFile" uid="uid://q4tuyk42idmk" path="res://fonts/8bitoperator Cyrillic Extension.otf" id="3_yx730"]
+[ext_resource type="Texture2D" uid="uid://dawi7re3rkyeq" path="res://assets/VFX/cinema.png" id="4_fc4v2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6axh6"]
+font = ExtResource("1_e4sl1")
+font_size = 70
+
+[sub_resource type="LabelSettings" id="LabelSettings_e4sl1"]
+font = ExtResource("3_yx730")
+font_size = 50
+
+[node name="title_sequence" type="CanvasLayer"]
+layer = 100
+script = ExtResource("1_yx730")
+fade_time = 2.0
+show_time = 3.0
+
+[node name="Logo" type="Label" parent="."]
+offset_left = 103.0
+offset_top = 120.0
+offset_right = 503.0
+offset_bottom = 191.0
+size_flags_horizontal = 3
+text = "Deltanyarune"
+label_settings = SubResource("LabelSettings_6axh6")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Heart" type="Sprite2D" parent="Logo"]
+self_modulate = Color(1, 0, 0, 1)
+position = Vector2(405, 41)
+scale = Vector2(2, 2)
+texture = ExtResource("2_g8ost")
+
+[node name="Text1" type="Label" parent="."]
+offset_left = 120.0
+offset_top = 200.0
+offset_right = 524.0
+offset_bottom = 303.0
+size_flags_horizontal = 3
+text = "Невероятная история
+Ани и Ко"
+label_settings = SubResource("LabelSettings_e4sl1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Meme" type="TextureRect" parent="."]
+offset_left = 218.0
+offset_top = 304.0
+offset_right = 431.0
+offset_bottom = 443.0
+texture = ExtResource("4_fc4v2")
+expand_mode = 1
+
+[node name="DarkRect" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+z_index = 20
+offset_left = -39.0
+offset_top = -67.0
+offset_right = 652.0
+offset_bottom = 526.0
+color = Color(0, 0, 0, 1)

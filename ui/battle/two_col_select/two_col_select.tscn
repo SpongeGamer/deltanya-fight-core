@@ -1,0 +1,113 @@
+[gd_scene load_steps=8 format=3 uid="uid://cw777caepj6ix"]
+
+[ext_resource type="Script" uid="uid://dxpkcl8xyswed" path="res://ui/battle/two_col_select/two_col_select.gd" id="1_b2wis"]
+[ext_resource type="Texture2D" uid="uid://dykkx5rmb62wp" path="res://ui/battle/two_col_select/res/arrow.png" id="1_yqb1m"]
+[ext_resource type="FontFile" uid="uid://q4tuyk42idmk" path="res://fonts/8bitoperator Cyrillic Extension.otf" id="2_o7abl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ctcw1"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_o7abl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Arrows:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_b2wis"]
+resource_name = "arrow_movement"
+length = 1.1
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Arrows:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.55, 0.95, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -6), Vector2(0, -6), Vector2(0, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o7abl"]
+_data = {
+&"RESET": SubResource("Animation_o7abl"),
+&"arrow_movement": SubResource("Animation_b2wis")
+}
+
+[node name="TwoColSelect" type="Node2D"]
+script = ExtResource("1_b2wis")
+columns = 2
+
+[node name="Panel" type="Panel" parent="."]
+clip_children = 2
+custom_minimum_size = Vector2(500, 115)
+offset_right = 640.0
+offset_bottom = 115.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ctcw1")
+
+[node name="Clip" type="Panel" parent="."]
+clip_contents = true
+offset_top = 7.0
+offset_right = 500.0
+offset_bottom = 115.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ctcw1")
+
+[node name="Items" type="GridContainer" parent="Clip"]
+layout_mode = 0
+offset_top = 3.0
+offset_right = 500.0
+offset_bottom = 109.0
+columns = 2
+
+[node name="Description" type="Label" parent="."]
+visible = false
+offset_left = 500.0
+offset_top = 8.0
+offset_right = 609.0
+offset_bottom = 115.0
+theme_override_colors/font_color = Color(0.501961, 0.501961, 0.501961, 1)
+theme_override_fonts/font = ExtResource("2_o7abl")
+text = "Грубый
+урон"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="TP" type="Label" parent="."]
+visible = false
+offset_left = 500.0
+offset_top = 78.0
+offset_right = 609.0
+offset_bottom = 110.0
+theme_override_colors/font_color = Color(1, 0.627451, 0.25098, 1)
+text = "50% TP"
+autowrap_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_o7abl")
+}
+
+[node name="Arrows" type="Node2D" parent="."]
+
+[node name="DownArrow" type="Sprite2D" parent="Arrows"]
+visible = false
+position = Vector2(476, 99)
+texture = ExtResource("1_yqb1m")
+
+[node name="UpArrow" type="Sprite2D" parent="Arrows"]
+visible = false
+position = Vector2(476, 21)
+rotation = -3.14159
+texture = ExtResource("1_yqb1m")

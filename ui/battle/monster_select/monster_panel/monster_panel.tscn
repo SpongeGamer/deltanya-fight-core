@@ -1,0 +1,94 @@
+[gd_scene load_steps=9 format=3 uid="uid://cte7khih2kb45"]
+
+[ext_resource type="Script" uid="uid://c647nxwp6djnn" path="res://ui/battle/monster_select/monster_panel/monster_panel.gd" id="1_fyfih"]
+[ext_resource type="Texture2D" uid="uid://b0mx4qepjjvn" path="res://globals/global/res/heart.png" id="1_layat"]
+[ext_resource type="FontFile" uid="uid://q4tuyk42idmk" path="res://fonts/8bitoperator Cyrillic Extension.otf" id="2_7eb5v"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_layat"]
+bg_color = Color(0.501961, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fyfih"]
+bg_color = Color(0, 1, 0, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_layat"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7eb5v"]
+bg_color = Color(1, 0.313726, 0.12549, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g7idw"]
+bg_color = Color(1, 1, 0, 1)
+
+[node name="MonsterPanel" type="Control"]
+custom_minimum_size = Vector2(640, 30)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 640.0
+offset_bottom = 30.0
+script = ExtResource("1_fyfih")
+heart_path = NodePath("Heart")
+title_path = NodePath("Title")
+metadata/_custom_type_script = "uid://c647nxwp6djnn"
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 80.0
+offset_top = -1.0
+offset_right = 415.0
+offset_bottom = 31.0
+theme_override_fonts/font = ExtResource("2_7eb5v")
+text = "Имя противника"
+vertical_alignment = 2
+clip_text = true
+
+[node name="Heart" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(63, 17)
+texture = ExtResource("1_layat")
+
+[node name="HPBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(81, 16)
+layout_mode = 0
+offset_left = 420.0
+offset_top = 4.0
+offset_right = 501.0
+offset_bottom = 20.0
+theme_override_styles/background = SubResource("StyleBoxFlat_layat")
+theme_override_styles/fill = SubResource("StyleBoxFlat_fyfih")
+value = 100.0
+rounded = true
+allow_greater = true
+show_percentage = false
+
+[node name="HPText" type="Label" parent="."]
+layout_mode = 0
+offset_left = 424.0
+offset_top = 4.0
+offset_right = 464.0
+offset_bottom = 36.0
+scale = Vector2(1, 0.5)
+theme_override_fonts/font = SubResource("FontVariation_layat")
+text = "100%"
+
+[node name="MercyBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(81, 16)
+layout_mode = 0
+offset_left = 520.0
+offset_top = 4.0
+offset_right = 601.0
+offset_bottom = 20.0
+theme_override_styles/background = SubResource("StyleBoxFlat_7eb5v")
+theme_override_styles/fill = SubResource("StyleBoxFlat_g7idw")
+max_value = 1.0
+step = 0.001
+show_percentage = false
+
+[node name="MercyText" type="Label" parent="."]
+layout_mode = 0
+offset_left = 524.0
+offset_top = 4.0
+offset_right = 566.0
+offset_bottom = 36.0
+scale = Vector2(1, 0.5)
+theme_override_colors/font_color = Color(0.501961, 0, 0, 1)
+theme_override_fonts/font = SubResource("FontVariation_layat")
+text = "0%"

@@ -1,0 +1,162 @@
+[gd_scene load_steps=13 format=3 uid="uid://0i25vkhhey7d"]
+
+[ext_resource type="Script" uid="uid://bnhrvm6rpaxsn" path="res://fighters/monsters/clippy/clippy.gd" id="1_dkte8"]
+[ext_resource type="Texture2D" uid="uid://4huc1yg2pgte" path="res://fighters/monsters/clippy/clippy_idle.png" id="1_i71ee"]
+[ext_resource type="Script" uid="uid://bwvvm6kvpsqi1" path="res://fighters/characters/acts/act.gd" id="2_5bsb5"]
+
+[sub_resource type="Resource" id="Resource_t23my"]
+script = ExtResource("2_5bsb5")
+title = "Спросить"
+text = "  * \"Похоже, вы пытаетесь выжить. Хотите помощи?\""
+spare_percent = 20
+metadata/_custom_type_script = "uid://bwvvm6kvpsqi1"
+
+[sub_resource type="Resource" id="Resource_6nftb"]
+script = ExtResource("2_5bsb5")
+title = "Закрыть"
+text = "  * Ты пытаешься найти X чтобы закрыть его.
+  * Но ничего не видно."
+metadata/_custom_type_script = "uid://bwvvm6kvpsqi1"
+
+[sub_resource type="Resource" id="Resource_vyibl"]
+script = ExtResource("2_5bsb5")
+title = "Игнорировать"
+text = "  * Скрепочка расстроен. "
+spare_percent = 5
+metadata/_custom_type_script = "uid://bwvvm6kvpsqi1"
+
+[sub_resource type="Animation" id="Animation_t23my"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ukbm1"]
+resource_name = "die"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666666, 0.099999994, 0.13333334, 0.16666667, 0.2, 0.23333333, 0.26666668, 0.3, 0.33333334, 0.36666667, 0.4, 0.43333334, 0.46666667, 0.5, 0.53333336, 0.56666666, 0.6, 0.6333333, 0.6666667, 0.7, 0.73333335, 0.76666665, 0.8000001),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(20.833332, 0), Vector2(41.666664, 0), Vector2(62.499996, 0), Vector2(83.33333, 0), Vector2(104.166664, 0), Vector2(124.99999, 0), Vector2(145.83333, 0), Vector2(166.66666, 0), Vector2(187.49998, 0), Vector2(208.33333, 0), Vector2(229.16666, 0), Vector2(249.99998, 0), Vector2(270.8333, 0), Vector2(291.66666, 0), Vector2(312.49997, 0), Vector2(333.3333, 0), Vector2(354.16663, 0), Vector2(374.99997, 0), Vector2(395.83328, 0), Vector2(416.66666, 0), Vector2(437.49994, 0), Vector2(458.3333, 0), Vector2(479.16663, 0), Vector2(500, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6nftb"]
+resource_name = "hurt"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.10000001, 0.25, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(1.25, 1.25), Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5bsb5"]
+resource_name = "idle"
+length = 7.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3, 3.25, 3.5, 3.75, 4, 4.2500005, 4.5000005, 4.7500005, 5.0000005, 5.2500005, 5.5000005, 5.7500005, 6.0000005, 6.2500005, 6.5000005, 6.7500005),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+}
+
+[sub_resource type="Animation" id="Animation_vyibl"]
+resource_name = "spare"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666666, 0.099999994, 0.13333334, 0.16666667, 0.2, 0.23333333, 0.26666668, 0.3, 0.33333334, 0.36666667, 0.4, 0.43333334, 0.46666667, 0.5, 0.53333336, 0.56666666, 0.6, 0.6333333, 0.6666667, 0.7, 0.73333335, 0.76666665, 0.8000001),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(20.833332, 0), Vector2(41.666664, 0), Vector2(62.499996, 0), Vector2(83.33333, 0), Vector2(104.166664, 0), Vector2(124.99999, 0), Vector2(145.83333, 0), Vector2(166.66666, 0), Vector2(187.49998, 0), Vector2(208.33333, 0), Vector2(229.16666, 0), Vector2(249.99998, 0), Vector2(270.8333, 0), Vector2(291.66666, 0), Vector2(312.49997, 0), Vector2(333.3333, 0), Vector2(354.16663, 0), Vector2(374.99997, 0), Vector2(395.83328, 0), Vector2(416.66666, 0), Vector2(437.49994, 0), Vector2(458.3333, 0), Vector2(479.16663, 0), Vector2(500, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6nftb"]
+_data = {
+&"RESET": SubResource("Animation_t23my"),
+&"die": SubResource("Animation_ukbm1"),
+&"hurt": SubResource("Animation_6nftb"),
+&"idle": SubResource("Animation_5bsb5"),
+&"spare": SubResource("Animation_vyibl")
+}
+
+[node name="Clippy" type="Node2D"]
+script = ExtResource("1_dkte8")
+description = "* Скрепочка - старый друг времен Windows XP."
+acts = Array[ExtResource("2_5bsb5")]([SubResource("Resource_t23my"), SubResource("Resource_6nftb"), SubResource("Resource_vyibl")])
+money_dropped = 200
+battle_music = "clippy"
+idle_lines = PackedStringArray("Я заметил что вы давно не сохранялись!", "Ошибка 404: победа не найдена.", "Вы уверены?", "☜❒❒□❒", "Он смотрит...")
+opening_line_singular = "  * Скрепочка приближается."
+opening_line_plural = "  * Несколько Скрепочек приближаются."
+title = "Скрепочка"
+base_fighter_stats = Dictionary[int, int]({
+0: 400,
+1: 5,
+2: 5,
+4: 1
+})
+main_sprite = NodePath("Sprite")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_i71ee")
+hframes = 33
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_6nftb")
+}

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="BasicAttack" load_steps=2 format=3 uid="uid://dyxoleq2jkvn1"]
+
+[ext_resource type="Script" uid="uid://c74hytev4kjc7" path="res://fighters/characters/spells/generic/basic_attack.gd" id="1_f0gdt"]
+
+[resource]
+script = ExtResource("1_f0gdt")
+damage_amount = 20
+animation_code = 5
+title = "Бас"
+text = "  * %s использовала бас для атаки %s."
+description = "Обычная атака."
+tp_percent_cost = 1
+target = 1
+metadata/_custom_type_script = "uid://c74hytev4kjc7"

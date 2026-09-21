@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://blakyaaofibec"]
+
+[ext_resource type="Script" uid="uid://76naamijterm" path="res://ui/battle/attack_timing/attack_timing.gd" id="1_tdqss"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f7j4o"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_trdl3"]
+bg_color = Color(0, 0, 0.501961, 1)
+
+[node name="AttackTiming" type="Node2D"]
+script = ExtResource("1_tdqss")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(640, 115)
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_f7j4o")
+
+[node name="Separator1" type="Panel" parent="."]
+custom_minimum_size = Vector2(224, 2)
+offset_left = 79.0
+offset_top = 38.0
+offset_right = 303.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_trdl3")
+
+[node name="Separator2" type="Panel" parent="."]
+custom_minimum_size = Vector2(224, 2)
+offset_left = 79.0
+offset_top = 76.0
+offset_right = 303.0
+offset_bottom = 78.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_trdl3")
+
+[node name="CharTimings" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(640, 115)
+offset_right = 640.0
+offset_bottom = 115.0
+theme_override_constants/separation = 0

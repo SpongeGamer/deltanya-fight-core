@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Equippable" load_steps=3 format=3 uid="uid://bec325eslgdic"]
+
+[ext_resource type="Script" uid="uid://cp643of2mfab3" path="res://holdables/equippables/equippable_attribute.gd" id="1_5g84v"]
+[ext_resource type="Script" uid="uid://cbtfclefu13k7" path="res://holdables/equippables/equippable.gd" id="2_u8tog"]
+
+[resource]
+script = ExtResource("2_u8tog")
+category = 3
+fighter_stat_modifiers = Dictionary[int, int]({
+0: 8,
+1: 2
+})
+name = "Любимая футболка"
+short_description = "Мягкая. Уютная. Чуть защищает."
+long_description = "Та самая, которую жалко выбрасывать.
+ЗЩТ +2 ХП +8"
+price = 50
+sell_price = 20
+inventory_tab = 2
+metadata/_custom_type_script = "uid://cbtfclefu13k7"

@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://ck17amkk4fxn5"]
+
+[ext_resource type="Script" uid="uid://decchq2bkqc26" path="res://pellets/generic_pellet/generic_pellet.gd" id="1_bxhxl"]
+[ext_resource type="Texture2D" uid="uid://dnb5h65wyjvf5" path="res://globals/global/res/common_shapes.png" id="2_bxhxl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bxhxl"]
+radius = 2.0
+
+[node name="GenericPellet" type="Area2D"]
+collision_layer = 2
+script = ExtResource("1_bxhxl")
+rotate_sprite = true
+shape = 1
+damage = 9
+metadata/_custom_type_script = "uid://l1dijweo3y2y"
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_bxhxl")
+region_enabled = true
+region_rect = Rect2(16, 0, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_bxhxl")

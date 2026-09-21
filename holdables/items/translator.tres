@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://bcd4ylx6jtju5"]
+
+[ext_resource type="Script" uid="uid://drff552q4x8m8" path="res://holdables/item.gd" id="1_item"]
+[ext_resource type="Script" uid="uid://spnknabihbuo" path="res://holdables/use_type/translator_use_predicate.gd" id="2_pred"]
+
+[sub_resource type="Resource" id="Pred"]
+script = ExtResource("2_pred")
+
+[resource]
+script = ExtResource("1_item")
+name = "Ретранслятор"
+short_description = "Устройство для перевода."
+long_description = "Позволяет понимать речь Шрумпов."
+inventory_tab = 1
+usePredicate = SubResource("Pred")
+is_key_item = true
+metadata/_custom_type_script = "uid://drff552q4x8m8"

@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://bxxom1afthlmv"]
+
+[ext_resource type="Script" uid="uid://bao01lu1nmw1y" path="res://fighters/monsters/captcha/attacks/grid_test/grid_test.gd" id="1_gt"]
+[ext_resource type="Script" uid="uid://c6yet7pdd0lgm" path="res://fighters/monsters/captcha/attacks/grid_test/grid_symbol_bullet.gd" id="2_gt"]
+[ext_resource type="Texture2D" uid="uid://b0enwviw0t7bw" path="res://fighters/monsters/captcha/attacks/grid_test/symbol_px.png" id="3_gt"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ps5o1"]
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gt"]
+size = Vector2(18.5, 21.5)
+
+[node name="GridTest" type="Node2D"]
+script = ExtResource("1_gt")
+
+[node name="BaseBullet" type="Area2D" parent="."]
+visible = false
+position = Vector2(0, -400)
+collision_layer = 2
+script = ExtResource("2_gt")
+damage = 5
+
+[node name="Sprite" type="Sprite2D" parent="BaseBullet"]
+position = Vector2(0, -2)
+scale = Vector2(0.78125, 0.78125)
+texture = ExtResource("3_gt")
+
+[node name="Label" type="Label" parent="BaseBullet"]
+offset_left = -7.0
+offset_top = -17.0
+offset_right = 9.0
+offset_bottom = 15.0
+text = "?"
+label_settings = SubResource("LabelSettings_ps5o1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BaseBullet"]
+position = Vector2(-0.25, -1.25)
+shape = SubResource("RectangleShape2D_gt")
+
+[connection signal="body_entered" from="BaseBullet" to="BaseBullet" method="_on_body_entered"]

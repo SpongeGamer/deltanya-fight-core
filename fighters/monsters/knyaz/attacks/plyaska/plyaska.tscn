@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://b3v6abmgo65sj"]
+
+[ext_resource type="Script" uid="uid://bkmmrs8iti5ob" path="res://fighters/monsters/knyaz/attacks/plyaska/dance_pair.gd" id="1_dancepair"]
+[ext_resource type="Script" uid="uid://cd6j630lbtoi0" path="res://fighters/monsters/knyaz/attacks/plyaska/plyaska.gd" id="2_plyaska"]
+[ext_resource type="Texture2D" uid="uid://8t4pp4vhhs7y" path="res://fighters/monsters/knyaz/attacks/ballada/res/note_bullet.png" id="3_tex"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bullet"]
+size = Vector2(7, 12.5)
+
+[node name="Plyaska" type="Node2D"]
+script = ExtResource("2_plyaska")
+
+[node name="BaseBulletA" type="Area2D" parent="."]
+visible = false
+position = Vector2(0, -400)
+collision_layer = 2
+script = ExtResource("1_dancepair")
+damage = 10
+graze_points = 3
+time_points = 0.01
+
+[node name="Sprite" type="Sprite2D" parent="BaseBulletA"]
+modulate = Color(0.972, 0, 0.162, 1)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("3_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BaseBulletA"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_bullet")
+
+[node name="BaseBulletB" type="Area2D" parent="."]
+visible = false
+position = Vector2(0, -400)
+collision_layer = 2
+script = ExtResource("1_dancepair")
+damage = 10
+graze_points = 3
+time_points = 0.01
+
+[node name="Sprite" type="Sprite2D" parent="BaseBulletB"]
+modulate = Color(0, 0.657, 0.995, 1)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("3_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BaseBulletB"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_bullet")
+
+[connection signal="body_entered" from="BaseBulletA" to="BaseBulletA" method="_on_body_entered"]
+[connection signal="body_entered" from="BaseBulletB" to="BaseBulletB" method="_on_body_entered"]
