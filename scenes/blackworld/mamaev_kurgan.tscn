@@ -1,4 +1,4 @@
-[gd_scene load_steps=362 format=4 uid="uid://rvqhspnujl5w"]
+[gd_scene load_steps=363 format=4 uid="uid://rvqhspnujl5w"]
 
 [ext_resource type="Script" uid="uid://cx6ul5ud4jduu" path="res://scenes/blackworld/mamaev_kurgan.gd" id="1_n65pb"]
 [ext_resource type="Script" uid="uid://ct404q8dpij18" path="res://scripts/overworld/camera_controller.gd" id="1_to7hb"]
@@ -2371,6 +2371,9 @@ function_name = "start_captcha_battle"
 hide_dialogue_box = true
 metadata/_custom_type_script = "uid://dkpcd6ejbeqxq"
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5t5ji"]
+size = Vector2(91, 69)
+
 [node name="MamaevKurgan" type="Node2D"]
 script = ExtResource("1_n65pb")
 
@@ -3930,6 +3933,10 @@ script = ExtResource("30_t1h30")
 target_scene = "uid://dclvgwrxvbt7b"
 spawn_point = "Spawnpoint"
 set_dark_world = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Exit"]
+position = Vector2(-67.5, 83)
+shape = SubResource("RectangleShape2D_5t5ji")
 
 [node name="Hole" type="Sprite2D" parent="."]
 position = Vector2(425.00003, 3021)

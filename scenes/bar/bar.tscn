@@ -1,4 +1,4 @@
-[gd_scene load_steps=200 format=4 uid="uid://ccbkxvvimuk8e"]
+[gd_scene load_steps=195 format=4 uid="uid://ccbkxvvimuk8e"]
 
 [ext_resource type="Script" uid="uid://p6akibqm6cio" path="res://scenes/bar/bar.gd" id="1_3gxfx"]
 [ext_resource type="Texture2D" uid="uid://b88jeemj33yw4" path="res://assets/tilesets/knyaz_bar.png" id="1_tcu61"]
@@ -11,14 +11,12 @@
 [ext_resource type="Texture2D" uid="uid://c2cisy3tn6jxq" path="res://assets/furniture/knyaz_stuff/bar_table_3.png" id="6_f28po"]
 [ext_resource type="Texture2D" uid="uid://cs8utw3vhos0e" path="res://assets/furniture/knyaz_stuff/stool.png" id="7_078ud"]
 [ext_resource type="Texture2D" uid="uid://san0jebao3a6" path="res://assets/furniture/knyaz_stuff/test.png" id="7_vkkt2"]
-[ext_resource type="Texture2D" uid="uid://b5vo0i43do7nb" path="res://assets/NPC/NPC_Zahar_G.png" id="9_tmrft"]
 [ext_resource type="Texture2D" uid="uid://byn2cwkimm8uy" path="res://assets/furniture/knyaz_stuff/bar_table_3_over.png" id="12_16tjs"]
 [ext_resource type="Texture2D" uid="uid://yoyve1x0nmc8" path="res://assets/NPC/NPC_Alina.png" id="12_53nt1"]
 [ext_resource type="Texture2D" uid="uid://ccufgyq5lb856" path="res://assets/NPC/NPC_Anya.png" id="12_ndwor"]
 [ext_resource type="Texture2D" uid="uid://rcx0krgpln7g" path="res://assets/NPC/NPC_Max.png" id="13_1nr5c"]
 [ext_resource type="Texture2D" uid="uid://cl2dqcauhnl7r" path="res://assets/NPC/NPC_Den.png" id="13_ndwor"]
 [ext_resource type="Script" uid="uid://dpl3myc5lbyaq" path="res://scripts/DialogueTextResource.gd" id="15_5aqrf"]
-[ext_resource type="AudioStream" uid="uid://cc4bqj57qf6k1" path="res://globals/sounds/voices/zahar_voice.ogg" id="16_1txpi"]
 [ext_resource type="Texture2D" uid="uid://ch14if8c6yulj" path="res://assets/NPC/Birdman.png" id="16_ndwor"]
 [ext_resource type="Texture2D" uid="uid://dcshpx4bwk1ct" path="res://assets/NPC/Fishman.png" id="17_1nr5c"]
 [ext_resource type="Texture2D" uid="uid://dq2mxj7x4w5oc" path="res://assets/NPC/Horseman.png" id="18_kd8aa"]
@@ -142,38 +140,11 @@ metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cht2l"]
 size = Vector2(28.999756, 58)
 
-[sub_resource type="Resource" id="Resource_hx6i0"]
-script = ExtResource("15_5aqrf")
-speaker_name = "Захар"
-speaker_img = ExtResource("9_tmrft")
-text = "Очередной блядушник.
-Сборище этих унтерменших и надетых шлюх. Один Я ахуенен."
-text_speed = 12.0
-text_sound = ExtResource("16_1txpi")
-text_volume_pitch_min = 0.95
-text_volume_pitch_max = 1.05
-metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_v36h3"]
-size = Vector2(288.88867, 666.6665)
-
-[sub_resource type="Resource" id="Resource_gltwo"]
-script = ExtResource("15_5aqrf")
-speaker_name = "Захар"
-speaker_img = ExtResource("9_tmrft")
-text = "Слышал шум. Это вы с Князем разбирались?
-Ну и правильно. Давно пора было кому-то сказать ему что он не самый ахуенный."
-text_speed = 12.0
-text_sound = ExtResource("16_1txpi")
-text_volume_pitch_min = 0.95
-text_volume_pitch_max = 1.05
-metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
-
 [sub_resource type="Resource" id="Resource_6faq3"]
 script = ExtResource("15_5aqrf")
 speaker_name = "Аня"
 speaker_img = ExtResource("12_ndwor")
-text = "Как всегда Захар сидит и бухтит в углу. Зато Я с Максимом!"
+text = "Как всегда кто-то сидит и бухтит в углу. Зато Я с Максимом!"
 text_speed = 12.0
 text_sound = ExtResource("19_6faq3")
 text_volume_db = 8
@@ -250,7 +221,7 @@ format = 3
 
 [sub_resource type="Resource" id="Resource_rgjg5"]
 script = ExtResource("15_5aqrf")
-text = "Судя по всему, Максим засыпает стоя.
+text = "Судя по всему, Максим засыпает...
 Не будем им мешать..."
 text_speed = 14.0
 text_sound = SubResource("AudioStreamWAV_amgsn")
@@ -521,7 +492,7 @@ metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
 [sub_resource type="Resource" id="Resource_sv5x3"]
 script = ExtResource("15_5aqrf")
 text = "Это все хорошо, но мое предложение по сену все еще в силе. 
-Наберете мне."
+Наберете."
 text_speed = 12.0
 text_sound = SubResource("AudioStreamWAV_4vm2b")
 text_volume_db = 8
@@ -1376,40 +1347,15 @@ shape = SubResource("RectangleShape2D_cht2l")
 
 [node name="NPC" type="Node" parent="."]
 
-[node name="Zahar" type="Sprite2D" parent="NPC"]
-position = Vector2(543.75, 366.94998)
-scale = Vector2(0.10166661, 0.09500001)
-texture = ExtResource("9_tmrft")
-
-[node name="FightDialogue" parent="NPC/Zahar" instance=ExtResource("19_uyv1q")]
-position = Vector2(-981.1481, 326.84225)
-dialogue = Array[ExtResource("20_3gxfx")]([SubResource("Resource_hx6i0")])
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC/Zahar/FightDialogue"]
-position = Vector2(5.55542, 101.11119)
-scale = Vector2(1.0000001, 1.0000001)
-shape = SubResource("RectangleShape2D_v36h3")
-
-[node name="PostFightDialogue" parent="NPC/Zahar" instance=ExtResource("19_uyv1q")]
-position = Vector2(-981.1481, 326.84225)
-monitoring = false
-dialogue = Array[ExtResource("20_3gxfx")]([SubResource("Resource_gltwo")])
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC/Zahar/PostFightDialogue"]
-position = Vector2(5.55542, 101.11119)
-scale = Vector2(1.0000001, 1.0000001)
-shape = SubResource("RectangleShape2D_v36h3")
-
 [node name="Anne2" type="Sprite2D" parent="NPC"]
 z_as_relative = false
-position = Vector2(336, 354)
+position = Vector2(517, 380)
 scale = Vector2(0.124531165, 0.117890716)
 texture = ExtResource("12_ndwor")
 offset = Vector2(0, -100)
 
 [node name="FightDialogue" parent="NPC/Anne2" instance=ExtResource("19_uyv1q")]
-position = Vector2(-369.3855, 237.50809)
-rotation = 1.5707964
+position = Vector2(-586.1987, 161.1662)
 dialogue = Array[ExtResource("20_3gxfx")]([SubResource("Resource_6faq3"), SubResource("Resource_t4tfj")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NPC/Anne2/FightDialogue"]
@@ -1418,8 +1364,7 @@ scale = Vector2(1.0000001, 1.0000001)
 shape = SubResource("RectangleShape2D_16tjs")
 
 [node name="PostFightDialogue" parent="NPC/Anne2" instance=ExtResource("19_uyv1q")]
-position = Vector2(-369.3855, 237.50809)
-rotation = 1.5707964
+position = Vector2(-586.1987, 161.1662)
 dialogue = Array[ExtResource("20_3gxfx")]([SubResource("Resource_qw500"), SubResource("Resource_1fyuy"), SubResource("Resource_m70ff"), SubResource("Resource_rgjg5")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NPC/Anne2/PostFightDialogue"]
@@ -1429,7 +1374,7 @@ shape = SubResource("RectangleShape2D_16tjs")
 
 [node name="Max" type="Sprite2D" parent="NPC"]
 z_as_relative = false
-position = Vector2(205, 305)
+position = Vector2(459, 330)
 scale = Vector2(0.10294117, 0.10866726)
 texture = ExtResource("13_1nr5c")
 centered = false

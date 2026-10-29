@@ -80,7 +80,7 @@ packet_sequence = SubResource("OggPacketSequence_aoy1j")
 script = ExtResource("3_c3mh6")
 speaker_name = "Егор"
 speaker_img = SubResource("CompressedTexture2D_tm6bf")
-text = "Сколько же на это все ушло? 12 недель?"
+text = "Сколько же на это все ушло? 3 месяца?"
 text_speed = 12.0
 text_sound = SubResource("AudioStreamOggVorbis_rb2lf")
 text_volume_db = 10
@@ -98,7 +98,7 @@ packet_sequence = SubResource("OggPacketSequence_kge3t")
 script = ExtResource("3_c3mh6")
 speaker_name = "Катя"
 speaker_img = SubResource("CompressedTexture2D_6t516")
-text = "К тому моменту когда Аня будет это читать - уже все 13."
+text = "К тому моменту когда Аня будет это читать - уже все 6."
 text_speed = 12.0
 text_sound = SubResource("AudioStreamOggVorbis_6k5et")
 text_volume_db = 4
@@ -116,7 +116,7 @@ packet_sequence = SubResource("OggPacketSequence_aoy1j")
 script = ExtResource("3_c3mh6")
 speaker_name = "Егор"
 speaker_img = SubResource("CompressedTexture2D_d3wvd")
-text = "13 НЕДЕЛЬ РАЗРАБОТКИ ОДНОЙ МИНИ-ИГРЫ!
+text = "СТОЛЬКО ВРЕМЕНИ РАЗРАБОТКИ РАДИ ОДНОЙ ИГРЫ!
 ПИЗДАНУТЬСЯ!"
 text_speed = 12.0
 text_sound = SubResource("AudioStreamOggVorbis_dfqhk")
@@ -189,7 +189,7 @@ packet_sequence = SubResource("OggPacketSequence_aoy1j")
 script = ExtResource("3_c3mh6")
 speaker_name = "Егор"
 speaker_img = SubResource("CompressedTexture2D_rb2lf")
-text = "Это да, по итогу в целом Я доволен."
+text = "Это да, по итогу в целом все довольны."
 text_speed = 12.0
 text_sound = SubResource("AudioStreamOggVorbis_ojd8n")
 text_volume_db = 10
@@ -837,7 +837,7 @@ offset_bottom = 3328.0
 text = "Огромное спасибо многочисленным 
 друзьям и камео-персонажам:
 
-Ксюхи
+Ксюхи (млкя и жестб блшя)
 
 Даша
 
@@ -849,7 +849,6 @@ text = "Огромное спасибо многочисленным
 
 Денис
 
-Захар
 
 
 "

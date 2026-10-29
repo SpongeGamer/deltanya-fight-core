@@ -1,4 +1,4 @@
-[gd_scene load_steps=227 format=4 uid="uid://bxont2nubewsm"]
+[gd_scene load_steps=224 format=4 uid="uid://bxont2nubewsm"]
 
 [ext_resource type="Script" uid="uid://cwyxcw0akqn2n" path="res://scenes/prefabs/testing_room.gd" id="1_7uwqf"]
 [ext_resource type="Script" uid="uid://ct404q8dpij18" path="res://scripts/overworld/camera_controller.gd" id="1_ypuvc"]
@@ -43,9 +43,7 @@
 [ext_resource type="Texture2D" uid="uid://br5ycy3ruy3jb" path="res://assets/portraits/test_kate.png" id="39_ik0iw"]
 [ext_resource type="AudioStream" uid="uid://c52f1xiabf22m" path="res://globals/sounds/voices/kate_voice.ogg" id="40_65phd"]
 [ext_resource type="Texture2D" uid="uid://rcx0krgpln7g" path="res://assets/NPC/NPC_Max.png" id="41_p6sni"]
-[ext_resource type="Texture2D" uid="uid://b5vo0i43do7nb" path="res://assets/NPC/NPC_Zahar_G.png" id="44_dprx5"]
 [ext_resource type="Texture2D" uid="uid://c4t8kd41frivd" path="res://assets/NPC/NPC_Dasha_M.png" id="45_tmvwq"]
-[ext_resource type="AudioStream" uid="uid://cc4bqj57qf6k1" path="res://globals/sounds/voices/zahar_voice.ogg" id="45_yirch"]
 [ext_resource type="AudioStream" uid="uid://0lrteve03r8" path="res://globals/sounds/voices/dasham_voice.ogg" id="47_amfrb"]
 [ext_resource type="Texture2D" uid="uid://bugejgdsvu87k" path="res://assets/main_characters/nikita_down.png" id="47_tmvwq"]
 [ext_resource type="Texture2D" uid="uid://p4gy0jn0txss" path="res://assets/NPC/NPC_Error.png" id="48_8bamq"]
@@ -1699,21 +1697,6 @@ choice_text = Array[String](["Да!", "Нет."])
 choice_function_call = Array[ExtResource("7_nw0p8")]([SubResource("Resource_yt088")])
 metadata/_custom_type_script = "uid://duk2femdl2tfy"
 
-[sub_resource type="Resource" id="Resource_mi4s5"]
-script = ExtResource("8_l4ysk")
-speaker_name = "Захар"
-speaker_img = ExtResource("44_dprx5")
-text = "Это тестовый диалог для проверки.
-Я че блядь, похож на абонента?"
-text_speed = 12.0
-text_sound = ExtResource("45_yirch")
-text_volume_pitch_min = 0.95
-text_volume_pitch_max = 1.05
-metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5f24i"]
-size = Vector2(288.88867, 666.6665)
-
 [sub_resource type="Resource" id="Resource_d3fwu"]
 script = ExtResource("8_l4ysk")
 speaker_name = "Даша"
@@ -1725,6 +1708,9 @@ text_volume_db = -5
 text_volume_pitch_min = 0.95
 text_volume_pitch_max = 1.05
 metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5f24i"]
+size = Vector2(288.88867, 666.6665)
 
 [sub_resource type="Resource" id="Resource_8bw0j"]
 script = ExtResource("8_l4ysk")
@@ -2245,26 +2231,10 @@ shape = SubResource("RectangleShape2D_15rdk")
 
 [node name="NPCNodes" type="Node" parent="."]
 
-[node name="NPC_Z" type="Sprite2D" parent="NPCNodes"]
-z_index = -400
-z_as_relative = false
-position = Vector2(-352.5, 222.9)
-scale = Vector2(0.09, 0.09)
-texture = ExtResource("44_dprx5")
-offset = Vector2(0, -400)
-
-[node name="DialogueArea2D" parent="NPCNodes/NPC_Z" instance=ExtResource("6_qc3ys")]
-dialogue = Array[ExtResource("7_nw0p8")]([SubResource("Resource_mi4s5")])
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCNodes/NPC_Z/DialogueArea2D"]
-position = Vector2(5.55542, 101.11119)
-scale = Vector2(1.0000001, 1.0000001)
-shape = SubResource("RectangleShape2D_5f24i")
-
 [node name="NPC_Dasha_M" type="Sprite2D" parent="NPCNodes"]
 z_index = -330
 z_as_relative = false
-position = Vector2(-282.5, 224.9)
+position = Vector2(-208, 331)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("45_tmvwq")
 offset = Vector2(0, -330)
@@ -2280,7 +2250,7 @@ shape = SubResource("RectangleShape2D_5f24i")
 [node name="NPC_Max" type="Sprite2D" parent="NPCNodes"]
 z_index = -350
 z_as_relative = false
-position = Vector2(-217, 222.89998)
+position = Vector2(-352, 226.99998)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("41_p6sni")
 offset = Vector2(0, -350)
@@ -2361,7 +2331,7 @@ shape = SubResource("RectangleShape2D_5f24i")
 [node name="NPC_Denis" type="Sprite2D" parent="NPCNodes"]
 z_index = -350
 z_as_relative = false
-position = Vector2(-212, 331.1579)
+position = Vector2(-284, 225.99998)
 scale = Vector2(0.1, 0.094736844)
 texture = ExtResource("61_up4ji")
 offset = Vector2(0, -350)
@@ -2393,7 +2363,7 @@ shape = SubResource("RectangleShape2D_5f24i")
 [node name="NPC_Knyaz" type="Sprite2D" parent="NPCNodes"]
 z_index = -350
 z_as_relative = false
-position = Vector2(-71, 336.00003)
+position = Vector2(-210.99998, 227.00003)
 scale = Vector2(0.12, 0.12)
 texture = ExtResource("64_mx2dn")
 offset = Vector2(0, -350)

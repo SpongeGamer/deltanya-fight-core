@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=4 uid="uid://bqsb11kawwuk0"]
+[gd_scene load_steps=59 format=4 uid="uid://bqsb11kawwuk0"]
 
 [ext_resource type="Script" uid="uid://c58ijqgo7idg6" path="res://scenes/prefabs/test.gd" id="1_db20y"]
 [ext_resource type="PackedScene" uid="uid://bqtlrsnx3khll" path="res://scenes/prefabs/player.tscn" id="1_elvnh"]
@@ -12,12 +12,10 @@
 [ext_resource type="Script" uid="uid://duk2femdl2tfy" path="res://resources/DialogueChoiceResource.gd" id="12_7fjgt"]
 [ext_resource type="Script" uid="uid://lshh8kqeolbm" path="res://scripts/debug/test_enemy_encounter.gd" id="12_302i4"]
 [ext_resource type="Script" uid="uid://csr5dab25ud4e" path="res://scenes/prefabs/z_index.gd" id="17_rsent"]
-[ext_resource type="Texture2D" uid="uid://dx60tdiie7khf" path="res://assets/bg/Temmie Village.png" id="22_agot6"]
 [ext_resource type="PackedScene" uid="uid://b8ny5hm5wkufg" path="res://ui/settings/settings_menu.tscn" id="25_302i4"]
 [ext_resource type="PackedScene" uid="uid://bfa4lb432xvs7" path="res://scenes/prefabs/storage_chest.tscn" id="28_7gjip"]
 [ext_resource type="Script" uid="uid://cd547rsa4e5yh" path="res://scenes/prefabs/test_sell.gd" id="29_db20y"]
 [ext_resource type="Resource" uid="uid://c5q2r8qre1cu0" path="res://resources/shop/test_sell.tres" id="30_jctx5"]
-[ext_resource type="Texture2D" uid="uid://b5vo0i43do7nb" path="res://assets/NPC/NPC_Zahar_G.png" id="31_mrw6a"]
 [ext_resource type="Texture2D" uid="uid://c4t8kd41frivd" path="res://assets/NPC/NPC_Dasha_M.png" id="32_0lvsi"]
 [ext_resource type="Texture2D" uid="uid://erevrn4ovac3" path="res://assets/NPC/NPC_Dasha_K.png" id="33_qdj1a"]
 [ext_resource type="AudioStream" uid="uid://dg7xuf4u26763" path="res://globals/sounds/sound_effects/snd_text.wav" id="33_x1ujj"]
@@ -108,10 +106,13 @@ metadata/_custom_type_script = "uid://dkpcd6ejbeqxq"
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nhoj7"]
 size = Vector2(11, 89.00012)
 
+[sub_resource type="Resource" id="Resource_7gjip"]
+metadata/__load_path__ = "res://assets/NPC/NPC_Zahar_G.png"
+
 [sub_resource type="Resource" id="Resource_7k6x3"]
 script = ExtResource("8_fx5m5")
 speaker_name = "Захар"
-speaker_img = ExtResource("31_mrw6a")
+speaker_img = SubResource("Resource_7gjip")
 text = "Это - тестовый диалог для проверки..."
 text_speed = 12.0
 text_sound = ExtResource("35_mrw6a")
@@ -158,10 +159,13 @@ script = ExtResource("47_6pfl7")
 item = ExtResource("46_62ifi")
 metadata/_custom_type_script = "uid://bxt24qe8okxx0"
 
+[sub_resource type="Resource" id="Resource_jctx5"]
+metadata/__load_path__ = "res://assets/NPC/NPC_Zahar_G.png"
+
 [sub_resource type="Resource" id="Resource_aoq3n"]
 script = ExtResource("8_fx5m5")
 speaker_name = "Захар"
-speaker_img = ExtResource("31_mrw6a")
+speaker_img = SubResource("Resource_jctx5")
 text = "Как знаешь. Мне больше достанется."
 text_speed = 12.0
 text_sound = ExtResource("35_mrw6a")
@@ -169,10 +173,13 @@ text_volume_pitch_min = 0.95
 text_volume_pitch_max = 1.05
 metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
 
+[sub_resource type="Resource" id="Resource_qxwa2"]
+metadata/__load_path__ = "res://assets/NPC/NPC_Zahar_G.png"
+
 [sub_resource type="Resource" id="Resource_f7c5u"]
 script = ExtResource("12_7fjgt")
 speaker_name = "Захар"
-speaker_img = ExtResource("31_mrw6a")
+speaker_img = SubResource("Resource_qxwa2")
 text = "Конфету будешь?"
 choice_text = Array[String](["Давай", "Не хочу, спасибо"])
 choice_function_call = Array[ExtResource("7_2yr0x")]([SubResource("Resource_6pfl7"), SubResource("Resource_aoq3n")])
@@ -285,7 +292,6 @@ z_as_relative = false
 [node name="TemmieVillage" type="Sprite2D" parent="Bg"]
 position = Vector2(-167.99998, -181)
 scale = Vector2(2.1, 2.1)
-texture = ExtResource("22_agot6")
 metadata/_edit_lock_ = true
 
 [node name="Actors" type="Node2D" parent="."]
@@ -310,8 +316,6 @@ script = ExtResource("17_rsent")
 
 [node name="TestDialogueArea2D" parent="Actors" instance=ExtResource("6_t61p3")]
 position = Vector2(-370, -101)
-collision_layer = 4
-collision_mask = 4
 activate_instant = true
 only_activate_once = true
 flag_key = "nikita_battle"
@@ -323,8 +327,6 @@ shape = SubResource("RectangleShape2D_bp21e")
 
 [node name="TestClippyArea2D2" parent="Actors" instance=ExtResource("6_t61p3")]
 position = Vector2(-547, -99)
-collision_layer = 4
-collision_mask = 4
 activate_instant = true
 only_activate_once = true
 flag_key = "clippy_battle"
@@ -333,14 +335,6 @@ dialogue = Array[ExtResource("7_2yr0x")]([SubResource("Resource_x1ujj"), SubReso
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Actors/TestClippyArea2D2"]
 position = Vector2(-5.5, -5.500061)
 shape = SubResource("RectangleShape2D_nhoj7")
-
-[node name="NPC_Z" type="Sprite2D" parent="Actors"]
-z_index = -400
-z_as_relative = false
-position = Vector2(267, -136)
-scale = Vector2(0.09, 0.09)
-texture = ExtResource("31_mrw6a")
-offset = Vector2(0, -400)
 
 [node name="NPC_Dasha_M" type="Sprite2D" parent="Actors"]
 z_index = -330
@@ -367,8 +361,6 @@ texture = ExtResource("34_7k6x3")
 offset = Vector2(0, -350)
 
 [node name="DialogueArea2D" parent="Actors" instance=ExtResource("6_t61p3")]
-collision_layer = 4
-collision_mask = 4
 only_activate_once = true
 flag_key = "npc_zahar_candy"
 dialogue = Array[ExtResource("7_2yr0x")]([SubResource("Resource_7k6x3"), SubResource("Resource_0gh8x"), SubResource("Resource_enfdj"), SubResource("Resource_lgrrj"), SubResource("Resource_f7c5u")])
@@ -394,8 +386,6 @@ script = ExtResource("29_db20y")
 
 [node name="ShopZone" parent="Actors/NPC_Max2" instance=ExtResource("6_t61p3")]
 position = Vector2(47, 127)
-collision_layer = 4
-collision_mask = 4
 dialogue = Array[ExtResource("7_2yr0x")]([SubResource("Resource_ojwqt")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Actors/NPC_Max2/ShopZone"]

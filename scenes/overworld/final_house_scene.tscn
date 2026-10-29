@@ -1,4 +1,4 @@
-[gd_scene load_steps=125 format=4 uid="uid://2hx135ha2frj"]
+[gd_scene load_steps=122 format=4 uid="uid://2hx135ha2frj"]
 
 [ext_resource type="Script" uid="uid://bu4i8rcn336u4" path="res://scenes/overworld/final_house_scene.gd" id="1_xp1xc"]
 [ext_resource type="Script" uid="uid://ct404q8dpij18" path="res://scripts/overworld/camera_controller.gd" id="2_5h3wo"]
@@ -29,11 +29,9 @@
 [ext_resource type="Texture2D" uid="uid://c30f7twpy6uti" path="res://assets/furniture/cat_bed.png" id="28_kklv2"]
 [ext_resource type="Texture2D" uid="uid://8psuesh16h33" path="res://assets/furniture/cat_toy.png" id="29_xp1xc"]
 [ext_resource type="Texture2D" uid="uid://px5wuk870hfw" path="res://assets/furniture/exit_shadow.png" id="30_dsuly"]
-[ext_resource type="Texture2D" uid="uid://b5vo0i43do7nb" path="res://assets/NPC/NPC_Zahar_G.png" id="30_v7f3q"]
 [ext_resource type="PackedScene" uid="uid://ogidicqqkcwp" path="res://scenes/prefabs/dialogue_area_2d.tscn" id="31_wbmsc"]
 [ext_resource type="Script" uid="uid://buho0degfd14w" path="res://resources/DialogueExportResource.gd" id="32_sr7fv"]
 [ext_resource type="Script" uid="uid://dpl3myc5lbyaq" path="res://scripts/DialogueTextResource.gd" id="33_o0dio"]
-[ext_resource type="AudioStream" uid="uid://cc4bqj57qf6k1" path="res://globals/sounds/voices/zahar_voice.ogg" id="34_85sht"]
 [ext_resource type="Texture2D" uid="uid://c4t8kd41frivd" path="res://assets/NPC/NPC_Dasha_M.png" id="35_kklv2"]
 [ext_resource type="AudioStream" uid="uid://0lrteve03r8" path="res://globals/sounds/voices/dasham_voice.ogg" id="36_xp1xc"]
 [ext_resource type="Texture2D" uid="uid://rcx0krgpln7g" path="res://assets/NPC/NPC_Max.png" id="39_4nvfp"]
@@ -349,23 +347,6 @@ size = Vector2(65, 44.000004)
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_d73lm"]
 blend_mode = 2
 
-[sub_resource type="Resource" id="Resource_wbmsc"]
-script = ExtResource("33_o0dio")
-speaker_name = "Захар"
-speaker_img = ExtResource("30_v7f3q")
-text = "С днем рождения!
-Чтобы деньги стояли, и хуй был...
-Или как там было.
-Не ебу, хз короче, с др."
-text_speed = 12.0
-text_sound = ExtResource("34_85sht")
-text_volume_pitch_min = 0.95
-text_volume_pitch_max = 1.05
-metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1knll"]
-size = Vector2(288.88867, 666.6665)
-
 [sub_resource type="Resource" id="Resource_o0dio"]
 script = ExtResource("33_o0dio")
 speaker_name = "Даша"
@@ -418,6 +399,9 @@ text_volume_db = -5
 text_volume_pitch_min = 1.0
 text_volume_pitch_max = 1.0
 metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1knll"]
+size = Vector2(288.88867, 666.6665)
 
 [sub_resource type="Resource" id="Resource_sr7fv"]
 script = ExtResource("33_o0dio")
@@ -979,23 +963,6 @@ scale = Vector2(2.8, 3.3000014)
 texture = ExtResource("30_dsuly")
 
 [node name="NPC" type="Node" parent="."]
-
-[node name="NPC_Z" type="Sprite2D" parent="NPC"]
-z_index = -400
-z_as_relative = false
-position = Vector2(228, 138)
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("30_v7f3q")
-offset = Vector2(0, -400)
-
-[node name="DialogueArea2D" parent="NPC/NPC_Z" instance=ExtResource("31_wbmsc")]
-flag_key = "ZaharFinalSpeech"
-dialogue = Array[ExtResource("32_sr7fv")]([SubResource("Resource_wbmsc")])
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC/NPC_Z/DialogueArea2D"]
-position = Vector2(5.55542, 101.11119)
-scale = Vector2(1.0000001, 1.0000001)
-shape = SubResource("RectangleShape2D_1knll")
 
 [node name="NPC_Dasha_M" type="Sprite2D" parent="NPC"]
 z_index = -330
