@@ -3,9 +3,7 @@ extends Node2D
 @export var all_talked_dialogue : Array[DE] = []
 
 const NPC_FLAGS := [
-	"ZaharFinalSpeech",
-	"DashaFinalSpeech1",
-	"DashaFinalSpeech2",
+	"DashaFinalSpeech",
 	"MaxFinalSpeech",
 	"NikitaFinalSpeech",
 	"AlinaFinalSpeech",

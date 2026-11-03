@@ -973,7 +973,7 @@ texture = ExtResource("35_kklv2")
 offset = Vector2(0, -330)
 
 [node name="DialogueArea2D" parent="NPC/NPC_Dasha_M" instance=ExtResource("31_wbmsc")]
-flag_key = "DashaFinalSpeech1"
+flag_key = "DashaFinalSpeech"
 dialogue = Array[ExtResource("32_sr7fv")]([SubResource("Resource_o0dio"), SubResource("Resource_xp1xc"), SubResource("Resource_4nvfp")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NPC/NPC_Dasha_M/DialogueArea2D"]
