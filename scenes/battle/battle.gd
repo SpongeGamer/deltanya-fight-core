@@ -159,7 +159,10 @@ func hurt(p_damage: int) -> void:
 func monster_killed(p_monster: Monster, p_context: Global.DefeatContext) -> void:
 	# Отслеживаем исход для Шрумпов
 	if p_monster.is_in_group("shrump"):
-		Global.shrumps_killed += 1
+		if p_context == Global.DefeatContext.SPARED:
+			Global.shrumps_spared += 1
+		else:
+			Global.shrumps_killed += 1
 
 	if p_context != Global.DefeatContext.SNOWGRAVED:
 		total_xp -= p_monster.xp_bled

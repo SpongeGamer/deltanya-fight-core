@@ -109,6 +109,8 @@ func save_game(p_scene_path: String, p_player_position: Vector2) -> void:
 		"storage": storage_data,
 		"equipment": equipment_data,
 		"gold": gold,
+		"shrumps_killed": shrumps_killed,
+		"shrumps_spared": shrumps_spared,
 		"is_dark_world": is_dark_world,
 	}
 	var path := SAVE_PATH_FMT % current_save_slot
@@ -144,6 +146,8 @@ func load_game() -> bool:
 	)
 	return_scene_path = data.get("scene", "res://scenes/prefabs/test.tscn")
 	gold = int(data.get("gold", 0))
+	shrumps_killed = int(data.get("shrumps_killed", 0))
+	shrumps_spared = int(data.get("shrumps_spared", 0))
 	is_dark_world = bool(data.get("is_dark_world", false))
 	# Предметы
 	items.clear()

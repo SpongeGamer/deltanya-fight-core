@@ -25,7 +25,7 @@ func start_chief_dialogue() -> void:
 	var chosen: Array[DE]
 	if Global.shrumps_killed == 0 and Global.shrumps_spared == 0:
 		chosen = dialogue_no_encounter
-	elif Global.shrumps_killed == 0 and Global.shrumps_spared >> 1:
+	elif Global.shrumps_killed == 0 and Global.shrumps_spared == Global.SHRUMPS_TOTAL:
 		chosen = dialogue_all_spared
 	elif Global.shrumps_killed == Global.SHRUMPS_TOTAL:
 		chosen = dialogue_all_killed
