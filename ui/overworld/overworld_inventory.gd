@@ -732,7 +732,7 @@ func _exit_char_select() -> void:
 		_char_select_panel = null
 	_char_select_rows.clear()
 	$Right/ItemScroll.visible  = (current_tab == Tab.ITEM)
-	$Right/InfoLabel.visible   = (current_tab == Tab.ITEM)
+	info_label.visible   = (current_tab == Tab.ITEM)
 	$Right/Separator2.visible  = (current_tab == Tab.ITEM)
 	$Right/BottomBar.visible   = (current_tab == Tab.ITEM)
 	_update_info()

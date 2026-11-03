@@ -9,7 +9,7 @@ const KEY_ITEM = preload("res://holdables/items/mystery_key.tres")
 @export var door_block: NodePath
 @export var door_sprite: AnimatedSprite2D
 
-func _ready() -> void:
+func _process(_delta: float) -> void:
 	var area := get_node(dialogue_area) as Area2D
 	if area == null:
 		return

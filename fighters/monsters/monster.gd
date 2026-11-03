@@ -75,11 +75,13 @@ func damage_or_die_animation() -> void:
 		queue_free()
 
 func take_damage(p_character: Character, p_damage: int) -> void:
-	var actual_damage := maxi(1, p_damage - get_defense() * 3)
+	var actual_damage := 0
+	if p_damage > 0:
+		actual_damage = maxi(1, p_damage - get_defense() * 3)
 	current_hp -= actual_damage
 	Global.tp += 5 * Global.tp_coefficient
-	create_text(str(p_damage) if p_damage > 0 else "МИМО", p_character.icon_color)
-	if current_hp < 0:
+	create_text(str(actual_damage) if p_damage > 0 else "МИМО", p_character.icon_color)
+	if current_hp <= 0:
 		dying = true
 		Global.delete_monster(self, Global.DefeatContext.FLEE)
 
