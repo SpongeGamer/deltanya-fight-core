@@ -1,28 +1,25 @@
-extends Node2D
+extends StarwalkerAttack
+## Размеренные взмахи: волна слева, затем справа; каждая оставляет проход.
 
-var time_til_wave := 0.8
+func get_duration() -> float:
+	return 8.7 + (0.85 if chicken_reaction else 0.0)
 
-func _physics_process(delta: float) -> void:
-	time_til_wave -= delta
-	if time_til_wave <= 0.0:
-		time_til_wave = randf_range(0.8, 1.2)
-		_spawn_wave()
-
-func _spawn_wave() -> void:
-	var bullets: int = 4
-	
-	for i in range(bullets):
-		var t: float = float(i) / float(bullets - 1)
-		var angle: float = lerp(-0.8, 0.8, t)
-		
-		var left := $BaseBullet.duplicate() as Pellet
-		left.visible = true
-		left.position = Vector2(-70.0, randf_range(-25.0, 25.0))
-		left.direction = Vector2(1.0, angle).normalized()
-		add_child(left)
-		
-		var right := $BaseBullet.duplicate() as Pellet
-		right.visible = true
-		right.position = Vector2(70.0, randf_range(-25.0, 25.0))
-		right.direction = Vector2(-1.0, angle).normalized()
-		add_child(right)
+func run() -> void:
+	await wait(0.5)
+	for wave in 5:
+		var side := -1.0 if wave % 2 == 0 else 1.0
+		var gap := randi_range(1, 3)
+		for row in 5:
+			if row == gap:
+				continue
+			var y := -60.0 + row * 30.0
+			warn_line(Vector2(side * 70.0, y), Vector2(-side * 70.0, y), 0.7)
+		await wait(0.72)
+		pulse()
+		Sounds.play("snd_weaponpull", 0.3)
+		for row in 5:
+			if row == gap:
+				continue
+			var y := -60.0 + row * 30.0
+			shoot(Vector2(side * 88.0, y), Vector2(-side * 135.0, 0))
+		await wait(0.65)

@@ -693,7 +693,7 @@ metadata/_custom_type_script = "uid://duk2femdl2tfy"
 [sub_resource type="Resource" id="Resource_7w6hi"]
 script = ExtResource("10_hauj6")
 target_path = NodePath("../../HelperNode")
-function_name = "start_serega_battle"
+function_name = "start_shroompal_battle"
 hide_dialogue_box = true
 metadata/_custom_type_script = "uid://dkpcd6ejbeqxq"
 

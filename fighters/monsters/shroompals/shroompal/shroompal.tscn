@@ -83,7 +83,7 @@ _data = {
 
 [node name="Shroompal" type="Node2D" groups=["shrump"]]
 script = ExtResource("1_spal")
-description = "* Шрумп — грибной кот. Смотрит снизу вверх."
+description = "* Шрумп - грибной кот. Смотрит снизу вверх."
 acts = Array[ExtResource("3_act")]([SubResource("Resource_hum"), SubResource("Resource_pet"), SubResource("Resource_ask")])
 money_dropped = 60
 battle_music = "shroompals"

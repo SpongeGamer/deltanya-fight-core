@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://d1c6w1fdbyynx"]
+[gd_scene load_steps=16 format=3 uid="uid://d1c6w1fdbyynx"]
 
 [ext_resource type="Script" uid="uid://dy1l33pglyqno" path="res://fighters/monsters/starwalker/starwalker.gd" id="1_k2xod"]
 [ext_resource type="Script" uid="uid://bwvvm6kvpsqi1" path="res://fighters/characters/acts/act.gd" id="2_5w2ax"]
+[ext_resource type="Script" path="res://fighters/monsters/starwalker/starwalker_act.gd" id="chicken_act"]
 [ext_resource type="Texture2D" uid="uid://chn6iunekb1sr" path="res://fighters/monsters/starwalker/starwalker_idle.png" id="2_l8f6i"]
 [ext_resource type="Texture2D" uid="uid://b763ms0s4gya7" path="res://fighters/monsters/starwalker/attacks/star_shower/res/starwalker_regular_attack.png" id="4_j66rq"]
 [ext_resource type="Texture2D" uid="uid://cjmyix1bbbmms" path="res://fighters/monsters/starwalker/attacks/wing_wave/res/starwalker_wing_attack.png" id="5_fqwe0"]
@@ -23,10 +24,10 @@ spare_percent = 25
 metadata/_custom_type_script = "uid://bwvvm6kvpsqi1"
 
 [sub_resource type="Resource" id="Resource_fqwe0"]
-script = ExtResource("2_5w2ax")
+script = ExtResource("chicken_act")
 title = "Курица"
 text = "  * Ты кудахчешь.
-  * Старуолкеру это не нравиться."
+  * Старуолкеру это не нравится."
 metadata/_custom_type_script = "uid://bwvvm6kvpsqi1"
 
 [sub_resource type="Animation" id="Animation_j66rq"]
