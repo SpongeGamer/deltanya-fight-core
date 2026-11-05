@@ -50,16 +50,19 @@ func _spawn_wave(idx: int) -> void:
 
 
 func _spawn_verify_wave() -> void:
-	# «VERIFY» — 6 символов равномерно, быстро, без сдвига
-	var spacing := 22.0
-	var start_x := -(VERIFY_CHARS.size() - 1) * spacing * 0.5
-	for i in VERIFY_CHARS.size():
+	# Keep the word, but leave one clearly passable lane in the final row.
+	var empty_lane := randi_range(1, 5)
+	var letter := 0
+	for lane in 7:
+		if lane == empty_lane:
+			continue
 		var p := $BaseBullet.duplicate()
-		p.visible   = true
-		p.label     = VERIFY_CHARS[i]
-		p.position  = Vector2(start_x + i * spacing, -85.0)
-		p.speed     = 120.0
-		p.amplitude = 0.0   # летят прямо — финал должен читаться
+		p.visible = true
+		p.label = VERIFY_CHARS[letter]
+		p.position = Vector2(-66.0 + lane * 22.0, -85.0)
+		p.speed = 120.0
+		p.amplitude = 0.0
 		p.frequency = 0.0
-		p.phase     = 0.0
+		p.phase = 0.0
 		add_child(p)
+		letter += 1

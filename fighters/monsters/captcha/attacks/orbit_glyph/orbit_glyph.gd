@@ -1,14 +1,14 @@
 extends Node2D
 # ORBIT_GLYPH
 # 5 глифов вращаются по круговой орбите вокруг центра арены.
-# Каждые EJECT_INTERVAL секунд один срывается и летит хомингом к soul.
-# После срыва на его место через паузу спавнится новый орбитер.
+# Каждые EJECT_INTERVAL секунд один срывается и летит к центру по прямой.
+# Новые знаки на его месте не появляются.
 # Скорость орбиты нарастает с каждым срывом.
 
 const ORBIT_R     := 60.0
 const COUNT       := 5
 const EJECT_INTERVAL := 1.6
-const MAX_EJECTIONS  := 7
+const MAX_EJECTIONS  := 5
 
 var _orbiters    : Array  = []
 var _angles      : Array  = []
@@ -78,9 +78,5 @@ func _do_eject(idx: int) -> void:
 	p.orbiting   = false
 	p.turn_speed = 2.2
 	p.velocity   = 100.0
-	# Направление — от орбиты к soul (или к центру если soul не найден)
-	var soul : Node2D = get_parent().get_node_or_null("Soul")
-	var target := Vector2.ZERO
-	if soul:
-		target = soul.position
-	p.direction = (target - p.position).normalized()
+	# Как в исходном бою: знак летит к центру, не отслеживая душу.
+	p.direction = -p.position.normalized()

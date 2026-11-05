@@ -1,7 +1,7 @@
 extends Pellet
 # GLYPH_BULLET
 # orbiting = true  → позиция управляется снаружи (orbit_glyph.gd)
-# orbiting = false → хоминг к soul, как homing_cursor
+# orbiting = false → полет по прямой до края арены
 
 var orbiting   := true
 var velocity   := 75.0
@@ -17,16 +17,6 @@ func _physics_process(delta: float) -> void:
 		return
 	if orbiting:
 		return
-
-	var soul : Node2D = get_parent().get_node_or_null("Soul")
-	if soul:
-		var to_soul    := (soul.global_position - global_position).normalized()
-		var angle_diff := direction.angle_to(to_soul)
-		var max_turn   := turn_speed * delta
-		if absf(angle_diff) <= max_turn:
-			direction = to_soul
-		else:
-			direction = direction.rotated(signf(angle_diff) * max_turn)
 
 	position += direction * velocity * delta
 

@@ -4,6 +4,8 @@ class_name Captcha
 const SYMBOL_RAIN   := preload("res://fighters/monsters/captcha/attacks/symbol_rain/symbol_rain.tscn")
 const ORBIT_GLYPH   := preload("res://fighters/monsters/captcha/attacks/orbit_glyph/orbit_glyph.tscn")
 const GRID_TEST     := preload("res://fighters/monsters/captcha/attacks/grid_test/grid_test.tscn")
+const HUMAN_CHECK   := preload("res://fighters/monsters/captcha/attacks/human_check/human_check.tscn")
+const LOADING       := preload("res://fighters/monsters/captcha/attacks/loading/loading.tscn")
 
 const TEX_IDLE      := preload("res://fighters/monsters/captcha/captcha_idle.png")
 const TEX_THINKING  := preload("res://fighters/monsters/captcha/captcha_thinking.png")
@@ -67,8 +69,24 @@ func start_attack() -> float:
 			sprite.hframes = 4
 			sprite.frame   = 0
 			instantiate_attack(GRID_TEST)
-			attack_index   = 0
-			return 9.0
+			attack_index   = 3
+			return 13.0
+
+		3:
+			sprite.texture = TEX_THINKING
+			sprite.hframes = 4
+			sprite.frame = 0
+			instantiate_attack(HUMAN_CHECK)
+			attack_index = 4
+			return 10.1
+
+		4:
+			sprite.texture = TEX_ANGRY
+			sprite.hframes = 4
+			sprite.frame = 0
+			instantiate_attack(LOADING)
+			attack_index = 0
+			return 10.5
 
 	return 6.0
 

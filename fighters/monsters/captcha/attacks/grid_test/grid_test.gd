@@ -6,11 +6,11 @@ const COLS     := 7      # Уменьшил количество столбцо�
 const ROWS     := 4
 const CELL_W   := 22.0   # Немного увеличил шаг, чтобы сетка не была слишком плотной
 const CELL_H   := 14.0
-const ORIGIN   := Vector2(-60.0, -74.0)
+const ORIGIN   := Vector2(-66.0, -74.0)
 
 const SPAWN_DELAY  := 0.01
-const PREVIEW_DUR  := 1.5    # "Думает" дольше (было 1.8)
-const COL_STAGGER  := 0.11   # Медленнее падает ряд за рядом
+const PREVIEW_DUR  := 1.5   # Время на выбор коридора
+const COL_STAGGER  := 0.11   # Задержка между столбцами
 const DROP_SPEED   := 120.0  # Чуть медленнее падение
 const MAX_LOOPS    := 3      # Количество повторений атаки
 
@@ -32,11 +32,17 @@ func _start_attack_loop() -> void:
 	_grid.clear()
 	_queue.clear()
 	
-	# Выбираем 3–4 пустых столбца
-	var all_cols := range(COLS)
-	all_cols.shuffle()
-	var empty_count := 3 + randi() % 2 
-	_empty_cols = all_cols.slice(0, empty_count)
+	# Two neighboring empty columns always form a corridor wide enough for Soul.
+	var first := randi_range(0, COLS - 2)
+	_empty_cols = [first, first + 1]
+	var remaining := []
+	for col in COLS:
+		if col not in _empty_cols:
+			remaining.append(col)
+	remaining.shuffle()
+	var empty_count := 3 + randi() % 2
+	for i in empty_count - 2:
+		_empty_cols.append(remaining[i])
 
 	for r in ROWS:
 		var row_arr := []
@@ -78,7 +84,6 @@ func _physics_process(delta: float) -> void:
 
 		2: # Фаза падения
 			_phase_timer += delta
-			var all_dropped := true
 			
 			for c in COLS:
 				if c in _empty_cols: continue
@@ -88,9 +93,6 @@ func _physics_process(delta: float) -> void:
 						var p = _grid[r][c]
 						if is_instance_valid(p):
 							p.dropping = true
-							# Если хоть один символ еще на экране (не удален пулей/выходом за экран)
-							if p.global_position.y < 200: 
-								all_dropped = false
 			
 			# Когда всё упало за пределы экрана
 			if _phase_timer > 2.0: # Запас времени на пролет всех букв
@@ -108,8 +110,8 @@ func _prepare_next_loop() -> void:
 		_phase = 4 # Пауза между циклами
 		get_tree().create_timer(0.3).timeout.connect(_start_attack_loop)
 	else:
-		# Конец всей атаки
-		queue_free() 
+		# Keep the attack alive until Monster.end_attack() cleans it up.
+		_phase = 3
 
 func _set_grid_alpha(a: float) -> void:
 	for r in _grid:
