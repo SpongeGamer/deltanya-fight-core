@@ -52,7 +52,7 @@ func _on_continue_pressed() -> void:
 	Sounds.play("snd_select")
 	Sounds.fade_out_current(0.3)
 	if Global.load_game():
-		SceneTransition.travel(Global.return_scene_path, Global.player_spawn_point)
+		SceneTransition.travel(Global.return_scene_path, "", Global.is_dark_world)
 	else:
 		SceneTransition.travel(MAIN_MENU_SCENE, "", Global.is_dark_world, false)
 

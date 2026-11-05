@@ -56,6 +56,7 @@ func _start_battle(battle_scene_path: String) -> void:
 		if player:
 			player.can_move = true
 			player.global_position = Global.player_return_position
+		Global.player_return_position = Vector2.ZERO
 
 		# Вспых при возврате в оверворлд
 		PostProcessing.flash_from_black()

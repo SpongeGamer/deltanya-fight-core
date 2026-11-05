@@ -30,7 +30,6 @@ func _ready() -> void:
 	
 	for monster: Monster in Global.monsters:
 		total_money += monster.money_dropped
-		total_xp += monster.xp_bled
 		money_multiplier += monster.get_value_from_stat(AbstractFighter.Stats.MONEY_MULTIPLIER)
 	
 	for player: Character in Global.characters:
@@ -164,8 +163,8 @@ func monster_killed(p_monster: Monster, p_context: Global.DefeatContext) -> void
 		else:
 			Global.shrumps_killed += 1
 
-	if p_context != Global.DefeatContext.SNOWGRAVED:
-		total_xp -= p_monster.xp_bled
+	if p_context == Global.DefeatContext.SNOWGRAVED:
+		total_xp += p_monster.xp_bled
 	
 	var monsters_dead := true
 	for monster: Monster in Global.monsters:

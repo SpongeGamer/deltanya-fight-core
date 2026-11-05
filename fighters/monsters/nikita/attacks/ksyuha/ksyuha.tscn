@@ -1,8 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://dsiqbj20nds23"]
+[gd_scene load_steps=10 format=3 uid="uid://dsiqbj20nds23"]
 
 [ext_resource type="Script" uid="uid://vv61lbxaygtm" path="res://fighters/monsters/nikita/attacks/ksyuha/ksyuha.gd" id="1_ks"]
 [ext_resource type="Script" uid="uid://dpmb38iwn5b8o" path="res://fighters/monsters/clippy/attacks/prediction_line/path_bullet.gd" id="2_path"]
 [ext_resource type="Texture2D" uid="uid://buhpb23wr88bo" path="res://fighters/monsters/nikita/res/ksuha_projectile.png" id="3_645j4"]
+
+[ext_resource type="Shader" path="res://shaders/ksyuha_rim.gdshader" id="4_rim"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rim"]
+shader = ExtResource("4_rim")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_645j4"]
 atlas = ExtResource("3_645j4")
@@ -41,6 +46,7 @@ graze_points = 3
 time_points = 0.1
 
 [node name="Sprite" type="AnimatedSprite2D" parent="BaseBullet"]
+material = SubResource("ShaderMaterial_rim")
 position = Vector2(9.536743e-07, 2.9999998)
 scale = Vector2(0.125, 0.125)
 sprite_frames = SubResource("SpriteFrames_muxvl")

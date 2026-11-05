@@ -23,6 +23,9 @@ func travel(scene_path: String, spawn_point: String = "", set_dark_world: bool =
 	await PostProcessing.fade_finished
 
 	Global.is_dark_world = set_dark_world
+	# Явная точка входа относится к новой сцене, а не к предыдущему бою.
+	if not spawn_point.is_empty():
+		Global.player_return_position = Vector2.ZERO
 	Global.player_spawn_point = spawn_point
 	get_tree().change_scene_to_file(scene_path)
 
