@@ -30,10 +30,29 @@ const TRANSITION_STEPS := 6
 
 var _cats:    Array[Node2D] = []
 var _prev_xs: Array[float]  = []
+var _paw_timer := 0.0
+const INTRO_TIME := 0.8
+const GROUP_PAUSE := 0.65
 
+
+func get_duration() -> float:
+	var points: Array = _build_full_path(0.0)
+	var length := 0.0
+	for i in range(1, points.size()):
+		length += points[i - 1].distance_to(points[i])
+	if phase2_mode:
+		return INTRO_TIME + (SMALL_COUNT - 1) * SMALL_DELAY + GROUP_PAUSE + length / SMALL_SPEED + 0.9
+	return INTRO_TIME + length / SPEED + 0.9
 
 func _ready() -> void:
 	await get_tree().process_frame
+	var warning := _CatWarning.new()
+	add_child(warning)
+	await get_tree().create_timer(INTRO_TIME).timeout
+	if not is_inside_tree():
+		return
+	if is_instance_valid(warning):
+		warning.queue_free()
 	if phase2_mode:
 		_spawn_small_wave()
 	else:
@@ -43,6 +62,8 @@ func _ready() -> void:
 
 func _spawn_small_wave() -> void:
 	for i in SMALL_COUNT:
+		if i == 4:
+			await get_tree().create_timer(GROUP_PAUSE).timeout
 		if not is_inside_tree():
 			return
 		var sine_offset := (TAU / SMALL_COUNT) * i
@@ -66,11 +87,19 @@ func _fire_cat(sine_offset: float, cat_scale: float, cat_speed: float) -> void:
 
 # ── Флип ──────────────────────────────────────────────────────────────────────
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	_paw_timer -= delta
+	var make_paws := _paw_timer <= 0.0
+	if make_paws:
+		_paw_timer = 0.22
 	for i in _cats.size():
 		var cat := _cats[i]
 		if not is_instance_valid(cat):
 			continue
+		if make_paws and absf(cat.position.x) < AX and absf(cat.position.y) < AY:
+			var paw := _Paw.new()
+			paw.position = cat.position
+			add_child(paw)
 		var cur_x := cat.position.x
 		var dx    := cur_x - _prev_xs[i]
 		if abs(dx) > 0.15:
@@ -121,3 +150,34 @@ func _build_full_path(sine_offset: float) -> Array:
 				path.append(Vector2(x_to, lerpf(y0, next_y, t)))
 
 	return path
+
+
+class _CatWarning extends Node2D:
+	var age := 0.0
+	func _process(delta: float) -> void:
+		age += delta
+		queue_redraw()
+	func _draw() -> void:
+		var alpha := 0.2 + 0.35 * minf(age / INTRO_TIME, 1.0)
+		for row in 3:
+			var y: float = ROW_Y[row]
+			for i in 12:
+				draw_line(Vector2(-60 + i * 10, y), Vector2(-56 + i * 10, y), Color(0.7, 0.88, 0.95, alpha), 1.0)
+		var p := Vector2(62, ROW_Y[0])
+		draw_line(p + Vector2(-8, -5), p, Color(0.8, 0.95, 1.0, alpha), 2.0)
+		draw_line(p + Vector2(-8, 5), p, Color(0.8, 0.95, 1.0, alpha), 2.0)
+
+class _Paw extends Node2D:
+	var age := 0.0
+	func _process(delta: float) -> void:
+		age += delta
+		if age > 0.6:
+			queue_free()
+			return
+		queue_redraw()
+	func _draw() -> void:
+		var c := Color(0.65, 0.85, 0.95, 0.32 * (1.0 - age / 0.6))
+		draw_circle(Vector2(0, 1), 2.0, c)
+		draw_circle(Vector2(-2, -2), 1.0, c)
+		draw_circle(Vector2(1, -3), 1.0, c)
+		draw_circle(Vector2(3, -1), 1.0, c)

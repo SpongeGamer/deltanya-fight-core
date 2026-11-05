@@ -1,5 +1,8 @@
 extends Node2D
 
+const ATTACK_FIELD := preload("res://fighters/monsters/nikita/attacks/common/attack_field.gd")
+var _projectiles: Node2D
+
 # SLAM — удары кулаком, трещины в земле.
 #
 # Фаза 1 (phase2_mode = false):
@@ -34,7 +37,7 @@ const _MICRO_WIDTH := 1.8
 const TELEGRAPH_T    := 1.1
 const _BASE_STAGGER  := 0.40
 const _P2_STAGGER    := 0.22   # быстрее — много трещин надо разместить
-const WAVE_PAUSE     := 0.9
+const WAVE_PAUSE     := 0.25
 const _BASE_WAVES    := 5
 const _P2_WAVES      := 7
 
@@ -60,8 +63,18 @@ const WAVE_PLAN_P2 : Array[Array] = [
 
 var _wave := 0
 
+func get_duration() -> float:
+	# Все 5 волн большого Никиты (или 7 микро-волн) успевают завершиться.
+	var plans: Array = WAVE_PLAN_P2 if phase2_mode else WAVE_PLAN
+	var stagger: float = _P2_STAGGER if phase2_mode else _BASE_STAGGER
+	var total := 0.0
+	for plan in plans:
+		total += plan.size() * stagger + TELEGRAPH_T + 0.3 + WAVE_PAUSE
+	return total + 2.2
+
 
 func _ready() -> void:
+	_projectiles = ATTACK_FIELD.make(self)
 	_run()
 
 
@@ -92,11 +105,10 @@ func _launch_crack(direction: int) -> void:
 	if not is_inside_tree():
 		return
 
-	Sounds.play("snd_impact", 0.6)
-	if CameraController.instance:
-		CameraController.instance.shake(8.0, 3.0)
-
 	var path : Array[Vector2] = _build_crack(direction)
+	var marker := _ImpactMarker.new()
+	marker.position = path[0]
+	add_child(marker)
 	var line := _draw_crack(path)
 	add_child(line)
 
@@ -156,7 +168,7 @@ func _burst_shards(path: Array[Vector2], direction: int) -> void:
 			p.visible  = true
 			p.position = origin
 			p.velocity = dir2 * speed
-			add_child(p)
+			_projectiles.add_child(p)
 
 
 # ── Геометрия ─────────────────────────────────────────────────────────────────
@@ -259,3 +271,19 @@ func _make_shard() -> GenericPellet:
 	p.linear_acceleration = -80.0
 	p.body_entered.connect(p._on_body_entered)
 	return p
+
+
+class _ImpactMarker extends Node2D:
+	var age := 0.0
+	func _process(delta: float) -> void:
+		age += delta
+		if age >= TELEGRAPH_T:
+			queue_free()
+			return
+		queue_redraw()
+	func _draw() -> void:
+		var t := clampf(age / TELEGRAPH_T, 0.0, 1.0)
+		var col := Color(1.0, 0.62, 0.30, 0.25 + 0.55 * t)
+		draw_arc(Vector2.ZERO, 10.0 - t * 5.0, 0, TAU, 24, col, 2.0)
+		draw_line(Vector2(-8, 0), Vector2(8, 0), col, 1.0)
+		draw_line(Vector2(0, -8), Vector2(0, 8), col, 1.0)

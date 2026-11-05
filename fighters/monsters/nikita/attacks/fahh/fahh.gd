@@ -1,118 +1,131 @@
 extends Node2D
 
-# FAHH — крик Никиты.
-# ORANGE: конус из случайной точки правой стены — нельзя прижаться к углу.
-# BLUE:   плотный горизонтальный строй на высоте соула — покрывает всю арену.
-#
-# phase2_mode = true → больше пуль, выше скорость, лишняя синяя волна в конце.
-# Устанавливается из NikitaBoss._launch_attack() ДО add_child, поэтому
-# все константы ниже читаются уже с правильным значением в _ready()-эквиваленте
-# (у этой ноды нет _ready; логика в _physics_process — тоже ок).
+const ATTACK_FIELD := preload("res://fighters/monsters/nikita/attacks/common/attack_field.gd")
+var _projectiles: Node2D
+## FAHH: оранжевый веер и синяя волна с небольшими цветными вспышками.
+## Промежуток между залпами дает предыдущей волне пройти через арену.
 
-## Устанавливается NikitaBoss перед add_child на второй фазе.
 var phase2_mode := false
-
-# ── Базовые константы ────────────────────────────────────────────────────────
-const _BASE_ORANGE  := 11
-const _BASE_BLUE    := 8
-const _BASE_WAVES   := 9
-const _BASE_SPD_O   := 100.0
-const _BASE_SPD_B   := 110.0
-
-# ── Параметры второй фазы ────────────────────────────────────────────────────
-const _P2_ORANGE    := 16   # шире конус
-const _P2_BLUE      := 11   # больше «кирпичей»
-const _P2_WAVES     := 12   # больше волн
-const _P2_SPD_O     := 135.0
-const _P2_SPD_B     := 145.0
-
-const WAVE_DELAY    := 0.60
-const CONE_ANGLE    := 0.9
-
-const ORANGE := Color("#ff9a1f")
-const BLUE   := Color("#3db6ff")
+var echo_enabled := false
+var mini_variant := false
 
 const PELLET_SCENE := preload("res://pellets/generic_pellet/generic_pellet.tscn")
-const FAHH_SOUND   := "fah"
+const COLOR_PELLET := preload("res://fighters/monsters/nikita/attacks/fahh/fahh_pellet.gd")
+const ORANGE := Color("ff9a1f")
+const BLUE := Color("3db6ff")
+const WARN_TIME := 0.72
+const INTERVAL := 1.42
 
-# Финальный план волн: читается в первом _physics_process после установки phase2_mode.
-var _wave_plan : PackedInt32Array
-var _wave  := 0
-var _timer := 0.2
-var _ready_done := false
+var _wave := 0
+var _total_waves := 9
+var _timer := WARN_TIME
+var _warning := true
+var _kind := Pellet.HitRule.ORANGE_MOVE
+var _spawn := Vector2.ZERO
+var _aim := Vector2.ZERO
+var _echo_pending := false
 
+func _ready() -> void:
+	_projectiles = ATTACK_FIELD.make(self)
+	_total_waves = 8 if mini_variant else (12 if phase2_mode else 9)
+	_prepare_wave()
+
+func get_duration() -> float:
+	return WARN_TIME + (_total_waves - 1) * INTERVAL + (3.2 if echo_enabled else 2.1)
+
+func _prepare_wave() -> void:
+	_kind = Pellet.HitRule.BLUE_STAND if _wave % 3 == 2 else Pellet.HitRule.ORANGE_MOVE
+	_spawn = Vector2(80.0, randf_range(-55.0, 55.0))
+	var soul := get_tree().get_first_node_in_group("soul") as Soul
+	_aim = to_local(soul.global_position) if is_instance_valid(soul) else Vector2(-50.0, 0.0)
+	_warning = true
+	_timer = WARN_TIME
+	queue_redraw()
 
 func _physics_process(delta: float) -> void:
-	# Инициализируем план при первом тике — phase2_mode уже установлен
-	if not _ready_done:
-		_ready_done = true
-		var wc : int = _P2_WAVES if phase2_mode else _BASE_WAVES
-		# 0 = orange, 1 = blue; синяя каждые 3 волны + доп. синяя в конце на фазе 2
-		_wave_plan = PackedInt32Array()
-		for i in wc:
-			_wave_plan.append(1 if (i % 3 == 2) else 0)
-
-	if _wave >= _wave_plan.size():
-		return
-
 	_timer -= delta
 	if _timer > 0.0:
+		if _warning:
+			queue_redraw()
 		return
-	_timer = WAVE_DELAY
+	if _warning:
+		_warning = false
+		Sounds.play("fah", 0.75)
+		if _kind == Pellet.HitRule.ORANGE_MOVE:
+			_spawn_orange()
+		else:
+			_spawn_blue(false)
+		_wave += 1
+		if _wave >= _total_waves:
+			if echo_enabled and _mini_alive():
+				_echo_pending = true
+				_timer = 1.0
+			else:
+				set_physics_process(false)
+		else:
+			_timer = INTERVAL - WARN_TIME
+		queue_redraw()
+	elif _echo_pending:
+		_echo_pending = false
+		if _mini_alive():
+			for monster in Global.monsters:
+				if is_instance_valid(monster) and monster.is_in_group("nikita_mini") and not monster.dying:
+					monster._set_anim("attack_fahh", 2.0)
+			Sounds.play("fah", 0.4)
+			_spawn_blue(true)
+		set_physics_process(false)
+	elif _wave < _total_waves:
+		_prepare_wave()
 
-	Sounds.play(FAHH_SOUND, 0.75)
-	if _wave_plan[_wave] == 0:
-		_spawn_orange()
-	else:
-		_spawn_blue()
-	_wave += 1
-
+func _mini_alive() -> bool:
+	for monster in Global.monsters:
+		if is_instance_valid(monster) and monster.is_in_group("nikita_mini") and not monster.dying:
+			return true
+	return false
 
 func _spawn_orange() -> void:
-	var cnt   : int   = _P2_ORANGE if phase2_mode else _BASE_ORANGE
-	var speed : float = _P2_SPD_O  if phase2_mode else _BASE_SPD_O
+	var count := 16 if phase2_mode else 11
+	var speed := 135.0 if phase2_mode else 100.0
+	var base_dir := (_aim - _spawn).normalized()
+	for i in count:
+		var t := float(i) / float(count - 1)
+		_spawn_pellet(_spawn, base_dir.rotated(lerpf(-0.9, 0.9, t)) * speed, Pellet.HitRule.ORANGE_MOVE, ORANGE, i % 3 == 1)
 
-	var spawn := Vector2(70.0, randf_range(-55.0, 55.0))
-	var soul: Node2D = get_parent().get_node_or_null("Soul")
-	var aim  := soul.position if soul else Vector2(-70.0, 0.0)
-	var base_dir := (aim - spawn).normalized()
+func _spawn_blue(echo: bool) -> void:
+	var count := 8 if echo else (11 if phase2_mode else 8)
+	var speed := 110.0 if echo else (145.0 if phase2_mode else 110.0)
+	for i in count:
+		# Звук рассыпается облаком, а не ровной стенкой.
+		var y := lerpf(-62.0, 62.0, float(i) / float(count - 1)) + randf_range(-4.0, 4.0)
+		var x := 80.0 + randf_range(0.0, 28.0)
+		_spawn_pellet(Vector2(x, y), Vector2(-speed, 0), Pellet.HitRule.BLUE_STAND, BLUE, i % 3 == 1)
 
-	for i in cnt:
-		var t   := float(i) / float(cnt - 1)
-		var dir := base_dir.rotated(lerpf(-CONE_ANGLE, CONE_ANGLE, t))
-		_spawn_pellet(spawn, dir * speed, Pellet.HitRule.ORANGE_MOVE, ORANGE)
-
-
-func _spawn_blue() -> void:
-	var cnt   : int   = _P2_BLUE if phase2_mode else _BASE_BLUE
-	var speed : float = _P2_SPD_B if phase2_mode else _BASE_SPD_B
-
-	for i in cnt:
-		var t := float(i) / float(cnt - 1)
-		var y := lerpf(-65.0, 65.0, t)
-		_spawn_pellet(Vector2(70.0, y), Vector2(-speed, 0.0),
-				Pellet.HitRule.BLUE_STAND, BLUE)
-
-
-func _spawn_pellet(pos: Vector2, vel: Vector2, rule: Pellet.HitRule, color: Color) -> void:
-	var p := _make_pellet()
+func _spawn_pellet(pos: Vector2, vel: Vector2, rule: Pellet.HitRule, color: Color, round_shape := false) -> void:
+	var p := PELLET_SCENE.instantiate() as GenericPellet
+	p.set_script(COLOR_PELLET)
+	p.damage = 7 if not phase2_mode else 9
+	p.graze_points = 1
+	p.time_points = 0.1
+	p.life_time = 2.2
+	p.rotate_sprite = not round_shape
+	p.shape = 0 if round_shape else 1
 	p.hit_rule = rule
-	var spr := p.get_node_or_null("Sprite")
-	if spr is Sprite2D:
-		spr.modulate = color
-	p.visible  = true
 	p.position = pos
 	p.velocity = vel
-	add_child(p)
+	var spr := p.get_node("Sprite") as Sprite2D
+	spr.modulate = color
+	spr.scale = Vector2.ONE * (0.55 if round_shape else 0.72)
+	p.body_entered.connect(p._on_body_entered)
+	_projectiles.add_child(p)
 
-
-func _make_pellet() -> GenericPellet:
-	var base := get_node_or_null("BasePellet")
-	var p := (base.duplicate() if base != null else PELLET_SCENE.instantiate()) as GenericPellet
-	if base == null:
-		p.damage        = 7 if not phase2_mode else 9
-		p.life_time     = 2.0
-		p.rotate_sprite = true
-		p.shape         = 1
-		p.body_entered.connect(p._on_body_entered)
-	return p
+func _draw() -> void:
+	if not _warning and not _echo_pending:
+		return
+	var color := ORANGE if _kind == Pellet.HitRule.ORANGE_MOVE and not _echo_pending else BLUE
+	var progress := 1.0 - clampf(_timer / WARN_TIME, 0.0, 1.0) if _warning else 0.65
+	var y := clampf(_spawn.y, -58.0, 58.0) if color == ORANGE else 0.0
+	var alpha := 0.35 + 0.5 * progress
+	# Только маленькие искры у края: без стенок и направляющих.
+	draw_circle(Vector2(65, y), 2.0 + progress, Color(color, alpha))
+	draw_circle(Vector2(60, y - 5), 1.2, Color(color, alpha * 0.7))
+	draw_circle(Vector2(60, y + 5), 1.2, Color(color, alpha * 0.7))

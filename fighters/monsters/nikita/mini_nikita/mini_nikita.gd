@@ -2,9 +2,15 @@ extends Monster
 class_name MiniNikita
 
 const ATTACK_FAHH   := preload("res://fighters/monsters/nikita/attacks/fahh/fahh.tscn")
+const ATTACK_MINI_SLAM := preload("res://fighters/monsters/nikita/attacks/mini_slam/mini_slam.tscn")
 const ATTACK_KSYUHA := preload("res://fighters/monsters/nikita/attacks/ksyuha/ksyuha.tscn")
 
 var attack_index := 0
+
+func _ready() -> void:
+	super()
+	add_to_group("nikita_mini")
+	_asp().play("idle")
 
 
 func _asp() -> AnimatedSprite2D:
@@ -30,29 +36,20 @@ func do_animation(p_animation: Animations) -> Signal:
 
 func start_attack() -> float:
 	attacks.clear()
-
+	var scene: PackedScene
 	match attack_index:
-		0:  # FAHH
+		0:
 			_set_anim("attack_fahh", 2.0)
-			_launch_attack(ATTACK_FAHH)
-			attack_index = 1
-			return 9.0
-
-		1:  # KSYUHA
+			scene = ATTACK_FAHH
+		1:
 			_set_anim("attack_ksyuha", 1.8)
-			_launch_attack(ATTACK_KSYUHA)
-			attack_index = 2
-			return 6.0
-
-		2:  # FLY — просто анимация подлёта, снарядов нет
+			scene = ATTACK_KSYUHA
+		_:
 			_set_anim("attack_slam", 1.0)
-			attack_index = 0
-			# Возвращаем длину, достаточную для анимации.
-			# Подбери под реальную длину анимации "fly".
-			return 3.0
-
-	return 5.0
-
+			scene = ATTACK_MINI_SLAM
+	attack_index = (attack_index + 1) % 3
+	var attack := _launch_attack(scene)
+	return attack.call("get_duration") if attack.has_method("get_duration") else 6.0
 
 func _set_anim(anim_name: String, speed: float) -> void:
 	var asp := _asp()
@@ -60,18 +57,18 @@ func _set_anim(anim_name: String, speed: float) -> void:
 	if asp.sprite_frames.has_animation(anim_name):
 		asp.play(anim_name)
 
-
-func _launch_attack(scene: PackedScene) -> void:
-	var attack := scene.instantiate()
-	# Мини-Никита всегда использует уменьшенные версии: micro-трещины и мелкие Ксюхи
+func _launch_attack(scene: PackedScene) -> Node2D:
+	var attack := scene.instantiate() as Node2D
 	if attack.get("phase2_mode") != null:
-		attack.phase2_mode = true
+		attack.set("phase2_mode", true)
+	if attack.get("mini_variant") != null:
+		attack.set("mini_variant", true)
 	if attack.get("nikita_spawn_pos") != null:
-		attack.nikita_spawn_pos = position - Global.CENTER
-	get_parent().add_child(attack)
+		attack.set("nikita_spawn_pos", position - Global.CENTER)
 	attack.position = Global.CENTER
+	get_parent().add_child(attack)
 	attacks.append(attack)
-
+	return attack
 
 func end_attack() -> void:
 	super()

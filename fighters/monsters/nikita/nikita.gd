@@ -4,6 +4,7 @@ class_name NikitaBoss
 const ATTACK_FAHH   := preload("res://fighters/monsters/nikita/attacks/fahh/fahh.tscn")
 const ATTACK_SLAM   := preload("res://fighters/monsters/nikita/attacks/slam/slam.tscn")
 const ATTACK_KSYUHA := preload("res://fighters/monsters/nikita/attacks/ksyuha/ksyuha.tscn")
+const ATTACK_LESSON := preload("res://fighters/monsters/nikita/attacks/lesson/lesson.tscn")
 const MINI_NIKITA   := preload("res://fighters/monsters/nikita/mini_nikita/mini_nikita.tscn")
 
 const PHASE2_THRESHOLD := 150
@@ -70,47 +71,55 @@ func _spawn_mini_nikita() -> void:
 
 # ── Атаки ─────────────────────────────────────────────────────────────────────
 
+func _mini_alive() -> bool:
+	for monster in Global.monsters:
+		if is_instance_valid(monster) and monster.is_in_group("nikita_mini") and not monster.dying:
+			return true
+	return false
+
 func start_attack() -> float:
 	attacks.clear()
-
-	# Конец хода игрока — самое время активировать фазу 2
 	if _phase2_pending:
 		_phase2_pending = false
-		phase2         = true
-		_mini_spawned  = true
-		_run_phase2_transition()   # корутина, не блокирует return
-		return 6.0                 # времени должно хватить на анимацию + спавн
+		phase2 = true
+		_mini_spawned = true
+		_run_phase2_transition()
+		return 6.0
 
+	var scene: PackedScene
+	var use_phase2 := phase2
 	match attack_index:
 		0:
 			_set_attack_anim("attack_fahh", 2.5)
-			_launch_attack(ATTACK_FAHH, phase2)
-			attack_index = 1
-			return 13.0 if phase2 else 10.0
+			scene = ATTACK_FAHH
 		1:
 			_set_attack_anim("attack_slam", 0.6)
-			_launch_attack(ATTACK_SLAM, false)  # большой Никита никогда не делает micro-трещины
-			attack_index = 2
-			return 14.0 if phase2 else 12.0
-		_:
+			scene = ATTACK_SLAM
+			use_phase2 = false # Большой Никита сохраняет обычные трещины.
+		2:
 			_set_attack_anim("attack_ksyuha", 1.8)
-			_launch_attack(ATTACK_KSYUHA, phase2)
-			attack_index = 0
-			return 8.0 if phase2 else 7.0
+			scene = ATTACK_KSYUHA
+		_:
+			_set_attack_anim("attack_slam", 0.8)
+			scene = ATTACK_LESSON
+	attack_index = (attack_index + 1) % 4
+	var attack := _launch_attack(scene, use_phase2)
+	return attack.call("get_duration") if attack.has_method("get_duration") else 10.0
 
-	return 8.0
-
-
-func _launch_attack(scene: PackedScene, use_phase2: bool = false) -> void:
-	var attack := scene.instantiate()
-	if use_phase2 and attack.get("phase2_mode") != null:
-		attack.phase2_mode = true
+func _launch_attack(scene: PackedScene, use_phase2: bool = false) -> Node2D:
+	var attack := scene.instantiate() as Node2D
+	if attack.get("phase2_mode") != null:
+		attack.set("phase2_mode", use_phase2)
 	if attack.get("nikita_spawn_pos") != null:
-		attack.nikita_spawn_pos = position - Global.CENTER
-	get_parent().add_child(attack)
+		attack.set("nikita_spawn_pos", position - Global.CENTER)
+	if attack.get("echo_enabled") != null:
+		attack.set("echo_enabled", use_phase2 and _mini_alive())
+	if attack.get("mini_extra") != null:
+		attack.set("mini_extra", use_phase2 and _mini_alive())
 	attack.position = Global.CENTER
+	get_parent().add_child(attack)
 	attacks.append(attack)
-
+	return attack
 
 func end_attack() -> void:
 	super()
