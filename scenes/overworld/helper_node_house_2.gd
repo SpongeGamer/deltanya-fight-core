@@ -15,8 +15,8 @@ const ROOM_FLAGS := [
 ]
 
 const FIRST_THRESHOLD := 3
-const FIRST_FLAG_KEY  := "first_room_dialogue1_done"
-const SECOND_FLAG_KEY := "first_room_dialogue2_done"
+const FIRST_FLAG_KEY  := "house2_dialogue1_done"
+const SECOND_FLAG_KEY := "house2_dialogue2_done"
 
 func _ready() -> void:
 	# Снимаем флаг при старте сцены на случай если он завис с прошлого раза
