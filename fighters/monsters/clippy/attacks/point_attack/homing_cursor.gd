@@ -18,7 +18,7 @@ func _physics_process(delta: float) -> void:
 		return
 
 	# Ищем Soul в родительской сцене (battle)
-	var soul: Node2D = get_parent().get_node_or_null("Soul")
+	var soul: Node2D = get_tree().get_first_node_in_group("soul") as Node2D
 	if soul:
 		var to_soul := (soul.global_position - global_position).normalized()
 		# Плавный поворот к соулу

@@ -3,7 +3,7 @@ extends Pellet
 # Не движется. Collision включается после fade-in.
 
 @export var lifetime := 2.2
-@export var fade_in  := 0.25
+@export var fade_in  := 0.55
 @export var fade_out := 0.3
 
 var age := 0.0

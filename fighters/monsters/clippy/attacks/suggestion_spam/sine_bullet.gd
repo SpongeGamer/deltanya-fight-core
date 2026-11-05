@@ -14,8 +14,12 @@ var age        := 0.1
 func _ready() -> void:
 	if !visible:
 		return
-	base_y  = position.y
-	moving  = true
+	base_y = position.y
+	# The artwork points right; mirror it and its hitbox for leftward shots.
+	$Sprite.flip_h = direction < 0.0
+	if direction < 0.0:
+		$CollisionShape2D.position.x *= -1.0
+	moving = true
 
 func _physics_process(delta: float) -> void:
 	if !moving or !visible:

@@ -5,6 +5,8 @@ const PAPER_STORM := preload("res://fighters/monsters/clippy/attacks/paper_storm
 const POINT_ATTACK := preload("res://fighters/monsters/clippy/attacks/point_attack/point_attack.tscn")
 const PREDICTION_LINE := preload("res://fighters/monsters/clippy/attacks/prediction_line/prediction_line.tscn")
 const CLIPBOARD_RAIN := preload("res://fighters/monsters/clippy/attacks/clipboard_rain/clipboard_rain.tscn")
+const SUGGESTION_SPAM := preload("res://fighters/monsters/clippy/attacks/suggestion_spam/suggestion_spam.tscn")
+const CANT_CLOSE := preload("res://fighters/monsters/clippy/attacks/cant_close/cant_close.tscn")
 
 const TEX_IDLE       := preload("res://fighters/monsters/clippy/clippy_idle.png")
 const TEX_POINT_LEFT := preload("res://fighters/monsters/clippy/clippy_point_left.png")
@@ -52,7 +54,7 @@ func start_attack() -> float:
 			instantiate_attack(PAPER_STORM)
 
 			attack_index = 1
-			return 10.0
+			return 10.6
 
 
 		1:
@@ -63,7 +65,7 @@ func start_attack() -> float:
 			instantiate_attack(POINT_ATTACK)
 
 			attack_index = 2
-			return 7.0
+			return 7.8
 
 
 		2:
@@ -84,8 +86,24 @@ func start_attack() -> float:
 
 			instantiate_attack(CLIPBOARD_RAIN)
 
-			attack_index = 0
+			attack_index = 4
 			return 5.5
+
+		4:
+			sprite.texture = TEX_POINT_LEFT
+			sprite.hframes = 30
+			sprite.frame = 0
+			instantiate_attack(SUGGESTION_SPAM)
+			attack_index = 5
+			return 9.3
+
+		5:
+			sprite.texture = TEX_POINT_DOWN
+			sprite.hframes = 31
+			sprite.frame = 0
+			instantiate_attack(CANT_CLOSE)
+			attack_index = 0
+			return 10.5
 
 	return 6.0
 

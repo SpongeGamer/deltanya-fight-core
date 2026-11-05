@@ -27,10 +27,10 @@ func _random_edge_position() -> Vector2:
 func _launch(idx: int) -> void:
 	var spawn := _random_edge_position()
 
-	var soul: Node2D = get_parent().get_node_or_null("Soul")
+	var soul: Node2D = get_tree().get_first_node_in_group("soul") as Node2D
 	var aim_pos := Vector2.ZERO
 	if soul:
-		aim_pos = soul.position
+		aim_pos = to_local(soul.global_position)
 	# Лёгкий разброс ±15° чтобы не было идеального прицела с первого кадра
 	var base_dir := (aim_pos - spawn).normalized()
 	var dir := base_dir.rotated(randf_range(-0.26, 0.26))
@@ -39,6 +39,6 @@ func _launch(idx: int) -> void:
 	p.visible    = true
 	p.position   = spawn
 	p.direction  = dir
-	p.turn_speed = 1.6 + idx * 0.35
-	p.velocity   = 80.0 + idx * 8.0
+	p.turn_speed = 1.1 + idx * 0.16
+	p.velocity   = 75.0 + idx * 5.0
 	add_child(p)

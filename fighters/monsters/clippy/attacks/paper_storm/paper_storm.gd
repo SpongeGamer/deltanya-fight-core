@@ -24,9 +24,18 @@ func _spawn_wave() -> void:
 	for i in count:
 		var p := $BaseBullet.duplicate()
 		p.visible  = true
-		# Случайная точка внутри арены, отступ от краёв 12px
-		p.position = Vector2(
-			randf_range(-72.0, 72.0),
-			randf_range(-72.0, 72.0)
-		)
+		# Не ставим новую мину прямо на игрока.
+		var soul := get_tree().get_first_node_in_group("soul") as Node2D
+		var soul_pos := to_local(soul.global_position) if soul else Vector2.ZERO
+		var best := Vector2.ZERO
+		var best_distance := -1.0
+		for attempt in 16:
+			var candidate := Vector2(randf_range(-65.0, 65.0), randf_range(-65.0, 65.0))
+			var distance := candidate.distance_to(soul_pos)
+			if distance > best_distance:
+				best = candidate
+				best_distance = distance
+			if distance >= 32.0:
+				break
+		p.position = best
 		add_child(p)
