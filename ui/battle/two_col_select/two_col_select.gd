@@ -59,6 +59,8 @@ func show_item(p_index: int, p_show := true) -> void:
 	has_items = !visible_items.is_empty()
 
 func get_current_id() -> int:
+	if selected_item < 0 or selected_item >= visible_items.size():
+		return -1
 	return items.find(visible_items[selected_item])
 
 func custom_sort(a: TwoColItem, b: TwoColItem) -> bool:

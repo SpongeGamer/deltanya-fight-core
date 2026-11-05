@@ -18,6 +18,11 @@ var selected_item := 0:
 			return
 		if 0 <= selected_item and selected_item < visible_items.size():
 			visible_items[selected_item].set_select(false)
+		# Все пункты могут быть скрыты (например, единственный предмет уже выбран
+		# другим персонажем) — тогда подсвечивать и описывать нечего.
+		if visible_items.is_empty():
+			selected_item = 0
+			return
 		set_selected_item(clampi(p_selected_item, 0, visible_items.size() - 1))
 		selected_item = clampi(p_selected_item, 0, visible_items.size() - 1)
 		visible_items[selected_item].set_select(true)
