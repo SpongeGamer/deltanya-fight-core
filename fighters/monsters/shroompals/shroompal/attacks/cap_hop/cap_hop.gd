@@ -102,7 +102,7 @@ func _bouncer(speed: float) -> void:
 	cap.fade_in = 0.0
 	cap.life = 99.0
 	cap.bounds = 9999.0
-	cap.damage = 6
+	cap.damage = 9
 	cap.position = Vector2(r.end.x + 10.0, r.end.y - 4.0)
 	field.add_child(cap)
 	var floor_y := r.end.y - 4.0

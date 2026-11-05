@@ -34,7 +34,7 @@ func _run() -> void:
 			p.position = _target + dir * 4.0
 			p.velocity = dir * 48.0
 			p.life_time = 1.1
-			p.damage = 5
+			p.damage = 6
 			p.graze_points = 2
 			p.time_points = 0.04
 			p.get_node("Sprite").modulate = Color("ffb884")

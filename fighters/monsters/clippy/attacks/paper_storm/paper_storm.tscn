@@ -16,7 +16,7 @@ position = Vector2(0, -400)
 collision_layer = 2
 script = ExtResource("2_mine")
 lifetime = 2.5
-damage = 7
+damage = 9
 
 [node name="Sprite" type="Sprite2D" parent="BaseBullet"]
 scale = Vector2(0.5, 0.5)

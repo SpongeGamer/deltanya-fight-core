@@ -39,7 +39,7 @@ func setup(path: PackedVector2Array) -> void:
 	hitbox.fade_in = 0.0
 	hitbox.life = 999.0
 	hitbox.bounds = 9999.0
-	hitbox.damage = 6
+	hitbox.damage = 9
 	hitbox.graze_points = 4
 	add_child(hitbox)
 	for i in range(3, points.size() - 3, 4):

@@ -16,7 +16,7 @@ position = Vector2(0, -400)
 scale = Vector2(1.5, 1.5)
 collision_layer = 2
 script = ExtResource("2_ptk")
-damage = 8
+damage = 9
 
 [node name="Sprite" type="Sprite2D" parent="BaseBullet"]
 texture = ExtResource("3_03qfe")

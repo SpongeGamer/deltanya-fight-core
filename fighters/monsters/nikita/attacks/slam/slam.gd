@@ -264,7 +264,7 @@ func _make_width_curve() -> Curve:
 
 func _make_shard() -> GenericPellet:
 	var p := PELLET_SCENE.instantiate() as GenericPellet
-	p.damage              = 9 if phase2_mode else 8
+	p.damage              = 10 if phase2_mode else 8
 	p.life_time           = 0.5
 	p.rotate_sprite       = true
 	p.shape               = 0

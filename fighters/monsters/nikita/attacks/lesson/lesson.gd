@@ -55,7 +55,7 @@ func _burst(pos: Vector2, small: bool) -> void:
 		p.position = pos + d * 6.0
 		p.velocity = d * (48.0 if small else 60.0)
 		p.life_time = 1.45
-		p.damage = 5 if small else 7
+		p.damage = 6 if small else 8
 		p.graze_points = 2
 		p.time_points = 0.04
 		p.get_node("Sprite").modulate = Color(1.0, 0.8, 0.52)

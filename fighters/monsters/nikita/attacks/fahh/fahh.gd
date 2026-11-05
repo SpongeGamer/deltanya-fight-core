@@ -103,7 +103,7 @@ func _spawn_blue(echo: bool) -> void:
 func _spawn_pellet(pos: Vector2, vel: Vector2, rule: Pellet.HitRule, color: Color, round_shape := false) -> void:
 	var p := PELLET_SCENE.instantiate() as GenericPellet
 	p.set_script(COLOR_PELLET)
-	p.damage = 7 if not phase2_mode else 9
+	p.damage = 8 if not phase2_mode else 9
 	p.graze_points = 1
 	p.time_points = 0.1
 	p.life_time = 2.2

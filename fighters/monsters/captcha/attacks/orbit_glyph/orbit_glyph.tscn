@@ -15,7 +15,7 @@ visible = false
 position = Vector2(0, -400)
 collision_layer = 2
 script = ExtResource("2_og")
-damage = 6
+damage = 9
 
 [node name="Sprite" type="Sprite2D" parent="BaseBullet"]
 texture = ExtResource("3_og")

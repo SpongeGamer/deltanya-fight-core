@@ -42,7 +42,7 @@ static func additive() -> CanvasItemMaterial:
 func _init(texture: Texture2D = null, radius := 3.0, glow_color := Color(0, 0, 0, 0)) -> void:
 	collision_layer = 2
 	collision_mask = 1
-	damage = 5
+	damage = 8
 	if glow_color.a > 0.0:
 		halo = Sprite2D.new()
 		halo.texture = ShroomAttack.TEX_HALO

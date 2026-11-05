@@ -31,7 +31,7 @@ func _corner_phase() -> void:
 		pb.fade_in = 0.0
 		pb.life = 99.0
 		pb.bounds = 9999.0
-		pb.damage = 5
+		pb.damage = 8
 		pb.position = c
 		pb.scale = Vector2.ZERO
 		field.add_child(pb)
@@ -95,7 +95,7 @@ func _flower_phase() -> void:
 	core.fade_in = 0.0
 	core.life = 99.0
 	core.bounds = 9999.0
-	core.damage = 6
+	core.damage = 9
 	core.position = c
 	core.scale = Vector2.ZERO
 	field.add_child(core)

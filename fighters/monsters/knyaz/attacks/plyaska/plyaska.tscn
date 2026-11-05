@@ -15,7 +15,7 @@ visible = false
 position = Vector2(0, -400)
 collision_layer = 2
 script = ExtResource("1_dancepair")
-damage = 10
+damage = 11
 graze_points = 3
 time_points = 0.01
 
@@ -33,7 +33,7 @@ visible = false
 position = Vector2(0, -400)
 collision_layer = 2
 script = ExtResource("1_dancepair")
-damage = 10
+damage = 11
 graze_points = 3
 time_points = 0.01
 

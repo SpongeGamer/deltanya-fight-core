@@ -106,7 +106,7 @@ class PurrRing extends Node2D:
 			p.fade_in = 0.0
 			p.life = 99.0
 			p.bounds = 9999.0
-			p.damage = 5
+			p.damage = 8
 			add_child(p)
 			pellets.append(p)
 			angles.append(lerpf(ARC_FROM, ARC_TO, float(i) / (COUNT - 1)))

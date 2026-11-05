@@ -29,7 +29,7 @@ func _init() -> void:
 	hitbox.fade_in = 0.0
 	hitbox.life = 999.0
 	hitbox.bounds = 99999.0
-	hitbox.damage = 6
+	hitbox.damage = 9
 	_stem_node.shape = _stem_shape
 	_cap_node.shape = _cap_shape
 	hitbox.add_child(_stem_node)

@@ -5,7 +5,7 @@ var age := 0.0
 func _ready() -> void:
 	collision_layer = 2
 	collision_mask = 1
-	damage = 4
+	damage = 8
 	body_entered.connect(_on_body_entered)
 	var hit := CollisionShape2D.new()
 	var circle := CircleShape2D.new()

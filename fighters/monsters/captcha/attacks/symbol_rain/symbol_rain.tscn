@@ -19,7 +19,7 @@ visible = false
 position = Vector2(0, -400)
 collision_layer = 2
 script = ExtResource("2_sr")
-damage = 4
+damage = 9
 
 [node name="Sprite" type="Sprite2D" parent="BaseBullet"]
 scale = Vector2(0.71875, 0.78125)

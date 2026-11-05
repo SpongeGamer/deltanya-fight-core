@@ -17,7 +17,7 @@ z_index = 5
 position = Vector2(0, -400)
 collision_layer = 2
 script = ExtResource("1_sb")
-damage = 10
+damage = 11
 graze_points = 2
 time_points = 0.01
 

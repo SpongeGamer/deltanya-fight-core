@@ -13,7 +13,7 @@ var _trail: Array[Vector2] = []
 func _init() -> void:
 	collision_layer = 2
 	collision_mask = 1
-	damage = 7
+	damage = 8
 	graze_points = 4
 	var shape := CollisionShape2D.new()
 	var circle := CircleShape2D.new()

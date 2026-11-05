@@ -9,7 +9,7 @@ script = ExtResource("1_script")
 [node name="BasePellet" parent="." instance=ExtResource("2_pellet")]
 visible = false
 position = Vector2(0, -400)
-damage = 7
+damage = 8
 graze_points = 1
 time_points = 0.1
 

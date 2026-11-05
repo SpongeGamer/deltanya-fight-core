@@ -117,7 +117,7 @@ func _drop_pod(origin: Vector2) -> void:
 	pod.position = origin
 	pod.velocity = Vector2(0, 52.0 * pace())
 	pod.spin = 2.0
-	pod.damage = 6
+	pod.damage = 9
 	field.add_child(pod)
 	var burst_y: float = clampf(soul_pos().y - 26.0, box_rect().position.y + 30.0, box_rect().end.y - 40.0)
 	var travel := (burst_y - origin.y) / pod.velocity.y

@@ -56,7 +56,7 @@ func _dance(center: Vector2, from_r: float, to_r: float, direction: float, gap: 
 		cat.fade_in = 0.25
 		cat.life = 999.0
 		cat.bounds = 9999.0
-		cat.damage = 5
+		cat.damage = 8
 		var sprite := Sprite2D.new()
 		sprite.texture = TEX_MINI_CAT
 		sprite.hframes = 2
