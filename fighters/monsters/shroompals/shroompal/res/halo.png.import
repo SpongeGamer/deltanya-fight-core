@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dmvavp0t0iejc"
-path="res://.godot/imported/spore.png-6461680d054caae27ee21acc511b9f18.ctex"
+uid="uid://c87ac44ervbbb"
+path="res://.godot/imported/halo.png-35ec0e9c50124199186762d42a3a617d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://fighters/monsters/shroompals/shroompal/attacks/spore_rain/spore.png"
-dest_files=["res://.godot/imported/spore.png-6461680d054caae27ee21acc511b9f18.ctex"]
+source_file="res://fighters/monsters/shroompals/shroompal/res/halo.png"
+dest_files=["res://.godot/imported/halo.png-35ec0e9c50124199186762d42a3a617d.ctex"]
 
 [params]
 
