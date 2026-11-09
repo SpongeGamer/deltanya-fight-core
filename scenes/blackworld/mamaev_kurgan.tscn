@@ -1,6 +1,7 @@
-[gd_scene load_steps=363 format=4 uid="uid://rvqhspnujl5w"]
+[gd_scene load_steps=364 format=4 uid="uid://rvqhspnujl5w"]
 
 [ext_resource type="Script" uid="uid://cx6ul5ud4jduu" path="res://scenes/blackworld/mamaev_kurgan.gd" id="1_n65pb"]
+[ext_resource type="Script" path="res://scenes/blackworld/mamaev_intro_trigger.gd" id="intro_camera"]
 [ext_resource type="Script" uid="uid://ct404q8dpij18" path="res://scripts/overworld/camera_controller.gd" id="1_to7hb"]
 [ext_resource type="PackedScene" uid="uid://b8ny5hm5wkufg" path="res://ui/settings/settings_menu.tscn" id="2_hclq4"]
 [ext_resource type="Texture2D" uid="uid://bgesrmf370b0s" path="res://assets/tilesets/родина мать.png" id="3_hclq4"]
@@ -3682,6 +3683,7 @@ shape = SubResource("RectangleShape2D_vd5bq")
 [node name="Dialogues" type="Node" parent="."]
 
 [node name="Dialogue1" parent="Dialogues" instance=ExtResource("11_31fbo")]
+script = ExtResource("intro_camera")
 position = Vector2(182, -61)
 activate_instant = true
 only_activate_once = true
@@ -3888,20 +3890,6 @@ flag_key = "ClippyFight"
 dialogue = Array[ExtResource("12_bfid6")]([SubResource("Resource_xvyol"), SubResource("Resource_l36c8"), SubResource("Resource_t4uto"), SubResource("Resource_6855i")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Fights/ClippyFight"]
-position = Vector2(1, -97)
-shape = SubResource("RectangleShape2D_ie6bt")
-
-[node name="GateguardFight" type="Area2D" parent="Fights"]
-position = Vector2(167, 914)
-collision_layer = 4
-collision_mask = 4
-script = ExtResource("33_njykr")
-activate_instant = true
-only_activate_once = true
-flag_key = "GateguardFight"
-dialogue = Array[ExtResource("12_bfid6")]([SubResource("Resource_6kan3"), SubResource("Resource_vk7sm"), SubResource("Resource_1bfkq"), SubResource("Resource_011bi")])
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Fights/GateguardFight"]
 position = Vector2(1, -97)
 shape = SubResource("RectangleShape2D_ie6bt")
 

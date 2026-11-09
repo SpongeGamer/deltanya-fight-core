@@ -65,6 +65,9 @@ func _check_combination() -> void:
 
 func _success() -> void:
 	_solved = true
+	for switch in switches:
+		if is_instance_valid(switch) and switch.has_method("puzzle_visual_feedback"):
+			switch.puzzle_visual_feedback(true)
 	
 	if success_sound:
 		Sounds.play(success_sound)
@@ -110,5 +113,7 @@ func _fail() -> void:
 	for switch in switches:
 		if switch.has_method("reset_state"):
 			switch.reset_state()
+			if switch.has_method("puzzle_visual_feedback"):
+				switch.puzzle_visual_feedback(false)
 	
 	print("Wrong combination! Switches reset.")

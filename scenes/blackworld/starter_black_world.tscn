@@ -1,4 +1,4 @@
-[gd_scene load_steps=447 format=4 uid="uid://cy61jwgj0d4mw"]
+[gd_scene load_steps=471 format=4 uid="uid://cy61jwgj0d4mw"]
 
 [ext_resource type="Script" uid="uid://ct404q8dpij18" path="res://scripts/overworld/camera_controller.gd" id="1_5cifu"]
 [ext_resource type="Script" uid="uid://cxsg7p0hif4ic" path="res://scenes/blackworld/starter_black_world.gd" id="1_d0ggo"]
@@ -29,6 +29,9 @@
 [ext_resource type="Texture2D" uid="uid://biw7wuamae1kc" path="res://assets/VFX/confirm_puzzle_tile.png" id="27_a8s2q"]
 [ext_resource type="PackedScene" uid="uid://ogidicqqkcwp" path="res://scenes/prefabs/dialogue_area_2d.tscn" id="28_a8s2q"]
 [ext_resource type="Texture2D" uid="uid://b3rp7ryj6r2vu" path="res://assets/VFX/door_puzzle_tile.png" id="29_eudhu"]
+[ext_resource type="Texture2D" path="res://assets/VFX/puzzle_gate_sequence.png" id="puzzle_gate_sequence"]
+[ext_resource type="Texture2D" path="res://assets/VFX/puzzle_gate_upper.png" id="puzzle_gate_upper"]
+[ext_resource type="Texture2D" path="res://assets/VFX/puzzle_gate_lower.png" id="puzzle_gate_lower"]
 [ext_resource type="Texture2D" uid="uid://b7llp30boxj3v" path="res://assets/VFX/sign.png" id="29_jvdyp"]
 [ext_resource type="Texture2D" uid="uid://o5cmsrwbk8pe" path="res://assets/VFX/door_puzzle_tile_open.png" id="30_eudhu"]
 [ext_resource type="Script" uid="uid://dxhsmijrodh41" path="res://resources/DialogueFunctionResource.gd" id="30_tqab0"]
@@ -767,23 +770,94 @@ region = Rect2(0, 0, 20, 100)
 atlas = ExtResource("29_eudhu")
 region = Rect2(0, 0, 20, 100)
 
+[sub_resource type="AtlasTexture" id="puzzle_gate_frame_0"]
+atlas = ExtResource("puzzle_gate_sequence")
+region = Rect2(0, 0, 20, 78)
+
+[sub_resource type="AtlasTexture" id="puzzle_gate_frame_1"]
+atlas = ExtResource("puzzle_gate_sequence")
+region = Rect2(0, 78, 20, 78)
+
+[sub_resource type="AtlasTexture" id="puzzle_gate_frame_2"]
+atlas = ExtResource("puzzle_gate_sequence")
+region = Rect2(0, 156, 20, 78)
+
+[sub_resource type="AtlasTexture" id="puzzle_gate_frame_3"]
+atlas = ExtResource("puzzle_gate_sequence")
+region = Rect2(0, 234, 20, 78)
+
+[sub_resource type="AtlasTexture" id="puzzle_gate_frame_4"]
+atlas = ExtResource("puzzle_gate_sequence")
+region = Rect2(0, 312, 20, 78)
+
+[sub_resource type="AtlasTexture" id="puzzle_gate_frame_5"]
+atlas = ExtResource("puzzle_gate_sequence")
+region = Rect2(0, 390, 20, 78)
+
+[sub_resource type="AtlasTexture" id="puzzle_gate_frame_6"]
+atlas = ExtResource("puzzle_gate_sequence")
+region = Rect2(0, 468, 20, 78)
+
+[sub_resource type="AtlasTexture" id="puzzle_gate_frame_7"]
+atlas = ExtResource("puzzle_gate_sequence")
+region = Rect2(0, 546, 20, 78)
+
+[sub_resource type="AtlasTexture" id="puzzle_gate_frame_8"]
+atlas = ExtResource("puzzle_gate_sequence")
+region = Rect2(0, 624, 20, 78)
+
+[sub_resource type="AtlasTexture" id="puzzle_gate_frame_9"]
+atlas = ExtResource("puzzle_gate_sequence")
+region = Rect2(0, 702, 20, 78)
+
+[sub_resource type="AtlasTexture" id="puzzle_gate_frame_10"]
+atlas = ExtResource("puzzle_gate_sequence")
+region = Rect2(0, 780, 20, 78)
+
+[sub_resource type="AtlasTexture" id="puzzle_gate_frame_11"]
+atlas = ExtResource("puzzle_gate_sequence")
+region = Rect2(0, 858, 20, 78)
+
+[sub_resource type="AtlasTexture" id="puzzle_gate_frame_12"]
+atlas = ExtResource("puzzle_gate_sequence")
+region = Rect2(0, 936, 20, 78)
+
+[sub_resource type="AtlasTexture" id="puzzle_gate_frame_13"]
+atlas = ExtResource("puzzle_gate_sequence")
+region = Rect2(0, 1014, 20, 78)
+
+[sub_resource type="AtlasTexture" id="puzzle_gate_frame_14"]
+atlas = ExtResource("puzzle_gate_sequence")
+region = Rect2(0, 1092, 20, 78)
+
+[sub_resource type="AtlasTexture" id="puzzle_gate_frame_15"]
+atlas = ExtResource("puzzle_gate_sequence")
+region = Rect2(0, 1170, 20, 78)
+
+[sub_resource type="AtlasTexture" id="puzzle_gate_frame_16"]
+atlas = ExtResource("puzzle_gate_sequence")
+region = Rect2(0, 1248, 20, 78)
+
+[sub_resource type="AtlasTexture" id="puzzle_gate_frame_17"]
+atlas = ExtResource("puzzle_gate_sequence")
+region = Rect2(0, 1326, 20, 78)
+
+[sub_resource type="AtlasTexture" id="puzzle_gate_frame_18"]
+atlas = ExtResource("puzzle_gate_sequence")
+region = Rect2(0, 1404, 20, 78)
+
+[sub_resource type="AtlasTexture" id="puzzle_gate_frame_19"]
+atlas = ExtResource("puzzle_gate_sequence")
+region = Rect2(0, 1482, 20, 78)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_8fjxw"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_eudhu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5qou4")
-}],
+"frames": [{"duration": 1.0, "texture": SubResource("puzzle_gate_frame_0")}, {"duration": 1.0, "texture": SubResource("puzzle_gate_frame_1")}, {"duration": 1.0, "texture": SubResource("puzzle_gate_frame_2")}, {"duration": 1.0, "texture": SubResource("puzzle_gate_frame_3")}, {"duration": 1.0, "texture": SubResource("puzzle_gate_frame_4")}, {"duration": 1.0, "texture": SubResource("puzzle_gate_frame_5")}, {"duration": 1.0, "texture": SubResource("puzzle_gate_frame_6")}, {"duration": 1.0, "texture": SubResource("puzzle_gate_frame_7")}, {"duration": 1.0, "texture": SubResource("puzzle_gate_frame_8")}, {"duration": 1.0, "texture": SubResource("puzzle_gate_frame_9")}, {"duration": 1.0, "texture": SubResource("puzzle_gate_frame_10")}, {"duration": 1.0, "texture": SubResource("puzzle_gate_frame_11")}, {"duration": 1.0, "texture": SubResource("puzzle_gate_frame_12")}, {"duration": 1.0, "texture": SubResource("puzzle_gate_frame_13")}, {"duration": 1.0, "texture": SubResource("puzzle_gate_frame_14")}, {"duration": 1.0, "texture": SubResource("puzzle_gate_frame_15")}, {"duration": 1.0, "texture": SubResource("puzzle_gate_frame_16")}, {"duration": 1.0, "texture": SubResource("puzzle_gate_frame_17")}, {"duration": 1.0, "texture": SubResource("puzzle_gate_frame_18")}, {"duration": 1.0, "texture": SubResource("puzzle_gate_frame_19")}],
 "loop": false,
 "name": &"activate",
-"speed": 5.0
+"speed": 30.0
 }, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tqab0")
-}],
+"frames": [{"duration": 1.0, "texture": SubResource("puzzle_gate_frame_0")}],
 "loop": true,
 "name": &"default",
 "speed": 5.0
@@ -795,10 +869,15 @@ region = Rect2(0, 0, 20, 100)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tqab0"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8fjxw")
-}],
+"frames": [{"duration": 1.0, "texture": ExtResource("puzzle_gate_upper")}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_puzzle_lower"]
+animations = [{
+"frames": [{"duration": 1.0, "texture": ExtResource("puzzle_gate_lower")}],
 "loop": true,
 "name": &"default",
 "speed": 5.0
@@ -1633,8 +1712,10 @@ metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
 
 [sub_resource type="Resource" id="Resource_3coky"]
 script = ExtResource("30_tqab0")
-target_path = NodePath("../../../NikitaBody")
-function_name = "start_following"
+target_path = NodePath(".")
+function_name = "join_nikita_for_cutscene"
+hide_dialogue_box = true
+wait_for_signal_to_continue = "nikita_joined"
 metadata/_custom_type_script = "uid://dxhsmijrodh41"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ph4yc"]
@@ -4046,19 +4127,16 @@ rotation = 1.5707964
 shape = SubResource("RectangleShape2D_eudhu")
 
 [node name="Door" type="AnimatedSprite2D" parent="ActiveNode/Puzzle1Zone"]
-position = Vector2(544, 314.5)
-scale = Vector2(1, 0.77000004)
+position = Vector2(544, 314)
 sprite_frames = SubResource("SpriteFrames_8fjxw")
 
 [node name="Door2" type="AnimatedSprite2D" parent="ActiveNode/Puzzle1Zone"]
-position = Vector2(544, 192.50003)
-scale = Vector2(1.1000005, 1.6700004)
+position = Vector2(544, 192)
 sprite_frames = SubResource("SpriteFrames_tqab0")
 
 [node name="Door3" type="AnimatedSprite2D" parent="ActiveNode/Puzzle1Zone"]
-position = Vector2(544, 378.00003)
-scale = Vector2(1.1, 0.48999944)
-sprite_frames = SubResource("SpriteFrames_tqab0")
+position = Vector2(544, 377.5)
+sprite_frames = SubResource("SpriteFrames_puzzle_lower")
 
 [node name="Puzzle2" type="Node" parent="ActiveNode"]
 
@@ -4184,19 +4262,16 @@ rotation = 1.5707964
 shape = SubResource("RectangleShape2D_eudhu")
 
 [node name="Door" type="AnimatedSprite2D" parent="ActiveNode/Puzzle2"]
-position = Vector2(1106, 314.5)
-scale = Vector2(1, 0.77000004)
+position = Vector2(1106, 314)
 sprite_frames = SubResource("SpriteFrames_8fjxw")
 
 [node name="Door2" type="AnimatedSprite2D" parent="ActiveNode/Puzzle2"]
-position = Vector2(1106, 192.50003)
-scale = Vector2(1.1000005, 1.6700004)
+position = Vector2(1106, 192)
 sprite_frames = SubResource("SpriteFrames_tqab0")
 
 [node name="Door3" type="AnimatedSprite2D" parent="ActiveNode/Puzzle2"]
-position = Vector2(1106, 377.50003)
-scale = Vector2(1.1, 0.48999944)
-sprite_frames = SubResource("SpriteFrames_tqab0")
+position = Vector2(1106, 377.5)
+sprite_frames = SubResource("SpriteFrames_puzzle_lower")
 
 [node name="DownWall3" type="StaticBody2D" parent="ActiveNode/Puzzle2"]
 position = Vector2(849, 273)
@@ -4378,19 +4453,16 @@ rotation = 1.5707964
 shape = SubResource("RectangleShape2D_eudhu")
 
 [node name="Door" type="AnimatedSprite2D" parent="ActiveNode/Puzzle3"]
-position = Vector2(917, 1626.5001)
-scale = Vector2(1, 0.77000004)
+position = Vector2(917, 1626)
 sprite_frames = SubResource("SpriteFrames_8fjxw")
 
 [node name="Door2" type="AnimatedSprite2D" parent="ActiveNode/Puzzle3"]
-position = Vector2(917, 1504.5)
-scale = Vector2(1.1000005, 1.6700004)
+position = Vector2(917, 1504)
 sprite_frames = SubResource("SpriteFrames_tqab0")
 
 [node name="Door3" type="AnimatedSprite2D" parent="ActiveNode/Puzzle3"]
-position = Vector2(917, 1689.5001)
-scale = Vector2(1.1, 0.48999944)
-sprite_frames = SubResource("SpriteFrames_tqab0")
+position = Vector2(917, 1689.5)
+sprite_frames = SubResource("SpriteFrames_puzzle_lower")
 
 [node name="DownWall3" type="StaticBody2D" parent="ActiveNode/Puzzle3"]
 position = Vector2(660, 1585.0001)
@@ -4487,7 +4559,7 @@ egor = NodePath("../../../EgorBody")
 nikita = NodePath("../../../NikitaBody")
 player_path = Array[Vector2]([Vector2(1927, 1640)])
 kate_path = Array[Vector2]([Vector2(1930, 1550)])
-egor_path = Array[Vector2]([Vector2(1780, 1620)])
+egor_path = Array[Vector2]([Vector2(1909, 1596)])
 dust_pile_1 = NodePath("../../../DustEgor")
 dust_pile_2 = NodePath("../../../DustNikita")
 first_dialogue = Array[ExtResource("2_lnyqi")]([SubResource("Resource_ubbrm"), SubResource("Resource_ms225"), SubResource("Resource_s1mpg"), SubResource("Resource_icb3m")])
@@ -4680,7 +4752,7 @@ gathering_point = NodePath("Node2D")
 companions_delay = 0.5
 disable_collision_after = false
 fade_during_slide = true
-fade_start_delay = 0.1
+fade_start_delay = 0.0
 fade_duration = 2.0
 next_scene = "uid://mu2hnmgv6q0y"
 next_dark_world = true

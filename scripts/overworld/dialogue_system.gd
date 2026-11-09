@@ -12,6 +12,8 @@ var next_item: bool = true
 
 var player_node: CharacterBody2D
 var caller: Node = null
+# Катсцена может удерживать управление до конца всей последовательности.
+var release_player_on_finish: bool = true
 
 const VOICE_DB_OFFSET := -10.0
 const VOICE_MIN_DB := -24.0
@@ -30,7 +32,7 @@ func _process(_delta: float) -> void:
 			for i in get_tree().get_nodes_in_group("player"):
 				player_node = i
 			return
-		if !Global.battle_in_progress:
+		if !Global.battle_in_progress and release_player_on_finish:
 			player_node.can_move = true
 		get_parent().queue_free()
 		return

@@ -28,10 +28,14 @@ extends Area2D
 var _player = null
 var _kate = null
 var _has_triggered: bool = false
+var _dust_clock := 0.0
+var _cutscene_active := false
+signal nikita_joined(result: bool)
 
 # ─── ДОБАВИТЬ ЭТО ─────────────────────────────────────────────────────────────
 func _ready() -> void:
-	body_entered.connect(_on_body_entered)
+	if not body_entered.is_connected(_on_body_entered):
+		body_entered.connect(_on_body_entered)
 	
 	# Прячем персонажей если они видны
 	if egor:
@@ -39,6 +43,13 @@ func _ready() -> void:
 	if nikita:
 		nikita.visible = false
 # ─────────────────────────────────────────────────────────────────────────────
+
+func _process(delta: float) -> void:
+	_dust_clock += delta
+	for i in range(2):
+		var dust: AnimatedSprite2D = [dust_pile_1, dust_pile_2][i]
+		if is_instance_valid(dust) and dust.visible and not dust.is_playing():
+			dust.rotation = deg_to_rad(0.8) * sin(_dust_clock * 1.8 + i * 1.4)
 
 func _on_body_entered(body: Node2D) -> void:
 	if not body.is_in_group("player") or _has_triggered:
@@ -51,6 +62,7 @@ func _on_body_entered(body: Node2D) -> void:
 	_start_cutscene()
 
 func _start_cutscene() -> void:
+	_cutscene_active = true
 	print("Cutscene started!")  # Отладка
 	
 	# Блокируем игрока
@@ -95,22 +107,28 @@ func _start_cutscene() -> void:
 	
 	# Егор присоединяется к пати
 	if egor:
-		egor.start_following()
 		Global.add_to_party("egor")
 	
-	# Диалог перед боем
+	# Егор смотрит на Никиту; Никита делает несколько шагов навстречу.
+	_stage_before_battle()
 	await _launch_dialogue(third_dialogue)
 	
 	# Возвращаем камеру к игроку
 	await camera.pan_to_node(_player, 1.0, true)
 	
 	# Запускаем бой
-	_start_nikita_battle()
-	
-	# После боя
-	if _kate and _kate.has_method("start_following"):
-		_kate.start_following()
-	
+	await _start_nikita_battle()
+
+	# Камера возвращается к отряду после разговора и присоединения Никиты.
+	if is_instance_valid(_player):
+		await CameraController.instance.pan_to_node(_player, 1.0, true)
+	# Возвращаем обычное следование только после послебоевого диалога.
+	for companion in [_kate, egor, nikita]:
+		if is_instance_valid(companion) and Global.party.has(companion.party_key):
+			companion.start_following()
+	_cutscene_active = false
+	if is_instance_valid(_player):
+		_player.can_move = true
 	Global.set_flag(cutscene_flag, true)
 
 func _jump_out_egor() -> void:
@@ -121,6 +139,7 @@ func _jump_out_egor() -> void:
 	
 	if dust_pile_1:
 		Sounds.play("snd_noise")
+		dust_pile_1.rotation = 0.0
 		dust_pile_1.play("burst")
 		await dust_pile_1.animation_finished
 		dust_pile_1.visible = false
@@ -146,6 +165,7 @@ func _jump_out_nikita() -> void:
 	
 	if dust_pile_2:
 		Sounds.play("snd_noise")
+		dust_pile_2.rotation = 0.0
 		dust_pile_2.play("burst")
 		await dust_pile_2.animation_finished
 		dust_pile_2.visible = false
@@ -157,6 +177,32 @@ func _jump_out_nikita() -> void:
 	
 	if nikita.has_method("_play_idle_animation"):
 		nikita._play_idle_animation()
+
+func _stage_before_battle() -> void:
+	if is_instance_valid(egor):
+		egor.last_direction = Vector2.LEFT
+		egor._play_idle_animation()
+	if is_instance_valid(nikita):
+		var path: Array[Vector2] = [nikita.global_position + Vector2(42, 0)]
+		nikita.start_cutscene_path(path)
+
+# Во время присоединения Никита обходит группу и становится за Егором.
+func join_nikita_for_cutscene() -> void:
+	if is_instance_valid(nikita) and is_instance_valid(egor):
+		var destination: Vector2 = egor.global_position + Vector2(27, 0)
+		var upper_y: float = minf(nikita.global_position.y, egor.global_position.y - 60.0)
+		var path: Array[Vector2] = [Vector2(nikita.global_position.x, upper_y), Vector2(destination.x, upper_y), destination]
+		nikita.start_cutscene_path(path)
+		await nikita.cutscene_path_finished
+		nikita.last_direction = Vector2.LEFT
+		nikita._play_idle_animation()
+		nikita.is_moving = false
+		nikita.position_history.clear()
+		Global.add_to_party(nikita.party_key)
+	else:
+		# DialogueFunction connects to the signal after starting this method.
+		await get_tree().process_frame
+	nikita_joined.emit(true)
 
 func _launch_dialogue(p_dialogue: Array[DE]) -> void:
 	if p_dialogue.is_empty():
@@ -173,6 +219,7 @@ func _launch_dialogue(p_dialogue: Array[DE]) -> void:
 	var dlg = DialogueScene.instantiate()
 	dlg.dialogue = p_dialogue.duplicate()
 	dlg.caller = self
+	dlg.release_player_on_finish = false
 	cl.add_child(dlg)
 	
 	await dlg.tree_exited
@@ -241,8 +288,9 @@ func _start_battle(battle_scene_path: String) -> void:
 	get_tree().current_scene.show()
 
 	if player:
-		player.can_move = true
+		player.can_move = false
 		player.global_position = Global.player_return_position
+		_place_party_after_battle(player)
 	Global.player_return_position = Vector2.ZERO
 
 	PostProcessing.flash_from_black()
@@ -261,6 +309,34 @@ func freeze_player() -> void:
 ## Разморозить игрока (разрешить движение).
 ## Вызывай после окончания диалога или катсцены.
 func unfreeze_player() -> void:
+	if _cutscene_active:
+		return
 	var player := get_tree().get_first_node_in_group("player")
 	if player:
 		player.can_move = true
+
+# Возвращаемся к разговору: трое напротив Никиты, все смотрят друг на друга.
+func _place_party_after_battle(player: Node2D) -> void:
+	player.velocity = Vector2.ZERO
+	player.position_history.clear()
+	player.last_direction = Vector2.LEFT
+	player._play_idle_animation()
+	for i in range(2):
+		var companion: Companion = [_kate, egor][i]
+		if not is_instance_valid(companion):
+			continue
+		companion.stop_following()
+		companion.global_position = player.global_position + Vector2(25 * (i + 1), -14 * (i + 1))
+		companion.velocity = Vector2.ZERO
+		companion.is_moving = false
+		companion.position_history.clear()
+		companion.last_direction = Vector2.LEFT
+		companion._play_idle_animation()
+		companion.z_index = int(companion.global_position.y)
+	if is_instance_valid(nikita):
+		nikita.stop_following()
+		nikita.last_direction = Vector2.RIGHT
+		nikita._play_idle_animation()
+		nikita.position_history.clear()
+		# В кадре одновременно и Никита, и вся группа.
+		CameraController.instance.snap_to((nikita.global_position + player.global_position + Vector2(50, -20)) / 2.0)

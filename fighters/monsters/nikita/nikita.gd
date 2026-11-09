@@ -23,15 +23,46 @@ func _asp() -> AnimatedSprite2D:
 
 func do_animation(p_animation: Animations) -> Signal:
 	var asp := _asp()
-	var anim_name := ""
 	match p_animation:
-		Animations.HURT:  anim_name = "hurt"
-		Animations.SPARE: anim_name = "spare"
-		Animations.FAINT: anim_name = "die"
-	if not anim_name.is_empty() and asp.sprite_frames.has_animation(anim_name):
-		asp.play(anim_name)
-		return asp.animation_finished
+		Animations.HURT:
+			asp.speed_scale = 3.0
+			asp.play("damaged")
+			shake_sprite(3.0)
+			var timer := get_tree().create_timer(0.5)
+			timer.timeout.connect(_finish_hurt_visual)
+			return timer.timeout
+		Animations.FAINT:
+			shake = 0.0
+			asp.position = Vector2.ZERO
+			asp.speed_scale = 1.0
+			asp.play("idle")
+			# Незаметный шаг при уходе, без растягивания спрайта.
+			var steps := create_tween().set_loops(4)
+			steps.tween_property(asp, "position:y", -2.0, 0.14)
+			steps.tween_property(asp, "position:y", 0.0, 0.14)
+			var tween := create_tween()
+			tween.tween_property(asp, "position:x", 235.0, 1.15).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+			return tween.finished
 	return super.do_animation(p_animation)
+
+func _finish_hurt_visual() -> void:
+	if not is_instance_valid(_asp()):
+		return
+	_asp().speed_scale = 1.0
+	if not dying:
+		_asp().play("damaged_idle" if phase2 else "idle")
+
+func play_fah_salvo() -> void:
+	if dying or hurting:
+		return
+	var asp := _asp()
+	asp.speed_scale = 1.0
+	asp.play("attack_fahh")
+	asp.frame = 1
+
+func end_fah_salvo() -> void:
+	if not dying and not hurting and _asp().animation == "attack_fahh":
+		_asp().play("idle")
 
 
 func _set_attack_anim(anim_name: String, speed: float = 1.0) -> void:
@@ -90,7 +121,7 @@ func start_attack() -> float:
 	var use_phase2 := phase2
 	match attack_index:
 		0:
-			_set_attack_anim("attack_fahh", 2.5)
+			_asp().play("idle")
 			scene = ATTACK_FAHH
 		1:
 			_set_attack_anim("attack_slam", 0.6)
@@ -108,6 +139,8 @@ func start_attack() -> float:
 
 func _launch_attack(scene: PackedScene, use_phase2: bool = false) -> Node2D:
 	var attack := scene.instantiate() as Node2D
+	if scene == ATTACK_FAHH:
+		attack.set("caster", self)
 	if attack.get("phase2_mode") != null:
 		attack.set("phase2_mode", use_phase2)
 	if attack.get("nikita_spawn_pos") != null:

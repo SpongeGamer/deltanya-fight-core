@@ -175,6 +175,8 @@ func monster_killed(p_monster: Monster, p_context: Global.DefeatContext) -> void
 		_is_ending = true
 		$BottomPanel.continue_battle = false
 		$BottomPanel/AttackTiming.focused = false
+		if (p_monster is NikitaBoss or p_monster is MiniNikita) and p_context == Global.DefeatContext.FLEE:
+			await p_monster.exit_finished
 		for character: Character in Global.characters:
 			character.do_animation(Character.Animations.IDLE)
 		var money := (total_money * Global.chapter / 4) * money_multiplier
