@@ -202,10 +202,8 @@ func _process(delta: float) -> void:
 func _unhandled_input(p_event: InputEvent) -> void:
 	if p_event is InputEventKey and p_event.is_pressed():
 		if p_event.is_action("toggle_fullscreen"):
-			if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_WINDOWED:
-				DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-			else:
-				DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+			Settings.toggle_fullscreen()
+			Settings.save()
 
 func get_opening_line() -> String:
 	var lines := PackedStringArray()

@@ -153,18 +153,11 @@ func _refresh_slot_labels() -> void:
 
 # ── Настройки — значения ─────────────────────────────
 func _bus_pct(name: String) -> int:
-	var bus := AudioServer.get_bus_index(name)
-	if bus < 0: return 0
-	var db := AudioServer.get_bus_volume_db(bus)
-	if db <= MIN_DB: return 0
-	return roundi(db_to_linear(db) * 100.0)
+	return Settings.get_bus_percent(name)
 
 func _set_bus_pct(name: String, pct: int) -> void:
-	var bus := AudioServer.get_bus_index(name)
-	if bus < 0: return
-	var db := MIN_DB if pct <= 0 else clampf(linear_to_db(pct / 100.0), MIN_DB, 0.0)
-	AudioServer.set_bus_volume_db(bus, db)
-	AudioServer.set_bus_mute(bus, pct == 0)
+	Settings.set_bus_percent(name, pct)
+	Settings.save()
 
 func _vol_str(name: String) -> String:
 	return "◄ %d%% ►" % _bus_pct(name)
@@ -203,8 +196,8 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	if _waiting_for_key != "":
 		if (event is InputEventKey and event.pressed) or \
 		   (event is InputEventMouseButton and event.pressed):
-			InputMap.action_erase_events(_waiting_for_key)
-			InputMap.action_add_event(_waiting_for_key, event)
+			Settings.rebind(_waiting_for_key, event)
+			Settings.save()
 			_waiting_for_key = ""
 			_refresh_ctrl_values()
 			_update_cursor()
@@ -252,11 +245,8 @@ func _adjust(dir: int) -> void:
 		_refresh_settings_values()
 
 func _toggle_fullscreen() -> void:
-	var mode := DisplayServer.window_get_mode()
-	if mode == DisplayServer.WINDOW_MODE_FULLSCREEN:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-	else:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	Settings.toggle_fullscreen()
+	Settings.save()
 	Sounds.play("snd_select")
 
 func _confirm() -> void:

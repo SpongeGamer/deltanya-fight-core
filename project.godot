@@ -28,6 +28,7 @@ buses/default_bus_layout="uid://cnju35dvbs6uh"
 
 [autoload]
 
+Settings="*res://globals/settings/settings.gd"
 Global="*res://globals/global/global.gd"
 PostProcessing="*res://globals/post_processing/post_processing.tscn"
 Sounds="*res://globals/sounds/sounds.gd"

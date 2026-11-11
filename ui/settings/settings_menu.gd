@@ -211,8 +211,8 @@ func _open_controls_screen() -> void:
 
 # ═══ Переназначение ═══════════════════════════════════
 func _do_rebind(action_name: String, event: InputEvent) -> void:
-	InputMap.action_erase_events(action_name)
-	InputMap.action_add_event(action_name, event)
+	Settings.rebind(action_name, event)
+	Settings.save()
 	_waiting_for_key = ""
 	_refresh_controls_values()
 	_update_controls_cursor()
@@ -239,23 +239,16 @@ func _get_key_label(action: String) -> String:
 func _change_volume(bus: int, dir: int) -> void:
 	if bus < 0:
 		return
-	var pct := _bus_to_pct(bus)
-	pct = clampi(pct + dir * VOL_STEP, 0, 100)
-	var db := pct_to_db(pct)
-	AudioServer.set_bus_volume_db(bus, db)
-	AudioServer.set_bus_mute(bus, pct == 0)
+	var bus_name := AudioServer.get_bus_name(bus)
+	var pct := clampi(Settings.get_bus_percent(bus_name) + dir * VOL_STEP, 0, 100)
+	Settings.set_bus_percent(bus_name, pct)
+	Settings.save()
 	Sounds.play("snd_select")
 
 func _bus_to_pct(bus: int) -> int:
-	var db := AudioServer.get_bus_volume_db(bus)
-	if db <= MIN_DB:
+	if bus < 0:
 		return 0
-	return roundi(db_to_linear(db) * 100.0)
-
-func pct_to_db(pct: int) -> float:
-	if pct <= 0:
-		return MIN_DB
-	return clampf(linear_to_db(pct / 100.0), MIN_DB, MAX_DB)
+	return Settings.get_bus_percent(AudioServer.get_bus_name(bus))
 
 func _vol_str(bus: int) -> String:
 	if bus < 0:
@@ -264,11 +257,8 @@ func _vol_str(bus: int) -> String:
 
 # ═══ Экран ════════════════════════════════════════════
 func _toggle_fullscreen() -> void:
-	var mode := DisplayServer.window_get_mode()
-	if mode == DisplayServer.WINDOW_MODE_FULLSCREEN:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-	else:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	Settings.toggle_fullscreen()
+	Settings.save()
 	Sounds.play("snd_select")
 
 func _fullscreen_str() -> String:

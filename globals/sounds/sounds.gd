@@ -8,12 +8,9 @@ var _pending_song := ""
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	
-	# Устанавливаем громкость шины "Master" на 10%
-	# Формула перевода линейной громкости (0.1) в децибелы: 20 * log10(0.1) ≈ -20 dB
-	var master_bus_idx := AudioServer.get_bus_index("Master")
-	AudioServer.set_bus_volume_db(master_bus_idx, linear_to_db(0.1))
-	
+
+	# Громкость шин применяет автолоад Settings (при первом запуске — Master 10%).
+
 	_load_sounds_from_directory("res://globals/sounds/sound_effects", sounds, "SFX")
 	_load_sounds_from_directory("res://globals/sounds/music", music, "Music")
 
