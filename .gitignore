@@ -1,3 +1,13 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+
+# Временные файлы редактора: scene.tscn123456789.tmp и т.п.
+*.tmp
+
+# Сборки игры (exe / web) собираются локально, в репозиторий не попадают
+/build/
+/builds/
+*.exe
+*.pck
+*.wasm
