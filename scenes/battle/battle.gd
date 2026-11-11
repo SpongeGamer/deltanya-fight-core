@@ -53,6 +53,23 @@ func _process(p_delta: float) -> void:
 			in_attack = false
 			end_attack()
 
+const SETTINGS_MENU := preload("res://ui/settings/settings_menu.tscn")
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("settings_menu"):
+		_open_settings()
+		get_viewport().set_input_as_handled()
+
+func _open_settings() -> void:
+	var existing := get_tree().get_first_node_in_group("settings_menu")
+	if existing != null:
+		if existing.visible:
+			return
+		existing.queue_free()
+	var menu: CanvasLayer = SETTINGS_MENU.instantiate()
+	add_child(menu)
+	menu.open()
+
 func set_positions(p_parent: Node, p_nodes: Array, p_offset := Vector2.ZERO):
 	var size := p_nodes.size()
 	for i in size:

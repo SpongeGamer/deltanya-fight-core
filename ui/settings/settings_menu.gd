@@ -90,6 +90,7 @@ func _init_audio_buses() -> void:
 func open() -> void:
 	get_tree().paused = true
 	visible = true
+	Sounds.duck_music(true)
 	_screen = Screen.MAIN
 	_main_cursor = 0
 	_waiting_for_key = ""
@@ -101,6 +102,7 @@ func open() -> void:
 func close() -> void:
 	get_tree().paused = false
 	visible = false
+	Sounds.duck_music(false)
 	closed.emit()
 
 # ═══ Ввод ═════════════════════════════════════════════

@@ -6,6 +6,9 @@ var music: Dictionary[String, AudioStreamPlayer] = {}
 var current_song := ""
 var _pending_song := ""
 
+const DUCK_DB := -12.0
+var _music_ducked := false
+
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
@@ -169,3 +172,10 @@ func fanfare_precise(fanfare_name: String = "fanfare", return_volume: float = 1.
 	if _pending_song != "":
 		set_music(_pending_song, return_volume)
 		_pending_song = ""
+
+func duck_music(on: bool) -> void:
+	if on == _music_ducked:
+		return
+	_music_ducked = on
+	for player: AudioStreamPlayer in music.values():
+		player.volume_db += DUCK_DB if on else -DUCK_DB
