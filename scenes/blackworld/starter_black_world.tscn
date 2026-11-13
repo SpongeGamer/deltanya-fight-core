@@ -1,4 +1,4 @@
-[gd_scene load_steps=471 format=4 uid="uid://cy61jwgj0d4mw"]
+[gd_scene load_steps=465 format=4 uid="uid://cy61jwgj0d4mw"]
 
 [ext_resource type="Script" uid="uid://ct404q8dpij18" path="res://scripts/overworld/camera_controller.gd" id="1_5cifu"]
 [ext_resource type="Script" uid="uid://cxsg7p0hif4ic" path="res://scenes/blackworld/starter_black_world.gd" id="1_d0ggo"]
@@ -28,12 +28,7 @@
 [ext_resource type="Script" uid="uid://cbjng4nqa1wwk" path="res://scenes/prefabs/puzzle_validator.gd" id="26_np5py"]
 [ext_resource type="Texture2D" uid="uid://biw7wuamae1kc" path="res://assets/VFX/confirm_puzzle_tile.png" id="27_a8s2q"]
 [ext_resource type="PackedScene" uid="uid://ogidicqqkcwp" path="res://scenes/prefabs/dialogue_area_2d.tscn" id="28_a8s2q"]
-[ext_resource type="Texture2D" uid="uid://b3rp7ryj6r2vu" path="res://assets/VFX/door_puzzle_tile.png" id="29_eudhu"]
-[ext_resource type="Texture2D" path="res://assets/VFX/puzzle_gate_sequence.png" id="puzzle_gate_sequence"]
-[ext_resource type="Texture2D" path="res://assets/VFX/puzzle_gate_upper.png" id="puzzle_gate_upper"]
-[ext_resource type="Texture2D" path="res://assets/VFX/puzzle_gate_lower.png" id="puzzle_gate_lower"]
 [ext_resource type="Texture2D" uid="uid://b7llp30boxj3v" path="res://assets/VFX/sign.png" id="29_jvdyp"]
-[ext_resource type="Texture2D" uid="uid://o5cmsrwbk8pe" path="res://assets/VFX/door_puzzle_tile_open.png" id="30_eudhu"]
 [ext_resource type="Script" uid="uid://dxhsmijrodh41" path="res://resources/DialogueFunctionResource.gd" id="30_tqab0"]
 [ext_resource type="Texture2D" uid="uid://blprlksk1ehsw" path="res://assets/VFX/l_puzzle_tile.png" id="31_5qou4"]
 [ext_resource type="Script" uid="uid://duk2femdl2tfy" path="res://resources/DialogueChoiceResource.gd" id="31_51sqi"]
@@ -72,6 +67,9 @@
 [ext_resource type="Texture2D" uid="uid://cnty6v8i3u3r1" path="res://assets/VFX/dust.png" id="60_ms225"]
 [ext_resource type="Texture2D" uid="uid://4ldpfq4kc0py" path="res://assets/VFX/dust_crushed.png" id="61_xdrdh"]
 [ext_resource type="Script" uid="uid://bdoyng5dpwgq0" path="res://scenes/blackworld/slide_zone_exit.gd" id="66_8p8ij"]
+[ext_resource type="Texture2D" uid="uid://b74cvrljosqm4" path="res://assets/VFX/puzzle_gate_lower.png" id="puzzle_gate_lower"]
+[ext_resource type="Texture2D" uid="uid://dsp8xe1vp8odj" path="res://assets/VFX/puzzle_gate_sequence.png" id="puzzle_gate_sequence"]
+[ext_resource type="Texture2D" uid="uid://b0i6koot8yx7m" path="res://assets/VFX/puzzle_gate_upper.png" id="puzzle_gate_upper"]
 
 [sub_resource type="AudioStreamWAV" id="AudioStreamWAV_0swf6"]
 data = PackedByteArray("cW9hZgAAFkYBAKxEFAAIGAAAAAAAAAAAAAAAAOAAQAAxEwSS1UyQSRxaCKSSCSKBFEghhllksBoSUUAigEUAUxRBIJJJLDYYEkpoFABAIooA9tTGuuP//xYJJBCccKKAFFEJogggkgkSwwwyCCCgChRCKABTQaYVFMFglhhgggEUUAEQgCiAUw06657v//47EEAABOFFOEENsPvvO3R//xJJBAIRCIQBFEJolNNFppkL3/+2UcdttgWmWOeQaDe4Dimvv3pvPR4UHCiAmiU0SAaq89Z794t3DCHZTaSPbEQA843qqOLz/wXZRz2yi0xyCPOKxy7zjgcPaObvjllItAiw10caKcZFAP7/1rswPSAJllFBAjLrBQjFVu/5tXcuAPbCTPTXS54CiUBZWOPeuxIIBBlhBRAKD3QopxgMUVgPeq59dElJJQ23zyKAA+YrAr9ji3fXJDAMMM8hLgHvrAqHnXdnoH1zDJQaCCI4oJ4GiFdwauXRxwg+A10ghyOOAHFS4KocDr8N+9d8tdlENw2TOucuM+apBdj9ir766JMNs0jAAiFY3gqpBppNnRSMBKBYJPJOB74Aug191xSOBQzhx0Ogn2XMC6ppq77ztz0A1d8gjgo8kw1111ynAKoFBdh3cnHPLPYDHmg059955QnRs9n3DzxwCIRIT5bj5MIPmGrOuBxVUQCBiKzweesED574PdMNcecD894ApdmkBA+KccIRAH3nAeNzwiFS7PAN9c4wQmrhUwVnA6oZnxjwCfbdPPXfC5gF8R9STZ18XgeOOeAAVlVnDdfVMXdVD7gA80jnkgjLrg+e+YV13RDJAdMD64T5A64Arrvvk1cTuAuq886uol1yBFGOBwPfC64GqnOqB50XLguE+i+uE8esAEKwffedfecI0YUnlOk9dwzCuu+u5V3FCVVCwhPXJowGp9UnvrrKmgHlK88uuuKRCOK5oPffNL4PvPvuvLKgUwxjwcaVjnz3CXND6pg/XcAA844BA80HrAF1l3ws+d33APfWERpDffQPrvnm8J0vrA8oYH11jSeKBwFNAOXMBz4LD8wxd4wrrgD1zQDO+u8XDWMFfXdWXfUNdcEU9cwnGwz3Qcu8u8++DpfWC5wAqfcMATvnLLLLqgYYXnwuaFwnDMT4XXM74NUJd42h4PnLCgCDQTjSuFi+BfXdXP67z6oAHriCriAUZwxADljAuoIaAOMJoBGfAz4CY45890vvmAN3Su+YT11QBXMbz5fOfXcEQLGrGl98lwwFxeuYV31zCO57gXfeF74Pgmg4HA99dQ31gsYTVQYDCfVT75C74poA8yldUQqg5w31QcYCuaDUD5xx75q5qwsN940GnvrqkwjQcF1S+KJRBxoq775vN6wCdd4XmACmnAsqF3x3G+sAAAAAAAAAAAAAADLB8Gml9Q1lhMsaBRRRAJoFFFFFFB4LGgUUUUUUUQRRT3zABRRQB74kFFFFFFEEHrGg5cwACgKKKKKKKKKKAPWNEFFFB64PmiCiiiiihQzTTljRM+saAFFFGfEC5z4GmgFYUHrHLg8BRRRRRRRQB75yoooOB74GAAU9RPrGgQT1RRQcBRRRBFFFFFFFFFEEUUHA99dUUQRRRCcsaIKKAoooooooop4PmFcwACiigw13zRBRRRRRBFFFFFFFFFEEUUHAURPrrAaDQAKKe+uqAooPfEgoPWMEQHAUUUUUUQRRRRRRQcBRBFC4kFFB6xoCCnvrqiiiigKKKKD1jRAeCxoXMAAp75gAAUUUUUHAUQT1Quc8aIKKAifXWNEFFFMN8wACiig9YwQuu+YABRRRBFFFFFFBwFEERPAUUUZ8QAescscsaIDgAooz5yoXMK4GAAUUUUUU9w1311RRRRQcAFFFFFB75zwGiCiiiiiigwgKD1hMsaIDCAp75gAONMAACiiiiiiiigKKKKD1jRD1BFFB6xogop4PmAAUU4QU9QRRRRT3zAV1DfXUT6xfOVEAUUUUUUULmgaYAXzlljQIAAGfEBwFNAAA9Y0CAAU98wATQAKeqKKKAooooooop6oCjPiCJ9YCAABRRRRT3zAeCoooOB75gFEEUUHAQvlQAw1g+M4RRRRRBFFFGWB6wfAGmE0ACig4CATQAKD1jRBRBBwEAAoooooCiiig4HvrqgKKKKKKKD1hAyxogooooooCiiiiiiiingqKKKKKFxIeCooooooooooCiiinvviGAAD1RQescsaDBAAz5yogoooCinqiiiiiigD3xe6ABRRRBFFFB6wgAAAAAADvrrCADg8BAVzC+IKKAooOAgAFFFEEHrGiA9Y5YQAAAAAAAB31DfOeNEFFBwEAACiiJ9YCFQzAeqKDge+YAFFFFFFFFFMNUHrGiCg4CAAD3zAKKKKKAoPWNC5gFFEEUUHqp44CAABRRRT1RRRRBFFGfOVEFFEEUUUU98wCigKKKe+YBRRRBFB6xogooooCE0QUUUUUUQRRRRRQesaIAooifWAgAFEEUUUUUHA9UQRRRRT1RE8DDVFFFPfMAooCig9Y5Y5Y0AaABRRRRRQeCxogOAgAFFEERPviQ9UUUAcBV11RRRRRBFB6xogPXfMEGgAUUUUUUQRRRT3zV131DfMAop75gFEEUHrGg0ACigKKKKKD1jRDDVFFFFFFB6wGiBc540QHrAaIKKKeqKKKAooOAgAFFFEJ8QUUUHrGiAKKKcIKe+YBBFFFFPfWNMAE0ACiiinqigDgIABRRRRQBwEBXXfXVPUEUHAQACiiigEArEQCRgEIAAAAAQAAAAH92/w73kU7awKKKD1hMsaIB6oooooooOACAAUU4QUUUQRQesae8aABBPVBwEAAoooA9Y0QLmmmAABRRRRRRRRRBET6wPfXfXUEHAQAA9Y0LgYBRRRRRQesAmWNEFFPVFEEUUUUUUU9UAescu+csJljBEFPfMAooooCiiiiiiig4AIABRRRRRT3DMAooooooooHqiiiiiiihQwYABRRnxAeCxyxyxogoooCiiig9Y05UQBRQcBAAKKKAoooop6ooooA4CAmlcwCgw13zRBT1RRRBFFFFFFFFFEEUUUUUHA98wAKKKKKKDgIAAFFFFFFFB4LAAAAAAAAAA==")
@@ -758,18 +756,6 @@ metadata/_custom_type_script = "uid://duk2femdl2tfy"
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eudhu"]
 size = Vector2(79, 19)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_eudhu"]
-atlas = ExtResource("29_eudhu")
-region = Rect2(0, 0, 20, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5qou4"]
-atlas = ExtResource("30_eudhu")
-region = Rect2(0, 0, 20, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tqab0"]
-atlas = ExtResource("29_eudhu")
-region = Rect2(0, 0, 20, 100)
-
 [sub_resource type="AtlasTexture" id="puzzle_gate_frame_0"]
 atlas = ExtResource("puzzle_gate_sequence")
 region = Rect2(0, 0, 20, 78)
@@ -852,24 +838,86 @@ region = Rect2(0, 1482, 20, 78)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8fjxw"]
 animations = [{
-"frames": [{"duration": 1.0, "texture": SubResource("puzzle_gate_frame_0")}, {"duration": 1.0, "texture": SubResource("puzzle_gate_frame_1")}, {"duration": 1.0, "texture": SubResource("puzzle_gate_frame_2")}, {"duration": 1.0, "texture": SubResource("puzzle_gate_frame_3")}, {"duration": 1.0, "texture": SubResource("puzzle_gate_frame_4")}, {"duration": 1.0, "texture": SubResource("puzzle_gate_frame_5")}, {"duration": 1.0, "texture": SubResource("puzzle_gate_frame_6")}, {"duration": 1.0, "texture": SubResource("puzzle_gate_frame_7")}, {"duration": 1.0, "texture": SubResource("puzzle_gate_frame_8")}, {"duration": 1.0, "texture": SubResource("puzzle_gate_frame_9")}, {"duration": 1.0, "texture": SubResource("puzzle_gate_frame_10")}, {"duration": 1.0, "texture": SubResource("puzzle_gate_frame_11")}, {"duration": 1.0, "texture": SubResource("puzzle_gate_frame_12")}, {"duration": 1.0, "texture": SubResource("puzzle_gate_frame_13")}, {"duration": 1.0, "texture": SubResource("puzzle_gate_frame_14")}, {"duration": 1.0, "texture": SubResource("puzzle_gate_frame_15")}, {"duration": 1.0, "texture": SubResource("puzzle_gate_frame_16")}, {"duration": 1.0, "texture": SubResource("puzzle_gate_frame_17")}, {"duration": 1.0, "texture": SubResource("puzzle_gate_frame_18")}, {"duration": 1.0, "texture": SubResource("puzzle_gate_frame_19")}],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("puzzle_gate_frame_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("puzzle_gate_frame_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("puzzle_gate_frame_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("puzzle_gate_frame_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("puzzle_gate_frame_4")
+}, {
+"duration": 1.0,
+"texture": SubResource("puzzle_gate_frame_5")
+}, {
+"duration": 1.0,
+"texture": SubResource("puzzle_gate_frame_6")
+}, {
+"duration": 1.0,
+"texture": SubResource("puzzle_gate_frame_7")
+}, {
+"duration": 1.0,
+"texture": SubResource("puzzle_gate_frame_8")
+}, {
+"duration": 1.0,
+"texture": SubResource("puzzle_gate_frame_9")
+}, {
+"duration": 1.0,
+"texture": SubResource("puzzle_gate_frame_10")
+}, {
+"duration": 1.0,
+"texture": SubResource("puzzle_gate_frame_11")
+}, {
+"duration": 1.0,
+"texture": SubResource("puzzle_gate_frame_12")
+}, {
+"duration": 1.0,
+"texture": SubResource("puzzle_gate_frame_13")
+}, {
+"duration": 1.0,
+"texture": SubResource("puzzle_gate_frame_14")
+}, {
+"duration": 1.0,
+"texture": SubResource("puzzle_gate_frame_15")
+}, {
+"duration": 1.0,
+"texture": SubResource("puzzle_gate_frame_16")
+}, {
+"duration": 1.0,
+"texture": SubResource("puzzle_gate_frame_17")
+}, {
+"duration": 1.0,
+"texture": SubResource("puzzle_gate_frame_18")
+}, {
+"duration": 1.0,
+"texture": SubResource("puzzle_gate_frame_19")
+}],
 "loop": false,
 "name": &"activate",
 "speed": 30.0
 }, {
-"frames": [{"duration": 1.0, "texture": SubResource("puzzle_gate_frame_0")}],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("puzzle_gate_frame_0")
+}],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8fjxw"]
-atlas = ExtResource("29_eudhu")
-region = Rect2(0, 0, 20, 100)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_tqab0"]
 animations = [{
-"frames": [{"duration": 1.0, "texture": ExtResource("puzzle_gate_upper")}],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("puzzle_gate_upper")
+}],
 "loop": true,
 "name": &"default",
 "speed": 5.0
@@ -877,7 +925,10 @@ animations = [{
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_puzzle_lower"]
 animations = [{
-"frames": [{"duration": 1.0, "texture": ExtResource("puzzle_gate_lower")}],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("puzzle_gate_lower")
+}],
 "loop": true,
 "name": &"default",
 "speed": 5.0
@@ -4746,16 +4797,16 @@ position = Vector2(-1138, 1632)
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("66_8p8ij")
-slide_duration = 3.0
-slide_distance = 500.0
-gathering_point = NodePath("Node2D")
-companions_delay = 0.5
-disable_collision_after = false
 fade_during_slide = true
 fade_start_delay = 0.0
 fade_duration = 2.0
 next_scene = "uid://mu2hnmgv6q0y"
 next_dark_world = true
+slide_duration = 3.0
+slide_distance = 500.0
+gathering_point = NodePath("Node2D")
+companions_delay = 0.5
+disable_collision_after = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SlideZone3"]
 position = Vector2(-8.5, 10.5)

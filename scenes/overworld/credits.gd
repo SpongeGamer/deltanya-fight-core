@@ -43,9 +43,7 @@ func _start() -> void:
 
 	# Ждём и возвращаемся в главное меню
 	await get_tree().create_timer(5.0).timeout
-	get_tree().change_scene_to_file(
-		"C:/Users/Gor/Documents/deltanya-fight-core/scenes/menus/title_screen/title_screen.tscn"
-	)
+	get_tree().change_scene_to_file("res://scenes/menus/title_screen/title_screen.tscn")
 
 func _get_content_height() -> float:
 	var max_y := 0.0

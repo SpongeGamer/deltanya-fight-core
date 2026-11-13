@@ -25,9 +25,9 @@ script = ExtResource("1_script")
 [node name="LeftPanel" type="Panel" parent="."]
 layout_mode = 0
 offset_left = 2.0
-offset_top = 360.0
+offset_top = 332.0
 offset_right = 320.0
-offset_bottom = 508.0
+offset_bottom = 480.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
 
 [node name="GreetingLabel" type="RichTextLabel" parent="LeftPanel"]
@@ -242,9 +242,9 @@ vertical_alignment = 1
 [node name="RightPanel" type="Panel" parent="."]
 layout_mode = 0
 offset_left = 322.0
-offset_top = 360.0
+offset_top = 332.0
 offset_right = 638.0
-offset_bottom = 508.0
+offset_bottom = 480.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
 
 [node name="Btn0" type="Control" parent="RightPanel"]
@@ -390,9 +390,9 @@ vertical_alignment = 2
 visible = false
 layout_mode = 0
 offset_left = 322.0
-offset_top = 221.0
+offset_top = 193.0
 offset_right = 638.0
-offset_bottom = 358.0
+offset_bottom = 330.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
 
 [node name="DescLabel" type="Label" parent="DescPanel"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=224 format=4 uid="uid://bxont2nubewsm"]
+[gd_scene load_steps=233 format=4 uid="uid://bxont2nubewsm"]
 
 [ext_resource type="Script" uid="uid://cwyxcw0akqn2n" path="res://scenes/prefabs/testing_room.gd" id="1_7uwqf"]
 [ext_resource type="Script" uid="uid://ct404q8dpij18" path="res://scripts/overworld/camera_controller.gd" id="1_ypuvc"]
@@ -64,7 +64,10 @@
 [ext_resource type="AudioStream" uid="uid://yme6o3bjwdor" path="res://globals/sounds/voices/gorshok_voice.ogg" id="62_5rnp7"]
 [ext_resource type="Texture2D" uid="uid://b0gtcnlqomrfy" path="res://assets/NPC/NPC_Ksuha.png" id="63_5fd4n"]
 [ext_resource type="Texture2D" uid="uid://b07afp1go2obx" path="res://fighters/monsters/knyaz/res/idle.png" id="64_mx2dn"]
+[ext_resource type="Texture2D" uid="uid://lrwda3okn3pw" path="res://assets/NPC/SHOP_NPC_Cap'n.png" id="66_vjl50"]
+[ext_resource type="Script" uid="uid://cd547rsa4e5yh" path="res://scenes/prefabs/test_sell.gd" id="67_mx2dn"]
 [ext_resource type="Texture2D" uid="uid://c3r2k85cf8r31" path="res://assets/furniture/friend2.png" id="67_up4ji"]
+[ext_resource type="Resource" uid="uid://bwfnnxmoj0g42" path="res://scenes/last_floor/shop_fon_zone.tres" id="68_up4ji"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5rnp7"]
 texture = ExtResource("3_wwcat")
@@ -1848,6 +1851,46 @@ metadata/_custom_type_script = "uid://duk2femdl2tfy"
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_up4ji"]
 size = Vector2(89, 24)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_kx0uh"]
+atlas = ExtResource("66_vjl50")
+region = Rect2(0, 0, 43, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gh6t8"]
+atlas = ExtResource("66_vjl50")
+region = Rect2(44, 0, 43, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5eqfm"]
+atlas = ExtResource("66_vjl50")
+region = Rect2(88, 0, 43, 46)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5fd4n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kx0uh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gh6t8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5eqfm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="Resource" id="Resource_7b4gm"]
+script = ExtResource("10_hauj6")
+target_path = NodePath("..")
+function_name = "open_shop"
+function_arguments = [ExtResource("68_up4ji")]
+hide_dialogue_box = true
+metadata/_custom_type_script = "uid://dxhsmijrodh41"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_frgiw"]
+size = Vector2(470, 1151)
+
 [node name="TestingRoom" type="Node2D"]
 script = ExtResource("1_7uwqf")
 
@@ -2546,3 +2589,22 @@ shape = SubResource("RectangleShape2D_up4ji")
 script = ExtResource("19_mx2dn")
 target_scene = "uid://2hx135ha2frj"
 spawn_point = "Spawnpoint"
+
+[node name="NPC_ShopFon" type="AnimatedSprite2D" parent="."]
+z_index = -350
+z_as_relative = false
+position = Vector2(68.99999, 215.00003)
+scale = Vector2(1.4, 1.4)
+sprite_frames = SubResource("SpriteFrames_5fd4n")
+autoplay = "default"
+script = ExtResource("67_mx2dn")
+
+[node name="ShopZone" parent="NPC_ShopFon" instance=ExtResource("6_qc3ys")]
+position = Vector2(1.4285736, 37.857178)
+scale = Vector2(0.07142857, 0.07142857)
+dialogue = Array[ExtResource("7_nw0p8")]([SubResource("Resource_7b4gm")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC_ShopFon/ShopZone"]
+position = Vector2(-42, -262.49963)
+scale = Vector2(0.9999997, 0.9999997)
+shape = SubResource("RectangleShape2D_frgiw")

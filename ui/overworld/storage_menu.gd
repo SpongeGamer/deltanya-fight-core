@@ -46,7 +46,7 @@ var _ready_for_input := false
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	set_anchors_preset(Control.PRESET_FULL_RECT)
-	size = Vector2(640, 342)
+	size = Vector2(640, 346)
 	_ensure_storage()
 	_build_ui()
 	_refresh_all()
@@ -88,7 +88,7 @@ func _build_ui() -> void:
 	sty.content_margin_right = 6; sty.content_margin_bottom = 6
 	main.add_theme_stylebox_override("panel", sty)
 	main.position = Vector2(8, 30)
-	main.size     = Vector2(624, 294)
+	main.size     = Vector2(624, 316)
 	add_child(main)
 
 	# ── КАРМАН ──────────────────────────────────────────────────
@@ -132,8 +132,8 @@ func _build_ui() -> void:
 	main.add_child(_page_lbl)
 
 	_held_lbl = _make_lbl("", 16, YELLOW)
-	_held_lbl.position = Vector2(10, 330)
-	_held_lbl.size     = Vector2(360, 22)
+	_held_lbl.position = Vector2(6, 296)
+	_held_lbl.size     = Vector2(400, 22)
 	main.add_child(_held_lbl)
 
 	var hint := _make_lbl(_build_hint_text(), 15, DIM)
