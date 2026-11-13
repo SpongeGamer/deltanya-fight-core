@@ -18,6 +18,13 @@ func _ready() -> void:
 			item.usePredicate.item = item
 	set_positions($Characters, Global.characters, Vector2(108.0, 0.0))
 	set_positions($Monsters, Global.monsters, Vector2(640.0 - 108.0, 0.0))
+	if not Global.battle_standalone:
+		Global.battle_origin_scene = get_tree().current_scene.scene_file_path
+		Global.battle_origin_position = Global.player_return_position
+		Global.battle_monster_paths.clear()
+		for m: Monster in Global.monsters:
+			if m != null:
+				Global.battle_monster_paths.append(m.scene_file_path)
 	Global.display_text.emit(Global.get_opening_line(), false)
 	Global.monster_killed.connect(monster_killed)
 	if Global.monster_spared.is_connected(monster_spared):
@@ -164,7 +171,7 @@ func hurt(p_damage: int) -> void:
 		_is_ending = true
 		await get_tree().create_timer(1.2).timeout
 		Global.battle_in_progress = false
-		Sounds.fade_out_current(0.35)
+		await Sounds.fade_out_current(0.35)
 		PostProcessing.fade_out()
 		await PostProcessing.fade_finished
 		queue_free()
@@ -201,10 +208,16 @@ func monster_killed(p_monster: Monster, p_context: Global.DefeatContext) -> void
 		Global.last_defeated_monster = p_monster.name.to_lower()
 		Global.display_text.emit("  * Вы победили!\n[color=#000]-[/color]Получено %d опыта и %d рублей." % [total_xp, money], true)
 		await Global.text_finished
-		Sounds.fade_out_current(0.35)
+		await Sounds.fade_out_current(0.35)
 		PostProcessing.fade_out()
 		await PostProcessing.fade_finished
-		queue_free()
+		if Global.battle_standalone:
+			Global.battle_standalone = false
+			Global.battle_in_progress = false
+			Global.player_return_position = Global.battle_origin_position
+			SceneTransition.travel(Global.battle_origin_scene, "", Global.is_dark_world)
+		else:
+			queue_free()
 
 func monster_spared(p_monster: Monster) -> void:
 	if p_monster.is_in_group("shrump"):

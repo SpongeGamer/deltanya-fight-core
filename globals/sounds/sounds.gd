@@ -8,6 +8,8 @@ var _pending_song := ""
 
 const DUCK_DB := -12.0
 var _music_ducked := false
+var _pre_duck_linear: Dictionary[String, float] = {}
+var _fanfare_token := 0
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -106,45 +108,67 @@ func set_music(p_music: String, p_volume := 1.0, p_loop := true) -> void:
 	if not music.has(p_music):
 		printerr("Error in sounds.gd: Attempt to play song, \"" + p_music + "\", but no such song exists.")
 		return
+	# Новая музыка отменяет отложенный возврат фанфарной темы,
+	# иначе тема локации «догоняет» бой и глушит боевую музыку.
+	_fanfare_token += 1
+	_pending_song = ""
 	if current_song != "":
 		music[current_song].stop()
+		_pre_duck_linear.erase(current_song)
 	var audio_player := music[p_music]
 	var stream := audio_player.stream
 	if stream is AudioStreamWAV:
 		stream.loop_mode = AudioStreamWAV.LOOP_FORWARD if p_loop else AudioStreamWAV.LOOP_DISABLED
 	elif stream is AudioStreamOggVorbis:
 		stream.loop = p_loop
-	audio_player.volume_linear = p_volume
+	_pre_duck_linear[p_music] = p_volume
+	audio_player.volume_linear = p_volume * (db_to_linear(DUCK_DB) if _music_ducked else 1.0)
 	audio_player.play()
 	current_song = p_music
 
 func stop_music() -> void:
+	_fanfare_token += 1
+	_pending_song = ""
 	if current_song != "" and music.has(current_song):
 		music[current_song].stop()
+		_pre_duck_linear.erase(current_song)
 	current_song = ""
 
 func fade_out_current(duration: float = 1.2) -> void:
 	if current_song == "":
 		return
-	
-	var player = music[current_song]
+
+	var fading_song := current_song
+	var player = music[fading_song]
 	var tween = create_tween()
 	tween.tween_property(player, "volume_linear", 0.0, duration)
 	await tween.finished
 	player.stop()
-	current_song = ""
+	# Если за время фейда включилась другая тема — её не трогаем.
+	if current_song == fading_song:
+		current_song = ""
+		_pre_duck_linear.erase(fading_song)
+
 
 func fanfare(fanfare_name: String = "fanfare", return_volume: float = 1.0) -> void:
 	_pending_song = current_song
+	_fanfare_token += 1
+	var my_token := _fanfare_token
 	await fade_out_current()
 	play(fanfare_name)
 	await get_tree().create_timer(13.0).timeout
+	if my_token != _fanfare_token:
+		return
 	if _pending_song != "":
 		set_music(_pending_song, return_volume)
 		_pending_song = ""
 
 func fanfare_and_return(fanfare_name: String = "fanfare", return_delay: float = 2.0, return_volume: float = 1.0) -> void:
 	_pending_song = current_song
+	_fanfare_token += 1
+	var my_token := _fanfare_token
+	if my_token != _fanfare_token:
+		return
 	fade_out_current()
 	play(fanfare_name)
 	
@@ -162,6 +186,10 @@ func get_sound_duration(sound_name: String) -> float:
 
 func fanfare_precise(fanfare_name: String = "fanfare", return_volume: float = 1.0) -> void:
 	_pending_song = current_song
+	_fanfare_token += 1
+	var my_token := _fanfare_token
+	if my_token != _fanfare_token:
+		return
 	await fade_out_current()
 	
 	var duration := get_sound_duration(fanfare_name)
@@ -177,5 +205,12 @@ func duck_music(on: bool) -> void:
 	if on == _music_ducked:
 		return
 	_music_ducked = on
-	for player: AudioStreamPlayer in music.values():
-		player.volume_db += DUCK_DB if on else -DUCK_DB
+	for song_name: String in music.keys():
+		var player: AudioStreamPlayer = music[song_name]
+		if on:
+			_pre_duck_linear[song_name] = player.volume_linear
+			player.volume_linear = player.volume_linear * db_to_linear(DUCK_DB)
+		else:
+			var restore: float = float(_pre_duck_linear.get(song_name, player.volume_linear / db_to_linear(DUCK_DB)))
+			player.volume_linear = restore
+			_pre_duck_linear.erase(song_name)

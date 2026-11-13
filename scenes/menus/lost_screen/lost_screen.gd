@@ -6,6 +6,7 @@ var _cursor_on_continue := true
 
 func _ready() -> void:
 	$Continue.grab_focus()
+	await Sounds.fade_out_current(0.2)
 	Sounds.set_music("game_over_short", 0.8, false)
 	_update_heart()
 
@@ -50,11 +51,26 @@ func _on_surrender_focus_entered() -> void:
 
 func _on_continue_pressed() -> void:
 	Sounds.play("snd_select")
-	Sounds.fade_out_current(0.3)
+	await Sounds.fade_out_current(0.3)
 	if Global.load_game():
 		SceneTransition.travel(Global.return_scene_path, "", Global.is_dark_world)
 	else:
+		_retry_fight()
+
+func _retry_fight() -> void:
+	if Global.battle_origin_scene == "" or Global.battle_monster_paths.is_empty():
 		SceneTransition.travel(MAIN_MENU_SCENE, "", Global.is_dark_world, false)
+		return
+	# Полный ХП, как при первом входе в бой
+	for key in Global.party:
+		if PartyData.equipment.has(key):
+			PartyData.equipment[key]["hp"] = -1
+	Global.monsters.clear()
+	for p in Global.battle_monster_paths:
+		Global.monsters.append(load(p).instantiate())
+	Global.load_party_characters()
+	Global.battle_standalone = true
+	SceneTransition.travel("res://scenes/battle/battle.tscn", "", Global.is_dark_world)	
 
 func _on_surrender_pressed() -> void:
 	Sounds.play("snd_select")

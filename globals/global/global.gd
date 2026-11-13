@@ -50,6 +50,10 @@ var heartColor : Color = SoulType.RED.color
 var last_defeated_monster: String = ""
 var just_returned_from_battle: bool = false
 var battle_in_progress: bool = false
+var battle_origin_scene := ""          # локация, где начался бой
+var battle_standalone := false   # бой перезапущен из меню поражения, локации за спиной нет
+var battle_origin_position := Vector2.ZERO
+var battle_monster_paths: Array[String] = []
 
 var is_dark_world: bool = false:
 	set(value):
