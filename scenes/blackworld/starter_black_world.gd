@@ -17,10 +17,15 @@ func _ready() -> void:
 		return
 	
 	# Первый раз - показываем катсцену
+	# Экран закрыт DarkRect (z_index 500), но точки сохранения нарисованы с z_index 1000
+	# и просвечивают в углу кадра — прячем их до конца катсцены.
+	_set_save_points_visible(false)
 	dark_rect.modulate.a = 1.0
 	
 	# Ждем полного завершения всей катсцены
 	await _start_full_cutscene()
+	
+	_set_save_points_visible(true)
 	
 	# Сохраняем флаг что катсцена была показана
 	Global.set_flag("starter_cutscene_watched", true)
@@ -28,6 +33,11 @@ func _ready() -> void:
 	# Только после катсцены запускаем диалог
 	Sounds.set_music("starter_black", 0.6)
 	_launch_dialogue(first_dialogue)
+
+func _set_save_points_visible(p_visible: bool) -> void:
+	for sp in [$SavePoint, $SavePoint2, $SavePoint3]:
+		if is_instance_valid(sp):
+			sp.visible = p_visible
 
 func _start_full_cutscene() -> void:
 	# 1. Падение

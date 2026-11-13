@@ -2,15 +2,20 @@ extends Node
 
 signal transition_finished
 
+# ─── Тайминги затемнения ──────────────────────────────────────────────────────
+const FADE_OUT_DURATION := 0.4    # затемнение перед сменой сцены
+const BLACK_HOLD        := 0.25   # держим чёрный экран после загрузки сцены
+const FADE_IN_DURATION  := 0.55   # проявление новой сцены
+
 var _traveling           : bool = false
 var _spawn_player_on_load := true
-var _fade_in_duration := 0.2
+var _fade_in_duration := FADE_IN_DURATION
 
 func _ready() -> void:
 	get_tree().scene_changed.connect(_on_scene_loaded)
 
 # Оставляем 4 параметра как было
-func travel(scene_path: String, spawn_point: String = "", set_dark_world: bool = Global.is_dark_world, spawn_player: bool = true, fade_in_duration: float = 0.2) -> void:
+func travel(scene_path: String, spawn_point: String = "", set_dark_world: bool = Global.is_dark_world, spawn_player: bool = true, fade_in_duration: float = FADE_IN_DURATION) -> void:
 	if _traveling:
 		return
 	_traveling = true
@@ -21,7 +26,7 @@ func travel(scene_path: String, spawn_point: String = "", set_dark_world: bool =
 	if player:
 		player.can_move = false
 
-	PostProcessing.fade_out(0.2)
+	PostProcessing.fade_out(FADE_OUT_DURATION)
 	await PostProcessing.fade_finished
 
 	Global.is_dark_world = set_dark_world
@@ -61,7 +66,14 @@ func _on_scene_loaded(_scene: Node = null) -> void:
 			
 			print("Final player position: ", player.global_position)
 			player.can_move = false
+
+			# Камера должна стоять на игроке сразу — иначе она «летит» через всю карту.
+			_snap_camera_to_player(player)
+
 		OverworldParty.spawn_companions()
+
+	# Держим чёрный экран ещё немного, чтобы сцена и камера успели встать на место.
+	await get_tree().create_timer(BLACK_HOLD).timeout
 
 	PostProcessing.fade_in(_fade_in_duration)
 	await PostProcessing.fade_finished
@@ -71,3 +83,13 @@ func _on_scene_loaded(_scene: Node = null) -> void:
 			player_after_fade.can_move = true
 	_traveling = false
 	transition_finished.emit()
+
+## Ставит камеру ровно на игрока (без lerp через всю карту).
+func _snap_camera_to_player(player: Node2D) -> void:
+	if not is_instance_valid(player):
+		return
+	var cam = CameraController.instance
+	if cam == null or not is_instance_valid(cam):
+		return
+	# start_follow сам мгновенно переносит камеру в позицию цели.
+	cam.start_follow(player)
