@@ -25,6 +25,12 @@ extends Area2D
 @export var camera_pan_position: Vector2 = Vector2(1760, 1500)
 @export var camera_pan_duration: float = 2.0
 
+# ─── ТОЧКИ ОСТАНОВКИ ──────────────────────────────────────────────────────────
+const EGOR_STOP           := Vector2(1870, 1586)   # где Егор останавливается после прыжка
+const NIKITA_STAND        := Vector2(1760, 1575)   # куда Никита медленно идёт в третьем диалоге
+const NIKITA_SLOW_SPEED   := 40.0                  # «медленно, пока говорит»
+const NIKITA_NORMAL_SPEED := 125.0                 # обычная скорость (move_speed по умолчанию)
+
 var _player = null
 var _kate = null
 var _has_triggered: bool = false
@@ -109,9 +115,13 @@ func _start_cutscene() -> void:
 	if egor:
 		Global.add_to_party("egor")
 	
-	# Егор смотрит на Никиту; Никита делает несколько шагов навстречу.
+	# Егор смотрит на Никиту; Никита медленно идёт на своё место, пока идёт диалог.
 	_stage_before_battle()
 	await _launch_dialogue(third_dialogue)
+	
+	# Возвращаем Никите обычную скорость.
+	if is_instance_valid(nikita):
+		nikita.move_speed = NIKITA_NORMAL_SPEED
 	
 	# Возвращаем камеру к игроку
 	await camera.pan_to_node(_player, 1.0, true)
@@ -146,13 +156,14 @@ func _jump_out_egor() -> void:
 	
 	if egor.has_method("_play_walk_animation"):
 		egor._play_walk_animation(Vector2.DOWN)
-	
+
 	
 	await get_tree().create_timer(0.3).timeout
 	
-	if egor_path.size() > 0:
-		egor.start_cutscene_path(egor_path)
-		await egor.cutscene_path_finished
+	# Егор идёт до своей точки остановки
+	var egor_stop: Array[Vector2] = [EGOR_STOP]
+	egor.start_cutscene_path(egor_stop)
+	await egor.cutscene_path_finished
 	
 	if egor.has_method("_play_idle_animation"):
 		egor._play_idle_animation()
@@ -172,7 +183,7 @@ func _jump_out_nikita() -> void:
 	
 	if nikita.has_method("_play_walk_animation"):
 		nikita._play_walk_animation(Vector2.DOWN)
-	
+
 	await get_tree().create_timer(0.3).timeout
 	
 	if nikita.has_method("_play_idle_animation"):
@@ -183,7 +194,9 @@ func _stage_before_battle() -> void:
 		egor.last_direction = Vector2.LEFT
 		egor._play_idle_animation()
 	if is_instance_valid(nikita):
-		var path: Array[Vector2] = [nikita.global_position + Vector2(42, 0)]
+		# Никита медленно идёт в свою точку на платформе (за кадром, пока идёт диалог)
+		nikita.move_speed = NIKITA_SLOW_SPEED
+		var path: Array[Vector2] = [NIKITA_STAND]
 		nikita.start_cutscene_path(path)
 
 # Во время присоединения Никита обходит группу и становится за Егором.
@@ -278,16 +291,24 @@ func _start_battle(battle_scene_path: String) -> void:
 	# Ждём завершения боя
 	await battle_scene.tree_exited
 
+	# Бой мог закончиться поражением: battle.gd переключил сцену на lost_screen,
+	# и эта локация (вместе с этим узлом) уже уничтожена — обращаться к дереву нельзя.
+	if not is_inside_tree():
+		return
+
 	# Сохраняем ХП персонажей
 	for i in Global.party.size():
 		if i < Global.characters.size() and is_instance_valid(Global.characters[i]):
 			PartyData.save_from_character(Global.party[i], Global.characters[i])
 
 	Global.battle_in_progress = false
-	canvas_layer.queue_free()
-	get_tree().current_scene.show()
+	if is_instance_valid(canvas_layer):
+		canvas_layer.queue_free()
+	var current := get_tree().current_scene
+	if current:
+		current.show()
 
-	if player:
+	if is_instance_valid(player):
 		player.can_move = false
 		player.global_position = Global.player_return_position
 		_place_party_after_battle(player)
