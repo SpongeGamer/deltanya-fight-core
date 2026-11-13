@@ -218,6 +218,9 @@ func join_nikita_for_cutscene() -> void:
 	nikita_joined.emit(true)
 
 func _launch_dialogue(p_dialogue: Array[DE]) -> void:
+	# Локация могла быть уничтожена (например, после поражения) — дерева уже нет.
+	if not is_inside_tree():
+		return
 	if p_dialogue.is_empty():
 		return
 	
@@ -244,6 +247,11 @@ func _start_nikita_battle() -> void:
 	
 	# Запускаем бой и ЖДЁМ его окончания
 	await _start_battle("res://scenes/battle/battle.tscn")
+	
+	# Бой закончился. При поражении сцена уже переключена на lost_screen,
+	# а эта локация уничтожена — дерева больше нет, трогать его нельзя.
+	if not is_inside_tree():
+		return
 	
 	# Бой закончился — запускаем пост-боевой диалог
 	if post_battle_dialogue.size() > 0:

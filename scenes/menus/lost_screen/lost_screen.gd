@@ -6,6 +6,7 @@ var _cursor_on_continue := true
 
 func _ready() -> void:
 	$Continue.grab_focus()
+	PostProcessing.fade_in(0.4)          # ← добавить: убираем чёрный CanvasModulate после боя
 	await Sounds.fade_out_current(0.2)
 	Sounds.set_music("game_over_short", 0.8, false)
 	_update_heart()
