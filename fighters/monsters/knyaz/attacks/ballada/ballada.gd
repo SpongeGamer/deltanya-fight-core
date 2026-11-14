@@ -1,48 +1,36 @@
-extends Node2D
+extends "res://fighters/monsters/knyaz/attacks/common/knyaz_stage.gd"
 
-var spawn_timer: float = 0.25
-var notes_spawned: int = 0
-var false_notes_spawned: int = 0  # сколько фальшивых уже на арене/было спавнено
+func get_duration() -> float:
+	return 12.5
 
-const MAX_NOTES: int    = 24
-const FALSE_CHANCE: float = 0.5
+func _ready() -> void:
+	super._ready()
+	run()
 
-# ── настройки преследования ──────────────────────────────────────────────────
-const MAX_FALSE_NOTES: int  = 3    # не более N фальшивых за всю атаку
-const CHASE_DURATION: float = 1.8  # секунд активного преследования (потом летит прямо)
+func run() -> void:
+	await pause_for(0.5)
+	# Несколько музыкальных фраз без предупреждений у края.
+	for wave in 6:
+		var left := (wave + variation) % 2 == 0
+		var center_y: float = [-20.0, 18.0, 0.0, -12.0, 21.0, -5.0][wave]
+		if variation > 0:
+			center_y = clampf(center_y + randf_range(-12, 12), -35, 35)
+		for offset in [-27.0, -9.0, 9.0, 27.0]:
+			_spawn_note(left, center_y + offset, false)
+			await pause_for(0.11)
+		# Фальшивая нота один раз берет прицел и летит прямо, без самонаводки.
+		if wave == 1 or wave == 3 or wave == 5:
+			var y := clampf(center_y + 30.0, -49.0, 49.0)
+			await pause_for(0.4)
+			_spawn_note(not left, y, true)
+		await pause_for(0.65)
 
-
-func _physics_process(delta: float) -> void:
-	if notes_spawned >= MAX_NOTES:
-		return
-
-	spawn_timer -= delta
-	if spawn_timer <= 0.0:
-		spawn_timer = randf_range(0.45, 0.85)
-		_spawn_note()
-		notes_spawned += 1
-
-
-func _spawn_note() -> void:
+func _spawn_note(left: bool, y: float, false_note: bool) -> void:
 	var bullet := $BaseBullet.duplicate() as NoteBullet
 	bullet.visible = true
-
-	var from_left: bool = randf() > 0.5
-	bullet.position = Vector2(
-		-82.0 if from_left else 82.0,
-		randf_range(-52.0, 52.0)
-	)
-	bullet.direction = Vector2(
-		1.0 if from_left else -1.0,
-		randf_range(-0.12, 0.12)
-	).normalized()
-	bullet.velocity = randf_range(48.0, 68.0)
-
-	# Фальшивая только если не исчерпан лимит
-	var can_be_false: bool = false_notes_spawned < MAX_FALSE_NOTES
-	bullet.is_false = can_be_false and randf() < FALSE_CHANCE
-	if bullet.is_false:
-		false_notes_spawned += 1
-		bullet.chase_duration = CHASE_DURATION
-
-	add_child(bullet)
+	bullet.position = Vector2(-85.0 if left else 85.0, y)
+	bullet.direction = Vector2.RIGHT if left else Vector2.LEFT
+	bullet.velocity = 110.4 if not false_note else 21.6
+	bullet.is_false = false_note
+	bullet.soul_target = soul
+	field.add_child(bullet)

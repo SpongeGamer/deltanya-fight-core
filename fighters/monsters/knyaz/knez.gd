@@ -7,6 +7,9 @@ const MARIONETTE := preload("res://fighters/monsters/knyaz/attacks/marionette/ma
 const MONOLOG    := preload("res://fighters/monsters/knyaz/attacks/monolog/monolog.tscn")
 
 var attack_index: int = 0
+var attack_queue: Array[int] = [0, 1, 2, 3]
+var attack_cycle := 0
+
 
 @export var voice_sound: AudioStream = null
 @export var voice_volume_db: int = 8
@@ -39,13 +42,19 @@ func _asp() -> AnimatedSprite2D:
 
 func do_animation(p_animation: Animations) -> Signal:
 	var asp := _asp()
-	var anim_name := ""
-	match p_animation:
-		Animations.HURT:  anim_name = "damaged"
-		Animations.FAINT: anim_name = "faint"
-	if not anim_name.is_empty() and asp.sprite_frames.has_animation(anim_name):
-		asp.play(anim_name)
-		return asp.animation_finished
+	if p_animation == Animations.HURT:
+		shake_sprite(3.0)
+		asp.play("damaged")
+		asp.modulate = Color(1.0, 0.65, 0.55)
+		var tween := create_tween()
+		tween.tween_property(asp, "modulate", Color.WHITE, 0.28)
+		return tween.finished
+	if p_animation == Animations.FAINT:
+		asp.play("faint")
+		var tween := create_tween().set_parallel(true)
+		tween.tween_property(asp, "position:x", asp.position.x + 20.0, 0.8)
+		tween.tween_property(asp, "modulate:a", 0.0, 0.8)
+		return tween.finished
 	return super.do_animation(p_animation)
 
 
@@ -88,30 +97,24 @@ func get_pre_attack_dialogue() -> Array[DE]:
 
 func start_attack() -> float:
 	attacks.clear()
-
-	match attack_index:
-		0:
-			_set_attack_anim("attack_ballada")
-			instantiate_attack(BALLADA)
-			attack_index = 1
-			return 7.0
-		1:
-			_set_attack_anim("attack_plyaska", 1.2)
-			instantiate_attack(PLYASKA)
-			attack_index = 2
-			return 8.0
-		2:
-			_set_attack_anim("attack_marionette", 0.8)
-			instantiate_attack(MARIONETTE)
-			attack_index = 3
-			return 9.0
-		3:
-			_set_attack_anim("attack_monolog", 1.5)
-			instantiate_attack(MONOLOG)
-			attack_index = 0
-			return 13.0
-
-	return 7.0
+	if attack_queue.is_empty():
+		attack_cycle += 1
+		attack_queue = [0, 1, 2, 3]
+		attack_queue.shuffle()
+		if attack_queue[0] == attack_index:
+			var first: int = attack_queue.pop_front()
+			attack_queue.push_back(first)
+	attack_index = attack_queue.pop_front()
+	var scenes: Array[PackedScene] = [BALLADA, PLYASKA, MARIONETTE, MONOLOG]
+	var anims := ["attack_ballada", "attack_plyaska", "attack_marionette", "attack_monolog"]
+	var speeds := [1.0, 1.2, 0.8, 1.5]
+	_set_attack_anim(anims[attack_index], speeds[attack_index])
+	var attack := scenes[attack_index].instantiate() as Node2D
+	attack.position = Global.CENTER
+	attack.set("variation", attack_cycle)
+	get_parent().add_child(attack)
+	attacks.append(attack)
+	return float(attack.call("get_duration"))
 
 
 func end_attack() -> void:

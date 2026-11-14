@@ -1,55 +1,41 @@
 extends Pellet
 class_name NoteBullet
 
-var velocity: float = 65.0
-var direction: Vector2 = Vector2.RIGHT
-var moving: bool = false
+const NOTE := preload("res://fighters/monsters/knyaz/attacks/ballada/res/note_theater.png")
 
-var is_false: bool = false
-var soul_target: Soul = null
-
-var life_timer: float = 0.0
-const CHASE_AFTER: float = 1.0    # секунд до начала погони
-var chase_duration: float = 1.8   # секунд активной погони (настраивается из ballada.gd)
-
-const MAX_VELOCITY: float = 210.0
-
+var velocity := 110.4
+var direction := Vector2.RIGHT
+var is_false := false
+var soul_target: Soul
+var life_timer := 0.0
+var aimed := false
 
 func _ready() -> void:
-	if !visible:
+	if not visible:
 		return
-	moving = true
-
-	if soul_target == null:
-		soul_target = get_tree().get_first_node_in_group("soul") as Soul
-	if soul_target == null:
-		soul_target = get_tree().current_scene.get_node_or_null("Soul") as Soul
-	if soul_target == null:
-		push_warning("NoteBullet: Soul не найдена! Группа 'soul' пуста и нет ноды Soul в %s" \
-			% get_tree().current_scene.name)
-
+	var sprite := $Sprite as Sprite2D
+	sprite.scale = Vector2(1.9, 1.9)
+	var hitbox := $CollisionShape2D as CollisionShape2D
+	hitbox.scale = Vector2(1.25, 1.25)
+	# Обычные ноты не синие: у них нет правила «стой».
 	if is_false:
-		modulate = Color(0.972, 0.0, 0.162, 1.0)
+		modulate = Color(1.0, 0.37, 0.25)
 	else:
-		modulate = Color(0.0, 0.657, 0.995, 1.0)
-
+		($Sprite as Sprite2D).texture = NOTE
+		modulate = Color.WHITE
 
 func _physics_process(delta: float) -> void:
-	if !moving or !visible:
+	if not visible:
 		return
-
 	life_timer += delta
-
-	if is_false and soul_target != null:
-		var chasing: bool = life_timer >= CHASE_AFTER \
-			and life_timer <= CHASE_AFTER + chase_duration
-		if chasing:
-			var to_soul := (soul_target.global_position - global_position).normalized()
-			direction = direction.lerp(to_soul, delta * 4.0).normalized()
-			velocity  = min(velocity + 120.0 * delta, MAX_VELOCITY)
-
+	if is_false and not aimed:
+		modulate.a = 0.65 + 0.35 * abs(sin(life_timer * 12.0))
+		if life_timer >= 0.7:
+			aimed = true
+			modulate.a = 1.0
+			if is_instance_valid(soul_target):
+				direction = (soul_target.global_position - global_position).normalized()
+			velocity = 174.0
 	position += direction * velocity * delta
-
-	if position.x < -120.0 or position.x > 120.0 \
-	or position.y < -90.0  or position.y > 90.0:
+	if absf(position.x) > 125.0 or absf(position.y) > 100.0:
 		queue_free()

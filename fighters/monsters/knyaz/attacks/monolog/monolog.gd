@@ -1,4 +1,10 @@
 extends Node2D
+
+# Совместимость с выбором атак Князя.
+var variation: int = 0
+
+func get_duration() -> float:
+	return 14.0
 # «Монолог» — атака Князя.
 # Слова из его лексикона летят через арену буквами-снарядами.
 # Буквы увеличиваются по мере пути. Волна или прямолинейный полёт.
@@ -71,10 +77,10 @@ func _spawn_word() -> void:
 	var base_y  := randf_range(-45.0, 45.0)
 	var use_wave := randf() > 0.35
 	var wave_amp  := randf_range(18.0, 30.0)
-	var wave_freq := randf_range(2.2, 4.2)
+	var wave_freq := randf_range(2.64, 5.04)
 	var wave_phase := randf_range(0.0, TAU)
-	var vert_spd   := randf_range(-40.0, 40.0)
-	var spd        := randf_range(58.0, 92.0)
+	var vert_spd   := randf_range(-48.0, 48.0)
+	var spd        := randf_range(69.6, 110.4)
 
 	var n := word.length()
 	for i in n:
