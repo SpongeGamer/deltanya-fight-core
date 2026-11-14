@@ -2,7 +2,6 @@ extends Node2D
 
 # Пути к DialogueArea2D всех NPC у которых меняется диалог после боя
 const POST_FIGHT_NPCS = [
-	"NPC/Zahar/FightDialogue",
 	"NPC/Anne2/FightDialogue",
 	"NPC/Alina/FightDialogue",
 	"NPC/Duck/FightDialogue",
@@ -17,6 +16,8 @@ func _ready() -> void:
 	if Global.get_flag("knyaz_cutscene_done"):
 		_set_knyaz_shop_mode()
 		_set_post_fight_dialogues()
+	else:
+		_set_pre_fight_dialogues()
 
 func start_post_knyaz_cutscene(player: Node) -> void:
 	if Global.get_flag("knyaz_cutscene_done"):
@@ -46,7 +47,7 @@ func start_post_knyaz_cutscene(player: Node) -> void:
 	Sounds.set_music("garage", 0.3)
 
 func _set_knyaz_shop_mode() -> void:
-	var fight_area = get_node_or_null("NPC/Knyaz/DialogueArea2D2")
+	var fight_area = get_node_or_null("NPC/Knyaz/FightScene")
 	if fight_area:
 		fight_area.set_deferred("monitoring", false)
 		fight_area.set_deferred("monitorable", false)
@@ -63,6 +64,16 @@ func _set_knyaz_shop_mode() -> void:
 			col.set_deferred("disabled", false)
 	else:
 		push_error("bar.gd: нода KnyazShopZone не найдена!")
+
+func _set_pre_fight_dialogues() -> void:
+	for path in POST_FIGHT_NPCS:
+		var post_area = get_node_or_null(path.get_base_dir() + "/PostFightDialogue")
+		if post_area:
+			post_area.set_deferred("monitoring", false)
+			post_area.set_deferred("monitorable", false)
+			var col = post_area.get_node_or_null("CollisionShape2D")
+			if col:
+				col.set_deferred("disabled", true)
 
 func _set_post_fight_dialogues() -> void:
 	# Для каждого NPC: выключаем старый DialogueArea2D,

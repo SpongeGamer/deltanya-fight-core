@@ -1,4 +1,4 @@
-[gd_scene load_steps=195 format=4 uid="uid://ccbkxvvimuk8e"]
+[gd_scene load_steps=197 format=4 uid="uid://ccbkxvvimuk8e"]
 
 [ext_resource type="Script" uid="uid://p6akibqm6cio" path="res://scenes/bar/bar.gd" id="1_3gxfx"]
 [ext_resource type="Texture2D" uid="uid://b88jeemj33yw4" path="res://assets/tilesets/knyaz_bar.png" id="1_tcu61"]
@@ -38,6 +38,11 @@
 [ext_resource type="Texture2D" uid="uid://6sfwecnnboum" path="res://assets/VFX/item_glow.png" id="38_qqosd"]
 [ext_resource type="Script" uid="uid://cyno1xrjg1ssg" path="res://scenes/blackworld/item_glow.gd" id="39_67iom"]
 [ext_resource type="Resource" uid="uid://d8m5we4lalab" path="res://holdables/equippables/weapons/mediator_jazz.tres" id="40_qqosd"]
+[ext_resource type="Texture2D" uid="uid://1o7nkm0q0egx" path="res://assets/portraits/test_egor.png" id="mk_egor_portrait"]
+[ext_resource type="AudioStream" uid="uid://i4vcywn1vmje" path="res://globals/sounds/voices/egor_voice.ogg" id="mk_egor_voice"]
+[ext_resource type="Script" uid="uid://sy20hb3rbe7o" path="res://scenes/bar/knyaz_fight_dialogue.gd" id="mk_fight_dialogue"]
+[ext_resource type="Texture2D" uid="uid://br5ycy3ruy3jb" path="res://assets/portraits/test_kate.png" id="mk_kate_portrait"]
+[ext_resource type="AudioStream" uid="uid://c52f1xiabf22m" path="res://globals/sounds/voices/kate_voice.ogg" id="mk_kate_voice"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tcu61"]
 size = Vector2(41, 478)
@@ -526,7 +531,7 @@ animations = [{
 script = ExtResource("15_5aqrf")
 speaker_name = "Князь"
 speaker_img = ExtResource("29_nciwa")
-text = "О, новые лица в моем скромном баре! Присаживайтесь. Здесь все - декорация, кроме выпивки. Выпивка здесь - единственное, что имеет вкус... хотя и она отдает картоном."
+text = "О, новые лица в моем скромном баре! Присаживайтесь. Здесь все - декорация, кроме выпивки. Хотя и она отдает картоном."
 text_speed = 14.0
 text_sound = ExtResource("29_t4tfj")
 text_volume_db = 8
@@ -534,16 +539,14 @@ text_volume_pitch_min = 1.0
 text_volume_pitch_max = 1.0
 metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
 
-[sub_resource type="AudioStreamWAV" id="AudioStreamWAV_t4tfj"]
-data = PackedByteArray("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")
-format = 3
-
-[sub_resource type="Resource" id="Resource_rqruq"]
+[sub_resource type="Resource" id="Resource_bar_egor_early"]
 script = ExtResource("15_5aqrf")
-text = "Вы говорите о том что хотите узнать больше о Темном Рыцаре."
+speaker_name = "Егор"
+speaker_img = ExtResource("mk_egor_portrait")
+text = "Мы ищем Серегу. И хотим узнать про Темного Рыцаря."
 text_speed = 14.0
-text_sound = SubResource("AudioStreamWAV_t4tfj")
-text_volume_db = 8
+text_sound = ExtResource("mk_egor_voice")
+text_volume_db = 6
 text_volume_pitch_min = 1.0
 text_volume_pitch_max = 1.0
 metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
@@ -560,8 +563,7 @@ packet_sequence = SubResource("OggPacketSequence_fqdva")
 script = ExtResource("15_5aqrf")
 speaker_name = "Князь"
 speaker_img = ExtResource("29_nciwa")
-text = "С чего бы Я вам о нем рассказывал?
-Я вижу вас здесь впервые."
+text = "Никаких Сергеев Я здесь не встречал. Да и с чего бы мне рассказывать вам о Рыцаре? Я вижу вас здесь впервые."
 text_speed = 14.0
 text_sound = SubResource("AudioStreamOggVorbis_mmv2d")
 text_volume_db = 8
@@ -591,7 +593,7 @@ packet_sequence = SubResource("OggPacketSequence_fqdva")
 script = ExtResource("15_5aqrf")
 speaker_name = "Князь"
 speaker_img = ExtResource("29_nciwa")
-text = "Все еще слабо в это верится. В любом случае вы - заложники ситуации. Как и Я. Как и все мы в этом бренном мире."
+text = "Хм. Знакомые лица за вас ручаются. И вы все еще ищете своего друга, несмотря на то, куда вас занесло..."
 text_speed = 14.0
 text_sound = SubResource("AudioStreamOggVorbis_j61w1")
 text_volume_db = 8
@@ -606,7 +608,7 @@ packet_sequence = SubResource("OggPacketSequence_fqdva")
 script = ExtResource("15_5aqrf")
 speaker_name = "Князь"
 speaker_img = ExtResource("29_nciwa")
-text = "Это всего лишь шоу. [color=red]Его[/color] шоу. Возможно и он марионетка в чьих-то руках. "
+text = "Любопытно. Обычно гости этого мира слишком заняты собой, чтобы замечать остальных."
 text_speed = 14.0
 text_sound = SubResource("AudioStreamOggVorbis_xmf26")
 text_volume_db = 8
@@ -635,7 +637,7 @@ packet_sequence = SubResource("OggPacketSequence_fqdva")
 script = ExtResource("15_5aqrf")
 speaker_name = "Князь"
 speaker_img = ExtResource("29_nciwa")
-text = "Не понимаешь? О-о-о... Это лучшая реплика за весь вечер! Настоящая классика!"
+text = "О-о-о... Это ваша лучшая реплика за весь вечер! Настоящая классика!"
 text_speed = 16.0
 text_sound = SubResource("AudioStreamOggVorbis_vif1n")
 text_volume_db = 8
@@ -647,7 +649,7 @@ metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
 script = ExtResource("15_5aqrf")
 speaker_name = "Князь"
 speaker_img = ExtResource("29_nciwa")
-text = "Никто не понимает. В этом и шутка! Мы все учим роли, которые не писали. Мы ждем аплодисментов в пустом зале. А ты..."
+text = "Никто не понимает. В этом и шутка! Мы все учим роли, которые не писали. Но вы..."
 text_speed = 14.0
 text_sound = SubResource("AudioStreamOggVorbis_xmf26")
 text_volume_db = 8
@@ -662,7 +664,7 @@ packet_sequence = SubResource("OggPacketSequence_fqdva")
 script = ExtResource("15_5aqrf")
 speaker_name = "Князь"
 speaker_img = ExtResource("29_nciwa")
-text = "...Ты даже не актер. Ты - [b][color=yellow][wave amp=20.0 freq=2.0][Инструмент][/wave][/color][/b]............."
+text = "Вы даже не актеры. Вы - [b][color=yellow][wave amp=20.0 freq=2.0]Инструмент[/wave][/color][/b]."
 text_speed = 12.0
 text_sound = SubResource("AudioStreamOggVorbis_6i7ui")
 text_volume_db = 8
@@ -677,7 +679,7 @@ packet_sequence = SubResource("OggPacketSequence_fqdva")
 script = ExtResource("15_5aqrf")
 speaker_name = "Князь"
 speaker_img = ExtResource("29_nciwa")
-text = "[wave amp=20.0 freq=2.0] И тот, кто сейчас тобой управляет...[/wave]"
+text = "[wave amp=20.0 freq=2.0]А тот, кто вами управляет...[/wave]"
 text_speed = 10.0
 text_sound = SubResource("AudioStreamOggVorbis_8jjko")
 text_volume_db = 8
@@ -692,7 +694,7 @@ packet_sequence = SubResource("OggPacketSequence_fqdva")
 script = ExtResource("15_5aqrf")
 speaker_name = "Князь"
 speaker_img = ExtResource("29_nciwa")
-text = "[wave amp=20.0 freq=2.0] Просто жмет на кнопки, надеясь на хороший финал. [/wave]"
+text = "[wave amp=20.0 freq=2.0]Просто жмет на кнопки, надеясь на хороший финал.[/wave]"
 text_speed = 8.0
 text_sound = SubResource("AudioStreamOggVorbis_4vm2b")
 text_volume_db = 8
@@ -706,7 +708,7 @@ packet_sequence = SubResource("OggPacketSequence_fqdva")
 script = ExtResource("15_5aqrf")
 speaker_name = "Князь"
 speaker_img = ExtResource("29_nciwa")
-text = "[wave amp=20.0 freq=2.0]А сейчас Я дам тебе пищу для размышления. Начнем же![/wave]"
+text = "Но довольно разговоров! Начнем же наш концерт: добровольцы из зала! Посмотрим, как вы сыграете."
 text_speed = 12.0
 text_sound = SubResource("AudioStreamOggVorbis_6rv6l")
 text_volume_db = 8
@@ -719,6 +721,66 @@ script = ExtResource("21_x3hby")
 target_path = NodePath("../../../FightTrigger")
 function_name = "start_knyaz_battle"
 metadata/_custom_type_script = "uid://dxhsmijrodh41"
+
+[sub_resource type="Resource" id="Resource_bar_kate_nikita"]
+script = ExtResource("15_5aqrf")
+speaker_name = "Катя"
+speaker_img = ExtResource("mk_kate_portrait")
+text = "Вы не видели одного парня? Он убежал вниз, а строители нас не пускают."
+text_speed = 14.0
+text_sound = ExtResource("mk_kate_voice")
+text_volume_db = 6
+text_volume_pitch_min = 1.0
+text_volume_pitch_max = 1.0
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="Resource" id="Resource_bar_knyaz_saw"]
+script = ExtResource("15_5aqrf")
+speaker_name = "Князь"
+speaker_img = ExtResource("29_nciwa")
+text = "Видел как он побежал. И даже не заглянул в бар - оскорбительно."
+text_speed = 14.0
+text_sound = ExtResource("29_t4tfj")
+text_volume_db = 6
+text_volume_pitch_min = 1.0
+text_volume_pitch_max = 1.0
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="Resource" id="Resource_bar_egor_where"]
+script = ExtResource("15_5aqrf")
+speaker_name = "Егор"
+speaker_img = ExtResource("mk_egor_portrait")
+text = "Оскорбительно друзей своих продавать ради упаковки в Пятерочке."
+text_speed = 14.0
+text_sound = ExtResource("mk_egor_voice")
+text_volume_db = 6
+text_volume_pitch_min = 1.0
+text_volume_pitch_max = 1.0
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="Resource" id="Resource_bar_knyaz_where"]
+script = ExtResource("15_5aqrf")
+speaker_name = "Князь"
+speaker_img = ExtResource("29_nciwa")
+text = "Как грубо."
+text_speed = 14.0
+text_sound = ExtResource("29_t4tfj")
+text_volume_db = 6
+text_volume_pitch_min = 1.0
+text_volume_pitch_max = 1.0
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="Resource" id="Resource_bar_egor_seroga"]
+script = ExtResource("15_5aqrf")
+speaker_name = "Егор"
+speaker_img = ExtResource("mk_egor_portrait")
+text = "Это еще даже и не близко к грубости. Скажи нам, встречал ли ты Серегу, и кто такой этот ваш \"Темный рыцарь?\""
+text_speed = 14.0
+text_sound = ExtResource("mk_egor_voice")
+text_volume_db = 6
+text_volume_pitch_min = 1.0
+text_volume_pitch_max = 1.0
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mmv2d"]
 size = Vector2(569.99976, 267.33096)
@@ -751,10 +813,22 @@ packet_sequence = SubResource("OggPacketSequence_fqdva")
 script = ExtResource("15_5aqrf")
 speaker_name = "Князь"
 speaker_img = SubResource("CompressedTexture2D_4vm2b")
-text = "Вы отлично сыграли эту сцену. Или, вернее сказать... твой [b][color=yellow]кукловод[/color][/b] идеально заучил тайминги атак?"
+text = "Вы отлично сыграли эту сцену. Или, вернее сказать... твой [b][color=yellow]кукловод[/color][/b] хорошо выучил тайминги атак?"
 text_speed = 14.0
 text_sound = SubResource("AudioStreamOggVorbis_cht2l")
 text_volume_db = 8
+text_volume_pitch_min = 1.0
+text_volume_pitch_max = 1.0
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="Resource" id="Resource_bar_kate_reaction"]
+script = ExtResource("15_5aqrf")
+speaker_name = "Катя"
+speaker_img = ExtResource("mk_kate_portrait")
+text = "Мы вообще-то пришли за ответами."
+text_speed = 14.0
+text_sound = ExtResource("mk_kate_voice")
+text_volume_db = 6
 text_volume_pitch_min = 1.0
 text_volume_pitch_max = 1.0
 metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
@@ -769,27 +843,9 @@ packet_sequence = SubResource("OggPacketSequence_fqdva")
 script = ExtResource("15_5aqrf")
 speaker_name = "Князь"
 speaker_img = SubResource("CompressedTexture2D_6rv6l")
-text = "Я обещал тебе пищу для размышлений. Что же, Князь всегда держит слово."
+text = "Ах да, ответы. Князь всегда держит слово."
 text_speed = 14.0
 text_sound = SubResource("AudioStreamOggVorbis_qqosd")
-text_volume_db = 8
-text_volume_pitch_min = 1.0
-text_volume_pitch_max = 1.0
-metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ej7ld"]
-load_path = "res://.godot/imported/portrait.png-57ecb46aab2617401a3f3a41d422d526.ctex"
-
-[sub_resource type="AudioStreamOggVorbis" id="AudioStreamOggVorbis_5j711"]
-packet_sequence = SubResource("OggPacketSequence_fqdva")
-
-[sub_resource type="Resource" id="Resource_qw6fj"]
-script = ExtResource("15_5aqrf")
-speaker_name = "Князь"
-speaker_img = SubResource("CompressedTexture2D_ej7ld")
-text = "Вы ищете [color=red]Темного Рыцаря[/color]. Думаете, это злобный тиран? Чудовище, пришедшее из внешнего космоса, чтобы расколоть ваш мир?"
-text_speed = 14.0
-text_sound = SubResource("AudioStreamOggVorbis_5j711")
 text_volume_db = 8
 text_volume_pitch_min = 1.0
 text_volume_pitch_max = 1.0
@@ -805,7 +861,7 @@ packet_sequence = SubResource("OggPacketSequence_fqdva")
 script = ExtResource("15_5aqrf")
 speaker_name = "Князь"
 speaker_img = SubResource("CompressedTexture2D_8jjko")
-text = "Как наивно. Самые жуткие монстры рождаются не в бездне. Они рождаются в [b]тишине[/b]."
+text = "Самые жуткие монстры рождаются не в бездне. Они рождаются в [b]тишине[/b]."
 text_speed = 14.0
 text_sound = SubResource("AudioStreamOggVorbis_67iom")
 text_volume_db = 8
@@ -823,28 +879,9 @@ packet_sequence = SubResource("OggPacketSequence_fqdva")
 script = ExtResource("15_5aqrf")
 speaker_name = "Князь"
 speaker_img = SubResource("CompressedTexture2D_rqruq")
-text = "В невысказанных словах. В обидах, которые годами хоронят внутри себя, чтобы не тревожить близких. 
-В тяжести, которую кто-то покорно тащит на плечах, пока крутит гайки и наливает друзьям чай."
+text = "В невысказанных словах. В обидах, которые годами прячут от близких. В тяжести, которую кто-то тащит на плечах, пока крутит гайки и наливает друзьям чай."
 text_speed = 14.0
 text_sound = SubResource("AudioStreamOggVorbis_px0ma")
-text_volume_db = 8
-text_volume_pitch_min = 1.0
-text_volume_pitch_max = 1.0
-metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cht2l"]
-load_path = "res://.godot/imported/portrait.png-57ecb46aab2617401a3f3a41d422d526.ctex"
-
-[sub_resource type="AudioStreamOggVorbis" id="AudioStreamOggVorbis_klknu"]
-packet_sequence = SubResource("OggPacketSequence_fqdva")
-
-[sub_resource type="Resource" id="Resource_0isx6"]
-script = ExtResource("15_5aqrf")
-speaker_name = "Князь"
-speaker_img = SubResource("CompressedTexture2D_cht2l")
-text = "Вы так слепо верите тому, кто ведет вас за руку... Это так трогательно. Но вы забылись. Поймите одно:"
-text_speed = 14.0
-text_sound = SubResource("AudioStreamOggVorbis_klknu")
 text_volume_db = 8
 text_volume_pitch_min = 1.0
 text_volume_pitch_max = 1.0
@@ -860,27 +897,9 @@ packet_sequence = SubResource("OggPacketSequence_fqdva")
 script = ExtResource("15_5aqrf")
 speaker_name = "Князь"
 speaker_img = SubResource("CompressedTexture2D_qqosd")
-text = "[wave amp=20.0 freq=2.0]Тень никогда не бывает больше...[/wave]"
+text = "[wave amp=20.0 freq=2.0]Тень никогда не бывает больше человека, который ее отбрасывает.[/wave]"
 text_speed = 12.0
 text_sound = SubResource("AudioStreamOggVorbis_umx1v")
-text_volume_db = 8
-text_volume_pitch_min = 0.9
-text_volume_pitch_max = 0.9
-metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_67iom"]
-load_path = "res://.godot/imported/portrait.png-57ecb46aab2617401a3f3a41d422d526.ctex"
-
-[sub_resource type="AudioStreamOggVorbis" id="AudioStreamOggVorbis_2wg7f"]
-packet_sequence = SubResource("OggPacketSequence_fqdva")
-
-[sub_resource type="Resource" id="Resource_jcnfm"]
-script = ExtResource("15_5aqrf")
-speaker_name = "Князь"
-speaker_img = SubResource("CompressedTexture2D_67iom")
-text = "[wave amp=20.0 freq=2.0]Чем тот человек, который ее отбрасывает. [/wave]"
-text_speed = 12.0
-text_sound = SubResource("AudioStreamOggVorbis_2wg7f")
 text_volume_db = 8
 text_volume_pitch_min = 0.9
 text_volume_pitch_max = 0.9
@@ -896,12 +915,24 @@ packet_sequence = SubResource("OggPacketSequence_fqdva")
 script = ExtResource("15_5aqrf")
 speaker_name = "Князь"
 speaker_img = SubResource("CompressedTexture2D_j61w1")
-text = "[wave amp=20.0 freq=2.0]Но иногда даже самая верная тень устает ходить по пятам и начинает свою игру.[/wave]"
+text = "[wave amp=20.0 freq=2.0]Но даже самая верная тень может устать ходить по пятам и начать свою игру.[/wave]"
 text_speed = 12.0
 text_sound = SubResource("AudioStreamOggVorbis_r8y44")
 text_volume_db = 8
 text_volume_pitch_min = 0.9
 text_volume_pitch_max = 0.9
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="Resource" id="Resource_bar_egor_reaction"]
+script = ExtResource("15_5aqrf")
+speaker_name = "Егор"
+speaker_img = ExtResource("mk_egor_portrait")
+text = "И что нам теперь с этой информацией делать?"
+text_speed = 14.0
+text_sound = ExtResource("mk_egor_voice")
+text_volume_db = 6
+text_volume_pitch_min = 1.0
+text_volume_pitch_max = 1.0
 metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vif1n"]
@@ -928,8 +959,7 @@ format = 3
 
 [sub_resource type="Resource" id="Resource_bdbe6"]
 script = ExtResource("15_5aqrf")
-text = "Вы задумались над словами Князя, но ответить вам было нечего.
-Вы устали после боя. "
+text = "Вы задумались над словами Князя. Ответов стало не намного больше."
 text_speed = 14.0
 text_sound = SubResource("AudioStreamWAV_8jjko")
 text_volume_db = 8
@@ -947,9 +977,7 @@ packet_sequence = SubResource("OggPacketSequence_fqdva")
 script = ExtResource("15_5aqrf")
 speaker_name = "Князь"
 speaker_img = SubResource("CompressedTexture2D_0pu10")
-text = "Бой - вещь всегда изматывающая.
-Присаживайтесь, отдыхайте.
-Я всегда буду рад вам, юные зрители."
+text = "На сегодня представление окончено. Заходите, если захотите отдохнуть... или выпить картона."
 text_speed = 14.0
 text_sound = SubResource("AudioStreamOggVorbis_kyucv")
 text_volume_db = 8
@@ -1478,8 +1506,10 @@ script = ExtResource("29_4vm2b")
 [node name="FightScene" parent="NPC/Knyaz" instance=ExtResource("19_uyv1q")]
 position = Vector2(-9.601318, 387.0631)
 scale = Vector2(1.7198389, 1.6104581)
+script = ExtResource("mk_fight_dialogue")
+dialogue_before_nikita_leaves = Array[ExtResource("20_3gxfx")]([SubResource("Resource_8jjko"), SubResource("Resource_bar_egor_early"), SubResource("Resource_cht2l"), SubResource("Resource_qqosd"), SubResource("Resource_vif1n"), SubResource("Resource_px0ma"), SubResource("Resource_67iom"), SubResource("Resource_6i7ui"), SubResource("Resource_j61w1"), SubResource("Resource_xmf26"), SubResource("Resource_r8y44"), SubResource("Resource_klknu"), SubResource("Resource_umx1v"), SubResource("Resource_2wg7f")])
 only_activate_once = true
-dialogue = Array[ExtResource("20_3gxfx")]([SubResource("Resource_8jjko"), SubResource("Resource_rqruq"), SubResource("Resource_cht2l"), SubResource("Resource_qqosd"), SubResource("Resource_vif1n"), SubResource("Resource_px0ma"), SubResource("Resource_67iom"), SubResource("Resource_6i7ui"), SubResource("Resource_j61w1"), SubResource("Resource_xmf26"), SubResource("Resource_r8y44"), SubResource("Resource_klknu"), SubResource("Resource_umx1v"), SubResource("Resource_2wg7f")])
+dialogue = Array[ExtResource("20_3gxfx")]([SubResource("Resource_8jjko"), SubResource("Resource_bar_kate_nikita"), SubResource("Resource_bar_knyaz_saw"), SubResource("Resource_bar_egor_where"), SubResource("Resource_bar_knyaz_where"), SubResource("Resource_bar_egor_seroga"), SubResource("Resource_cht2l"), SubResource("Resource_qqosd"), SubResource("Resource_vif1n"), SubResource("Resource_px0ma"), SubResource("Resource_67iom"), SubResource("Resource_6i7ui"), SubResource("Resource_j61w1"), SubResource("Resource_xmf26"), SubResource("Resource_r8y44"), SubResource("Resource_klknu"), SubResource("Resource_umx1v"), SubResource("Resource_2wg7f")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NPC/Knyaz/FightScene"]
 position = Vector2(10, 131.33435)
@@ -1490,7 +1520,7 @@ shape = SubResource("RectangleShape2D_mmv2d")
 position = Vector2(2793.8064, -243.03972)
 monitoring = false
 only_activate_once = true
-dialogue = Array[ExtResource("20_3gxfx")]([SubResource("Resource_6pu15"), SubResource("Resource_cb3x3"), SubResource("Resource_5jnis"), SubResource("Resource_qw6fj"), SubResource("Resource_ej7ld"), SubResource("Resource_5j711"), SubResource("Resource_0isx6"), SubResource("Resource_n0s72"), SubResource("Resource_jcnfm"), SubResource("Resource_1dgix"), SubResource("Resource_yp5dx"), SubResource("Resource_bdbe6"), SubResource("Resource_85o1y")])
+dialogue = Array[ExtResource("20_3gxfx")]([SubResource("Resource_6pu15"), SubResource("Resource_cb3x3"), SubResource("Resource_bar_kate_reaction"), SubResource("Resource_5jnis"), SubResource("Resource_ej7ld"), SubResource("Resource_5j711"), SubResource("Resource_n0s72"), SubResource("Resource_1dgix"), SubResource("Resource_bar_egor_reaction"), SubResource("Resource_yp5dx"), SubResource("Resource_bdbe6"), SubResource("Resource_85o1y")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NPC/Knyaz/KnyazCutscene"]
 position = Vector2(-3235.5383, 1446.7365)
