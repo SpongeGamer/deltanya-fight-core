@@ -307,7 +307,10 @@ func do_spare(p_monster: Monster) -> void:
 		await get_tree().create_timer(0.01).timeout
 		Global.display_text.emit("  * " + title + " пощадил " + p_monster.title + "!", true)
 		await Global.text_finished
-		Sounds.play("snd_spare")
+		# The player can skip the text before the visual has finished.
+		if not p_monster.spare_visual_complete:
+			await p_monster.spare_visual_finished
+		p_monster.finish_spare()
 	else:
 		await get_tree().create_timer(0.01).timeout
 		Global.display_text.emit("  * " + title + " пытался пощадить " + p_monster.title + ", но не смог...", true)

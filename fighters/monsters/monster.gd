@@ -27,6 +27,10 @@ var attacks: Array[Node2D] = []
 signal mercy_changed(p_new_mercy: float)
 signal exit_finished
 signal attack_finished
+signal spare_visual_finished
+
+var spare_visual_complete := false
+var _spare_started := false
 
 func _ready() -> void:
 	create_shader("generic_monster")
@@ -92,11 +96,69 @@ func increase_mercy(p_amount: float) -> void:
 	mercy_changed.emit(mercy_percent)
 
 func spare() -> void:
+	if _spare_started:
+		return
+	_spare_started = true
 	shake = 0.0
-	await do_animation(Animations.SPARE)
+	set_physics_process(false)
+	Sounds.play("snd_spare")
+	_show_spare_label()
+
+	var effect := preload("res://fighters/monsters/effects/spare_fragments.gd").new()
+	add_child(effect)
+	if is_instance_valid(sprite) and effect.setup(sprite):
+		sprite.visible = false
+	else:
+		effect.queue_free()
+		# Safe fallback for monsters without a standard Sprite2D.
+		if is_instance_valid(sprite):
+			var fade := create_tween()
+			fade.tween_property(sprite, "modulate:a", 0.0, 1.2)
+
+	await get_tree().create_timer(1.55).timeout
+	spare_visual_complete = true
+	spare_visual_finished.emit()
+
+func finish_spare() -> void:
 	Global.delete_monster(self, Global.DefeatContext.SPARED)
 	exit_finished.emit()
 	queue_free()
+
+func _show_spare_label() -> void:
+	var label := Label.new()
+	label.text = "ПОЩАДА"
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.size = Vector2(120, 24)
+	label.position = Vector2(-60, -65)
+	if is_instance_valid(sprite):
+		var rect := Rect2()
+		if sprite is Sprite2D:
+			rect = sprite.get_rect()
+		elif sprite is AnimatedSprite2D:
+			var animated := sprite as AnimatedSprite2D
+			if animated.sprite_frames and animated.sprite_frames.has_animation(animated.animation):
+				var frame := animated.sprite_frames.get_frame_texture(animated.animation, animated.frame)
+				if frame:
+					var origin := animated.offset
+					if animated.centered:
+						origin -= frame.get_size() * 0.5
+					rect = Rect2(origin, frame.get_size())
+		if rect.size != Vector2.ZERO:
+			var top_left: Vector2 = to_local(sprite.to_global(rect.position))
+			var top_right: Vector2 = to_local(sprite.to_global(rect.position + Vector2(rect.size.x, 0)))
+			label.position.y = minf(top_left.y, top_right.y) - 26.0
+	label.z_index = 20
+	var settings := LabelSettings.new()
+	settings.font = preload("res://fonts/8bitoperator Cyrillic Extension.ttf")
+	settings.font_size = 16
+	settings.font_color = Global.YELLOW
+	settings.outline_size = 2
+	settings.outline_color = Color.BLACK
+	label.label_settings = settings
+	add_child(label)
+	var tween := create_tween().set_parallel(true)
+	tween.tween_property(label, "position:y", label.position.y - 10.0, 1.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween.tween_property(label, "modulate:a", 0.0, 0.4).set_delay(0.9)
 
 func get_pre_attack_dialogue() -> Array[DE]:
 	return []
