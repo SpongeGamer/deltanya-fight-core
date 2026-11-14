@@ -1,7 +1,6 @@
-[gd_scene load_steps=370 format=4 uid="uid://rvqhspnujl5w"]
+[gd_scene load_steps=364 format=4 uid="uid://rvqhspnujl5w"]
 
 [ext_resource type="Script" uid="uid://cx6ul5ud4jduu" path="res://scenes/blackworld/mamaev_kurgan.gd" id="1_n65pb"]
-[ext_resource type="Script" path="res://scenes/blackworld/mamaev_intro_trigger.gd" id="intro_camera"]
 [ext_resource type="Script" uid="uid://ct404q8dpij18" path="res://scripts/overworld/camera_controller.gd" id="1_to7hb"]
 [ext_resource type="PackedScene" uid="uid://b8ny5hm5wkufg" path="res://ui/settings/settings_menu.tscn" id="2_hclq4"]
 [ext_resource type="Texture2D" uid="uid://bgesrmf370b0s" path="res://assets/tilesets/родина мать.png" id="3_hclq4"]
@@ -47,12 +46,12 @@
 [ext_resource type="Script" uid="uid://xmkcg31qxbjh" path="res://scripts/overworld/storage_node.gd" id="42_saogw"]
 [ext_resource type="Texture2D" uid="uid://jw8tasqtp3ms" path="res://assets/VFX/chest.png" id="43_2mep3"]
 [ext_resource type="Texture2D" uid="uid://0p03xu5ygxwc" path="res://assets/VFX/hole.png" id="44_uhmny"]
-
-[ext_resource type="Script" path="res://scenes/blackworld/mamaev_light.gd" id="atmosphere_light"]
-[ext_resource type="Shader" path="res://scripts/overworld/effects/train_black_key.gdshader" id="atmosphere_train_shader"]
-[ext_resource type="Texture2D" path="res://assets/bg/train-1.png" id="atmosphere_train_1"]
-[ext_resource type="Texture2D" path="res://assets/bg/train-2.png" id="atmosphere_train_2"]
-[ext_resource type="Texture2D" path="res://assets/bg/train-3.png" id="atmosphere_train_3"]
+[ext_resource type="Script" uid="uid://c5syfd8fu8u0m" path="res://scenes/blackworld/mamaev_light.gd" id="atmosphere_light"]
+[ext_resource type="Texture2D" uid="uid://talmyve48io3" path="res://assets/bg/train-1.png" id="atmosphere_train_1"]
+[ext_resource type="Texture2D" uid="uid://dv2bg3svumuhr" path="res://assets/bg/train-2.png" id="atmosphere_train_2"]
+[ext_resource type="Texture2D" uid="uid://cur66bt3fjhur" path="res://assets/bg/train-3.png" id="atmosphere_train_3"]
+[ext_resource type="Shader" uid="uid://6pn3qyo2jjna" path="res://scripts/overworld/effects/train_black_key.gdshader" id="atmosphere_train_shader"]
+[ext_resource type="Script" uid="uid://dhk5ohfkg6m1f" path="res://scenes/blackworld/mamaev_intro_trigger.gd" id="intro_camera"]
 
 [sub_resource type="ShaderMaterial" id="AtmosphereTrainMaterial"]
 shader = ExtResource("atmosphere_train_shader")
@@ -992,7 +991,6 @@ size = Vector2(39.99994, 32)
 
 [sub_resource type="Resource" id="Resource_5orv1"]
 script = ExtResource("13_d66av")
-text = "Вы смотрите на работу строителей"
 text_speed = 12.0
 text_sound = SubResource("AudioStreamWAV_njykr")
 text_volume_db = 8
@@ -1002,7 +1000,6 @@ metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
 
 [sub_resource type="Resource" id="Resource_y8qx5"]
 script = ExtResource("13_d66av")
-text = "Эй, ты чего тут крутишься? Техника безопасности говорит, что ты здесь - лишняя деталь!"
 text_speed = 12.0
 text_sound = SubResource("AudioStreamWAV_iwoe8")
 text_volume_db = 8
@@ -1011,7 +1008,7 @@ text_volume_pitch_max = 0.9
 metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ovc1"]
-size = Vector2(24.999985, 65)
+size = Vector2(14.282219, 87.862076)
 
 [sub_resource type="Resource" id="Resource_3h2bj"]
 script = ExtResource("13_d66av")
@@ -2292,53 +2289,6 @@ metadata/_custom_type_script = "uid://dkpcd6ejbeqxq"
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ie6bt"]
 size = Vector2(38, 96)
 
-[sub_resource type="Resource" id="Resource_6kan3"]
-script = ExtResource("13_d66av")
-text = "Вы слышите новое существо."
-text_speed = 14.0
-text_sound = ExtResource("14_4da6d")
-text_volume_db = 10
-text_volume_pitch_min = 1.0
-text_volume_pitch_max = 1.0
-metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
-
-[sub_resource type="Resource" id="Resource_vk7sm"]
-script = ExtResource("13_d66av")
-speaker_name = "???"
-text = "Стоять! Дальше вы не пройдете."
-text_speed = 12.0
-text_sound = SubResource("AudioStreamWAV_tcjxt")
-text_volume_db = 10
-text_volume_pitch_min = 1.0
-text_volume_pitch_max = 1.0
-metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3shm3"]
-load_path = "res://.godot/imported/test_egor.png-125d315955f2deab2de2734c3d658880.ctex"
-
-[sub_resource type="AudioStreamOggVorbis" id="AudioStreamOggVorbis_dqy5u"]
-packet_sequence = SubResource("OggPacketSequence_aoy1j")
-
-[sub_resource type="Resource" id="Resource_1bfkq"]
-script = ExtResource("13_d66av")
-speaker_name = "Егор"
-speaker_img = SubResource("CompressedTexture2D_3shm3")
-text = "...
-Да как вы же меня заебали..."
-text_speed = 12.0
-text_sound = SubResource("AudioStreamOggVorbis_dqy5u")
-text_volume_db = 8
-text_volume_pitch_min = 1.0
-text_volume_pitch_max = 1.0
-metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
-
-[sub_resource type="Resource" id="Resource_011bi"]
-script = ExtResource("28_35ph1")
-target_path = NodePath("../FightNode")
-function_name = "start_gateguard_battle"
-hide_dialogue_box = true
-metadata/_custom_type_script = "uid://dkpcd6ejbeqxq"
-
 [sub_resource type="Resource" id="Resource_q7wqt"]
 script = ExtResource("13_d66av")
 text = "Вы видите очередное существо."
@@ -2396,7 +2346,7 @@ z_index = -4094
 z_as_relative = false
 texture_filter = 1
 material = SubResource("AtmosphereTrainMaterial")
-position = Vector2(970, -401)
+position = Vector2(166, -257)
 rotation = -0.11
 scale = Vector2(0.07, 0.07)
 texture = ExtResource("atmosphere_train_1")
@@ -2406,7 +2356,7 @@ z_index = -4094
 z_as_relative = false
 texture_filter = 1
 material = SubResource("AtmosphereTrainMaterial")
-position = Vector2(1135, -427)
+position = Vector2(844, 286)
 rotation = 0.07
 scale = Vector2(0.06, 0.06)
 texture = ExtResource("atmosphere_train_3")
@@ -2416,7 +2366,7 @@ z_index = -4094
 z_as_relative = false
 texture_filter = 1
 material = SubResource("AtmosphereTrainMaterial")
-position = Vector2(1514, -418)
+position = Vector2(1468.9998, 540)
 rotation = -0.08
 scale = Vector2(0.065, 0.065)
 texture = ExtResource("atmosphere_train_2")
@@ -2426,7 +2376,7 @@ z_index = -4094
 z_as_relative = false
 texture_filter = 1
 material = SubResource("AtmosphereTrainMaterial")
-position = Vector2(1705, -370)
+position = Vector2(345, 682)
 rotation = 0.12
 scale = Vector2(0.075, 0.075)
 texture = ExtResource("atmosphere_train_3")
@@ -2436,7 +2386,7 @@ z_index = -4094
 z_as_relative = false
 texture_filter = 1
 material = SubResource("AtmosphereTrainMaterial")
-position = Vector2(75, 320)
+position = Vector2(1035, 349.00003)
 rotation = -0.08
 scale = Vector2(0.07, 0.07)
 texture = ExtResource("atmosphere_train_2")
@@ -2446,7 +2396,7 @@ z_index = -4094
 z_as_relative = false
 texture_filter = 1
 material = SubResource("AtmosphereTrainMaterial")
-position = Vector2(-661, 262)
+position = Vector2(-899.00006, 475.00003)
 rotation = 0.07
 scale = Vector2(0.06, 0.06)
 texture = ExtResource("atmosphere_train_1")
@@ -2456,7 +2406,7 @@ z_index = -4094
 z_as_relative = false
 texture_filter = 1
 material = SubResource("AtmosphereTrainMaterial")
-position = Vector2(795, 762)
+position = Vector2(-358.99994, 1220)
 rotation = -0.09
 scale = Vector2(0.065, 0.065)
 texture = ExtResource("atmosphere_train_3")
@@ -2466,7 +2416,7 @@ z_index = -4094
 z_as_relative = false
 texture_filter = 1
 material = SubResource("AtmosphereTrainMaterial")
-position = Vector2(2465, 488)
+position = Vector2(2452, 528)
 rotation = 0.08
 scale = Vector2(0.068, 0.068)
 texture = ExtResource("atmosphere_train_1")
@@ -2476,163 +2426,164 @@ texture = ExtResource("atmosphere_train_1")
 [node name="Light_Lamp" type="Node2D" parent="Atmosphere/Lights"]
 z_index = -4088
 z_as_relative = false
-position = Vector2(1531.0, -264.0)
+position = Vector2(1539, -260)
 script = ExtResource("atmosphere_light")
 
 [node name="Light_Lamp2" type="Node2D" parent="Atmosphere/Lights"]
 z_index = -4088
 z_as_relative = false
-position = Vector2(1614.0, -265.0)
+position = Vector2(1606, -263)
 script = ExtResource("atmosphere_light")
+brightness = 0.016
 insects = true
 
 [node name="Light_Lamp3" type="Node2D" parent="Atmosphere/Lights"]
 z_index = -4088
 z_as_relative = false
-position = Vector2(1324.0, -261.0)
+position = Vector2(1316, -259)
 script = ExtResource("atmosphere_light")
 
 [node name="Light_Lamp4" type="Node2D" parent="Atmosphere/Lights"]
 z_index = -4088
 z_as_relative = false
-position = Vector2(1118.0, -261.0)
+position = Vector2(1110, -257)
 script = ExtResource("atmosphere_light")
 
 [node name="Light_Lamp5" type="Node2D" parent="Atmosphere/Lights"]
 z_index = -4088
 z_as_relative = false
-position = Vector2(911.0, -263.0)
+position = Vector2(919, -260)
 script = ExtResource("atmosphere_light")
 
 [node name="Light_Lamp6" type="Node2D" parent="Atmosphere/Lights"]
 z_index = -4088
 z_as_relative = false
-position = Vector2(1648.0, -267.0)
+position = Vector2(1657, -264)
 script = ExtResource("atmosphere_light")
 insects = true
 
 [node name="Light_Lamp7" type="Node2D" parent="Atmosphere/Lights"]
 z_index = -4088
 z_as_relative = false
-position = Vector2(1333.0, 238.0)
+position = Vector2(1342, 240)
 script = ExtResource("atmosphere_light")
 
 [node name="Light_Lamp8" type="Node2D" parent="Atmosphere/Lights"]
 z_index = -4088
 z_as_relative = false
-position = Vector2(2263.0, 590.0)
+position = Vector2(2255, 593)
 script = ExtResource("atmosphere_light")
 
 [node name="Light_Lamp9" type="Node2D" parent="Atmosphere/Lights"]
 z_index = -4088
 z_as_relative = false
-position = Vector2(1570.0, 237.0)
+position = Vector2(1562, 240)
 script = ExtResource("atmosphere_light")
 
 [node name="Light_Lamp10" type="Node2D" parent="Atmosphere/Lights"]
 z_index = -4088
 z_as_relative = false
-position = Vector2(860.0, 403.0)
+position = Vector2(852, 406)
 script = ExtResource("atmosphere_light")
 insects = true
 
 [node name="Light_Lamp11" type="Node2D" parent="Atmosphere/Lights"]
 z_index = -4088
 z_as_relative = false
-position = Vector2(1155.0, 405.0)
+position = Vector2(1164, 408)
 script = ExtResource("atmosphere_light")
 
 [node name="Light_Lamp12" type="Node2D" parent="Atmosphere/Lights"]
 z_index = -4088
 z_as_relative = false
-position = Vector2(412.0, 653.0)
+position = Vector2(419, 656)
 script = ExtResource("atmosphere_light")
 
 [node name="Light_Lamp13" type="Node2D" parent="Atmosphere/Lights"]
 z_index = -4088
 z_as_relative = false
-position = Vector2(557.0, 399.0)
+position = Vector2(565, 401)
 script = ExtResource("atmosphere_light")
 
 [node name="Light_Lamp14" type="Node2D" parent="Atmosphere/Lights"]
 z_index = -4088
 z_as_relative = false
-position = Vector2(387.0, -144.0)
+position = Vector2(396, -141)
 script = ExtResource("atmosphere_light")
 insects = true
 
 [node name="Light_Lamp15" type="Node2D" parent="Atmosphere/Lights"]
 z_index = -4088
 z_as_relative = false
-position = Vector2(191.0, -145.0)
+position = Vector2(184, -142)
 script = ExtResource("atmosphere_light")
 
 [node name="Light_Lamp16" type="Node2D" parent="Atmosphere/Lights"]
 z_index = -4088
 z_as_relative = false
-position = Vector2(1754.0, 555.0)
+position = Vector2(1746, 557)
 script = ExtResource("atmosphere_light")
 
 [node name="Light_Lamp17" type="Node2D" parent="Atmosphere/Lights"]
 z_index = -4088
 z_as_relative = false
-position = Vector2(2050.0, 557.0)
+position = Vector2(2057, 560)
 script = ExtResource("atmosphere_light")
 
 [node name="Light_Lamp18" type="Node2D" parent="Atmosphere/Lights"]
 z_index = -4088
 z_as_relative = false
-position = Vector2(-178.0, 461.0)
+position = Vector2(-170, 465)
 script = ExtResource("atmosphere_light")
 insects = true
 
 [node name="Light_Lamp19" type="Node2D" parent="Atmosphere/Lights"]
 z_index = -4088
 z_as_relative = false
-position = Vector2(-96.0, 460.0)
+position = Vector2(-103, 463)
 script = ExtResource("atmosphere_light")
 
 [node name="Light_Lamp20" type="Node2D" parent="Atmosphere/Lights"]
 z_index = -4088
 z_as_relative = false
-position = Vector2(-947.0, 432.0)
+position = Vector2(-955, 436)
 script = ExtResource("atmosphere_light")
 
 [node name="Light_Lamp21" type="Node2D" parent="Atmosphere/Lights"]
 z_index = -4088
 z_as_relative = false
-position = Vector2(-773.0, 1063.0)
+position = Vector2(-781, 1066)
 script = ExtResource("atmosphere_light")
 
 [node name="Light_Lamp22" type="Node2D" parent="Atmosphere/Lights"]
 z_index = -4088
 z_as_relative = false
-position = Vector2(-468.0, 1067.0)
+position = Vector2(-461, 1071)
 script = ExtResource("atmosphere_light")
 insects = true
 
 [node name="Light_Lamp23" type="Node2D" parent="Atmosphere/Lights"]
 z_index = -4088
 z_as_relative = false
-position = Vector2(-303.0, 1223.0)
+position = Vector2(-296, 1227)
 script = ExtResource("atmosphere_light")
 
 [node name="Light_Lamp24" type="Node2D" parent="Atmosphere/Lights"]
 z_index = -4088
 z_as_relative = false
-position = Vector2(-763.0, 1477.0)
+position = Vector2(-772, 1480)
 script = ExtResource("atmosphere_light")
 
 [node name="Light_Lamp25" type="Node2D" parent="Atmosphere/Lights"]
 z_index = -4088
 z_as_relative = false
-position = Vector2(-1426.0, 1903.0)
+position = Vector2(-1435, 1906)
 script = ExtResource("atmosphere_light")
 
 [node name="Light_Lamp26" type="Node2D" parent="Atmosphere/Lights"]
 z_index = -4088
 z_as_relative = false
-position = Vector2(-1234.0, 1901.0)
+position = Vector2(-1225, 1903)
 script = ExtResource("atmosphere_light")
 insects = true
 
@@ -2704,7 +2655,7 @@ collision_layer = 4
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/Wall4"]
-position = Vector2(18.5, 72.5)
+position = Vector2(19, 82)
 shape = SubResource("RectangleShape2D_7pnsd")
 
 [node name="Wall5" type="StaticBody2D" parent="Collisions"]
@@ -3766,6 +3717,23 @@ position = Vector2(-809, 2469)
 scale = Vector2(1.4, 1.4)
 texture = ExtResource("25_b412k")
 
+[node name="Worker7" type="AnimatedSprite2D" parent="Interactable/WorkersBarricade"]
+position = Vector2(-269, 2576)
+scale = Vector2(1.1153846, 1.1222222)
+sprite_frames = SubResource("SpriteFrames_nvtsb")
+autoplay = "default"
+frame_progress = 0.47472578
+
+[node name="Dialogue" parent="Interactable/WorkersBarricade/Worker7" instance=ExtResource("11_31fbo")]
+position = Vector2(-502.9655, 179.10904)
+dialogue = Array[ExtResource("12_bfid6")]([SubResource("Resource_5orv1"), SubResource("Resource_y8qx5")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable/WorkersBarricade/Worker7/Dialogue"]
+position = Vector2(469.2413, -225.94824)
+rotation = 1.5707964
+scale = Vector2(1.0000002, 1.0000002)
+shape = SubResource("RectangleShape2D_1ovc1")
+
 [node name="Wall1" type="StaticBody2D" parent="Interactable/WorkersBarricade"]
 position = Vector2(-590, 1591)
 collision_layer = 4
@@ -3799,6 +3767,16 @@ collision_layer = 4
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable/WorkersBarricade/Wall4"]
+position = Vector2(0, 27)
+shape = SubResource("RectangleShape2D_gsl1h")
+
+[node name="Wall5" type="StaticBody2D" parent="Interactable/WorkersBarricade"]
+position = Vector2(-280, 2543)
+rotation = 1.5707964
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable/WorkersBarricade/Wall5"]
 position = Vector2(0, 27)
 shape = SubResource("RectangleShape2D_gsl1h")
 
@@ -3848,6 +3826,22 @@ texture = ExtResource("26_blxmn")
 
 [node name="Cone12" type="Sprite2D" parent="Interactable/WorkersBarricade"]
 position = Vector2(-883, 2475)
+texture = ExtResource("26_blxmn")
+
+[node name="Cone13" type="Sprite2D" parent="Interactable/WorkersBarricade"]
+position = Vector2(-342, 2542)
+texture = ExtResource("26_blxmn")
+
+[node name="Cone14" type="Sprite2D" parent="Interactable/WorkersBarricade"]
+position = Vector2(-320, 2542)
+texture = ExtResource("26_blxmn")
+
+[node name="Cone15" type="Sprite2D" parent="Interactable/WorkersBarricade"]
+position = Vector2(-297, 2542)
+texture = ExtResource("26_blxmn")
+
+[node name="Cone16" type="Sprite2D" parent="Interactable/WorkersBarricade"]
+position = Vector2(-274, 2542)
 texture = ExtResource("26_blxmn")
 
 [node name="Tablichki" type="Node" parent="Interactable"]
@@ -3941,8 +3935,8 @@ shape = SubResource("RectangleShape2D_vd5bq")
 [node name="Dialogues" type="Node" parent="."]
 
 [node name="Dialogue1" parent="Dialogues" instance=ExtResource("11_31fbo")]
-script = ExtResource("intro_camera")
 position = Vector2(182, -61)
+script = ExtResource("intro_camera")
 activate_instant = true
 only_activate_once = true
 flag_key = "mk_dialogue_1"
@@ -4209,7 +4203,5 @@ texture = ExtResource("44_uhmny")
 [connection signal="body_exited" from="Fights/StarFight" to="Fights/StarFight" method="_on_body_exited"]
 [connection signal="body_entered" from="Fights/ClippyFight" to="Fights/ClippyFight" method="_on_body_entered"]
 [connection signal="body_exited" from="Fights/ClippyFight" to="Fights/ClippyFight" method="_on_body_exited"]
-[connection signal="body_entered" from="Fights/GateguardFight" to="Fights/GateguardFight" method="_on_body_entered"]
-[connection signal="body_exited" from="Fights/GateguardFight" to="Fights/GateguardFight" method="_on_body_exited"]
 [connection signal="body_entered" from="Fights/CaptchaFight" to="Fights/CaptchaFight" method="_on_body_entered"]
 [connection signal="body_exited" from="Fights/CaptchaFight" to="Fights/CaptchaFight" method="_on_body_exited"]
