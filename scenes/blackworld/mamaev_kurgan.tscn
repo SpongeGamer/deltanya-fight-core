@@ -1,4 +1,4 @@
-[gd_scene load_steps=384 format=4 uid="uid://rvqhspnujl5w"]
+[gd_scene load_steps=395 format=4 uid="uid://rvqhspnujl5w"]
 
 [ext_resource type="Script" uid="uid://cx6ul5ud4jduu" path="res://scenes/blackworld/mamaev_kurgan.gd" id="1_n65pb"]
 [ext_resource type="Script" uid="uid://ct404q8dpij18" path="res://scripts/overworld/camera_controller.gd" id="1_to7hb"]
@@ -52,6 +52,8 @@
 [ext_resource type="Texture2D" uid="uid://cur66bt3fjhur" path="res://assets/bg/train-3.png" id="atmosphere_train_3"]
 [ext_resource type="Shader" uid="uid://6pn3qyo2jjna" path="res://scripts/overworld/effects/train_black_key.gdshader" id="atmosphere_train_shader"]
 [ext_resource type="Script" uid="uid://dhk5ohfkg6m1f" path="res://scenes/blackworld/mamaev_intro_trigger.gd" id="intro_camera"]
+[ext_resource type="Script" uid="uid://dkqddyhr7un5a" path="res://scenes/blackworld/mk_dialogue5_camera.gd" id="mk_dialogue5_camera"]
+[ext_resource type="Script" uid="uid://qpv3i4k41mr5" path="res://scenes/blackworld/mk_nikita_departure.gd" id="mk_nikita_departure"]
 
 [sub_resource type="ShaderMaterial" id="AtmosphereTrainMaterial"]
 shader = ExtResource("atmosphere_train_shader")
@@ -1099,6 +1101,13 @@ text_volume_pitch_min = 1.0
 text_volume_pitch_max = 1.0
 metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
 
+[sub_resource type="Resource" id="Resource_mk_nikita_depart"]
+script = ExtResource("28_35ph1")
+target_path = NodePath(".")
+function_name = "send_nikita_down"
+hide_dialogue_box = true
+wait_for_signal_to_continue = "nikita_departed"
+
 [sub_resource type="AudioStreamWAV" id="AudioStreamWAV_vk7sm"]
 data = PackedByteArray("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")
 format = 3
@@ -1147,7 +1156,7 @@ format = 3
 
 [sub_resource type="Resource" id="Resource_0gesi"]
 script = ExtResource("13_d66av")
-text = "Вы начинаете волноваться..."
+text = "[shake rate=3 level=2 connected=1]Вы начинаете волноваться...[/shake]"
 text_speed = 10.0
 text_sound = SubResource("AudioStreamWAV_xk6p6")
 text_volume_db = 8
@@ -1913,14 +1922,57 @@ text_volume_pitch_max = 1.0
 camera_transition_time = 10.0
 metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_shwti"]
+load_path = "res://.godot/imported/test_egor.png-125d315955f2deab2de2734c3d658880.ctex"
+
+[sub_resource type="AudioStreamOggVorbis" id="AudioStreamOggVorbis_ldst8"]
+packet_sequence = SubResource("OggPacketSequence_aoy1j")
+
+[sub_resource type="Resource" id="Resource_vk7sm"]
+script = ExtResource("13_d66av")
+speaker_name = "Егор"
+speaker_img = SubResource("CompressedTexture2D_shwti")
+text = "Даже если он не настоящий - мы можем получить удовольствие пиная его."
+text_speed = 12.0
+text_sound = SubResource("AudioStreamOggVorbis_ldst8")
+text_volume_db = 6
+text_volume_pitch_min = 1.0
+text_volume_pitch_max = 1.0
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3shm3"]
+load_path = "res://.godot/imported/test_kate.png-a5483a046d4b88da359d4c35d510abab.ctex"
+
+[sub_resource type="AudioStreamOggVorbis" id="AudioStreamOggVorbis_dqy5u"]
+packet_sequence = SubResource("OggPacketSequence_kge3t")
+
+[sub_resource type="Resource" id="Resource_011bi"]
+script = ExtResource("13_d66av")
+speaker_name = "Катя"
+speaker_img = SubResource("CompressedTexture2D_3shm3")
+text = "Да чего он сделал?"
+text_speed = 12.0
+text_sound = SubResource("AudioStreamOggVorbis_dqy5u")
+text_volume_db = 4
+text_volume_pitch_min = 1.0
+text_volume_pitch_max = 1.0
+camera_transition_time = 10.0
+metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jh5xm"]
+load_path = "res://.godot/imported/test_egor.png-125d315955f2deab2de2734c3d658880.ctex"
+
+[sub_resource type="AudioStreamOggVorbis" id="AudioStreamOggVorbis_8fodd"]
+packet_sequence = SubResource("OggPacketSequence_aoy1j")
+
 [sub_resource type="Resource" id="Resource_74w1w"]
 script = ExtResource("13_d66av")
-speaker_name = "Никита"
-speaker_img = SubResource("CompressedTexture2D_6vxkf")
-text = "У нас нет дома. Ну как, он есть. Просто мы застряли здесь."
+speaker_name = "Егор"
+speaker_img = SubResource("CompressedTexture2D_jh5xm")
+text = "Чего этот жадный хрыч НЕ сделал. Пойдем."
 text_speed = 12.0
-text_sound = SubResource("AudioStreamOggVorbis_m4ll7")
-text_volume_db = 4
+text_sound = SubResource("AudioStreamOggVorbis_8fodd")
+text_volume_db = 6
 text_volume_pitch_min = 1.0
 text_volume_pitch_max = 1.0
 metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
@@ -3855,7 +3907,8 @@ frame_progress = 0.47472578
 
 [node name="Dialogue" parent="Interactable/WorkersBarricade/Worker7" instance=ExtResource("11_31fbo")]
 position = Vector2(-502.9655, 179.10904)
-dialogue = Array[ExtResource("12_bfid6")]([SubResource("Resource_y8qx5"), SubResource("Resource_6kan3"), SubResource("Resource_1bfkq"), SubResource("Resource_3o257"), SubResource("Resource_bxmev"), SubResource("Resource_0gesi"), SubResource("Resource_1n1n0"), SubResource("Resource_5bvkq")])
+script = ExtResource("mk_nikita_departure")
+dialogue = Array[ExtResource("12_bfid6")]([SubResource("Resource_y8qx5"), SubResource("Resource_6kan3"), SubResource("Resource_mk_nikita_depart"), SubResource("Resource_1bfkq"), SubResource("Resource_3o257"), SubResource("Resource_bxmev"), SubResource("Resource_0gesi"), SubResource("Resource_1n1n0"), SubResource("Resource_5bvkq")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable/WorkersBarricade/Worker7/Dialogue"]
 position = Vector2(469.2413, -225.94824)
@@ -4115,6 +4168,7 @@ shape = SubResource("RectangleShape2D_q7wqt")
 
 [node name="Dialogue5" parent="Dialogues" instance=ExtResource("11_31fbo")]
 position = Vector2(-636, 1530)
+script = ExtResource("mk_dialogue5_camera")
 activate_instant = true
 only_activate_once = true
 flag_key = "mk_dialogue_5"
@@ -4129,7 +4183,7 @@ position = Vector2(-1329, 2068)
 activate_instant = true
 only_activate_once = true
 flag_key = "mk_dialogue_6"
-dialogue = Array[ExtResource("12_bfid6")]([SubResource("Resource_f8ocs"), SubResource("Resource_xrh8w"), SubResource("Resource_25r7d"), SubResource("Resource_yagmi"), SubResource("Resource_74w1w"), SubResource("Resource_x2km8")])
+dialogue = Array[ExtResource("12_bfid6")]([SubResource("Resource_f8ocs"), SubResource("Resource_xrh8w"), SubResource("Resource_25r7d"), SubResource("Resource_yagmi"), SubResource("Resource_vk7sm"), SubResource("Resource_011bi"), SubResource("Resource_74w1w"), SubResource("Resource_x2km8")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dialogues/Dialogue6"]
 position = Vector2(120, 11)
