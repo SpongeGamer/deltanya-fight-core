@@ -1,4 +1,4 @@
-[gd_scene load_steps=364 format=4 uid="uid://rvqhspnujl5w"]
+[gd_scene load_steps=370 format=4 uid="uid://rvqhspnujl5w"]
 
 [ext_resource type="Script" uid="uid://cx6ul5ud4jduu" path="res://scenes/blackworld/mamaev_kurgan.gd" id="1_n65pb"]
 [ext_resource type="Script" path="res://scenes/blackworld/mamaev_intro_trigger.gd" id="intro_camera"]
@@ -47,6 +47,15 @@
 [ext_resource type="Script" uid="uid://xmkcg31qxbjh" path="res://scripts/overworld/storage_node.gd" id="42_saogw"]
 [ext_resource type="Texture2D" uid="uid://jw8tasqtp3ms" path="res://assets/VFX/chest.png" id="43_2mep3"]
 [ext_resource type="Texture2D" uid="uid://0p03xu5ygxwc" path="res://assets/VFX/hole.png" id="44_uhmny"]
+
+[ext_resource type="Script" path="res://scenes/blackworld/mamaev_light.gd" id="atmosphere_light"]
+[ext_resource type="Shader" path="res://scripts/overworld/effects/train_black_key.gdshader" id="atmosphere_train_shader"]
+[ext_resource type="Texture2D" path="res://assets/bg/train-1.png" id="atmosphere_train_1"]
+[ext_resource type="Texture2D" path="res://assets/bg/train-2.png" id="atmosphere_train_2"]
+[ext_resource type="Texture2D" path="res://assets/bg/train-3.png" id="atmosphere_train_3"]
+
+[sub_resource type="ShaderMaterial" id="AtmosphereTrainMaterial"]
+shader = ExtResource("atmosphere_train_shader")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n65pb"]
 texture = ExtResource("4_gsl1h")
@@ -2377,6 +2386,255 @@ size = Vector2(91, 69)
 
 [node name="MamaevKurgan" type="Node2D"]
 script = ExtResource("1_n65pb")
+
+[node name="Atmosphere" type="Node2D" parent="."]
+
+[node name="Trains" type="Node2D" parent="Atmosphere"]
+
+[node name="Train1" type="Sprite2D" parent="Atmosphere/Trains"]
+z_index = -4094
+z_as_relative = false
+texture_filter = 1
+material = SubResource("AtmosphereTrainMaterial")
+position = Vector2(970, -401)
+rotation = -0.11
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("atmosphere_train_1")
+
+[node name="Train2" type="Sprite2D" parent="Atmosphere/Trains"]
+z_index = -4094
+z_as_relative = false
+texture_filter = 1
+material = SubResource("AtmosphereTrainMaterial")
+position = Vector2(1135, -427)
+rotation = 0.07
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("atmosphere_train_3")
+
+[node name="Train3" type="Sprite2D" parent="Atmosphere/Trains"]
+z_index = -4094
+z_as_relative = false
+texture_filter = 1
+material = SubResource("AtmosphereTrainMaterial")
+position = Vector2(1514, -418)
+rotation = -0.08
+scale = Vector2(0.065, 0.065)
+texture = ExtResource("atmosphere_train_2")
+
+[node name="Train4" type="Sprite2D" parent="Atmosphere/Trains"]
+z_index = -4094
+z_as_relative = false
+texture_filter = 1
+material = SubResource("AtmosphereTrainMaterial")
+position = Vector2(1705, -370)
+rotation = 0.12
+scale = Vector2(0.075, 0.075)
+texture = ExtResource("atmosphere_train_3")
+
+[node name="Train5" type="Sprite2D" parent="Atmosphere/Trains"]
+z_index = -4094
+z_as_relative = false
+texture_filter = 1
+material = SubResource("AtmosphereTrainMaterial")
+position = Vector2(75, 320)
+rotation = -0.08
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("atmosphere_train_2")
+
+[node name="Train6" type="Sprite2D" parent="Atmosphere/Trains"]
+z_index = -4094
+z_as_relative = false
+texture_filter = 1
+material = SubResource("AtmosphereTrainMaterial")
+position = Vector2(-661, 262)
+rotation = 0.07
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("atmosphere_train_1")
+
+[node name="Train7" type="Sprite2D" parent="Atmosphere/Trains"]
+z_index = -4094
+z_as_relative = false
+texture_filter = 1
+material = SubResource("AtmosphereTrainMaterial")
+position = Vector2(795, 762)
+rotation = -0.09
+scale = Vector2(0.065, 0.065)
+texture = ExtResource("atmosphere_train_3")
+
+[node name="Train8" type="Sprite2D" parent="Atmosphere/Trains"]
+z_index = -4094
+z_as_relative = false
+texture_filter = 1
+material = SubResource("AtmosphereTrainMaterial")
+position = Vector2(2465, 488)
+rotation = 0.08
+scale = Vector2(0.068, 0.068)
+texture = ExtResource("atmosphere_train_1")
+
+[node name="Lights" type="Node2D" parent="Atmosphere"]
+
+[node name="Light_Lamp" type="Node2D" parent="Atmosphere/Lights"]
+z_index = -4088
+z_as_relative = false
+position = Vector2(1531.0, -264.0)
+script = ExtResource("atmosphere_light")
+
+[node name="Light_Lamp2" type="Node2D" parent="Atmosphere/Lights"]
+z_index = -4088
+z_as_relative = false
+position = Vector2(1614.0, -265.0)
+script = ExtResource("atmosphere_light")
+insects = true
+
+[node name="Light_Lamp3" type="Node2D" parent="Atmosphere/Lights"]
+z_index = -4088
+z_as_relative = false
+position = Vector2(1324.0, -261.0)
+script = ExtResource("atmosphere_light")
+
+[node name="Light_Lamp4" type="Node2D" parent="Atmosphere/Lights"]
+z_index = -4088
+z_as_relative = false
+position = Vector2(1118.0, -261.0)
+script = ExtResource("atmosphere_light")
+
+[node name="Light_Lamp5" type="Node2D" parent="Atmosphere/Lights"]
+z_index = -4088
+z_as_relative = false
+position = Vector2(911.0, -263.0)
+script = ExtResource("atmosphere_light")
+
+[node name="Light_Lamp6" type="Node2D" parent="Atmosphere/Lights"]
+z_index = -4088
+z_as_relative = false
+position = Vector2(1648.0, -267.0)
+script = ExtResource("atmosphere_light")
+insects = true
+
+[node name="Light_Lamp7" type="Node2D" parent="Atmosphere/Lights"]
+z_index = -4088
+z_as_relative = false
+position = Vector2(1333.0, 238.0)
+script = ExtResource("atmosphere_light")
+
+[node name="Light_Lamp8" type="Node2D" parent="Atmosphere/Lights"]
+z_index = -4088
+z_as_relative = false
+position = Vector2(2263.0, 590.0)
+script = ExtResource("atmosphere_light")
+
+[node name="Light_Lamp9" type="Node2D" parent="Atmosphere/Lights"]
+z_index = -4088
+z_as_relative = false
+position = Vector2(1570.0, 237.0)
+script = ExtResource("atmosphere_light")
+
+[node name="Light_Lamp10" type="Node2D" parent="Atmosphere/Lights"]
+z_index = -4088
+z_as_relative = false
+position = Vector2(860.0, 403.0)
+script = ExtResource("atmosphere_light")
+insects = true
+
+[node name="Light_Lamp11" type="Node2D" parent="Atmosphere/Lights"]
+z_index = -4088
+z_as_relative = false
+position = Vector2(1155.0, 405.0)
+script = ExtResource("atmosphere_light")
+
+[node name="Light_Lamp12" type="Node2D" parent="Atmosphere/Lights"]
+z_index = -4088
+z_as_relative = false
+position = Vector2(412.0, 653.0)
+script = ExtResource("atmosphere_light")
+
+[node name="Light_Lamp13" type="Node2D" parent="Atmosphere/Lights"]
+z_index = -4088
+z_as_relative = false
+position = Vector2(557.0, 399.0)
+script = ExtResource("atmosphere_light")
+
+[node name="Light_Lamp14" type="Node2D" parent="Atmosphere/Lights"]
+z_index = -4088
+z_as_relative = false
+position = Vector2(387.0, -144.0)
+script = ExtResource("atmosphere_light")
+insects = true
+
+[node name="Light_Lamp15" type="Node2D" parent="Atmosphere/Lights"]
+z_index = -4088
+z_as_relative = false
+position = Vector2(191.0, -145.0)
+script = ExtResource("atmosphere_light")
+
+[node name="Light_Lamp16" type="Node2D" parent="Atmosphere/Lights"]
+z_index = -4088
+z_as_relative = false
+position = Vector2(1754.0, 555.0)
+script = ExtResource("atmosphere_light")
+
+[node name="Light_Lamp17" type="Node2D" parent="Atmosphere/Lights"]
+z_index = -4088
+z_as_relative = false
+position = Vector2(2050.0, 557.0)
+script = ExtResource("atmosphere_light")
+
+[node name="Light_Lamp18" type="Node2D" parent="Atmosphere/Lights"]
+z_index = -4088
+z_as_relative = false
+position = Vector2(-178.0, 461.0)
+script = ExtResource("atmosphere_light")
+insects = true
+
+[node name="Light_Lamp19" type="Node2D" parent="Atmosphere/Lights"]
+z_index = -4088
+z_as_relative = false
+position = Vector2(-96.0, 460.0)
+script = ExtResource("atmosphere_light")
+
+[node name="Light_Lamp20" type="Node2D" parent="Atmosphere/Lights"]
+z_index = -4088
+z_as_relative = false
+position = Vector2(-947.0, 432.0)
+script = ExtResource("atmosphere_light")
+
+[node name="Light_Lamp21" type="Node2D" parent="Atmosphere/Lights"]
+z_index = -4088
+z_as_relative = false
+position = Vector2(-773.0, 1063.0)
+script = ExtResource("atmosphere_light")
+
+[node name="Light_Lamp22" type="Node2D" parent="Atmosphere/Lights"]
+z_index = -4088
+z_as_relative = false
+position = Vector2(-468.0, 1067.0)
+script = ExtResource("atmosphere_light")
+insects = true
+
+[node name="Light_Lamp23" type="Node2D" parent="Atmosphere/Lights"]
+z_index = -4088
+z_as_relative = false
+position = Vector2(-303.0, 1223.0)
+script = ExtResource("atmosphere_light")
+
+[node name="Light_Lamp24" type="Node2D" parent="Atmosphere/Lights"]
+z_index = -4088
+z_as_relative = false
+position = Vector2(-763.0, 1477.0)
+script = ExtResource("atmosphere_light")
+
+[node name="Light_Lamp25" type="Node2D" parent="Atmosphere/Lights"]
+z_index = -4088
+z_as_relative = false
+position = Vector2(-1426.0, 1903.0)
+script = ExtResource("atmosphere_light")
+
+[node name="Light_Lamp26" type="Node2D" parent="Atmosphere/Lights"]
+z_index = -4088
+z_as_relative = false
+position = Vector2(-1234.0, 1901.0)
+script = ExtResource("atmosphere_light")
+insects = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 z_index = 1

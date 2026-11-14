@@ -1,6 +1,7 @@
 extends Node2D
 
 func _ready() -> void:
+	add_child(preload("res://scenes/blackworld/mamaev_atmosphere.gd").new())
 	Global.is_dark_world = true
 	Sounds.set_music("mk", 0.5)
 	Global.location_name = "Мамаев Курган"
