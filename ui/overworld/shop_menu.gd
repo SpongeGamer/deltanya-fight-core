@@ -13,6 +13,11 @@ enum State { MAIN, BUY, SELL, TALK }
 var state : State = State.MAIN
 var shop  : ShopResource = null
 
+const TRANSLATOR_PATH := "res://holdables/items/translator.tres"
+const DARK_MEDIATOR = preload("res://holdables/equippables/weapons/mediator_dark.tres")
+const TRANSLATOR_BOUGHT := "forest_translator_obtained"
+const MEDIATOR_BOUGHT := "forest_dark_mediator_bought"
+
 const MAIN_LABELS := ["Купить", "Продать", "Поговорить", "Выход"]
 var main_cursor := 0
 
@@ -283,10 +288,33 @@ func _enter_buy() -> void:
 	if shop == null or shop.stock.is_empty(): return
 	state = State.BUY; buy_cursor = 0
 	buy_list = shop.stock.duplicate()
+	_refresh_forest_stock()
 	_show_sub(true)
 	var comments : Array = shop.buy_comments if shop.get("buy_comments") != null else []
 	_type_comment(_comment_lbl, _random_dt(comments))
 	_rebuild_buy()
+
+# В старых сохранениях ретранслятор мог быть получен до появления флага.
+func _refresh_forest_stock() -> void:
+	var translator_idx := -1
+	for i in buy_list.size():
+		if buy_list[i] != null and buy_list[i].resource_path == TRANSLATOR_PATH:
+			translator_idx = i
+			break
+	if translator_idx < 0:
+		return
+	var obtained := Global.get_flag(TRANSLATOR_BOUGHT) or Global.get_flag("translator_active")
+	if not obtained:
+		for item in Global.items + Global.storage:
+			if item != null and item.resource_path == TRANSLATOR_PATH:
+				obtained = true
+				break
+	if obtained:
+		Global.set_flag(TRANSLATOR_BOUGHT)
+		if Global.get_flag(MEDIATOR_BOUGHT):
+			buy_list.remove_at(translator_idx)
+		else:
+			buy_list[translator_idx] = DARK_MEDIATOR
 
 func _rebuild_buy() -> void:
 	var labels : Array = []; var prices : Array = []; var colors : Array = []
@@ -310,14 +338,25 @@ func _handle_buy(event: InputEvent) -> void:
 	elif event.is_action("cancel"): Sounds.play("snd_menumove"); _enter_main()
 
 func _confirm_buy() -> void:
-	var item  : Item = buy_list[buy_cursor]
-	var price : int  = item.get("price") if item.get("price") != null else 0
+	if buy_list.is_empty() or buy_cursor >= buy_list.size(): return
+	var item: Item = buy_list[buy_cursor]
+	var price: int = item.price
 	if Global.gold < price:
 		_desc_lbl.text = "Недостаточно\nзолота!"; Sounds.play("snd_menumove"); return
+	var sent_to_storage := not Global.inventory_has_space()
 	if not Global.add_item(item):
-		_desc_lbl.text = "Инвентарь\nполон!"; Sounds.play("snd_menumove"); return
-	Global.gold -= price; Sounds.play("snd_power")
-	_desc_lbl.text = "Куплено:\n%s" % item.name; _rebuild_buy()
+		_desc_lbl.text = "Инвентарь и склад\nполны!"; Sounds.play("snd_menumove"); return
+	Global.gold -= price
+	Sounds.play("snd_power")
+	if item.resource_path == TRANSLATOR_PATH:
+		Global.set_flag(TRANSLATOR_BOUGHT)
+		buy_list[buy_cursor] = DARK_MEDIATOR
+	elif item.resource_path == DARK_MEDIATOR.resource_path:
+		Global.set_flag(MEDIATOR_BOUGHT)
+		buy_list.remove_at(buy_cursor)
+		buy_cursor = clampi(buy_cursor, 0, maxi(0, buy_list.size() - 1))
+	_rebuild_buy()
+	_desc_lbl.text = ("На склад:\n%s" if sent_to_storage else "Куплено:\n%s") % item.name
 
 # ─── ПРОДАТЬ (с постраничной навигацией) ─────────────────────────────────────
 func _enter_sell() -> void:

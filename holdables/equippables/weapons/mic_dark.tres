@@ -13,7 +13,7 @@ fighter_stat_modifiers = Dictionary[int, int]({
 name = "Темный микрофон"
 short_description = "Голос в нем звучит не как твой."
 long_description = "Найден в глубине темного Волгограда. 
-МАГ +15  АТК +5  ЗЩТ +4"
+МАГ +15  АТК +8  ЗЩТ +4"
 price = 450
 sell_price = 150
 inventory_tab = 3

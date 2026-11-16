@@ -2911,6 +2911,7 @@ frame_progress = 0.13335086
 script = ExtResource("29_4fupj")
 item_resource = ExtResource("30_pfo5p")
 dialogue_collision = NodePath("../CollisionShape2D")
+pickup_flag = "forest_dark_sticks_taken"
 
 [node name="Mediator3" type="Area2D" parent="MainInteractNodes"]
 position = Vector2(712, 704)
@@ -2934,6 +2935,7 @@ frame_progress = 0.13335086
 script = ExtResource("29_4fupj")
 item_resource = ExtResource("18_eogbh")
 dialogue_collision = NodePath("../CollisionShape2D")
+pickup_flag = "forest_dark_mic_taken"
 
 [node name="Mediator2" type="Area2D" parent="MainInteractNodes"]
 position = Vector2(-1390, 1448)

@@ -5,6 +5,7 @@
 
 [sub_resource type="Resource" id="Pred"]
 script = ExtResource("2_pred")
+remove_after_use = true
 
 [resource]
 script = ExtResource("1_item")

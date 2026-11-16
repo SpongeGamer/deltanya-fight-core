@@ -490,6 +490,7 @@ battle_music = "nikita"
 idle_lines = PackedStringArray("Продолжать занятие!", "Обычно люди спускают собак, а Я спущу Ксюху.", "Время Никитить!")
 opening_line_singular = "  * Никита обучает."
 title = "Никита"
+money_dropped = 50
 base_fighter_stats = Dictionary[int, int]({
 0: 400,
 1: 1,

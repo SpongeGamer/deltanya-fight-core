@@ -11,36 +11,47 @@ extends AnimatedSprite2D
 @export var full_inventory_dialogue: Array[DE] = []
 
 const DialogueSystemPreload = preload("res://scenes/prefabs/dialogue_system.tscn")
-const MAX_INVENTORY_SIZE := 16   # ← подстрой под свой лимит
-
+@export var pickup_flag: String = ""
 var _picked_up: bool = false
 
+func _ready() -> void:
+	if pickup_flag != "" and Global.get_flag(pickup_flag):
+		_picked_up = true
+		_hide_pickup()
+
 func pickup() -> void:
-	if _picked_up:
+	if _picked_up or item_resource == null:
 		return
-
-	# Проверяем полный инвентарь
-	if item_resource and Global.items.size() >= MAX_INVENTORY_SIZE:
-		_show_full_inventory_dialogue()
+	var sent_to_storage := not Global.inventory_has_space()
+	if not Global.add_item(item_resource):
+		_append_message("Инвентарь и склад полны. Освободите место.")
 		return
-
 	_picked_up = true
-
+	if pickup_flag != "":
+		Global.set_flag(pickup_flag)
 	if pickup_sound != "":
 		Sounds.play(pickup_sound)
+	_hide_pickup()
+	if sent_to_storage:
+		_append_message("В инвентаре нет места. Предмет отправлен на склад.")
 
-	if item_resource:
-		Global.add_item(item_resource)
-
+func _hide_pickup() -> void:
 	if hide_self:
 		visible = false
-
 	if dialogue_collision:
-		dialogue_collision.disabled = true
-
+		dialogue_collision.set_deferred("disabled", true)
 	for node in extra_nodes:
 		if node:
 			node.visible = false
+
+func _append_message(message: String) -> void:
+	var area := get_parent()
+	if area and area.has_method("append_to_active_dialogue"):
+		var line := DialogueText.new()
+		line.text = message
+		line.text_speed = 18.0
+		var entries: Array[DE] = [line]
+		area.call("append_to_active_dialogue", entries)
 
 func _show_full_inventory_dialogue() -> void:
 	if full_inventory_dialogue.is_empty():

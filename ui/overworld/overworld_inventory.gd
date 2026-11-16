@@ -340,39 +340,34 @@ func _do_equip(slot: int) -> void:
 	var ch: Character = Global.characters[stat_char_index]
 	var key := Global.party[stat_char_index] if stat_char_index < Global.party.size() else ""
 	
+	var old_item: Item = ch.weapon if slot == 1 else (ch.armors[slot - 2] if slot - 2 < ch.armors.size() else null)
 	if equip_cursor == 0:
-		# Снимаем предмет и возвращаем в инвентарь
-		var old_item = null
-		if slot == 1:
-			old_item = ch.weapon
-			ch.weapon = null
-		else:
-			old_item = ch.armors[slot - 2] if slot - 2 < ch.armors.size() else null
-			ch.swap_armor(slot - 2, null)
-		
-		# Возвращаем предмет в инвентарь
-		if old_item != null:
-			Global.add_item(old_item)
-	else:
-		var item = equip_items[equip_cursor - 1]
-		if item is Equippable and item.category in ch.willNotEquip:
+		# Не снимаем вещь, если ей нет места ни в карманах, ни на складе.
+		if old_item != null and not Global.add_item(old_item):
 			Sounds.play("snd_menumove")
 			return
-		if item is Equippable:
-			# 1. Удаляем предмет из инвентаря
-			var idx := Global.items.find(item)
-			if idx != -1:
-				Global.delete_item(idx)
-			
-			# 2. Экипируем
-			if slot == 1:
-				ch.weapon = item
-			else:
-				ch.swap_armor(slot - 2, item)
+		if slot == 1:
+			ch.weapon = null
 		else:
-			push_error("Предмет не является экипируемым: ", item.name)
+			ch.swap_armor(slot - 2, null)
+	else:
+		var item = equip_items[equip_cursor - 1]
+		if not (item is Equippable) or item.category in ch.willNotEquip:
+			Sounds.play("snd_menumove")
 			return
-	
+		var idx := Global.items.find(item)
+		if idx == -1:
+			return
+		# Новый предмет освобождает место для прежней экипировки.
+		Global.delete_item(idx)
+		if old_item != null and not Global.add_item(old_item):
+			Global.items[idx] = item
+			return
+		if slot == 1:
+			ch.weapon = item
+		else:
+			ch.swap_armor(slot - 2, item)
+
 	# 3. Сохраняем состояние персонажа
 	if key != "":
 		PartyData.save_from_character(key, ch)

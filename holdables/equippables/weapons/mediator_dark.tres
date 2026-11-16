@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Equippable" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://holdables/equippables/equippable.gd" id="1_equip"]
+
+[resource]
+script = ExtResource("1_equip")
+category = 2
+fighter_stat_modifiers = Dictionary[int, int]({
+1: 2,
+2: 18,
+3: 6
+})
+name = "Темный медиатор"
+short_description = "В нем тихо звучит незнакомый аккорд."
+long_description = "Медиатор, найденный в глубине темного мира.\nАТК +18  МАГ +6  ЗЩТ +2"
+price = 300
+sell_price = 150
+inventory_tab = 3

@@ -241,6 +241,10 @@ func delete_item(p_item: int) -> void:
 	items[p_item] = null
 
 const MAX_ITEMS := 8
+const MAX_STORAGE_ITEMS := 24
+
+func inventory_has_space() -> bool:
+	return items.size() < MAX_ITEMS or items.has(null)
 
 func add_item(p_item: Item) -> bool:
 	for i in items.size():
@@ -249,6 +253,14 @@ func add_item(p_item: Item) -> bool:
 			return true
 	if items.size() < MAX_ITEMS:
 		items.append(p_item)
+		return true
+	# Если карманы полны, найденная или купленная вещь идет на склад.
+	for i in mini(storage.size(), MAX_STORAGE_ITEMS):
+		if storage[i] == null:
+			storage[i] = p_item
+			return true
+	if storage.size() < MAX_STORAGE_ITEMS:
+		storage.append(p_item)
 		return true
 	return false
 
