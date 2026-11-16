@@ -14,6 +14,6 @@ name = "Конденсаторный микрофон"
 short_description = "Улавливает все. Даже то, что не хотелось бы."
 long_description = "Усиливает голос Егора до предела.
 МАГ +12  АТК +6  ХП +5"
-price = 600
-sell_price = 300
+price = 300
+sell_price = 100
 inventory_tab = 3

@@ -14,5 +14,5 @@ short_description = "Легенда. Им можно гвозди забиват
 long_description = "Стандарт живого вокала. Куплен у Князя.
 МАГ +7  ATK +4"
 price = 300
-sell_price = 150
+sell_price = 100
 inventory_tab = 3
