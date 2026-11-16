@@ -18,6 +18,7 @@ var player_body_in: bool = false
 var has_activated_already: bool = false
 var player_node: CharacterBody2D = null
 var _is_active: bool = false  # локальная блокировка повторного вызова
+var _active_dialogue_system = null
 
 func _ready() -> void:
 	for i in get_tree().get_nodes_in_group("player"):
@@ -53,12 +54,11 @@ func _activate_dialogue() -> void:
 	# Глобальная блокировка — не запускаем если уже идёт любой диалог или катсцена
 	if Global.get_flag("dialogue_in_progress"):
 		return
-	if flag_key != "":
-		Global.set_flag(flag_key)
-
-	# Если игрок уже заблокирован (другой диалог, бой, инвентарь и т.д.) — не запускаем
+	# Не отмечаем встречу, если диалог фактически не начался.
 	if not player_node.can_move:
 		return
+	if flag_key != "":
+		Global.set_flag(flag_key)
 
 	_is_active = true
 	Global.set_flag("dialogue_in_progress")
@@ -75,12 +75,14 @@ func _activate_dialogue() -> void:
 			and not dialogue_translated.is_empty() \
 			and Global.get_flag("translator_active"):
 		active_dialogue = dialogue_translated
-	new_dialogue.dialogue = active_dialogue
+	new_dialogue.dialogue = active_dialogue.duplicate()
 	new_dialogue.caller = self
+	_active_dialogue_system = new_dialogue
 	canvas_layer.add_child(new_dialogue)
 
 	await new_dialogue.tree_exited
 
+	_active_dialogue_system = null
 	_is_active = false
 	Global.clear_flag("dialogue_in_progress")
 	if is_instance_valid(player_node):
@@ -122,3 +124,10 @@ func restart_with_dialogue(new_dialogue: Array[DE]) -> void:
 	await get_tree().process_frame
 	await get_tree().process_frame
 	_activate_dialogue()
+
+# Продолжить текущий диалог, не перезапуская область и не теряя управление.
+func append_to_active_dialogue(entries: Array[DE]) -> bool:
+	if not is_instance_valid(_active_dialogue_system):
+		return false
+	_active_dialogue_system.dialogue.append_array(entries)
+	return true

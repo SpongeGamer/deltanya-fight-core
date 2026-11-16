@@ -18,11 +18,21 @@ extends Node2D
 var _lit_count := 0
 
 func _ready() -> void:
-	# Подписываемся на все грибы в комнате
-	for mushroom in get_tree().get_nodes_in_group("mushrooms"):
-		if mushroom.is_ancestor_of(self) or self.is_ancestor_of(mushroom):
-			mushroom.activated.connect(_on_mushroom_activated)
-	
+	var atmosphere := preload("res://scenes/last_floor/forest_atmosphere.gd").new()
+	atmosphere.name = "ForestAtmosphere"
+	add_child(atmosphere)
+	# Дочерние грибы уже восстановили флаги в своих _ready().
+	var mushrooms := get_node_or_null("MainInteractNodes/Mushrooms")
+	if mushrooms:
+		for mushroom in mushrooms.get_children():
+			if not mushroom.has_signal("activated"):
+				continue
+			mushroom.connect("activated", _on_mushroom_activated)
+			if mushroom.get("_lit") == true:
+				_lit_count += 1
+		if _lit_count >= required_mushrooms:
+			_remove_wall()
+
 	Sounds.set_music("waterfall",0.5)
 	Global.location_name = "Грибной лес"
 

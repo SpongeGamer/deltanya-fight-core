@@ -324,6 +324,8 @@ func _start_new(i: int) -> void:
 	Global.location_name      = ""
 	Global.play_time_sec      = 0.0
 	Global.gold               = 0
+	Global.shrumps_killed     = 0
+	Global.shrumps_spared     = 0
 	Global.is_dark_world      = false
 	Global.items.clear()
 	

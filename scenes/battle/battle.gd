@@ -27,9 +27,6 @@ func _ready() -> void:
 				Global.battle_monster_paths.append(m.scene_file_path)
 	Global.display_text.emit(Global.get_opening_line(), false)
 	Global.monster_killed.connect(monster_killed)
-	if Global.monster_spared.is_connected(monster_spared):
-		Global.monster_spared.disconnect(monster_spared)
-	Global.monster_spared.connect(monster_spared)
 	
 	if not Global.battle_in_progress:
 		print("Warning: Battle started without Global.battle_in_progress flag!")
@@ -218,10 +215,6 @@ func monster_killed(p_monster: Monster, p_context: Global.DefeatContext) -> void
 			SceneTransition.travel(Global.battle_origin_scene, "", Global.is_dark_world)
 		else:
 			queue_free()
-
-func monster_spared(p_monster: Monster) -> void:
-	if p_monster.is_in_group("shrump"):
-		Global.shrumps_spared += 1
 
 func _show_battle_dialogue(lines: Array[DE]) -> void:
 	var canvas_layer := CanvasLayer.new()

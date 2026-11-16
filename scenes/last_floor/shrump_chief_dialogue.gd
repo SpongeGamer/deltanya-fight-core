@@ -16,6 +16,19 @@ const KEY_ITEM = preload("res://holdables/items/mystery_key.tres")
 @export var sprite: Sprite2D
 @export var shroom_sprites: Array[Sprite2D]
 
+func _ready() -> void:
+	# В разрушенной деревне жители не возвращаются после загрузки.
+	if Global.get_flag("shroom_village_dissolved"):
+		if is_instance_valid(sprite):
+			sprite.queue_free()
+		for resident in shroom_sprites:
+			if is_instance_valid(resident):
+				resident.queue_free()
+	if Global.get_flag("village_key_given"):
+		var area = get_node_or_null(dialogue_area)
+		if area:
+			area.set_process(false)
+
 func start_chief_dialogue() -> void:
 	var area := get_node(dialogue_area) as Area2D
 	if area == null:
@@ -25,20 +38,26 @@ func start_chief_dialogue() -> void:
 	var chosen: Array[DE]
 	if Global.shrumps_killed == 0 and Global.shrumps_spared == 0:
 		chosen = dialogue_no_encounter
-	elif Global.shrumps_killed == 0 and Global.shrumps_spared == Global.SHRUMPS_TOTAL:
+	elif Global.shrumps_killed == 0 and Global.shrumps_spared > 0:
 		chosen = dialogue_all_spared
-	elif Global.shrumps_killed == Global.SHRUMPS_TOTAL:
+	elif Global.shrumps_killed >= Global.SHRUMPS_TOTAL:
 		chosen = dialogue_all_killed
 	else:
 		chosen = dialogue_mixed  # убил часть, часть пощадил или не встретил
 
-	area.restart_with_dialogue(chosen)
+	# Выбранная ветка продолжает текущий разговор сразу после вопроса Яна.
+	if not area.call("append_to_active_dialogue", chosen):
+		area.call("restart_with_dialogue", chosen)
 
 func give_key() -> void:
 	if Global.get_flag("village_key_given"):
 		return
+	# Сюжетный ключ не должен пропасть при заполненном инвентаре.
+	# Флаг также служит связкой ключей для двери, если свободного слота нет.
+	var already_owned := Global.items.any(func(item): return item != null and item.resource_path == KEY_ITEM.resource_path)
+	if not already_owned:
+		Global.add_item(KEY_ITEM)
 	Global.set_flag("village_key_given")
-	Global.add_item(KEY_ITEM)
 	Sounds.play("snd_item")
 	var area := get_node(dialogue_area) as Area2D
 	if area:
@@ -52,6 +71,7 @@ func dissolve(duration: float = 1.5) -> void:
 	await dissolve_sprite(sprite, duration)
 
 func dissolve_all() -> void:
+	Global.set_flag("shroom_village_dissolved")
 	for s in shroom_sprites:
 		if is_instance_valid(s):
 			dissolve_sprite(s)

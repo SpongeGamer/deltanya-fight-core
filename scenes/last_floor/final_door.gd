@@ -13,7 +13,7 @@ func _process(_delta: float) -> void:
 	var area := get_node(dialogue_area) as Area2D
 	if area == null:
 		return
-	var has_key := Global.items.any(func(i): return i != null and i.resource_path == KEY_ITEM.resource_path)
+	var has_key := Global.get_flag("village_key_given") or Global.items.any(func(i): return i != null and i.resource_path == KEY_ITEM.resource_path)
 	if has_key:
 		area.dialogue = dialogue_has_key
 	else:

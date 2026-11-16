@@ -1,4 +1,4 @@
-[gd_scene load_steps=395 format=4 uid="uid://rvqhspnujl5w"]
+[gd_scene load_steps=397 format=4 uid="uid://rvqhspnujl5w"]
 
 [ext_resource type="Script" uid="uid://cx6ul5ud4jduu" path="res://scenes/blackworld/mamaev_kurgan.gd" id="1_n65pb"]
 [ext_resource type="Script" uid="uid://ct404q8dpij18" path="res://scripts/overworld/camera_controller.gd" id="1_to7hb"]
@@ -2126,6 +2126,21 @@ hide_dialogue_box = true
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ahk46"]
 size = Vector2(75, 75)
 
+[sub_resource type="Resource" id="Resource_60px0"]
+script = ExtResource("13_d66av")
+text = "Останки памятника истории наполняют тебя непониманием происходящего."
+text_speed = 12.0
+text_sound = ExtResource("14_4da6d")
+text_volume_db = 6
+text_volume_pitch_min = 1.0
+text_volume_pitch_max = 1.0
+
+[sub_resource type="Resource" id="Resource_xk6p6"]
+script = ExtResource("28_35ph1")
+target_path = NodePath("..")
+function_name = "open_save_menu"
+hide_dialogue_box = true
+
 [sub_resource type="Resource" id="Resource_4o8my"]
 script = ExtResource("13_d66av")
 text = "Стоя возле шумного бара \"У Князя\", вы наполняетесь надеждой."
@@ -4214,6 +4229,23 @@ frame_progress = 0.31032148
 dialogue = Array[ExtResource("12_bfid6")]([SubResource("Resource_h41mx"), SubResource("Resource_1x7qc")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dialogues/SavePoint1/DialogueArea2D"]
+shape = SubResource("RectangleShape2D_ahk46")
+
+[node name="SavePoint3" type="Node2D" parent="Dialogues"]
+position = Vector2(701, -59)
+script = ExtResource("33_tcjxt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Dialogues/SavePoint3"]
+scale = Vector2(2.1, 2.1052632)
+sprite_frames = SubResource("SpriteFrames_idle")
+animation = &"idle"
+frame_progress = 0.31032148
+
+[node name="DialogueArea2D" parent="Dialogues/SavePoint3" instance=ExtResource("11_31fbo")]
+position = Vector2(1, 27)
+dialogue = Array[ExtResource("12_bfid6")]([SubResource("Resource_60px0"), SubResource("Resource_xk6p6")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dialogues/SavePoint3/DialogueArea2D"]
 shape = SubResource("RectangleShape2D_ahk46")
 
 [node name="SavePoint2" type="Node2D" parent="Dialogues"]

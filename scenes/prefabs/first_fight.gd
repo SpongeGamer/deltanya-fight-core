@@ -128,10 +128,15 @@ func _start_cutscene() -> void:
 	
 	# Запускаем бой
 	await _start_nikita_battle()
+	if not is_inside_tree():
+		return
 
 	# Камера возвращается к отряду после разговора и присоединения Никиты.
 	if is_instance_valid(_player):
 		await CameraController.instance.pan_to_node(_player, 1.0, true)
+	await _walk_party_into_formation()
+	if not is_inside_tree():
+		return
 	# Возвращаем обычное следование только после послебоевого диалога.
 	for companion in [_kate, egor, nikita]:
 		if is_instance_valid(companion) and Global.party.has(companion.party_key):
@@ -199,23 +204,42 @@ func _stage_before_battle() -> void:
 		var path: Array[Vector2] = [NIKITA_STAND]
 		nikita.start_cutscene_path(path)
 
-# Во время присоединения Никита обходит группу и становится за Егором.
+# Записываем присоединение, но до конца диалога никто не двигается.
 func join_nikita_for_cutscene() -> void:
-	if is_instance_valid(nikita) and is_instance_valid(egor):
-		var destination: Vector2 = egor.global_position + Vector2(27, 0)
-		var upper_y: float = minf(nikita.global_position.y, egor.global_position.y - 60.0)
-		var path: Array[Vector2] = [Vector2(nikita.global_position.x, upper_y), Vector2(destination.x, upper_y), destination]
-		nikita.start_cutscene_path(path)
-		await nikita.cutscene_path_finished
-		nikita.last_direction = Vector2.LEFT
-		nikita._play_idle_animation()
-		nikita.is_moving = false
-		nikita.position_history.clear()
+	if is_instance_valid(nikita):
 		Global.add_to_party(nikita.party_key)
-	else:
-		# DialogueFunction connects to the signal after starting this method.
-		await get_tree().process_frame
+	# DialogueFunction подключается к сигналу после вызова этого метода.
+	await get_tree().process_frame
 	nikita_joined.emit(true)
+
+# После всего разговора спутники по очереди обходят группу и встают за Аней.
+func _walk_party_into_formation() -> void:
+	if not is_instance_valid(_player):
+		return
+	var companions: Array = [_kate, egor, nikita]
+	var upper_y: float = _player.global_position.y - 55.0
+	for member in companions:
+		if is_instance_valid(member):
+			upper_y = minf(upper_y, member.global_position.y - 45.0)
+	var slot: int = 1
+	for member in companions:
+		if not is_instance_valid(member) or not Global.party.has(member.party_key):
+			continue
+		var destination: Vector2 = _player.global_position + Vector2(29.0 * slot, 0.0)
+		var path: Array[Vector2] = [
+			Vector2(member.global_position.x, upper_y),
+			Vector2(destination.x, upper_y),
+			destination
+		]
+		member.start_cutscene_path(path)
+		await member.cutscene_path_finished
+		if not is_inside_tree():
+			return
+		if is_instance_valid(member):
+			member.last_direction = Vector2.LEFT
+			member._play_idle_animation()
+			member.position_history.clear()
+		slot += 1
 
 func _launch_dialogue(p_dialogue: Array[DE]) -> void:
 	# Локация могла быть уничтожена (например, после поражения) — дерева уже нет.
@@ -265,9 +289,24 @@ func _start_battle(battle_scene_path: String) -> void:
 	var overworld_music := Sounds.current_song
 	var player = get_tree().get_first_node_in_group("player")
 	
-	if player:
-		Global.player_return_position = player.global_position
+	# Останавливаем катсценические пути и запоминаем кадр непосредственно перед боем.
+	# Скрытая локация продолжает обрабатывать движение во время боя.
+	var party_snapshot: Dictionary = {}
+	if is_instance_valid(player):
+		player.stop_cutscene_path()
 		player.can_move = false
+		Global.player_return_position = player.global_position
+		party_snapshot[player] = [player.global_position, player.last_direction]
+	for companion in [_kate, egor, nikita]:
+		if not is_instance_valid(companion):
+			continue
+		if companion.in_cutscene:
+			companion._finish_cutscene_path()
+		companion.stop_following()
+		companion.is_moving = false
+		party_snapshot[companion] = [companion.global_position, companion.last_direction]
+	var camera_position: Vector2 = CameraController.instance.global_position
+	CameraController.instance.stop_follow()
 
 	Global.battle_in_progress = true
 
@@ -318,8 +357,7 @@ func _start_battle(battle_scene_path: String) -> void:
 
 	if is_instance_valid(player):
 		player.can_move = false
-		player.global_position = Global.player_return_position
-		_place_party_after_battle(player)
+	_restore_party_after_battle(party_snapshot, camera_position)
 	Global.player_return_position = Vector2.ZERO
 
 	PostProcessing.flash_from_black()
@@ -344,28 +382,15 @@ func unfreeze_player() -> void:
 	if player:
 		player.can_move = true
 
-# Возвращаемся к разговору: трое напротив Никиты, все смотрят друг на друга.
-func _place_party_after_battle(player: Node2D) -> void:
-	player.velocity = Vector2.ZERO
-	player.position_history.clear()
-	player.last_direction = Vector2.LEFT
-	player._play_idle_animation()
-	for i in range(2):
-		var companion: Companion = [_kate, egor][i]
-		if not is_instance_valid(companion):
+# Возвращаем всех туда, где они стояли перед боем, без перестановки отряда.
+func _restore_party_after_battle(party_snapshot: Dictionary, camera_position: Vector2) -> void:
+	for actor in party_snapshot:
+		if not is_instance_valid(actor):
 			continue
-		companion.stop_following()
-		companion.global_position = player.global_position + Vector2(25 * (i + 1), -14 * (i + 1))
-		companion.velocity = Vector2.ZERO
-		companion.is_moving = false
-		companion.position_history.clear()
-		companion.last_direction = Vector2.LEFT
-		companion._play_idle_animation()
-		companion.z_index = int(companion.global_position.y)
-	if is_instance_valid(nikita):
-		nikita.stop_following()
-		nikita.last_direction = Vector2.RIGHT
-		nikita._play_idle_animation()
-		nikita.position_history.clear()
-		# В кадре одновременно и Никита, и вся группа.
-		CameraController.instance.snap_to((nikita.global_position + player.global_position + Vector2(50, -20)) / 2.0)
+		actor.global_position = party_snapshot[actor][0]
+		actor.last_direction = party_snapshot[actor][1]
+		actor.velocity = Vector2.ZERO
+		actor.position_history.clear()
+		actor._play_idle_animation()
+		actor.z_index = int(actor.global_position.y)
+	CameraController.instance.snap_to(camera_position)

@@ -16,7 +16,7 @@ func set_active(p_active: bool) -> void:
 	active = p_active
 	for child: CanvasItem in get_children():
 		child.visible = active
-	indicator.position.x = 410.0 + 96.0 * randi_range(-1, 1)
+	indicator.position.x = 262.0 + 32.0 * randi_range(-1, 1)
 	frame = 0
 
 func _process(delta: float) -> void:

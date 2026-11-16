@@ -3410,6 +3410,7 @@ collision_mask = 4
 script = ExtResource("26_7b4gm")
 activate_instant = true
 only_activate_once = true
+flag_key = "shroom_fight_1"
 dialogue = Array[ExtResource("10_rt7tr")]([SubResource("Resource_mgmkm"), SubResource("Resource_2dieb")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShroomFights/ShroomFight"]
@@ -3423,6 +3424,7 @@ collision_mask = 4
 script = ExtResource("26_7b4gm")
 activate_instant = true
 only_activate_once = true
+flag_key = "shroom_fight_2"
 dialogue = Array[ExtResource("10_rt7tr")]([SubResource("Resource_mgmkm"), SubResource("Resource_2dieb")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShroomFights/ShroomFight2"]
@@ -3436,6 +3438,7 @@ collision_mask = 4
 script = ExtResource("26_7b4gm")
 activate_instant = true
 only_activate_once = true
+flag_key = "shroom_fight_3"
 dialogue = Array[ExtResource("10_rt7tr")]([SubResource("Resource_mgmkm"), SubResource("Resource_2dieb")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShroomFights/ShroomFight3"]
@@ -3449,6 +3452,7 @@ collision_mask = 4
 script = ExtResource("26_7b4gm")
 activate_instant = true
 only_activate_once = true
+flag_key = "shroom_fight_4"
 dialogue = Array[ExtResource("10_rt7tr")]([SubResource("Resource_mgmkm"), SubResource("Resource_2dieb")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShroomFights/ShroomFight4"]
