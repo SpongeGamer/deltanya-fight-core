@@ -4112,6 +4112,7 @@ texture = ExtResource("29_jvdyp")
 
 [node name="Mediator" parent="ActiveNode/Puzzle1Zone" instance=ExtResource("28_a8s2q")]
 position = Vector2(300, 750)
+flag_key = "first_mediator"
 dialogue = Array[ExtResource("2_lnyqi")]([SubResource("Resource_s5uhh"), SubResource("Resource_ebvft"), SubResource("Resource_kkg6q")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActiveNode/Puzzle1Zone/Mediator"]
@@ -4131,6 +4132,7 @@ dialogue_collision = NodePath("../CollisionShape2D")
 
 [node name="Mediator2" parent="ActiveNode/Puzzle1Zone" instance=ExtResource("28_a8s2q")]
 position = Vector2(2217, 537)
+flag_key = "first_sticks"
 dialogue = Array[ExtResource("2_lnyqi")]([SubResource("Resource_6eg0j"), SubResource("Resource_64pcg"), SubResource("Resource_gsp6o")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActiveNode/Puzzle1Zone/Mediator2"]
@@ -4150,6 +4152,7 @@ dialogue_collision = NodePath("../CollisionShape2D")
 
 [node name="Mediator3" parent="ActiveNode/Puzzle1Zone" instance=ExtResource("28_a8s2q")]
 position = Vector2(885, 1589)
+flag_key = "first_candy"
 dialogue = Array[ExtResource("2_lnyqi")]([SubResource("Resource_yh16d"), SubResource("Resource_vayet"), SubResource("Resource_sugbe")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActiveNode/Puzzle1Zone/Mediator3"]
@@ -4630,6 +4633,7 @@ shape = SubResource("RectangleShape2D_xdrdh")
 position = Vector2(690, 1574)
 activate_instant = true
 only_activate_once = true
+flag_key = "long_dialogue_starter"
 dialogue = Array[ExtResource("2_lnyqi")]([SubResource("Resource_yvnef"), SubResource("Resource_ghbb2"), SubResource("Resource_map6t"), SubResource("Resource_8p0mp"), SubResource("Resource_ol8lh"), SubResource("Resource_0xruh"), SubResource("Resource_a82hn"), SubResource("Resource_3avkv"), SubResource("Resource_db2cx"), SubResource("Resource_4erao")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActiveNode/LongNode/LongDialogue"]
