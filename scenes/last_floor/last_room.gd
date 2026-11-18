@@ -35,6 +35,8 @@ func _ready() -> void:
 
 	Sounds.set_music("waterfall",0.5)
 	Global.location_name = "Грибной лес"
+	if Global.get_flag("mk_forest_arrival_pending"):
+		add_child(preload("res://scenes/last_floor/mk_forest_arrival.gd").new())
 
 func _on_mushroom_activated(_id: int) -> void:
 	_lit_count += 1

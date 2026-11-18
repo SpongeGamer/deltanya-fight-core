@@ -4309,7 +4309,7 @@ script = ExtResource("34_lb4xr")
 position = Vector2(-1259, 2080)
 
 [node name="HoleDescent" type="Area2D" parent="."]
-position = Vector2(354, 3030)
+position = Vector2(349, 3025)
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("mk_descent_script")
