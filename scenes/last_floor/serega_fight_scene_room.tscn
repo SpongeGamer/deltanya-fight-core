@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://nf3n00h0bfge"]
+[gd_scene load_steps=40 format=4 uid="uid://nf3n00h0bfge"]
 
 [ext_resource type="Script" uid="uid://ct404q8dpij18" path="res://scripts/overworld/camera_controller.gd" id="1_7fhqb"]
 [ext_resource type="PackedScene" uid="uid://b8ny5hm5wkufg" path="res://ui/settings/settings_menu.tscn" id="2_5rvn6"]
@@ -6,6 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://ogidicqqkcwp" path="res://scenes/prefabs/dialogue_area_2d.tscn" id="4_uoqxf"]
 [ext_resource type="Script" uid="uid://buho0degfd14w" path="res://resources/DialogueExportResource.gd" id="5_5wqiq"]
 [ext_resource type="Script" uid="uid://dpl3myc5lbyaq" path="res://scripts/DialogueTextResource.gd" id="6_32dk5"]
+
+[ext_resource type="Script" path="res://scenes/last_floor/serega_corridor_atmosphere.gd" id="corridor_atmosphere"]
+[ext_resource type="Script" path="res://scenes/last_floor/serega_corridor_dialogue.gd" id="corridor_dialogue"]
+[ext_resource type="Script" path="res://scripts/overworld/travel_trigger.gd" id="corridor_travel"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5rvn6"]
 size = Vector2(19.285713, 517.14294)
@@ -156,6 +160,36 @@ metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_08g45"]
 size = Vector2(110, 34)
 
+[sub_resource type="RectangleShape2D" id="CorridorDoorCollision"]
+size = Vector2(110, 12)
+
+[sub_resource type="RectangleShape2D" id="CorridorDoorArea"]
+size = Vector2(100, 45)
+
+[sub_resource type="RectangleShape2D" id="CorridorNoteArea"]
+size = Vector2(52, 38)
+
+[sub_resource type="RectangleShape2D" id="CorridorReturnArea"]
+size = Vector2(108, 18)
+
+[sub_resource type="Resource" id="CorridorNoteText"]
+script = ExtResource("6_32dk5")
+text = "Вы находите смятый листок с нотами. Одну из них кто-то несколько раз обвел."
+text_speed = 16.0
+text_sound = SubResource("AudioStreamWAV_shwti")
+text_volume_db = 4
+text_volume_pitch_min = 1.0
+text_volume_pitch_max = 1.0
+
+[sub_resource type="Resource" id="CorridorDoorText"]
+script = ExtResource("6_32dk5")
+text = "За дверью тихо. Вы пока не решаетесь идти дальше."
+text_speed = 16.0
+text_sound = SubResource("AudioStreamWAV_shwti")
+text_volume_db = 4
+text_volume_pitch_min = 1.0
+text_volume_pitch_max = 1.0
+
 [node name="SeregaFightSceneRoom" type="Node2D"]
 
 [node name="Spawnpoint" type="Node2D" parent="."]
@@ -210,6 +244,7 @@ tile_map_data = PackedByteArray("AAD+/wMAAAAIAAsAAAD//wMAAAAJAAoAADAAAAMAAAAJAAo
 tile_set = SubResource("TileSet_7fhqb")
 
 [node name="Dialogue1" parent="." instance=ExtResource("4_uoqxf")]
+script = ExtResource("corridor_dialogue")
 position = Vector2(-137, -88)
 activate_instant = true
 only_activate_once = true
@@ -219,3 +254,41 @@ dialogue = Array[ExtResource("5_5wqiq")]([SubResource("Resource_v42wi"), SubReso
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dialogue1"]
 position = Vector2(138, 29)
 shape = SubResource("RectangleShape2D_08g45")
+
+
+[node name="CorridorAtmosphere" type="Node2D" parent="."]
+script = ExtResource("corridor_atmosphere")
+
+[node name="FutureDoorBlock" type="StaticBody2D" parent="."]
+position = Vector2(0, -620)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FutureDoorBlock"]
+shape = SubResource("CorridorDoorCollision")
+
+[node name="FutureDoorDialogue" parent="." instance=ExtResource("4_uoqxf")]
+position = Vector2(0, -590)
+dialogue = Array[ExtResource("5_5wqiq")]([SubResource("CorridorDoorText")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FutureDoorDialogue"]
+shape = SubResource("CorridorDoorArea")
+
+[node name="NoteDialogue" parent="." instance=ExtResource("4_uoqxf")]
+position = Vector2(-29, -402)
+dialogue = Array[ExtResource("5_5wqiq")]([SubResource("CorridorNoteText")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NoteDialogue"]
+shape = SubResource("CorridorNoteArea")
+
+[node name="ReturnToForest" type="Area2D" parent="."]
+position = Vector2(0, 128)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("corridor_travel")
+target_scene = "res://scenes/last_floor/last_boss_fight.tscn"
+spawn_point = "SeregaCorridorReturn"
+set_dark_world = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ReturnToForest"]
+shape = SubResource("CorridorReturnArea")

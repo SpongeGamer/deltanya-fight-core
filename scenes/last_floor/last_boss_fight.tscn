@@ -1924,6 +1924,9 @@ tile_map_data = PackedByteArray("AADX/wMAAAAAAAEAAADX/wsAAAAAAAEAAADX/wQAAAAAAAE
 tile_set = SubResource("TileSet_2nkdw")
 metadata/_edit_lock_ = true
 
+[node name="SeregaCorridorReturn" type="Node2D" parent="."]
+position = Vector2(2086, 2160)
+
 [node name="Spawnpoint" type="Node2D" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="."]
