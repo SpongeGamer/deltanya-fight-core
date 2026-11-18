@@ -3923,6 +3923,7 @@ frame_progress = 0.47472578
 [node name="Dialogue" parent="Interactable/WorkersBarricade/Worker7" instance=ExtResource("11_31fbo")]
 position = Vector2(-502.9655, 179.10904)
 script = ExtResource("mk_nikita_departure")
+only_activate_once = true
 dialogue = Array[ExtResource("12_bfid6")]([SubResource("Resource_y8qx5"), SubResource("Resource_6kan3"), SubResource("Resource_mk_nikita_depart"), SubResource("Resource_1bfkq"), SubResource("Resource_3o257"), SubResource("Resource_bxmev"), SubResource("Resource_0gesi"), SubResource("Resource_1n1n0"), SubResource("Resource_5bvkq")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable/WorkersBarricade/Worker7/Dialogue"]
