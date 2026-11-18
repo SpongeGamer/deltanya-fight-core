@@ -6,6 +6,7 @@ const FOREST_SCENE := "res://scenes/last_floor/last_boss_fight.tscn"
 const DONE_FLAG := "mk_descent_done"
 const STAYED_FLAG := "mk_nikita_stayed"
 const FLASHLIGHT = preload("res://scenes/blackworld/res/mk_flashlight.png")
+const LANTERN_OFFSET := Vector2(0, -42)
 
 const PORTRAITS := {
 	"Катя": "res://assets/portraits/test_kate.png",
@@ -84,7 +85,7 @@ func _run() -> void:
 		var lantern_lines: Array[DE] = [_line("Катя", "А ты?"), _line("Никита", "А я их задержу.")]
 		await _show_dialogue(lantern_lines)
 		await _nikita_stays()
-		var goodbye: Array[DE] = [_line("Аня", "Никит..."), _line("Егор", "Не стой. Прыгай.")]
+		var goodbye: Array[DE] = [_line("", "Вы окликаете Никиту."), _line("Егор", "Не стой. Прыгай.")]
 		await _show_dialogue(goodbye)
 
 	# Персонажи по очереди подходят к центру дыры и исчезают в ней.
@@ -148,13 +149,13 @@ func _show_nikita_lantern() -> void:
 	_lantern.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	_lantern.z_index = 4090
 	get_tree().current_scene.add_child(_lantern)
-	_lantern.global_position = nikita.global_position + Vector2(0, -50)
+	_lantern.global_position = nikita.global_position + LANTERN_OFFSET
 
 func _pass_lantern_to_anya() -> void:
 	if not is_instance_valid(_lantern) or not is_instance_valid(_player):
 		return
 	var start_position: Vector2 = _lantern.global_position
-	var destination: Vector2 = _player.global_position + Vector2(0, -50)
+	var destination: Vector2 = _player.global_position + LANTERN_OFFSET
 	var handoff := create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	handoff.tween_method(func(t: float):
 		if is_instance_valid(_lantern):
@@ -162,10 +163,10 @@ func _pass_lantern_to_anya() -> void:
 	await handoff.finished
 	_lantern.reparent(_player)
 	_lantern.z_index = 5
-	_lantern.position = Vector2(0, -50)
+	_lantern.position = LANTERN_OFFSET
 
 func _enter_hole() -> void:
-	# Катя с фонарем первой, затем Егор и Аня. Никита уже отошел.
+	# Катя и Егор первыми, затем Аня с фонарем. Никита уже отошел.
 	for key in ["kate", "egor"]:
 		var member := OverworldParty.get_companion(key) as Companion
 		if not is_instance_valid(member):
@@ -263,5 +264,5 @@ func _show_dialogue(entries: Array[DE]) -> void:
 			previous_index = index
 			var entry: DE = dialogue.dialogue[index]
 			if entry is DialogueText:
-				_face_speaker(entry.speaker_name)
+				_face_speaker("Аня" if entry.speaker_name == "" and entry.text.begins_with("Вы ") else entry.speaker_name)
 		await get_tree().process_frame

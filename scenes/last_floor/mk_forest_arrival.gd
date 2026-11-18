@@ -9,7 +9,7 @@ const PORTRAITS := {
 const VOICES := {
 	"Катя": "res://globals/sounds/voices/kate_voice.ogg",
 	"Егор": "res://globals/sounds/voices/egor_voice.ogg",
-	"Аня": "res://globals/sounds/sound_effects/snd_text.wav",
+	"": "res://globals/sounds/sound_effects/snd_text.wav",
 }
 
 func _ready() -> void:
@@ -45,15 +45,21 @@ func _on_arrival() -> void:
 
 	var lines: Array[DE] = [
 		_line("Катя", "Аня! Ты цела?"),
-		_line("Аня", "Вроде да. Тут... грибы светятся."),
-		_line("Егор", "И что-то мурчит."),
-		_line("Катя", "Только не говори, что это грибы."),
-		_line("Егор", "После поездов с лицами Я уже ничему не удивлюсь.")
+		_line("", "Вы киваете. Наверху все еще темно.")
 	]
 	if Global.get_flag("mk_nikita_stayed"):
-		lines.append(_line("Аня", "Надеюсь, Никита справится. Пойдем дальше."))
+		lines.append(_line("", "Вы спрашиваете, сможет ли Никита выбраться."))
+		lines.append(_line("Катя", "Он сможет... Он же всегда что-нибудь придумает."))
+		lines.append(_line("Егор", "Мы пока ничем ему не поможем. Давайте найдем дорогу отсюда."))
 	else:
-		lines.append(_line("Аня", "Пойдем. Надо найти Никиту."))
+		lines.append(_line("", "Вы спрашиваете, не видели ли они Никиту."))
+		lines.append(_line("Катя", "Нет... Он мог уйти куда угодно."))
+		lines.append(_line("Егор", "Осмотримся. Может, он оставил хоть какой-нибудь след."))
+	lines.append(_line("", "Вокруг грибов мерцают маленькие огоньки."))
+	lines.append(_line("Катя", "Красиво... Только давайте на этот раз не разбегаться."))
+	lines.append(_line("Егор", "Я вообще ничего трогать не буду."))
+	lines.append(_line("Катя", "Это ты сейчас себе говоришь?"))
+	lines.append(_line("Егор", "Всем. Но в основном себе."))
 	await _show_dialogue(lines, player, kate, egor)
 	Global.set_flag("mk_forest_intro_done")
 	Global.clear_flag("dialogue_in_progress")
@@ -79,7 +85,7 @@ func _line(speaker: String, text: String) -> DialogueText:
 	line.speaker_name = speaker
 	line.text = text
 	line.text_speed = 12.0 if speaker == "Егор" else 16.0
-	line.text_volume_db = 10 if speaker == "Егор" or speaker == "Аня" else 4
+	line.text_volume_db = 10 if speaker == "Егор" or speaker == "" else 4
 	line.text_volume_pitch_min = 1.0
 	line.text_volume_pitch_max = 1.0
 	if PORTRAITS.has(speaker):
@@ -104,7 +110,7 @@ func _show_dialogue(lines: Array[DE], player, kate: Companion, egor: Companion) 
 			var entry: DE = dialogue.dialogue[index]
 			if entry is DialogueText:
 				# Катя и Егор остаются обращены к Ане; Аня смотрит на говорящего.
-				if entry.speaker_name == "Катя" and is_instance_valid(kate):
+				if (entry.speaker_name == "Катя" or (entry.speaker_name == "" and entry.text.begins_with("Вы спрашиваете"))) and is_instance_valid(kate):
 					_face(player, kate.global_position - player.global_position)
 				elif entry.speaker_name == "Егор" and is_instance_valid(egor):
 					_face(player, egor.global_position - player.global_position)
