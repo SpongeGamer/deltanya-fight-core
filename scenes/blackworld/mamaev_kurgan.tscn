@@ -1,4 +1,4 @@
-[gd_scene load_steps=397 format=4 uid="uid://rvqhspnujl5w"]
+[gd_scene load_steps=393 format=4 uid="uid://rvqhspnujl5w"]
 
 [ext_resource type="Script" uid="uid://cx6ul5ud4jduu" path="res://scenes/blackworld/mamaev_kurgan.gd" id="1_n65pb"]
 [ext_resource type="Script" uid="uid://ct404q8dpij18" path="res://scripts/overworld/camera_controller.gd" id="1_to7hb"]
@@ -52,7 +52,9 @@
 [ext_resource type="Texture2D" uid="uid://cur66bt3fjhur" path="res://assets/bg/train-3.png" id="atmosphere_train_3"]
 [ext_resource type="Shader" uid="uid://6pn3qyo2jjna" path="res://scripts/overworld/effects/train_black_key.gdshader" id="atmosphere_train_shader"]
 [ext_resource type="Script" uid="uid://dhk5ohfkg6m1f" path="res://scenes/blackworld/mamaev_intro_trigger.gd" id="intro_camera"]
+[ext_resource type="Script" uid="uid://bm5laijcvsrk6" path="res://scenes/blackworld/mk_descent.gd" id="mk_descent_script"]
 [ext_resource type="Script" uid="uid://dkqddyhr7un5a" path="res://scenes/blackworld/mk_dialogue5_camera.gd" id="mk_dialogue5_camera"]
+[ext_resource type="Script" uid="uid://dya2drvfrqnn5" path="res://scenes/blackworld/mk_hole_exit.gd" id="mk_hole_exit_script"]
 [ext_resource type="Script" uid="uid://qpv3i4k41mr5" path="res://scenes/blackworld/mk_nikita_departure.gd" id="mk_nikita_departure"]
 
 [sub_resource type="ShaderMaterial" id="AtmosphereTrainMaterial"]
@@ -1990,73 +1992,6 @@ metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_74w1w"]
 size = Vector2(40, 118)
 
-[sub_resource type="Resource" id="Resource_dhocc"]
-script = ExtResource("13_d66av")
-text_speed = 12.0
-text_sound = SubResource("AudioStreamWAV_shwti")
-text_volume_db = 4
-text_volume_pitch_min = 1.0
-text_volume_pitch_max = 1.0
-camera_position = Vector2(-1335, 1930)
-camera_transition_time = 10.0
-metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
-
-[sub_resource type="Resource" id="Resource_7q0jy"]
-script = ExtResource("13_d66av")
-speaker_name = "Егор"
-speaker_img = SubResource("CompressedTexture2D_f8ocs")
-text_speed = 12.0
-text_sound = SubResource("AudioStreamOggVorbis_xrh8w")
-text_volume_db = 6
-text_volume_pitch_min = 1.0
-text_volume_pitch_max = 1.0
-metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
-
-[sub_resource type="Resource" id="Resource_hdwvt"]
-script = ExtResource("13_d66av")
-speaker_name = "Катя"
-speaker_img = SubResource("CompressedTexture2D_6vrek")
-text_speed = 12.0
-text_sound = SubResource("AudioStreamOggVorbis_shwti")
-text_volume_db = 4
-text_volume_pitch_min = 1.0
-text_volume_pitch_max = 1.0
-camera_transition_time = 10.0
-metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
-
-[sub_resource type="Resource" id="Resource_ikl8m"]
-script = ExtResource("13_d66av")
-text_speed = 12.0
-text_sound = SubResource("AudioStreamWAV_5orv1")
-text_volume_db = 4
-text_volume_pitch_min = 1.0
-text_volume_pitch_max = 1.0
-camera_transition_time = 10.0
-metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
-
-[sub_resource type="Resource" id="Resource_g18ak"]
-script = ExtResource("13_d66av")
-speaker_name = "Никита"
-speaker_img = SubResource("CompressedTexture2D_6vxkf")
-text_speed = 12.0
-text_sound = SubResource("AudioStreamOggVorbis_m4ll7")
-text_volume_db = 4
-text_volume_pitch_min = 1.0
-text_volume_pitch_max = 1.0
-metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
-
-[sub_resource type="Resource" id="Resource_nibcw"]
-script = ExtResource("13_d66av")
-text_speed = 10.0
-text_sound = SubResource("AudioStreamWAV_q7wqt")
-text_volume_db = 4
-text_volume_pitch_min = 1.0
-text_volume_pitch_max = 1.0
-metadata/_custom_type_script = "uid://dpl3myc5lbyaq"
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3o257"]
-size = Vector2(36, 106.5)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_a4ewr"]
 atlas = ExtResource("34_m7soq")
 region = Rect2(0, 0, 20, 19)
@@ -2526,6 +2461,9 @@ target_path = NodePath("../FightNode")
 function_name = "start_captcha_battle"
 hide_dialogue_box = true
 metadata/_custom_type_script = "uid://dkpcd6ejbeqxq"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mk_descent"]
+size = Vector2(160, 130)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5t5ji"]
 size = Vector2(91, 69)
@@ -4205,17 +4143,6 @@ dialogue = Array[ExtResource("12_bfid6")]([SubResource("Resource_f8ocs"), SubRes
 position = Vector2(120, 11)
 shape = SubResource("RectangleShape2D_74w1w")
 
-[node name="Dialogue7" parent="Dialogues" instance=ExtResource("11_31fbo")]
-position = Vector2(-112, 3053)
-activate_instant = true
-only_activate_once = true
-flag_key = "mk_dialogue_7"
-dialogue = Array[ExtResource("12_bfid6")]([SubResource("Resource_dhocc"), SubResource("Resource_7q0jy"), SubResource("Resource_hdwvt"), SubResource("Resource_ikl8m"), SubResource("Resource_g18ak"), SubResource("Resource_nibcw")])
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Dialogues/Dialogue7"]
-position = Vector2(281, -30.25)
-shape = SubResource("RectangleShape2D_3o257")
-
 [node name="SavePoint1" type="Node2D" parent="Dialogues"]
 position = Vector2(-963, 572)
 script = ExtResource("33_tcjxt")
@@ -4381,13 +4308,23 @@ script = ExtResource("34_lb4xr")
 [node name="KnyazSpawn" type="Node2D" parent="."]
 position = Vector2(-1259, 2080)
 
+[node name="HoleDescent" type="Area2D" parent="."]
+position = Vector2(354, 3030)
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("mk_descent_script")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HoleDescent"]
+shape = SubResource("RectangleShape2D_mk_descent")
+
 [node name="Exit" type="Area2D" parent="."]
 position = Vector2(492, 2943)
 collision_layer = 4
 collision_mask = 4
-script = ExtResource("30_t1h30")
+script = ExtResource("mk_hole_exit_script")
 target_scene = "uid://dclvgwrxvbt7b"
 spawn_point = "Spawnpoint"
+require_interact = true
 set_dark_world = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Exit"]
