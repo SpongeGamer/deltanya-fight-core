@@ -529,7 +529,7 @@ format = 3
 
 [sub_resource type="Resource" id="Resource_6iw5i"]
 script = ExtResource("8_itbvg")
-text = "Вы дружно согласились держатся рядом. "
+text = "Вы дружно согласились держаться рядом. "
 text_speed = 18.0
 text_sound = SubResource("AudioStreamWAV_itbvg")
 text_volume_db = 4
