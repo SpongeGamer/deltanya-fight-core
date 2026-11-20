@@ -7,6 +7,7 @@ const DONE_FLAG := "mk_descent_done"
 const STAYED_FLAG := "mk_nikita_stayed"
 const FLASHLIGHT = preload("res://scenes/blackworld/res/mk_flashlight.png")
 const LANTERN_OFFSET := Vector2(0, -42)
+const IN_PROGRESS_FLAG := "mk_descent_running"
 
 const PORTRAITS := {
 	"Катя": "res://assets/portraits/test_kate.png",
@@ -30,7 +31,9 @@ var _hole_position := Vector2.ZERO
 var _lantern: Sprite2D
 
 func _process(_delta: float) -> void:
-	if _started or Global.get_flag(DONE_FLAG) or not Global.get_flag("knyaz_cutscene_done"):
+	if Global.get_flag(IN_PROGRESS_FLAG):
+		return
+	if _started or Global.get_flag(DONE_FLAG):
 		return
 	if Global.get_flag("dialogue_in_progress") or Global.battle_in_progress:
 		return
@@ -44,6 +47,7 @@ func _process(_delta: float) -> void:
 
 func _run() -> void:
 	_player.can_move = false
+	Global.set_flag(IN_PROGRESS_FLAG)
 	Global.set_flag("dialogue_in_progress")
 	var hole := get_parent().get_node_or_null("Hole") as Node2D
 	_hole_position = hole.global_position if is_instance_valid(hole) else global_position

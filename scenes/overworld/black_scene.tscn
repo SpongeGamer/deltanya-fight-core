@@ -1015,6 +1015,7 @@ autoplay = "glow"
 script = ExtResource("22_30jwv")
 item_resource = ExtResource("23_4hk63")
 dialogue_collision = NodePath("../CollisionShape2D")
+pickup_flag = "mic_cheap_taken"
 
 [connection signal="body_entered" from="Mediator" to="Mediator" method="_on_body_entered"]
 [connection signal="body_exited" from="Mediator" to="Mediator" method="_on_body_exited"]

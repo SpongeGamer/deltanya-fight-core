@@ -1575,6 +1575,7 @@ frame_progress = 0.50885063
 script = ExtResource("39_67iom")
 item_resource = ExtResource("40_qqosd")
 dialogue_collision = NodePath("../CollisionShape2D")
+pickup_flag = "mediator_jazz_taken"
 
 [connection signal="body_entered" from="NPC/Knyaz/KnyazShopZone" to="NPC/Knyaz/KnyazShopZone" method="_on_body_entered"]
 [connection signal="body_exited" from="NPC/Knyaz/KnyazShopZone" to="NPC/Knyaz/KnyazShopZone" method="_on_body_exited"]

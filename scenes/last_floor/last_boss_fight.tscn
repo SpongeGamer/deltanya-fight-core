@@ -2962,6 +2962,7 @@ frame_progress = 0.13335086
 script = ExtResource("29_4fupj")
 item_resource = ExtResource("30_7b4gm")
 dialogue_collision = NodePath("../CollisionShape2D")
+pickup_flag = "apple_forest_taken"
 
 [node name="StorageChest" type="Node2D" parent="MainInteractNodes"]
 position = Vector2(422, 2135)

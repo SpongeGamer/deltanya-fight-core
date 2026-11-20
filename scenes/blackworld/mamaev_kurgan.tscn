@@ -4213,6 +4213,7 @@ frame_progress = 0.8386489
 script = ExtResource("39_y8qx5")
 item_resource = ExtResource("40_y8qx5")
 dialogue_collision = NodePath("../CollisionShape2D")
+pickup_flag = "sticks_hickory_taken"
 
 [node name="Mediator3" parent="Dialogues" instance=ExtResource("11_31fbo")]
 position = Vector2(-515, 2524)
@@ -4231,6 +4232,7 @@ autoplay = "glow"
 script = ExtResource("39_y8qx5")
 item_resource = ExtResource("41_uhmny")
 dialogue_collision = NodePath("../CollisionShape2D")
+pickup_flag = "candy_mk_taken"
 
 [node name="StorageChest" type="Node2D" parent="Dialogues"]
 position = Vector2(-1491, 2020)

@@ -4129,6 +4129,7 @@ frame_progress = 0.75624
 script = ExtResource("33_fpgm0")
 item_resource = ExtResource("35_tpkh1")
 dialogue_collision = NodePath("../CollisionShape2D")
+pickup_flag = "mediator_worn_taken"
 
 [node name="Mediator2" parent="ActiveNode/Puzzle1Zone" instance=ExtResource("28_a8s2q")]
 position = Vector2(2217, 537)
@@ -4149,6 +4150,7 @@ frame_progress = 0.75624
 script = ExtResource("33_fpgm0")
 item_resource = ExtResource("36_8p8ij")
 dialogue_collision = NodePath("../CollisionShape2D")
+pickup_flag = "sticks_school_taken"
 
 [node name="Mediator3" parent="ActiveNode/Puzzle1Zone" instance=ExtResource("28_a8s2q")]
 position = Vector2(885, 1589)
@@ -4169,6 +4171,7 @@ frame_progress = 0.75624
 script = ExtResource("33_fpgm0")
 item_resource = ExtResource("37_ubbrm")
 dialogue_collision = NodePath("../CollisionShape2D")
+pickup_flag = "candy_first_taken"
 
 [node name="DoorCollision" type="StaticBody2D" parent="ActiveNode/Puzzle1Zone"]
 position = Vector2(287, 204)
