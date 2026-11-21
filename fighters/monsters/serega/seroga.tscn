@@ -18,7 +18,7 @@ script = ExtResource("2_act")
 title = "Вспомнить"
 text = "  * Ты напоминаешь ему о настоящем Сереге.
   * Темный Серега на секунду замолкает."
-spare_percent = 15
+spare_percent = 10
 metadata/_custom_type_script = "uid://bwvvm6kvpsqi1"
 
 [sub_resource type="Resource" id="Resource_act3"]
@@ -27,7 +27,7 @@ title = "Отдохнуть"
 text = "  * Ты говоришь ему: хватит.
   * Можно просто остановиться.
   * Он смотрит на тебя долго."
-spare_percent = 20
+spare_percent = 12
 metadata/_custom_type_script = "uid://bwvvm6kvpsqi1"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7wtle"]
